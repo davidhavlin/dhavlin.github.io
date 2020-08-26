@@ -1,6 +1,6 @@
 <template>
   <div>
-    navbar
+    <nuxt-link to="/">Logo</nuxt-link>
   </div>
 </template>
 

@@ -1,12 +1,21 @@
 <template>
-  <div>
-    <NavigationBar />
+  <div class="container">
+    <TheNavigationBar />
 
     <Nuxt />
   </div>
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -21,12 +30,10 @@ html {
 
 body {
   background: url('~assets/images/bg.webp');
+  background-attachment: fixed;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
+.container {
+  min-height: 100vh;
 }
 </style>
