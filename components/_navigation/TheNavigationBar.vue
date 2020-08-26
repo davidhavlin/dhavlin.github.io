@@ -1,11 +1,11 @@
 <template>
-  <nav class="navbar">
-    <NavigationLogo />
+	<nav class="navbar">
+		<NavigationLogo />
 
-    <NavigationIcons />
+		<NavigationIcons />
 
-    <NavigationSocials />
-  </nav>
+		<NavigationSocials />
+	</nav>
 </template>
 
 <script>
@@ -14,13 +14,13 @@ export default {}
 
 <style lang="scss" scoped>
 .navbar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  color: #fff;
-  position: absolute;
-  background: #000;
-  height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	color: #fff;
+	position: absolute;
+	background: #000;
+	height: 100vh;
 }
 </style>

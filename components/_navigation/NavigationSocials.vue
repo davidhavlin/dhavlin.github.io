@@ -1,7 +1,7 @@
 <template>
-  <div>
-    Socials
-  </div>
+	<div>
+		Socials
+	</div>
 </template>
 
 <script>
