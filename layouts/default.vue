@@ -28,9 +28,19 @@ html {
 	box-sizing: border-box;
 }
 
+a {
+	text-decoration: none;
+}
+
+:root {
+	--main-color: #1fffff;
+}
+
 body {
-	background: url('~assets/images/bg.webp');
+	/* background: url('~assets/images/bg.webp'); */
+	background: url('~assets/images/background.jpg');
 	background-attachment: fixed;
+	overflow: hidden;
 }
 
 .container {

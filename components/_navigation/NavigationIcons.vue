@@ -134,27 +134,28 @@ export default {}
 	justify-content: center;
 	align-items: center;
 
-	a {
-		text-decoration: none;
-	}
-
 	.link {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		margin-bottom: 0.6rem;
+
+		svg {
+			width: 35px;
+		}
 	}
 
 	.link-name {
 		font-family: 'Press Start 2P', cursive;
 		font-size: 0.5em;
-		color: #39d9b3;
+		color: var(--main-color);
 		padding: 0.5rem;
+		opacity: 0;
 	}
 }
 
 .link-second-color {
-	fill: #39d9b3;
+	fill: var(--main-color);
 }
 </style>

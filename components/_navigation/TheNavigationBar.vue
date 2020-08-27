@@ -22,5 +22,6 @@ export default {}
 	position: absolute;
 	background: #000;
 	height: 100vh;
+	z-index: 10;
 }
 </style>
