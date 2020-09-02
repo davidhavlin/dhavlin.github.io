@@ -20,8 +20,10 @@ export default {}
 	align-items: center;
 	color: #fff;
 	position: absolute;
-	background: #000;
+	background: transparent;
+	// background: #7600e3;
 	height: 100vh;
+	width: 6.2em;
 	z-index: 10;
 }
 </style>

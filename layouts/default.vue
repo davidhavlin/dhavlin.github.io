@@ -1,13 +1,13 @@
 <template>
 	<div class="container">
 		<TheNavigationBar />
-
 		<Nuxt />
 	</div>
 </template>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import '~assets/scss/_colors';
 
 *,
 *::before,
@@ -30,10 +30,6 @@ html {
 
 a {
 	text-decoration: none;
-}
-
-:root {
-	--main-color: #1fffff;
 }
 
 body {
