@@ -3,12 +3,28 @@
 		<section class="left-section">
 			<ContactForm class="contact-form" />
 		</section>
-		<section class="right-section"></section>
+		<section class="right-section">
+			<!-- <img src="~assets/images/hover1.jpg" alt />
+			<img src="~assets/images/hover2.jpg" alt />-->
+		</section>
 	</div>
 </template>
 
 <script>
-export default {}
+/* eslint-disable */
+// import hoverEffect from 'hover-effect/dist/hover-effect.js'
+
+export default {
+	mounted() {
+		// var myAnimation = new hoverEffect({
+		// 	parent: document.querySelector('.my-div'),
+		// 	intensity: 0.3,
+		// 	image1: 'images/myImage1.jpg',
+		// 	image2: 'images/myImage2.jpg',
+		// 	displacementImage: 'images/myDistorsionImage.png',
+		// })
+	},
+}
 </script>
 
 <style lang="scss" scoped>
@@ -29,8 +45,8 @@ export default {}
 	.right-section {
 		width: 50%;
 		height: 100%;
-		background-image: url('~assets/images/city.jpg');
-		background-size: cover;
+		// background-image: url('~assets/images/city.jpg');
+		// background-size: cover;
 	}
 }
 </style>

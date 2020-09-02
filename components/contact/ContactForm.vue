@@ -20,7 +20,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.writingEffect()
+		this.writingEffect(this.title)
 	},
 
 	methods: {
@@ -30,10 +30,9 @@ export default {
 				return
 			}
 			this.letter = this.title.slice(0, this.index++)
-			console.log(this.index)
 			this.$refs.title.textContent = this.letter
 
-			setTimeout(this.writingEffect, 250)
+			setTimeout(this.writingEffect, 200)
 		},
 	},
 }
@@ -53,20 +52,22 @@ export default {
 	font-weight: normal;
 	font-size: 2.5em;
 	margin-bottom: 1rem;
+	height: 40px;
 }
 .contact-title::after {
 	content: '';
 	position: absolute;
 	width: 3px;
-	height: 6%;
+	height: 1.1em;
 	border-right: 4px solid $main-color;
-	animation: type 0.5s infinite ease;
+	opacity: 0;
+	animation: type 1s steps(2, jump-none) infinite;
 }
 @keyframes type {
-	from {
+	0% {
 		opacity: 0;
 	}
-	to {
+	100% {
 		opacity: 100%;
 	}
 }
