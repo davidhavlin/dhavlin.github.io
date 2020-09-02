@@ -81,7 +81,7 @@ export default {}
 .logo {
 	font-family: 'Press Start 2P', cursive;
 	font-size: 0.5em;
-	color: $main-color;
+	color: $text-color;
 	padding: 0.5rem;
 }
 </style>

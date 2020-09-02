@@ -52,14 +52,15 @@ export default {}
 	align-items: center;
 
 	svg {
-		width: 30px;
+		width: 33px;
 	}
 }
 
 .link-name {
 	font-family: 'Press Start 2P', cursive;
-	font-size: 0.5em;
+	font-size: 0.45em;
 	color: $text-color;
+	text-transform: uppercase;
 	padding: 0.2rem;
 	padding-bottom: 0;
 }
