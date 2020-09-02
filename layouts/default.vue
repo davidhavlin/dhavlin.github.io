@@ -34,7 +34,7 @@ a {
 
 body {
 	/* background: url('~assets/images/bg.webp'); */
-	background: url('~assets/images/background.jpg');
+	background: url('~assets/images/BackgroundpixelatedCOLORED.jpg');
 	background-attachment: fixed;
 	overflow: hidden;
 }

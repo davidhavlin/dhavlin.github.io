@@ -2,21 +2,21 @@
 	<div class="title-container">
 		<h3 class="title-hello">Hello friend</h3>
 		<h1 ref="myTitle" class="title">DH</h1>
-		<div ref="myImage" class="image"></div>
-		<div class="image2"></div>
+		<!-- <div ref="myImage" class="image"></div>
+		<div class="image2"></div> -->
 	</div>
 </template>
 
 <script>
 export default {
-	mounted() {
-		document.addEventListener('mousemove', (e) => {
-			this.$refs.myTitle.style.transform = `translateX(${
-				e.pageX / -80
-			}px)`
-			this.$refs.myImage.style.transform = `translate(${e.pageX / 80}px)`
-		})
-	},
+	// mounted() {
+	// 	document.addEventListener('mousemove', (e) => {
+	// 		this.$refs.myTitle.style.transform = `translateX(${
+	// 			e.pageX / -80
+	// 		}px)`
+	// 		this.$refs.myImage.style.transform = `translate(${e.pageX / 80}px)`
+	// 	})
+	// },
 }
 </script>
 
@@ -44,7 +44,7 @@ export default {
 
 	font-size: 14em;
 	font-weight: normal;
-	color: #39d9b3;
+	// color: #39d9b3;
 	mix-blend-mode: difference;
 	text-shadow: 0.06rem 0 0.06rem #b22ff0, -0.125rem 0 0.06rem #00ffd9;
 }
