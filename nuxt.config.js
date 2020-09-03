@@ -27,6 +27,7 @@ export default {
 				content: process.env.npm_package_description || '',
 			},
 		],
+
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 	},
 	/*
@@ -37,7 +38,7 @@ export default {
 	 ** Plugins to load before mounting the App
 	 ** https://nuxtjs.org/guide/plugins
 	 */
-	plugins: [{ src: '~/plugins/hoverEffect.js', mode: 'client' }],
+	plugins: [],
 	/*
 	 ** Auto import components
 	 ** See https://nuxtjs.org/api/configuration-components
