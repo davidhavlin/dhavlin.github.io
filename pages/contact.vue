@@ -3,26 +3,26 @@
 		<section class="left-section">
 			<ContactForm class="contact-form" />
 		</section>
-		<section class="right-section">
+		<div class="right-section">
 			<!-- <img src="~assets/images/hover1.jpg" alt />
 			<img src="~assets/images/hover2.jpg" alt />-->
-		</section>
+		</div>
 	</div>
 </template>
 
 <script>
 /* eslint-disable */
-// import hoverEffect from 'hover-effect/dist/hover-effect.js'
+import hoverEffect from 'hover-effect'
 
 export default {
 	mounted() {
-		// var myAnimation = new hoverEffect({
-		// 	parent: document.querySelector('.my-div'),
-		// 	intensity: 0.3,
-		// 	image1: 'images/myImage1.jpg',
-		// 	image2: 'images/myImage2.jpg',
-		// 	displacementImage: 'images/myDistorsionImage.png',
-		// })
+		new hoverEffect({
+			parent: document.querySelector('.right-section'),
+			intensity: 0.3,
+			image1: require('@/assets/images/1.jpg'),
+			image2: require('@/assets/images/2.jpg'),
+			displacementImage: require('@/assets/images/dist2.jpg'),
+		})
 	},
 }
 </script>
@@ -45,8 +45,6 @@ export default {
 	.right-section {
 		width: 50%;
 		height: 100%;
-		// background-image: url('~assets/images/city.jpg');
-		// background-size: cover;
 	}
 }
 </style>

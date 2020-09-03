@@ -5,7 +5,12 @@
 			<input type="text" name="name" placeholder="Name" />
 			<input type="email" name="_replyto" placeholder="Email" />
 			<textarea name="message" placeholder="Message"></textarea>
-			<button type="submit" @click.prevent="writingEffect()">Send</button>
+			<button
+				type="submit"
+				@click.prevent="writingEffect(title, $refs.title)"
+			>
+				<div class="btn-text">Send</div>
+			</button>
 		</form>
 	</div>
 </template>
@@ -20,19 +25,21 @@ export default {
 		}
 	},
 	mounted() {
-		this.writingEffect(this.title)
+		this.writingEffect(this.title, this.$refs.title)
 	},
 
 	methods: {
-		writingEffect() {
-			if (this.index > this.title.length) {
+		writingEffect(typedString, element) {
+			if (this.index > typedString.length) {
 				this.index = 0
 				return
 			}
-			this.letter = this.title.slice(0, this.index++)
-			this.$refs.title.textContent = this.letter
+			this.letter = typedString.slice(0, this.index++)
+			element.textContent = this.letter
 
-			setTimeout(this.writingEffect, 200)
+			setTimeout(() => {
+				this.writingEffect(typedString, element)
+			}, 200)
 		},
 	},
 }
@@ -73,19 +80,64 @@ export default {
 }
 
 form {
+	position: relative;
 	padding: 0.7rem;
 	width: 420px;
 	background: $second-color;
 
 	input,
 	textarea {
-		color: #fff;
+		color: $main-color;
 		background: #11001a;
 		display: block;
 		width: 100%;
 		border: none;
 		padding: 0.8rem 0.5rem;
 		margin-bottom: 0.7rem;
+	}
+
+	button {
+		position: absolute;
+		bottom: -3rem;
+		font-family: inherit;
+		font-size: 0.7em;
+		text-transform: uppercase;
+		background: #1babab;
+		color: #fff;
+		border: 2px solid #0fd7d7;
+		padding: 0.6rem 1rem;
+		border-radius: 0.2rem;
+		cursor: pointer;
+	}
+	button::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 50%;
+		background: #0f8a8a;
+		transition: all 0.3s ease;
+	}
+	button::after {
+		content: 'SEND';
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	button:hover {
+		border: 2px solid #fff;
+		transform: translateY(2px);
+	}
+	button:hover:before {
+		height: 20%;
+	}
+
+	button:focus {
+		outline: none;
+		border: 2px solid #fff;
 	}
 
 	::placeholder {
@@ -112,8 +164,7 @@ form {
 		min-width: 50%;
 		min-height: 160px;
 		max-height: 350px;
+		margin-bottom: 0;
 	}
 }
-
-/* The typing effect */
 </style>
