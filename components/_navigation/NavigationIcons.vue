@@ -299,9 +299,9 @@ export default {}
 		align-items: center;
 		margin-bottom: 0.5rem;
 
-		// svg {
-		// 	// width: 35px;
-		// }
+		svg {
+			width: 38px;
+		}
 	}
 
 	.link-name {
