@@ -37,6 +37,9 @@ export default {
 		this.effectHover()
 		setTimeout(() => {
 			this.loading = false
+			setTimeout(() => {
+				this.$refs.parent.classList.add('animate')
+			}, 2000)
 		}, 2000)
 	},
 }
@@ -47,19 +50,25 @@ export default {
 	width: 100vw;
 	height: 100vh;
 	display: flex;
-	// background: yellow;
+}
 
-	.left-section {
-		width: 50%;
-		height: 100%;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-	}
+.left-section {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
 
-	.right-section {
-		width: 50%;
-		height: 100%;
-	}
+.right-section {
+	visibility: hidden;
+	width: 50%;
+	height: 100%;
+}
+
+.animate {
+	visibility: visible;
+	animation: slideInRight; /* referring directly to the animation's @keyframe declaration */
+	animation-duration: 2s; /* don't forget to set a duration! */
 }
 </style>

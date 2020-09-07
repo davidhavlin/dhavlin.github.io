@@ -71,7 +71,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '~assets/scss/_colors';
-@import 'node_modules/animate.css/animate.min.css';
 
 .contact-form-container {
 	font-family: 'Press Start 2P', cursive;
@@ -216,15 +215,15 @@ form {
 .textareaInput {
 	opacity: 0;
 	transform: scaleY(0);
-	animation: inputsIn 0.5s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	animation: inputsIn 0.4s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
 	transform-origin: top;
 	animation-delay: 1s;
 }
 .emailInput {
-	animation-delay: 1.5s;
+	animation-delay: 1.3s;
 }
 .textareaInput {
-	animation-delay: 2s;
+	animation-delay: 1.6s;
 }
 
 @keyframes inputsIn {

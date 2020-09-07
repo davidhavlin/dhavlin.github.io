@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div id="particles-js" class="container">
 		<TheNavigationBar />
 		<Nuxt />
 	</div>
@@ -7,6 +7,7 @@
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import 'node_modules/animate.css/animate.min.css';
 @import '~assets/scss/_colors';
 
 *,
