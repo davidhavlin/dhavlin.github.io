@@ -1,15 +1,36 @@
 <template>
 	<div class="contact-form-container">
 		<h1 ref="title" class="contact-title"></h1>
-		<form action="https://formspree.io/xknqlebd" method="POST">
-			<input type="text" name="name" placeholder="Name" />
-			<input type="email" name="_replyto" placeholder="Email" />
-			<textarea name="message" placeholder="Message"></textarea>
+		<form
+			ref="form"
+			class="formIn"
+			action="https://formspree.io/xknqlebd"
+			method="POST"
+		>
+			<input
+				class="nameInput"
+				type="text"
+				name="name"
+				placeholder="Name"
+			/>
+			<input
+				class="emailInput"
+				type="email"
+				name="_replyto"
+				placeholder="Email"
+			/>
+			<textarea
+				ref="textarea"
+				class="textareaInput"
+				name="message"
+				placeholder="Message"
+			></textarea>
 			<button
+				ref="sendButton"
 				type="submit"
 				@click.prevent="writingEffect(title, $refs.title)"
 			>
-				<div class="btn-text">Send</div>
+				Send
 			</button>
 		</form>
 	</div>
@@ -25,7 +46,10 @@ export default {
 		}
 	},
 	mounted() {
-		this.writingEffect(this.title, this.$refs.title)
+		this.$refs.textarea.addEventListener('animationend', () => {
+			this.$refs.sendButton.classList.add('sendButton')
+			this.writingEffect(this.title, this.$refs.title)
+		})
 	},
 
 	methods: {
@@ -47,6 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '~assets/scss/_colors';
+@import 'node_modules/animate.css/animate.min.css';
 
 .contact-form-container {
 	font-family: 'Press Start 2P', cursive;
@@ -97,6 +122,7 @@ form {
 	}
 
 	button {
+		opacity: 0;
 		position: absolute;
 		bottom: -3rem;
 		font-family: inherit;
@@ -165,6 +191,57 @@ form {
 		min-height: 160px;
 		max-height: 350px;
 		margin-bottom: 0;
+	}
+}
+.formIn {
+	animation: backInUp;
+	animation-duration: 1s;
+}
+
+.sendButton {
+	opacity: 1;
+	animation: backInUp;
+	animation-duration: 1s;
+}
+
+@keyframes buttonIn {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.nameInput,
+.emailInput,
+.textareaInput {
+	opacity: 0;
+	transform: scaleY(0);
+	animation: inputsIn 0.5s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	transform-origin: top;
+	animation-delay: 1s;
+}
+.emailInput {
+	animation-delay: 1.5s;
+}
+.textareaInput {
+	animation-delay: 2s;
+}
+
+@keyframes inputsIn {
+	to {
+		opacity: 1;
+		transform: scaleY(1);
+	}
+}
+
+@keyframes formIn {
+	from {
+		opacity: 0;
+		transform: scaleX(0);
+	}
+	to {
+		opacity: 1;
+		transform: scaleX(1);
 	}
 }
 </style>
