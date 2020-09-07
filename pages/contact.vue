@@ -1,28 +1,43 @@
 <template>
-	<div class="contact">
-		<section class="left-section">
-			<ContactForm class="contact-form" />
-		</section>
-		<div class="right-section">
-			<!-- <img src="~assets/images/hover1.jpg" alt />
-			<img src="~assets/images/hover2.jpg" alt />-->
+	<div class="theContact">
+		<transition name="loading-component">
+			<LoadingComponent v-if="loading" />
+		</transition>
+
+		<div class="contact">
+			<div v-show="!loading" class="left-section">
+				<ContactForm class="contact-form" />
+			</div>
+			<div ref="parent" class="right-section"></div>
 		</div>
 	</div>
 </template>
 
 <script>
 /* eslint-disable */
-import hoverEffect from 'hover-effect'
-
+// import hoverEffect from 'hover-effect'
 export default {
+	data() {
+		return {
+			loading: true,
+		}
+	},
+	methods: {
+		effectHover() {
+			const effect = new hoverEffect({
+				parent: this.$refs.parent,
+				intensity: 0.3,
+				image1: require('@/assets/images/1.jpg'),
+				image2: require('@/assets/images/2.jpg'),
+				displacementImage: require('@/assets/images/dist2.jpg'),
+			})
+		},
+	},
 	mounted() {
-		new hoverEffect({
-			parent: document.querySelector('.right-section'),
-			intensity: 0.3,
-			image1: require('@/assets/images/1.jpg'),
-			image2: require('@/assets/images/2.jpg'),
-			displacementImage: require('@/assets/images/dist2.jpg'),
-		})
+		this.effectHover()
+		setTimeout(() => {
+			this.loading = false
+		}, 2000)
 	},
 }
 </script>
