@@ -29,6 +29,11 @@ export default {
 		],
 
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+		script: [
+			{ src: '../three.min.js' },
+			{ src: '../TweenMax.min.js' },
+			{ src: '../hover-effect.umd.js' },
+		],
 	},
 	/*
 	 ** Global CSS
