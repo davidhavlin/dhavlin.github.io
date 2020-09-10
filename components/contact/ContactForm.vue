@@ -79,7 +79,7 @@ export default {
 }
 
 .contact-title {
-	color: $main-color;
+	color: #e9d41a;
 	font-weight: normal;
 	font-size: 2.5em;
 	margin-bottom: 1rem;
@@ -107,7 +107,7 @@ form {
 	position: relative;
 	padding: 0.7rem;
 	width: 420px;
-	background: $second-color;
+	background: #7e1cef;
 
 	input,
 	textarea {
@@ -127,9 +127,9 @@ form {
 		font-family: inherit;
 		font-size: 0.7em;
 		text-transform: uppercase;
-		background: #1babab;
+		background: #e9d41a;
 		color: #fff;
-		border: 2px solid #0fd7d7;
+		border: 2px solid #fff200;
 		padding: 0.6rem 1rem;
 		border-radius: 0.2rem;
 		cursor: pointer;
@@ -141,11 +141,12 @@ form {
 		bottom: 0;
 		width: 100%;
 		height: 50%;
-		background: #0f8a8a;
+		background: #d9aa01;
 		transition: all 0.3s ease;
 	}
 	button::after {
 		content: 'SEND';
+		color: #11001b;
 		position: absolute;
 		left: 50%;
 		top: 50%;
