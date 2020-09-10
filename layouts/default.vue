@@ -38,6 +38,8 @@ body {
 	background: url('~assets/images/BackgroundpixelatedCOLORED.jpg');
 	background-attachment: fixed;
 	overflow: hidden;
+	// cursor: url('~assets/images/cursor1.png'), auto;
+	// cursor: url('~assets/images/heart.png'), auto;
 }
 
 .container {
