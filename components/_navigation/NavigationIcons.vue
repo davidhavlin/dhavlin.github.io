@@ -1,275 +1,131 @@
 <template>
 	<div class="navigation-links">
+		<!-- ***********    HOME link  ****************** -->
 		<nuxt-link to="/">
 			<div class="link">
 				<svg
-					width="46"
-					height="45"
-					viewBox="0 0 46 45"
+					width="42"
+					height="41"
+					viewBox="0 0 42 41"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 				>
 					<path
-						class="icon-highlight-color"
-						d="M24.8228 18L33.2439 19.522V33.0293H23.8659V25.039L24.8228 18Z"
-						fill="#E9D41A"
-					/>
-					<mask
-						id="mask0"
-						mask-type="alpha"
-						maskUnits="userSpaceOnUse"
-						x="3"
-						y="3"
-						width="40"
-						height="39"
-					>
-						<path
-							fill-rule="evenodd"
-							clip-rule="evenodd"
-							d="M37.067 8.13659H29.9856V3H22.9043H15.823V8.13659H8.74162V13.2732H3V20.3122H8.74162V29.2537V42H13.3349V29.2537H19.8421V42H25.9665H30.9426H37.067V32.8683V20.3122H43V13.2732H37.067V8.13659ZM24.6268 23.3561H32.0909V30.0146H24.6268V23.3561Z"
-							fill="#0FD7D7"
-						/>
-					</mask>
-					<g mask="url(#mask0)">
-						<rect
-							class="icon-main-color"
-							width="40"
-							height="39"
-							transform="matrix(-1 0 0 1 43 3)"
-							fill="#0FD7D7"
-						/>
-						<path
-							class="icon-second-color"
-							d="M39 32H25V44H39V32Z"
-							fill="#05B1B1"
-						/>
-						<path
-							class="icon-second-color"
-							d="M14 11H0V23H14V11Z"
-							fill="#05B1B1"
-						/>
-						<path
-							class="icon-second-color"
-							d="M34 21H20V33H34V21Z"
-							fill="#05B1B1"
-						/>
-					</g>
-					<rect
-						class="icon-stroke"
-						x="1.5"
-						y="-1.5"
-						width="43"
-						height="42"
-						transform="matrix(-1 0 0 1 46 3)"
-						stroke="#FAFF00"
-						stroke-width="3"
+						class="home-icon"
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M35.067 6.13659H27.9856V1H20.9043H13.823V6.13659H6.74162V11.2732H1V18.3122H6.74162V27.2537V40H11.3349V27.2537H17.8421V40H23.9665H28.9426H35.067V30.8683V18.3122H41V11.2732H35.067V6.13659ZM22.6268 21.3561H30.0909V28.0146H22.6268V21.3561Z"
+						fill="#C807A9"
+						stroke="#110019"
+						stroke-width="2"
 					/>
 				</svg>
 
 				<div class="link-name">Home</div>
 			</div>
 		</nuxt-link>
+
+		<!-- ***********    ABOUT ME link  ****************** -->
 		<nuxt-link to="/about">
 			<div class="link">
 				<svg
-					width="46"
-					height="41"
-					viewBox="0 0 46 41"
+					width="41"
+					height="35"
+					viewBox="0 0 41 35"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 				>
 					<path
-						class="icon-highlight-color"
-						d="M25.1052 21.5938V12.8438H36.6842L37.7368 21.5938H25.1052Z"
-						fill="#FAFBFA"
-					/>
-					<mask
-						id="mask1"
-						mask-type="alpha"
-						maskUnits="userSpaceOnUse"
-						x="3"
-						y="3"
-						width="40"
-						height="35"
-					>
-						<path
-							fill-rule="evenodd"
-							clip-rule="evenodd"
-							d="M37.2584 3H8.93301V8.30899H3V26.0056H8.93301V38H15.0574V32.1011H20.0335V38H26.1579V32.1011H31.5167V38H37.2584V26.0056H43V8.30899H37.2584V3ZM9.50718 14.6011H20.0335V20.1067H9.50718V14.6011ZM36.6842 14.6011H26.1579V20.1067H36.6842V14.6011Z"
-							fill="#0FD7D7"
-						/>
-					</mask>
-					<g mask="url(#mask1)">
-						<rect
-							class="icon-main-color"
-							y="1"
-							width="47"
-							height="41"
-							fill="#0FD7D7"
-						/>
-						<rect
-							class="icon-second-color"
-							x="8"
-							y="27"
-							width="12"
-							height="13"
-							fill="#05B1B1"
-						/>
-						<rect
-							class="icon-second-color"
-							x="25"
-							y="11"
-							width="15"
-							height="13"
-							fill="#05B1B1"
-						/>
-						<rect
-							class="icon-second-color"
-							x="3"
-							y="3"
-							width="17"
-							height="15"
-							fill="#05B1B1"
-						/>
-					</g>
-					<rect
-						class="icon-stroke"
-						x="1.5"
-						y="1.5"
-						width="43"
-						height="38"
-						stroke="#EFF313"
-						stroke-width="3"
+						class="about-icon"
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M34.4019 1H6.78469V6.00562H1V22.691H6.78469V34H12.756V28.4382H17.6077V34H23.5789V28.4382H28.8038V34H34.4019V22.691H40V6.00562H34.4019V1ZM7.3445 11.9382H17.6077V17.1292H7.3445V11.9382ZM33.8421 11.9382H23.5789V17.1292H33.8421V11.9382Z"
+						fill="#9212F8"
+						stroke="#110019"
+						stroke-width="2"
 					/>
 				</svg>
 
 				<div class="link-name">About</div>
 			</div>
 		</nuxt-link>
+
+		<!-- ***********    PROJECTS link  ****************** -->
 		<nuxt-link to="/projects">
 			<div class="link">
 				<svg
-					class="projects-icon"
-					width="42"
-					height="42"
-					viewBox="0 0 42 42"
+					width="37"
+					height="37"
+					viewBox="0 0 37 37"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 				>
 					<path
-						class="icon-disk-bottom-color"
-						d="M31.8165 21.0652H10.4211V35.4147H31.8165V21.0652Z"
-						fill="#E7E7E7"
+						class="projects-icon-under"
+						d="M31.5 2H2V35H35V5.5H31.5V2Z"
+						stroke="#100317"
+						stroke-width="5"
 					/>
 					<path
-						class="icon-bottom-color"
-						d="M32.2299 35.3633H10.2144V38.8859H32.2299V35.3633Z"
-						fill="yellow"
+						class="projects-icon-color-darker"
+						d="M29 31H8V35H29V31Z"
+						fill="#0A6DA5"
 					/>
 					<path
-						class="icon-main-color"
+						d="M28.4151 18.5598H8.80273V31.7136H28.4151V18.5598Z"
+						fill="white"
+					/>
+					<path
+						class="projects-icon-color"
 						fill-rule="evenodd"
 						clip-rule="evenodd"
-						d="M3.13428 2.98608V38.9895H10.4211V21.1173H31.8164V38.9895H39.0516V6.81954H35.4857V2.98608H3.13428Z"
-						fill="#9212F8"
+						d="M2.12329 1.9873V34.9904H8.80288V18.6076H28.4153V34.9904H35.0475V5.5013H31.7788V1.9873H2.12329Z"
+						fill="#34B1F8"
 					/>
 					<path
-						class="icon-main-color-darker"
-						d="M31.8683 17.4392H10.1628V3.03784H31.8683V17.4392Z"
-						fill="#6B0EB5"
+						class="projects-icon-color-darker"
+						d="M28.4625 15.2359H8.56592V2.03467H28.4625V15.2359Z"
+						fill="#0A6DA5"
 					/>
 					<path
-						class="icon-disk-color"
 						fill-rule="evenodd"
 						clip-rule="evenodd"
-						d="M13.8838 3.03784V17.4392H31.8683V3.03784H13.8838ZM28.3132 6.67717H24.6013V14.0078H28.3132V6.67717Z"
-						fill="#212121"
-					/>
-					<rect
-						class="icon-stroke"
-						x="1.5"
-						y="1.5"
-						width="39"
-						height="39"
-						stroke="yellow"
-						stroke-width="3"
+						d="M11.9768 2.03467V15.2359H28.4626V2.03467H11.9768ZM25.2038 5.37072H21.8012V12.0905H25.2038V5.37072Z"
+						fill="#12021C"
 					/>
 				</svg>
 
 				<div class="link-name">Projects</div>
 			</div>
 		</nuxt-link>
+
+		<!-- ***********    CONTACT link  ****************** -->
 		<nuxt-link to="/contact">
 			<div class="link">
 				<svg
-					width="47"
-					height="32"
-					viewBox="0 0 47 32"
+					width="43"
+					height="29"
+					viewBox="0 0 43 29"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 				>
-					<path
-						class="icon-highlight-color"
-						d="M5.13281 25.2369V5.28076H41.7484V25.2369H5.13281Z"
-						fill="#0FD7D7"
-					/>
-					<mask
-						id="mask4"
-						mask-type="alpha"
-						maskUnits="userSpaceOnUse"
-						x="3"
-						y="3"
-						width="41"
-						height="26"
-					>
-						<path
-							fill-rule="evenodd"
-							clip-rule="evenodd"
-							d="M3 3H44V29H3V3ZM9.87283 6.19298V9.38596H6.43642V6.19298H9.87283ZM9.99133 9.61404H13.3092V12.5789H9.99133V9.61404ZM16.7457 12.807H13.5462V16H16.7457V12.807ZM20.3006 16.114H16.9827V19.4211H20.3006V22.5H26.8179V19.4211H20.3006V16.114ZM27.1734 16.114H30.4913V19.4211H27.1734V16.114ZM34.0462 12.807H30.4913V16H34.0462V12.807ZM34.0462 9.61404H37.2457V12.5789H34.0462V9.61404ZM37.2457 9.38596V6.19298H40.6821V9.38596H37.2457Z"
-							fill="#E9D41A"
-						/>
-					</mask>
-					<g mask="url(#mask4)">
-						<rect
-							class="icon-main-color"
-							x="-1"
-							width="49"
-							height="32"
-							fill="#9212F8"
-						/>
-						<rect
-							class="icon-second-color"
-							x="3"
-							y="3"
-							width="14"
-							height="11"
-							fill="#A410FF"
-						/>
-						<rect
-							class="icon-second-color"
-							x="16"
-							y="14"
-							width="14"
-							height="11"
-							fill="#A410FF"
-						/>
-						<rect
-							class="icon-second-color"
-							x="3"
-							y="21"
-							width="14"
-							height="11"
-							fill="#A410FF"
-						/>
-					</g>
 					<rect
-						class="icon-stroke"
-						x="1.5"
-						y="1.5"
-						width="44"
+						class="contact-icon-under"
+						width="43"
 						height="29"
-						stroke="yellow"
-						stroke-width="3"
+						fill="#7E0CEF"
+					/>
+					<path
+						class="contact-icon"
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M2 2H41V27H2V2ZM8.53757 5.07018V8.14035H5.26879V5.07018H8.53757ZM8.65029 8.35965H11.8064V11.2105H8.65029V8.35965ZM15.0751 11.4298H12.0318V14.5H15.0751V11.4298ZM18.4566 14.6096H15.3006V17.7895H18.4566V20.75H24.6561V17.7895H18.4566V14.6096ZM24.9942 14.6096H28.1503V17.7895H24.9942V14.6096ZM31.5318 11.4298H28.1503V14.5H31.5318V11.4298ZM31.5318 8.35965H34.5751V11.2105H31.5318V8.35965ZM34.5751 8.14035V5.07018H37.8439V8.14035H34.5751Z"
+						fill="#E9D41A"
+					/>
+					<path
+						class="contact-icon-under-stroke"
+						d="M18.4566 17.7895H24.6561V20.75H18.4566V17.7895ZM18.4566 17.7895V14.6096H15.3006V17.7895H18.4566ZM2 2H41V27H2V2ZM8.53757 8.14035V5.07018H5.26879V8.14035H8.53757ZM34.5751 5.07018V8.14035H37.8439V5.07018H34.5751ZM8.65029 8.35965H11.8064V11.2105H8.65029V8.35965ZM12.0318 11.4298H15.0751V14.5H12.0318V11.4298ZM24.9942 14.6096H28.1503V17.7895H24.9942V14.6096ZM28.1503 11.4298H31.5318V14.5H28.1503V11.4298ZM31.5318 8.35965H34.5751V11.2105H31.5318V8.35965Z"
+						stroke="#7E0CEF"
 					/>
 				</svg>
 
@@ -313,25 +169,31 @@ export default {}
 		padding-top: 0.3rem;
 		opacity: 0;
 	}
+
+	a {
+		// cursor: none;
+	}
 }
 
-.icon-main-color {
-	fill: $main-color;
+.link-name::after {
+	content: '';
+	position: absolute;
+	width: 3px;
+	margin-top: -1px;
+	margin-left: 1px;
+	height: 1.1em;
+	border-right: 4px solid #ffffff;
+	opacity: 0;
+	-webkit-animation: type-data-v-523b4402 1s steps(2, jump-none) infinite;
+	animation: type-data-v-523b4402 1s steps(2, jump-none) infinite;
 }
-
-.icon-second-color {
-	fill: #05b1b1;
-}
-.icon-highlight-color {
-	fill: transparent;
-}
-
-.icon-bg-color {
-	fill: transparent;
-}
-
-.icon-stroke {
-	stroke: transparent;
+@keyframes type {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 100%;
+	}
 }
 
 //icona DISKETA a jej farby
@@ -375,31 +237,57 @@ export default {}
 	}
 }
 
+.home-icon {
+	fill: #c807a9;
+	stroke: #110019;
+}
+
+.about-icon {
+	fill: #9212f8;
+	stroke: #110019;
+}
+
+.projects-icon-color {
+	fill: #34b1f8;
+}
+.projects-icon-color-darker {
+	fill: darken(#34b1f8, 20);
+}
+
+.contact-icon {
+	fill: #e9d41a;
+}
+.contact-icon-under {
+	fill: #110019;
+}
+.contact-icon-under-stroke {
+	stroke: #110019;
+}
+
 /* --------- HOVERY----------- */
-.link:hover .icon-main-color,
+.link:hover .home-icon,
 .link:hover .link-name {
-	fill: $second-color;
+	stroke: #fff;
 	opacity: 1;
 }
-.link:hover .icon-highlight-color {
-	fill: $main-color;
+.link:hover .link-name::after {
+	display: none;
 }
-.link:hover .icon-second-color {
-	fill: lighten($second-color, 10);
+.link:hover .about-icon {
+	stroke: #e9d41a;
 }
-
-.link:hover .icon-stroke {
-	stroke: $text-color;
-}
-.link:hover svg {
-	transform: scale(0.9) rotate(5deg);
+.link:hover .projects-icon-under {
+	stroke: #fff;
 }
 
-//Projects ikona a zmena po hovere
-.link:hover .icon-main-color-darker {
-	fill: darken($second-color, 15);
+.link:hover .contact-icon-under {
+	fill: #fff;
 }
-.link:hover .icon-bottom-color {
-	fill: $main-color;
+.link:hover .contact-icon-under-stroke {
+	stroke: #fff;
 }
+
+// .link:hover svg {
+// 	transform: scale(0.9) rotate(5deg);
+// }
 </style>
