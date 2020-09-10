@@ -72,6 +72,7 @@ export default {}
 
 .logo-link {
 	margin-top: 1rem;
+	opacity: 0;
 }
 .icon {
 	display: flex;
