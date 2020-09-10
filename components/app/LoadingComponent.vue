@@ -5,7 +5,30 @@
 </template>
 
 <script>
-export default {}
+export default {
+	data() {
+		return {
+			lines: [
+				'$: > Booting systems...',
+				'$: > Total memory found: 256kb',
+				'$: > Scanning for bootable media    ■■■■■■■■■■■ 100%',
+				'$: > No media found. Booting from network address 3E:40:9C:75',
+				'$: > Loading BIOS 2.3               ■■■■■■■■■■■ 100%',
+				'$: > Reticulating splines           ■■■■■■■■■■■ 100%',
+				'$: > Booting console                ■■■■■■■■■■■ 100%',
+				'$:',
+				'$: > Welcome to My website version 1.3a',
+				'$:',
+				'$: > Hello friend. I am David..',
+				'$: I can has matrix?',
+				'$: > buffering matrix... 20%',
+				'$: > buffering matrix... 66%',
+				'$: > buffering matrix... 100%',
+				'$: > So, would you like a red or blue pill?',
+			],
+		}
+	},
+}
 </script>
 
 <style lang="scss" scoped>
