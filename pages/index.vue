@@ -1,9 +1,9 @@
 <template>
-	<div class="title-container">
+	<div class="home-container">
 		<h3 class="title-hello">Hello friend</h3>
 		<h1 ref="myTitle" class="title">DH</h1>
 		<!-- <div ref="myImage" class="image"></div>
-		<div class="image2"></div> -->
+		<div class="image2"></div>-->
 	</div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title-container {
+.home-container {
 	font-family: 'Press Start 2P', cursive;
 	display: flex;
 	justify-content: center;
@@ -29,6 +29,7 @@ export default {
 	width: 100%;
 	height: 100vh;
 	overflow: hidden;
+	background: #100317;
 }
 .title-hello {
 	z-index: 10;

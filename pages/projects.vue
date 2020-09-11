@@ -16,5 +16,6 @@ export default {}
 	height: 100vh;
 	justify-content: center;
 	align-items: center;
+	background: #100317;
 }
 </style>

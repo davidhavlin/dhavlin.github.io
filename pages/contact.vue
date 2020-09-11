@@ -1,11 +1,7 @@
 <template>
-	<div class="theContact">
-		<transition name="loading-component">
-			<LoadingComponent v-if="loading" />
-		</transition>
-
+	<div class="contact-container">
 		<div class="contact">
-			<div v-show="!loading" class="left-section">
+			<div class="left-section">
 				<ContactForm class="contact-form" />
 			</div>
 			<div ref="parent" class="right-section"></div>
@@ -17,11 +13,6 @@
 /* eslint-disable */
 // import hoverEffect from 'hover-effect'
 export default {
-	data() {
-		return {
-			loading: true,
-		}
-	},
 	methods: {
 		effectHover() {
 			const effect = new hoverEffect({
@@ -36,16 +27,16 @@ export default {
 	mounted() {
 		this.effectHover()
 		setTimeout(() => {
-			this.loading = false
-			setTimeout(() => {
-				this.$refs.parent.classList.add('animate')
-			}, 2000)
+			this.$refs.parent.classList.add('animate')
 		}, 2000)
 	},
 }
 </script>
 
 <style lang="scss" scoped>
+.contact-container {
+	background: #100317;
+}
 .contact {
 	width: 100vw;
 	height: 100vh;
