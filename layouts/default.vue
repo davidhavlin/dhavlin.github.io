@@ -34,10 +34,10 @@ a {
 }
 
 body {
-	/* background: url('~assets/images/bg.webp'); */
-	background: url('~assets/images/BackgroundpixelatedCOLORED.jpg');
-	background-attachment: fixed;
+	// background: url('~assets/images/BackgroundpixelatedCOLORED.jpg');
+	// background-attachment: fixed;
 	overflow: hidden;
+	background-color: #180223;
 	// cursor: url('~assets/images/cursor1.png'), auto;
 	// cursor: url('~assets/images/heart.png'), auto;
 }
@@ -52,5 +52,47 @@ body {
 }
 .loading-component-enter, .loading-component-leave-to /* .fade-leave-active below version 2.1.8 */ {
 	opacity: 0;
+}
+
+.page-enter-active {
+	// transition: all 500ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	animation: pageEnter 1s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	// animation-delay: 200ms;
+}
+.page-leave-active {
+	animation: pageLeave 1s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.page-leave-to {
+	// opacity: 0.5;
+	background: yellow;
+	// transform: scale(0.8);
+	// background: #000;
+}
+
+.page-enter {
+	// animation: pageEnter 1s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+@keyframes pageEnter {
+	0% {
+		transform: scale(0.8);
+	}
+	60% {
+		transform: scale(0.8);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+@keyframes pageLeave {
+	0% {
+		transform: scale(1);
+	}
+	40% {
+		transform: scale(0.8);
+	}
+	100% {
+		transform: scale(0.8);
+	}
 }
 </style>
