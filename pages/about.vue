@@ -1,6 +1,8 @@
 <template>
 	<div class="about-container">
 		<h1>about</h1>
+		<MyButton>Click</MyButton>
+		<HoverButton render="Click" color="#08b0ea" />
 	</div>
 </template>
 

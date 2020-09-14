@@ -153,10 +153,10 @@ export default {}
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.8rem;
 
 		svg {
-			width: 38px;
+			width: 35px;
 		}
 	}
 
@@ -164,15 +164,40 @@ export default {}
 		font-family: 'Press Start 2P', cursive;
 		font-size: 0.45em;
 		text-transform: uppercase;
-		color: $text-color;
-		padding: 0.5rem;
+		color: #fff;
+		// padding: 0.5rem;
 		padding-top: 0.3rem;
 		opacity: 0;
 	}
-
 	a {
 		// cursor: none;
 	}
+
+	// a:nth-child(1) {
+	// 	.link-name {
+	// 		color: #c807a9;
+	// 	}
+	// }
+	a:nth-child(2) {
+		// .link-name {
+		// 	color: #9212f8;
+		// }
+
+		.link {
+			margin-bottom: 0.9rem;
+		}
+	}
+
+	// a:nth-child(3) {
+	// 	.link-name {
+	// 		color: #34b1f8;
+	// 	}
+	// }
+	// a:nth-child(4) {
+	// 	.link-name {
+	// 		color: #e9d41a;
+	// 	}
+	// }
 }
 
 .link-name::after {
@@ -274,7 +299,7 @@ export default {}
 	display: none;
 }
 .link:hover .about-icon {
-	stroke: #e9d41a;
+	stroke: #fff;
 }
 .link:hover .projects-icon-under {
 	stroke: #fff;
