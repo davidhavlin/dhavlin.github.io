@@ -6,7 +6,6 @@
 </template>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import 'node_modules/animate.css/animate.min.css';
 @import '~assets/scss/_colors';
 
@@ -55,24 +54,13 @@ body {
 }
 
 .page-enter-active {
-	// transition: all 500ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
 	animation: pageEnter 1s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
-	// animation-delay: 200ms;
+	animation-delay: 400ms;
 }
 .page-leave-active {
 	animation: pageLeave 1s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
-.page-leave-to {
-	// opacity: 0.5;
-	background: yellow;
-	// transform: scale(0.8);
-	// background: #000;
-}
-
-.page-enter {
-	// animation: pageEnter 1s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
-}
 @keyframes pageEnter {
 	0% {
 		transform: scale(0.8);
