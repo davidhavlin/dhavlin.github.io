@@ -85,7 +85,7 @@ export default {
 			setTimeout(() => {
 				this.index = 0
 				this.loading = false
-			}, 160000)
+			}, 1600)
 		},
 	},
 }
@@ -93,8 +93,8 @@ export default {
 
 <style lang="scss" scoped>
 .loading {
-	// font-family: 'Press Start 2P', cursive;
-	font-family: 'VT323', monospace;
+	font-family: 'Press Start 2P', cursive;
+	// font-family: 'VT323', monospace;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -116,7 +116,7 @@ export default {
 	width: 100%;
 	height: 100%;
 	list-style-type: none;
-	font-size: 1.4em;
+	// font-size: 1.4em;
 }
 
 h1 {
