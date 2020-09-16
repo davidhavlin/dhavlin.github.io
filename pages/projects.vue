@@ -6,12 +6,14 @@
 				<div class="left-arrow"></div>
 				<div class="right-arrow"></div>
 			</div>
-			<ProjectBox
-				v-for="project in projects"
-				:key="project.id"
-				:project="project"
-				class="ProjectBox"
-			/>
+			<div class="project-boxes">
+				<ProjectBox
+					v-for="project in projects"
+					:key="project.id"
+					:project="project"
+					class="ProjectBox"
+				/>
+			</div>
 		</div>
 
 		<button>show me</button>
@@ -104,8 +106,7 @@ export default {
 .page-title {
 	font-family: 'Press Start 2P', cursive;
 	font-weight: normal;
-	font-size: 1.6em;
-	color: #34b1f8;
+	font-size: 1.3em;
 	transform: translateY(-34px);
 	color: #34b1f8;
 }
@@ -120,6 +121,10 @@ export default {
 			margin-right: 0;
 		}
 	}
+}
+
+.project-boxes {
+	display: flex;
 }
 .arrows {
 	.left-arrow::after {
