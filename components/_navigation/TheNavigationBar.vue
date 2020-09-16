@@ -23,7 +23,7 @@ export default {}
 	background: transparent;
 	// background: #7600e3;
 	height: 100vh;
-	width: 6.2em;
+	width: 4em;
 	z-index: 200;
 }
 </style>

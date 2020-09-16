@@ -64,7 +64,7 @@
 						class="projects-icon-under"
 						d="M31.5 2H2V35H35V5.5H31.5V2Z"
 						stroke="#100317"
-						stroke-width="5"
+						stroke-width="4"
 					/>
 					<path
 						class="projects-icon-color-darker"
