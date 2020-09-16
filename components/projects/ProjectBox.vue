@@ -5,7 +5,6 @@
 			backgroundColor: project.colors[0],
 			backgroundImage: `url(${project.images[0]})`,
 		}"
-		:class="{ selected: project.id === 1 }"
 	>
 		<h1 class="title">{{ project.title }}</h1>
 		<div
@@ -41,6 +40,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.selected {
+	transform: translateY(10px);
+}
 .project {
 	position: relative;
 	color: #fff;
@@ -50,6 +52,7 @@ export default {
 	background-size: cover;
 	z-index: 10;
 	cursor: pointer;
+	transition: transform 1s ease;
 
 	.title {
 		font-family: 'Press Start 2P', cursive;
@@ -93,9 +96,10 @@ export default {
 	transform: translate(-50%, 50%);
 	background-position: center;
 	background-repeat: no-repeat;
+	transition: all 0.5s ease;
 }
 
-.selected {
-	outline: 5px solid #fff;
+.selected .logo {
+	transform: translate(-50%, 60%);
 }
 </style>

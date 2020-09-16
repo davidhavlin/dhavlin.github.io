@@ -1,17 +1,22 @@
 <template>
 	<div class="project-container">
-		<h1 class="page-title">My Projects ({{ projects.length }})</h1>
+		<h1 class="page-title">
+			My Projects ({{ index }}/{{ projects.length }})
+		</h1>
 		<div class="projects">
+			<!-- <div class="selected-frame"></div> -->
 			<div class="arrows">
-				<div class="left-arrow"></div>
-				<div class="right-arrow"></div>
+				<div class="left-arrow" @click="prevProject()"></div>
+				<div class="right-arrow" @click="nextProject()"></div>
 			</div>
 			<div class="project-boxes">
 				<ProjectBox
 					v-for="project in projects"
 					:key="project.id"
+					:id="project.id"
 					:project="project"
 					class="ProjectBox"
+					:class="{ selected: project.id === 1 }"
 				/>
 			</div>
 		</div>
@@ -24,6 +29,7 @@
 export default {
 	data() {
 		return {
+			index: 1,
 			projects: [
 				{
 					title: 'VR Video Saratov',
@@ -55,30 +61,56 @@ export default {
 					images: [],
 					id: 2,
 				},
-				// {
-				// 	title: 'David Havlín Portfolio',
-				// 	url: 'https://davidhavlin.netlify.app/',
-				// 	desc: 'skuska',
-				// 	logo: '',
-				// 	colors: ['#f80f2b', '#4a12be', '#0c95ff', '#100c1d'],
-				// 	stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
-				// 	images: '',
-				// 	id: 3,
-				// },
-				// {
-				// 	title: 'David Havlín Portfolio',
-				// 	url: 'https://davidhavlin.netlify.app/',
-				// 	desc: 'skuska',
-				// 	logo: '',
-				// 	colors: ['#f80f2b', '#4a12be', '#0c95ff', '#100c1d'],
-				// 	stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
-				// 	images: '',
-				// 	id: 4,
-				// },
+				{
+					title: 'COMING soon',
+					url: 'https://davidhavlin.netlify.app/',
+					desc: 'skuska',
+					logo: '',
+					colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
+					stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
+					images: [],
+					id: 3,
+				},
 			],
 		}
 	},
+
 	methods: {
+		nextProject() {
+			const boxes = document.querySelector('.project-boxes')
+			const firstBox = boxes.firstChild
+			boxes.appendChild(firstBox)
+			this.selectMidleBox()
+
+			if (this.index === this.projects.length) {
+				this.index = 1
+				return
+			}
+			this.index++
+		},
+
+		prevProject() {
+			const boxes = document.querySelector('.project-boxes')
+			const lastBox = boxes.lastChild
+			boxes.prepend(lastBox)
+			this.selectMidleBox()
+
+			if (this.index === 1) {
+				this.index = this.projects.length
+				return
+			}
+			this.index--
+		},
+
+		selectMidleBox() {
+			const boxes = document.querySelectorAll('.ProjectBox')
+
+			boxes.forEach((box) => {
+				box.classList.remove('selected')
+			})
+			boxes[1].classList.add('selected')
+		},
+
 		activeClass(event) {
 			if (event.target.classList.contains('option')) {
 				const options = document.querySelectorAll('.option')
@@ -113,6 +145,12 @@ export default {
 .projects {
 	position: relative;
 	display: flex;
+	height: 574px;
+	width: 600px;
+	overflow: hidden;
+	transform: translateX(16px);
+	align-items: center;
+	padding-left: 0.5rem;
 
 	.ProjectBox {
 		margin-right: 6rem;
@@ -121,6 +159,16 @@ export default {
 			margin-right: 0;
 		}
 	}
+}
+
+.selected-frame {
+	background: #fff;
+	position: absolute;
+	width: 130px;
+	height: 510px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .project-boxes {
@@ -155,5 +203,18 @@ export default {
 
 button {
 	transform: translateY(50px);
+}
+
+.project-enter-active,
+.project-leave-active {
+	transition: all 1s;
+}
+.project-enter, .project-leave-to /* .list-leave-active below version 2.1.8 */ {
+	opacity: 0;
+	transform: translateY(100px);
+}
+
+.selected {
+	outline: 5px solid rgb(0, 203, 248);
 }
 </style>
