@@ -41,7 +41,8 @@ export default {
 
 <style lang="scss" scoped>
 .selected {
-	transform: translateY(10px);
+	transform: translateY(-15px);
+	transition: transform 0.2s ease;
 }
 .project {
 	position: relative;
@@ -52,7 +53,6 @@ export default {
 	background-size: cover;
 	z-index: 10;
 	cursor: pointer;
-	transition: transform 1s ease;
 
 	.title {
 		font-family: 'Press Start 2P', cursive;
