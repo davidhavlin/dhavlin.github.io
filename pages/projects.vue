@@ -32,7 +32,9 @@
 export default {
 	data() {
 		return {
+			active: false,
 			index: 1,
+			length: -210,
 			projects: [
 				{
 					title: 'VR Video Saratov',
@@ -77,13 +79,44 @@ export default {
 			],
 		}
 	},
+	mounted() {
+		const container = document.querySelector('.project-boxes')
+		const firstClone = container.firstChild.cloneNode(true)
+		const secondFirstClone = container.firstChild.nextSibling.cloneNode(
+			true
+		)
+
+		const lastClone = container.lastChild.cloneNode(true)
+		const secondLastClone = container.lastChild.previousSibling.cloneNode(
+			true
+		)
+
+		container.appendChild(firstClone)
+		container.appendChild(secondFirstClone)
+		container.prepend(lastClone)
+		container.prepend(secondLastClone)
+	},
 
 	methods: {
 		nextProject() {
+			if (this.active) return
+			this.active = true
+
 			const boxes = document.querySelector('.project-boxes')
 			const firstBox = boxes.firstChild
-			boxes.appendChild(firstBox)
-			this.selectMidleBox()
+			boxes.style.transition = 'transform 0.5s ease'
+
+			this.length -= 210
+			boxes.style.transform = `translateX(${this.length}px)`
+
+			boxes.addEventListener('transitionend', () => {
+				boxes.style.transition = 'none'
+				boxes.style.transform = `translateX(-210px)`
+				this.length = -210
+				boxes.appendChild(firstBox)
+				this.active = false
+			})
+			// this.selectMidleBox(1)
 
 			if (this.index === this.projects.length) {
 				this.index = 1
@@ -93,10 +126,25 @@ export default {
 		},
 
 		prevProject() {
+			if (this.active) return
+			this.active = true
+
 			const boxes = document.querySelector('.project-boxes')
 			const lastBox = boxes.lastChild
-			boxes.prepend(lastBox)
-			this.selectMidleBox()
+			boxes.style.transition = 'transform 0.5s ease'
+
+			this.length += 210
+			boxes.style.transform = `translateX(${this.length}px)`
+
+			boxes.addEventListener('transitionend', () => {
+				boxes.style.transition = 'none'
+				boxes.style.transform = `translateX(-210px)`
+				this.length = -210
+				boxes.prepend(lastBox)
+				this.active = false
+			})
+
+			// this.selectMidleBox(-1)
 
 			if (this.index === 1) {
 				this.index = this.projects.length
@@ -105,22 +153,16 @@ export default {
 			this.index--
 		},
 
-		selectMidleBox() {
+		selectMidleBox(direction) {
 			const boxes = document.querySelectorAll('.ProjectBox')
 
 			boxes.forEach((box) => {
 				box.classList.remove('selected')
 			})
-			boxes[1].classList.add('selected')
-		},
-
-		activeClass(event) {
-			if (event.target.classList.contains('option')) {
-				const options = document.querySelectorAll('.option')
-				options.forEach((option) => option.classList.remove('active'))
-				// document.querySelectorAll('.option').classList.remove('active')
-
-				event.target.classList.add('active')
+			if (direction) {
+				boxes[3].classList.add('selected')
+			} else {
+				boxes[1].classList.add('selected')
 			}
 		},
 	},
@@ -151,16 +193,12 @@ export default {
 	height: 574px;
 	width: 600px;
 	overflow: hidden;
-	transform: translateX(16px);
+	transform: translateX(21px);
 	align-items: center;
 	padding-left: 0.5rem;
 
 	.ProjectBox {
-		margin-right: 6rem;
-
-		&:last-child {
-			margin-right: 0;
-		}
+		margin-right: 90px;
 	}
 }
 .under-projects {
@@ -179,6 +217,8 @@ export default {
 
 .project-boxes {
 	display: flex;
+	transform: translateX(-210px);
+	// transition: transform 0.5s ease;
 }
 .arrows {
 	.left-arrow::after {
@@ -209,15 +249,6 @@ export default {
 
 button {
 	transform: translateY(50px);
-}
-
-.project-enter-active,
-.project-leave-active {
-	transition: all 1s;
-}
-.project-enter, .project-leave-to /* .list-leave-active below version 2.1.8 */ {
-	opacity: 0;
-	transform: translateY(100px);
 }
 
 .selected {
