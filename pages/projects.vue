@@ -14,8 +14,8 @@
 				<div class="project-boxes">
 					<ProjectBox
 						v-for="project in projects"
-						:key="project.id"
 						:id="project.id"
+						:key="project.id"
 						:project="project"
 						class="ProjectBox"
 						:class="{ selected: project.id === 1 }"
