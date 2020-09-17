@@ -18,6 +18,11 @@
 			class="logo"
 			:style="{ backgroundImage: `url(${project.logo})` }"
 		></div>
+		<div class="project-info">
+			<div class="url">
+				{{ project.url }}
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -43,6 +48,10 @@ export default {
 .selected.project {
 	color: red;
 }
+.show.project {
+	width: 200px;
+}
+
 .project {
 	position: relative;
 	color: #fff;
@@ -101,5 +110,18 @@ export default {
 
 .selected .logo {
 	transform: translate(-50%, 60%);
+}
+
+.project-info {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.url {
+	display: none;
+}
+
+.show .url {
+	display: block;
 }
 </style>

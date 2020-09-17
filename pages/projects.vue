@@ -1,14 +1,16 @@
 <template>
-	<div class="project-container">
-		<h1 class="page-title">
+	<div class="project-page" :class="{ projectShowcase: closeMeBtn }">
+		<h1 class="project-page-title">
 			My Projects ({{ index }}/{{ projects.length }})
 		</h1>
 		<div class="under-projects">
-			<div class="arrows">
+			<!-- ------------------- ARROWS A FRAME ---------- -->
+			<div class="arrows" v-if="!closeMeBtn">
 				<div class="left-arrow" @click="prevProject()"></div>
 				<div class="right-arrow" @click="nextProject()"></div>
 			</div>
 			<div class="selected-frame"></div>
+			<!-- **************************** -->
 			<div class="projects">
 				<div class="project-boxes">
 					<ProjectBox
@@ -17,13 +19,13 @@
 						:key="project.id"
 						:project="project"
 						class="ProjectBox"
-						:class="{ selected: project.id === 1 }"
 					/>
 				</div>
 			</div>
 		</div>
 
-		<button>show me</button>
+		<button @click="showProject()">show me</button>
+		<button v-if="closeMeBtn" @click="closeProject()">close me</button>
 	</div>
 </template>
 
@@ -35,6 +37,7 @@ export default {
 			index: 1,
 			size: 210,
 			counter: 3,
+			closeMeBtn: false,
 			projects: [
 				{
 					title: 'VR Video Saratov',
@@ -109,40 +112,87 @@ export default {
 		},
 	},
 	mounted() {
-		const lastBox = this.container.lastChild
-		const lastPrevBox = lastBox.previousSibling
-		const lastPrevPrevBox = lastPrevBox.previousSibling
-		const firstBox = this.container.firstChild
-		const firstNextBox = firstBox.nextSibling
-		const firstNextNextBox = firstNextBox.nextSibling
+		this.cloneElements()
 
-		const clonedLastBox = lastBox.cloneNode(true)
-		const clonedLastPrevBox = lastPrevBox.cloneNode(true)
-		const clonedLastLastPrevBox = lastPrevPrevBox.cloneNode(true)
-		clonedLastBox.classList.add('lastClone')
-		clonedLastPrevBox.classList.add('ccclone')
-		clonedLastLastPrevBox.classList.add('clone')
-		const clonedFirstBox = firstBox.cloneNode(true)
-		const clonedFirstNextBox = firstNextBox.cloneNode(true)
-		const clonedFirstNextNextBox = firstNextNextBox.cloneNode(true)
-		clonedFirstBox.classList.add('hmclone')
-		clonedFirstNextBox.classList.add('clone')
-		clonedFirstNextNextBox.classList.add('clone')
+		this.onMountedStyles()
 
-		this.container.style.transform = `translateX(${
-			-this.size * this.counter
-		}px)`
+		this.container.addEventListener('transitionend', (event) => {
+			if (!event.target.classList.contains('project-boxes')) {
+				return
+			}
+			this.carouselMagic()
+		})
+	},
 
-		this.container.prepend(clonedLastBox)
-		this.container.prepend(clonedLastPrevBox)
-		this.container.prepend(clonedLastLastPrevBox)
-		this.container.appendChild(clonedFirstBox)
-		this.container.appendChild(clonedFirstNextBox)
-		this.container.appendChild(clonedFirstNextNextBox)
+	methods: {
+		showProject() {
+			const selected = document.querySelector('.selected')
+			this.boxes.forEach((box) => {
+				if (!box.classList.contains('selected')) {
+					box.classList.add('hideBox')
+				}
+			})
+			this.closeMeBtn = true
+			selected.classList.add('show')
+		},
 
-		this.container.addEventListener('transitionend', () => {
-			if (!this.active) return
-			if (this.boxes[this.counter].classList.contains('ccclone')) {
+		closeProject() {
+			const selected = document.querySelector('.selected')
+			this.boxes.forEach((box) => {
+				box.classList.remove('hideBox')
+			})
+			selected.classList.remove('show')
+			this.closeMeBtn = false
+		},
+
+		nextProject() {
+			if (this.active) return
+			this.active = true
+
+			this.selectMidleBox(true)
+
+			this.container.style.transition = 'transform 0.3s ease'
+			this.counter++
+			this.container.style.transform = `translateX(${
+				-this.size * this.counter
+			}px)`
+
+			if (this.index === this.projects.length) {
+				this.index = 1
+				return
+			}
+			this.index++
+		},
+
+		prevProject() {
+			if (this.active) return
+			this.active = true
+
+			this.selectMidleBox(false)
+
+			this.container.style.transition = 'transform 0.3s ease'
+			this.counter--
+			this.container.style.transform = `translateX(${
+				-this.size * this.counter
+			}px)`
+
+			if (this.index === 1) {
+				this.index = this.projects.length
+				return
+			}
+			this.index--
+		},
+
+		onMountedStyles() {
+			this.container.style.transform = `translateX(${
+				-this.size * this.counter
+			}px)`
+
+			this.boxes[this.counter + 1].classList.add('selected')
+		},
+
+		carouselMagic() {
+			if (this.boxes[this.counter].classList.contains('clone-prev')) {
 				this.container.style.transition = 'none'
 				this.counter = this.boxes.length - 5
 				this.container.style.transform = `translateX(${
@@ -154,7 +204,7 @@ export default {
 				})
 				this.boxes[this.counter + 1].classList.add('selected')
 			}
-			if (this.boxes[this.counter].classList.contains('hmclone')) {
+			if (this.boxes[this.counter].classList.contains('clone-next')) {
 				this.container.style.transition = 'none'
 				this.counter = this.boxes.length - this.counter
 				this.container.style.transform = `translateX(${
@@ -166,86 +216,50 @@ export default {
 				})
 				this.boxes[this.counter + 1].classList.add('selected')
 			}
-
 			this.active = false
-		})
-	},
+		},
 
-	methods: {
-		nextProject() {
-			if (this.active) {
-				console.log('wtf?')
-				return
-			}
-			this.active = true
+		cloneElements() {
+			const clonedLastBox = this.container.lastChild.cloneNode(true)
+			const clonedLastPrevBox = this.container.lastChild.previousSibling.cloneNode(
+				true
+			)
+			const clonedLastLastPrevBox = this.container.lastChild.previousSibling.previousSibling.cloneNode(
+				true
+			)
+			clonedLastPrevBox.classList.add('clone-prev')
 
+			const clonedFirstBox = this.container.firstChild.cloneNode(true)
+			const clonedFirstNextBox = this.container.firstChild.nextSibling.cloneNode(
+				true
+			)
+			const clonedFirstNextNextBox = this.container.firstChild.nextSibling.nextSibling.cloneNode(
+				true
+			)
+			clonedFirstBox.classList.add('clone-next')
+
+			this.container.prepend(clonedLastBox)
+			this.container.prepend(clonedLastPrevBox)
+			this.container.prepend(clonedLastLastPrevBox)
+			this.container.appendChild(clonedFirstBox)
+			this.container.appendChild(clonedFirstNextBox)
+			this.container.appendChild(clonedFirstNextNextBox)
+		},
+
+		selectMidleBox(direction) {
 			this.boxes.forEach((box) => {
 				box.classList.remove('selected')
 			})
-			this.boxes[this.counter + 2].classList.add('selected')
-
-			this.container.style.transition = 'transform 0.3s ease'
-			this.counter++
-			this.container.style.transform = `translateX(${
-				-this.size * this.counter
-			}px)`
-
-			// this.selectMidleBox()
-
-			if (this.index === this.projects.length) {
-				this.index = 1
-				return
-			}
-			this.index++
+			direction
+				? this.boxes[this.counter + 2].classList.add('selected')
+				: this.boxes[this.counter].classList.add('selected')
 		},
-
-		prevProject() {
-			if (this.active) {
-				return
-			} else {
-				this.active = true
-			}
-			if (this.counter <= 0) return
-			// const boxes = document.querySelector('.project-boxes')
-			// const lastBox = boxes.lastChild
-			// boxes.prepend(lastBox)
-			// const container = document.querySelector('.project-boxes')
-			// this.length += 210
-			// container.style.transform = `translateX(${this.length}px)`
-			this.boxes.forEach((box) => {
-				box.classList.remove('selected')
-			})
-			this.boxes[this.counter].classList.add('selected')
-
-			this.container.style.transition = 'transform 0.3s ease'
-			this.counter--
-			this.container.style.transform = `translateX(${
-				-this.size * this.counter
-			}px)`
-
-			// this.selectMidleBox()
-
-			if (this.index === 1) {
-				this.index = this.projects.length
-				return
-			}
-			this.index--
-		},
-
-		// selectMidleBox() {
-		// 	const boxes = document.querySelectorAll('.ProjectBox')
-
-		// 	boxes.forEach((box) => {
-		// 		box.classList.remove('selected')
-		// 	})
-		// 	boxes[this.index + 1].classList.add('selected')
-		// },
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-.project-container {
+.project-page {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -255,7 +269,7 @@ export default {
 	background: #100317;
 }
 
-.page-title {
+.project-page-title {
 	font-family: 'Press Start 2P', cursive;
 	font-weight: normal;
 	font-size: 1.3em;
@@ -335,10 +349,6 @@ button {
 	transform: translateY(100px);
 }
 
-.selected {
-	color: red;
-	// border: 15px solid rgb(0, 203, 248);
-}
 .selected-frame {
 	width: 120px;
 	height: 500px;
@@ -347,6 +357,14 @@ button {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	outline: 8px solid yellow;
+	outline: 8px solid #fff;
+}
+
+.hideBox {
+	opacity: 0;
+}
+
+.projectShowcase {
+	// background: #fff;
 }
 </style>
