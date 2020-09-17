@@ -163,10 +163,9 @@ export default {
 		nextProject() {
 			if (this.counter >= this.boxes.length - 1) return
 
-			const container = document.querySelector('.project-boxes')
-			container.style.transition = 'transform 0.5s ease'
+			this.container.style.transition = 'transform 0.5s ease'
 			this.counter++
-			container.style.transform = `translateX(${
+			this.container.style.transform = `translateX(${
 				-this.size * this.counter
 			}px)`
 
@@ -188,10 +187,9 @@ export default {
 			// this.length += 210
 			// container.style.transform = `translateX(${this.length}px)`
 
-			const container = document.querySelector('.project-boxes')
-			container.style.transition = 'transform 0.5s ease'
+			this.container.style.transition = 'transform 0.5s ease'
 			this.counter--
-			container.style.transform = `translateX(${
+			this.container.style.transform = `translateX(${
 				-this.size * this.counter
 			}px)`
 
