@@ -40,9 +40,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.selected {
-	transform: translateY(10px);
-}
 .project {
 	position: relative;
 	color: #fff;

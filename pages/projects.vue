@@ -3,21 +3,23 @@
 		<h1 class="page-title">
 			My Projects ({{ index }}/{{ projects.length }})
 		</h1>
-		<div class="projects">
-			<!-- <div class="selected-frame"></div> -->
+		<div class="under-projects">
 			<div class="arrows">
 				<div class="left-arrow" @click="prevProject()"></div>
 				<div class="right-arrow" @click="nextProject()"></div>
 			</div>
-			<div class="project-boxes">
-				<ProjectBox
-					v-for="project in projects"
-					:key="project.id"
-					:id="project.id"
-					:project="project"
-					class="ProjectBox"
-					:class="{ selected: project.id === 1 }"
-				/>
+			<div class="selected-frame"></div>
+			<div class="projects">
+				<div class="project-boxes">
+					<ProjectBox
+						v-for="project in projects"
+						:id="project.id"
+						:key="project.id"
+						:project="project"
+						class="ProjectBox"
+						:class="{ selected: project.id === 1 }"
+					/>
+				</div>
 			</div>
 		</div>
 
@@ -30,6 +32,8 @@ export default {
 	data() {
 		return {
 			index: 1,
+			size: 210,
+			counter: 3,
 			projects: [
 				{
 					title: 'VR Video Saratov',
@@ -71,16 +75,102 @@ export default {
 					images: [],
 					id: 3,
 				},
+				{
+					title: 'SKUSKA carousel',
+					url: 'https://davidhavlin.netlify.app/',
+					desc: 'skuska',
+					logo: '',
+					colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
+					stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
+					images: [],
+					id: 4,
+				},
+				{
+					title: 'SIX SIX',
+					url: 'https://davidhavlin.netlify.app/',
+					desc: 'skuska',
+					logo: '',
+					colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
+					stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
+					images: [],
+					id: 5,
+				},
 			],
 		}
+	},
+	computed: {
+		container() {
+			return document.querySelector('.project-boxes')
+		},
+
+		boxes() {
+			return document.querySelectorAll('.ProjectBox')
+		},
+	},
+	mounted() {
+		const lastBox = this.container.lastChild
+		const lastPrevBox = lastBox.previousSibling
+		const lastPrevPrevBox = lastPrevBox.previousSibling
+		const firstBox = this.container.firstChild
+		const firstNextBox = firstBox.nextSibling
+		const firstNextNextBox = firstNextBox.nextSibling
+
+		const clonedLastBox = lastBox.cloneNode(true)
+		const clonedLastPrevBox = lastPrevBox.cloneNode(true)
+		const clonedLastLastPrevBox = lastPrevPrevBox.cloneNode(true)
+		clonedLastBox.classList.add('lastClone')
+		clonedLastPrevBox.classList.add('ccclone')
+		clonedLastLastPrevBox.classList.add('clone')
+		const clonedFirstBox = firstBox.cloneNode(true)
+		const clonedFirstNextBox = firstNextBox.cloneNode(true)
+		const clonedFirstNextNextBox = firstNextNextBox.cloneNode(true)
+		clonedFirstBox.classList.add('hmclone')
+		clonedFirstNextBox.classList.add('clone')
+		clonedFirstNextNextBox.classList.add('clone')
+
+		this.container.style.transform = `translateX(${
+			-this.size * this.counter
+		}px)`
+
+		this.container.prepend(clonedLastBox)
+		this.container.prepend(clonedLastPrevBox)
+		this.container.prepend(clonedLastLastPrevBox)
+		this.container.appendChild(clonedFirstBox)
+		this.container.appendChild(clonedFirstNextBox)
+		this.container.appendChild(clonedFirstNextNextBox)
+
+		this.container.addEventListener('transitionend', () => {
+			if (this.boxes[this.counter].classList.contains('ccclone')) {
+				this.container.style.transition = 'none'
+				this.counter = this.boxes.length - 5
+				this.container.style.transform = `translateX(${
+					-this.size * this.counter
+				}px)`
+				console.log('cccclone')
+			}
+			if (this.boxes[this.counter].classList.contains('hmclone')) {
+				this.container.style.transition = 'none'
+				this.counter = this.boxes.length - this.counter
+				this.container.style.transform = `translateX(${
+					-this.size * this.counter
+				}px)`
+				console.log('hmclone')
+			}
+		})
 	},
 
 	methods: {
 		nextProject() {
-			const boxes = document.querySelector('.project-boxes')
-			const firstBox = boxes.firstChild
-			boxes.appendChild(firstBox)
-			this.selectMidleBox()
+			if (this.counter >= this.boxes.length - 1) return
+
+			const container = document.querySelector('.project-boxes')
+			container.style.transition = 'transform 0.5s ease'
+			this.counter++
+			container.style.transform = `translateX(${
+				-this.size * this.counter
+			}px)`
+
+			// this.selectMidleBox()
 
 			if (this.index === this.projects.length) {
 				this.index = 1
@@ -90,10 +180,22 @@ export default {
 		},
 
 		prevProject() {
-			const boxes = document.querySelector('.project-boxes')
-			const lastBox = boxes.lastChild
-			boxes.prepend(lastBox)
-			this.selectMidleBox()
+			if (this.counter <= 0) return
+			// const boxes = document.querySelector('.project-boxes')
+			// const lastBox = boxes.lastChild
+			// boxes.prepend(lastBox)
+			// const container = document.querySelector('.project-boxes')
+			// this.length += 210
+			// container.style.transform = `translateX(${this.length}px)`
+
+			const container = document.querySelector('.project-boxes')
+			container.style.transition = 'transform 0.5s ease'
+			this.counter--
+			container.style.transform = `translateX(${
+				-this.size * this.counter
+			}px)`
+
+			// this.selectMidleBox()
 
 			if (this.index === 1) {
 				this.index = this.projects.length
@@ -102,24 +204,14 @@ export default {
 			this.index--
 		},
 
-		selectMidleBox() {
-			const boxes = document.querySelectorAll('.ProjectBox')
+		// selectMidleBox() {
+		// 	const boxes = document.querySelectorAll('.ProjectBox')
 
-			boxes.forEach((box) => {
-				box.classList.remove('selected')
-			})
-			boxes[1].classList.add('selected')
-		},
-
-		activeClass(event) {
-			if (event.target.classList.contains('option')) {
-				const options = document.querySelectorAll('.option')
-				options.forEach((option) => option.classList.remove('active'))
-				// document.querySelectorAll('.option').classList.remove('active')
-
-				event.target.classList.add('active')
-			}
-		},
+		// 	boxes.forEach((box) => {
+		// 		box.classList.remove('selected')
+		// 	})
+		// 	boxes[this.index + 1].classList.add('selected')
+		// },
 	},
 }
 </script>
@@ -148,17 +240,16 @@ export default {
 	height: 574px;
 	width: 600px;
 	overflow: hidden;
-	transform: translateX(16px);
+	transform: translateX(21px);
 	align-items: center;
 	padding-left: 0.5rem;
 
 	.ProjectBox {
-		margin-right: 6rem;
-
-		&:last-child {
-			margin-right: 0;
-		}
+		margin-right: 90px;
 	}
+}
+.under-projects {
+	position: relative;
 }
 
 .selected-frame {
@@ -173,6 +264,8 @@ export default {
 
 .project-boxes {
 	display: flex;
+	// transform: translateX(-420px);
+	// transition: transform 0.5s ease;
 }
 .arrows {
 	.left-arrow::after {
@@ -215,6 +308,16 @@ button {
 }
 
 .selected {
-	outline: 5px solid rgb(0, 203, 248);
+	border: 15px solid rgb(0, 203, 248);
+}
+.selected-frame {
+	width: 120px;
+	height: 500px;
+	background: transparent;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	outline: 8px solid yellow;
 }
 </style>
