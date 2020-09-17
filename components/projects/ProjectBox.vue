@@ -40,6 +40,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.selected.project {
+	color: red;
+}
 .project {
 	position: relative;
 	color: #fff;

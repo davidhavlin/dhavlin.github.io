@@ -31,6 +31,7 @@
 export default {
 	data() {
 		return {
+			active: false,
 			index: 1,
 			size: 210,
 			counter: 3,
@@ -75,26 +76,26 @@ export default {
 					images: [],
 					id: 3,
 				},
-				{
-					title: 'SKUSKA carousel',
-					url: 'https://davidhavlin.netlify.app/',
-					desc: 'skuska',
-					logo: '',
-					colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
-					stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
-					images: [],
-					id: 4,
-				},
-				{
-					title: 'SIX SIX',
-					url: 'https://davidhavlin.netlify.app/',
-					desc: 'skuska',
-					logo: '',
-					colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
-					stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
-					images: [],
-					id: 5,
-				},
+				// {
+				// 	title: 'SKUSKA carousel',
+				// 	url: 'https://davidhavlin.netlify.app/',
+				// 	desc: 'skuska',
+				// 	logo: '',
+				// 	colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
+				// 	stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
+				// 	images: [],
+				// 	id: 4,
+				// },
+				// {
+				// 	title: 'SIX SIX',
+				// 	url: 'https://davidhavlin.netlify.app/',
+				// 	desc: 'skuska',
+				// 	logo: '',
+				// 	colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
+				// 	stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
+				// 	images: [],
+				// 	id: 5,
+				// },
 			],
 		}
 	},
@@ -140,13 +141,18 @@ export default {
 		this.container.appendChild(clonedFirstNextNextBox)
 
 		this.container.addEventListener('transitionend', () => {
+			if (!this.active) return
 			if (this.boxes[this.counter].classList.contains('ccclone')) {
 				this.container.style.transition = 'none'
 				this.counter = this.boxes.length - 5
 				this.container.style.transform = `translateX(${
 					-this.size * this.counter
 				}px)`
-				console.log('cccclone')
+
+				this.boxes.forEach((box) => {
+					box.classList.remove('selected')
+				})
+				this.boxes[this.counter + 1].classList.add('selected')
 			}
 			if (this.boxes[this.counter].classList.contains('hmclone')) {
 				this.container.style.transition = 'none'
@@ -154,16 +160,31 @@ export default {
 				this.container.style.transform = `translateX(${
 					-this.size * this.counter
 				}px)`
-				console.log('hmclone')
+
+				this.boxes.forEach((box) => {
+					box.classList.remove('selected')
+				})
+				this.boxes[this.counter + 1].classList.add('selected')
 			}
+
+			this.active = false
 		})
 	},
 
 	methods: {
 		nextProject() {
-			if (this.counter >= this.boxes.length - 1) return
+			if (this.active) {
+				console.log('wtf?')
+				return
+			}
+			this.active = true
 
-			this.container.style.transition = 'transform 0.5s ease'
+			this.boxes.forEach((box) => {
+				box.classList.remove('selected')
+			})
+			this.boxes[this.counter + 2].classList.add('selected')
+
+			this.container.style.transition = 'transform 0.3s ease'
 			this.counter++
 			this.container.style.transform = `translateX(${
 				-this.size * this.counter
@@ -179,6 +200,11 @@ export default {
 		},
 
 		prevProject() {
+			if (this.active) {
+				return
+			} else {
+				this.active = true
+			}
 			if (this.counter <= 0) return
 			// const boxes = document.querySelector('.project-boxes')
 			// const lastBox = boxes.lastChild
@@ -186,8 +212,12 @@ export default {
 			// const container = document.querySelector('.project-boxes')
 			// this.length += 210
 			// container.style.transform = `translateX(${this.length}px)`
+			this.boxes.forEach((box) => {
+				box.classList.remove('selected')
+			})
+			this.boxes[this.counter].classList.add('selected')
 
-			this.container.style.transition = 'transform 0.5s ease'
+			this.container.style.transition = 'transform 0.3s ease'
 			this.counter--
 			this.container.style.transform = `translateX(${
 				-this.size * this.counter
@@ -306,7 +336,8 @@ button {
 }
 
 .selected {
-	border: 15px solid rgb(0, 203, 248);
+	color: red;
+	// border: 15px solid rgb(0, 203, 248);
 }
 .selected-frame {
 	width: 120px;
