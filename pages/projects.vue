@@ -33,10 +33,10 @@
 export default {
 	data() {
 		return {
-			active: false,
 			index: 1,
-			size: 210,
 			counter: 3,
+			active: false,
+			size: 210,
 			closeMeBtn: false,
 			projects: [
 				{
