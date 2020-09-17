@@ -3,21 +3,24 @@
 		<h1 class="page-title">
 			My Projects ({{ index }}/{{ projects.length }})
 		</h1>
-		<div class="projects">
-			<!-- <div class="selected-frame"></div> -->
+		<div class="under-projects">
 			<div class="arrows">
 				<div class="left-arrow" @click="prevProject()"></div>
 				<div class="right-arrow" @click="nextProject()"></div>
 			</div>
-			<div class="project-boxes">
-				<ProjectBox
-					v-for="project in projects"
-					:key="project.id"
-					:id="project.id"
-					:project="project"
-					class="ProjectBox"
-					:class="{ selected: project.id === 1 }"
-				/>
+			<div class="projects">
+				<!-- <div class="selected-frame"></div> -->
+
+				<div class="project-boxes">
+					<ProjectBox
+						v-for="project in projects"
+						:key="project.id"
+						:id="project.id"
+						:project="project"
+						class="ProjectBox"
+						:class="{ selected: project.id === 1 }"
+					/>
+				</div>
 			</div>
 		</div>
 
@@ -159,6 +162,9 @@ export default {
 			margin-right: 0;
 		}
 	}
+}
+.under-projects {
+	position: relative;
 }
 
 .selected-frame {
