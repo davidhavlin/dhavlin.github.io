@@ -23,8 +23,13 @@
 				</div>
 			</div>
 		</div>
-
-		<button>show me</button>
+		<MyButton
+			class="projects-btn"
+			main-color="#df1041"
+			second-color="#800623"
+			border-color="#df1041"
+			>Show me</MyButton
+		>
 	</div>
 </template>
 
@@ -207,8 +212,10 @@ export default {
 	}
 }
 
-button {
-	transform: translateY(50px);
+.projects-btn {
+	// transform: translateY(50px);
+	bottom: -3rem;
+	border-color: yellow;
 }
 
 .project-enter-active,
