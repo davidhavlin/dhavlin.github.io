@@ -1,18 +1,20 @@
 <template>
-	<div class="project-page" :class="{ projectShowcase: closeMeBtn }">
+	<div class="project-page" :class="{ projectShowcase: showCase }">
 		<h1 class="project-page-title">
 			My Projects ({{ index }}/{{ projects.length }})
 		</h1>
 		<div class="under-projects">
 			<!-- ------------------- ARROWS A FRAME ---------- -->
-			<div class="arrows" v-if="!closeMeBtn">
-				<div class="left-arrow" @click="prevProject()"></div>
-				<div class="right-arrow" @click="nextProject()"></div>
+			<div class="arrows" v-if="!showCase">
+				<div class="left-arrow" @click="prevProject()">
+					&lt;
+				</div>
+				<div class="right-arrow" @click="nextProject()">&gt;</div>
 			</div>
 			<div class="selected-frame"></div>
 			<!-- **************************** -->
 			<div class="projects">
-				<div class="project-boxes">
+				<div class="project-boxes" @click="whichHalf">
 					<ProjectBox
 						v-for="project in projects"
 						:id="project.id"
@@ -24,8 +26,8 @@
 			</div>
 		</div>
 
-		<button @click="showProject()">show me</button>
-		<button v-if="closeMeBtn" @click="closeProject()">close me</button>
+		<button v-if="!showCase" @click="showProject()">show me</button>
+		<button v-if="showCase" @click="closeProject()">close me</button>
 	</div>
 </template>
 
@@ -37,7 +39,7 @@ export default {
 			counter: 3,
 			active: false,
 			size: 210,
-			closeMeBtn: false,
+			showCase: false,
 			projects: [
 				{
 					title: 'VR Video Saratov',
@@ -69,35 +71,15 @@ export default {
 					images: [],
 					id: 2,
 				},
-				{
-					title: 'COMING soon',
-					url: 'https://davidhavlin.netlify.app/',
-					desc: 'skuska',
-					logo: '',
-					colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
-					stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
-					images: [],
-					id: 3,
-				},
 				// {
-				// 	title: 'SKUSKA carousel',
+				// 	title: 'COMING soon',
 				// 	url: 'https://davidhavlin.netlify.app/',
 				// 	desc: 'skuska',
 				// 	logo: '',
 				// 	colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
 				// 	stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
 				// 	images: [],
-				// 	id: 4,
-				// },
-				// {
-				// 	title: 'SIX SIX',
-				// 	url: 'https://davidhavlin.netlify.app/',
-				// 	desc: 'skuska',
-				// 	logo: '',
-				// 	colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
-				// 	stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
-				// 	images: [],
-				// 	id: 5,
+				// 	id: 3,
 				// },
 			],
 		}
@@ -125,6 +107,20 @@ export default {
 	},
 
 	methods: {
+		nieco(event) {
+			event.target.classList.add('hover-arrow')
+		},
+		whichHalf(event) {
+			const selected = document.querySelector('.selected')
+			if (event.composedPath()[1] === selected.previousSibling) {
+				this.prevProject()
+			} else if (event.composedPath()[1] === selected.nextSibling) {
+				this.nextProject()
+			} else if (event.composedPath()[1] === selected) {
+				this.showProject()
+			}
+		},
+
 		showProject() {
 			const selected = document.querySelector('.selected')
 			this.boxes.forEach((box) => {
@@ -132,7 +128,7 @@ export default {
 					box.classList.add('hideBox')
 				}
 			})
-			this.closeMeBtn = true
+			this.showCase = true
 			selected.classList.add('show')
 		},
 
@@ -142,7 +138,7 @@ export default {
 				box.classList.remove('hideBox')
 			})
 			selected.classList.remove('show')
-			this.closeMeBtn = false
+			this.showCase = false
 		},
 
 		nextProject() {
@@ -306,12 +302,9 @@ export default {
 
 .project-boxes {
 	display: flex;
-	// transform: translateX(-420px);
-	// transition: transform 0.5s ease;
 }
 .arrows {
-	.left-arrow::after {
-		content: '<';
+	.left-arrow {
 		position: absolute;
 		left: 0;
 		top: 50%;
@@ -321,9 +314,13 @@ export default {
 		color: #df1041;
 		z-index: 11;
 		cursor: pointer;
+		user-select: none;
+
+		&:hover {
+			transform: translate(-110px, -50%);
+		}
 	}
-	.right-arrow::after {
-		content: '>';
+	.right-arrow {
 		position: absolute;
 		right: 0;
 		top: 50%;
@@ -333,20 +330,16 @@ export default {
 		color: #df1041;
 		z-index: 11;
 		cursor: pointer;
+		user-select: none;
+
+		&:hover {
+			transform: translate(110px, -50%);
+		}
 	}
 }
 
 button {
 	transform: translateY(50px);
-}
-
-.project-enter-active,
-.project-leave-active {
-	transition: all 1s;
-}
-.project-enter, .project-leave-to /* .list-leave-active below version 2.1.8 */ {
-	opacity: 0;
-	transform: translateY(100px);
 }
 
 .selected-frame {
@@ -361,10 +354,13 @@ button {
 }
 
 .hideBox {
-	opacity: 0;
+	display: none;
 }
 
 .projectShowcase {
 	// background: #fff;
+	.project {
+		overflow: visible;
+	}
 }
 </style>

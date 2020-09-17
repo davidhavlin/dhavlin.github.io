@@ -116,6 +116,7 @@ export default {
 	position: absolute;
 	width: 100%;
 	height: 100%;
+	display: none;
 }
 .url {
 	display: none;
