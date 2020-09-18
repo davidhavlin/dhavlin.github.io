@@ -2,6 +2,7 @@
 	<div id="particles-js" class="container">
 		<TheNavigationBar />
 		<Nuxt />
+		<Particles />
 	</div>
 </template>
 
