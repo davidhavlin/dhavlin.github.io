@@ -6,10 +6,43 @@
 		<div class="under-projects">
 			<!-- ------------------- ARROWS A FRAME ---------- -->
 			<div v-if="!showCase" class="arrows">
-				<div class="left-arrow" @click="prevProject()">&lt;</div>
-				<div class="right-arrow" @click="nextProject()">&gt;</div>
+				<!-- <div class="left-arrow" @click="prevProject()">&lt;</div> -->
+				<div class="left-arrow" @click="prevProject()">
+					<svg
+						width="70"
+						height="94"
+						viewBox="0 0 70 94"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M67.5 5V2.5H65H41H38.5V5V14.5H29H26.5V17V26.5H17H14.5V29V38.5H5H2.5V41V53V55.5H5H14.5V65V67.5H17H26.5V77V79.5H29H38.5V89V91.5H41H65H67.5V89V77V74.5H65H55.5V65V62.5H53H43.5V53V50.5H41H31.5V43.5H41H43.5V41V31.5H53H55.5V29V19.5H65H67.5V17V5Z"
+							fill="white"
+							stroke="black"
+							stroke-width="5"
+						/>
+					</svg>
+				</div>
+				<!-- <div class="right-arrow" @click="nextProject()">&gt;</div> -->
+				<div class="right-arrow" @click="nextProject()">
+					<svg
+						width="70"
+						height="94"
+						viewBox="0 0 70 94"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M2.5 89L2.5 91.5L5 91.5L29 91.5L31.5 91.5L31.5 89L31.5 79.5L41 79.5L43.5 79.5L43.5 77L43.5 67.5L53 67.5L55.5 67.5L55.5 65L55.5 55.5L65 55.5L67.5 55.5L67.5 53L67.5 41L67.5 38.5L65 38.5L55.5 38.5L55.5 29L55.5 26.5L53 26.5L43.5 26.5L43.5 17L43.5 14.5L41 14.5L31.5 14.5L31.5 5L31.5 2.5L29 2.5L4.99999 2.50001L2.49999 2.50001L2.49999 5.00001L2.49999 17L2.49999 19.5L4.99999 19.5L14.5 19.5L14.5 29L14.5 31.5L17 31.5L26.5 31.5L26.5 41L26.5 43.5L29 43.5L38.5 43.5L38.5 50.5L29 50.5L26.5 50.5L26.5 53L26.5 62.5L17 62.5L14.5 62.5L14.5 65L14.5 74.5L5 74.5L2.5 74.5L2.5 77L2.5 89Z"
+							fill="white"
+							stroke="black"
+							stroke-width="5"
+						/>
+					</svg>
+				</div>
 			</div>
-			<div class="selected-frame"></div>
+			<ProjectFrame />
+
 			<!-- **************************** -->
 			<div class="projects">
 				<div class="project-boxes" @click="whichHalf">
@@ -96,16 +129,13 @@ export default {
 	},
 
 	methods: {
-		nieco(event) {
-			event.target.classList.add('hover-arrow')
-		},
 		whichHalf(event) {
 			const selected = document.querySelector('.selected')
-			if (event.composedPath()[1] === selected.previousSibling) {
+			if (event.composedPath()[2] === selected.previousSibling) {
 				this.prevProject()
-			} else if (event.composedPath()[1] === selected.nextSibling) {
+			} else if (event.composedPath()[2] === selected.nextSibling) {
 				this.nextProject()
-			} else if (event.composedPath()[1] === selected) {
+			} else if (event.composedPath()[2] === selected) {
 				this.showProject()
 			}
 		},
@@ -278,64 +308,42 @@ export default {
 	position: relative;
 }
 
-.selected-frame {
-	background: #fff;
-	position: absolute;
-	width: 130px;
-	height: 510px;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-
 .project-boxes {
 	display: flex;
 }
 .arrows {
-	.left-arrow {
+	.left-arrow,
+	.right-arrow {
 		position: absolute;
 		left: 0;
 		top: 50%;
-		transform: translate(-100px, -50%);
-		font-family: 'Press Start 2P', cursive;
-		font-size: 50px;
-		color: #df1041;
+		transform: translate(-80px, -50%);
 		z-index: 11;
 		cursor: pointer;
-		user-select: none;
+
+		svg {
+			width: 37px;
+		}
+		path {
+			fill: #df1041;
+			stroke: #100317;
+			stroke-width: 3px;
+		}
 
 		&:hover {
-			transform: translate(-110px, -50%);
+			// transform: translate(-105px, -50%);
+			path {
+				stroke: #34b1f8;
+			}
 		}
 	}
 	.right-arrow {
-		position: absolute;
+		left: auto;
 		right: 0;
-		top: 50%;
-		transform: translate(100px, -50%);
-		font-family: 'Press Start 2P', cursive;
-		font-size: 50px;
-		color: #df1041;
-		z-index: 11;
-		cursor: pointer;
-		user-select: none;
-
-		&:hover {
-			transform: translate(110px, -50%);
-		}
+		transform: translate(80px, -50%);
 	}
 }
 
-.selected-frame {
-	width: 120px;
-	height: 500px;
-	background: transparent;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	outline: 8px solid #fff;
-}
 button {
 	z-index: 100;
 }
