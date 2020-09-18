@@ -96,16 +96,13 @@ export default {
 	},
 
 	methods: {
-		nieco(event) {
-			event.target.classList.add('hover-arrow')
-		},
 		whichHalf(event) {
 			const selected = document.querySelector('.selected')
-			if (event.composedPath()[1] === selected.previousSibling) {
+			if (event.composedPath()[2] === selected.previousSibling) {
 				this.prevProject()
-			} else if (event.composedPath()[1] === selected.nextSibling) {
+			} else if (event.composedPath()[2] === selected.nextSibling) {
 				this.nextProject()
-			} else if (event.composedPath()[1] === selected) {
+			} else if (event.composedPath()[2] === selected) {
 				this.showProject()
 			}
 		},
