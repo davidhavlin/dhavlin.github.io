@@ -5,10 +5,8 @@
 		</h1>
 		<div class="under-projects">
 			<!-- ------------------- ARROWS A FRAME ---------- -->
-			<div class="arrows" v-if="!showCase">
-				<div class="left-arrow" @click="prevProject()">
-					&lt;
-				</div>
+			<div v-if="!showCase" class="arrows">
+				<div class="left-arrow" @click="prevProject()">&lt;</div>
 				<div class="right-arrow" @click="nextProject()">&gt;</div>
 			</div>
 			<div class="selected-frame"></div>
@@ -44,7 +42,8 @@ export default {
 				{
 					title: 'VR Video Saratov',
 					url: 'https://videosaratov.netlify.app/',
-					desc: 'skuska',
+					desc:
+						'Prerobena moja prva web stranka a viac detailov k nej.',
 					logo: require('@/assets/images/projects/vr-logo.png'),
 					colors: ['#f80f2b', '#4a12be', '#0c95ff', '#100c1d'],
 					stack: ['HTML', 'SCSS', 'ES6', 'Vue'],
@@ -71,16 +70,6 @@ export default {
 					images: [],
 					id: 2,
 				},
-				// {
-				// 	title: 'COMING soon',
-				// 	url: 'https://davidhavlin.netlify.app/',
-				// 	desc: 'skuska',
-				// 	logo: '',
-				// 	colors: ['#100c1d', '#4a12be', '#0c95ff', '#100c1d'],
-				// 	stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt.js'],
-				// 	images: [],
-				// 	id: 3,
-				// },
 			],
 		}
 	},
@@ -269,7 +258,6 @@ export default {
 	font-family: 'Press Start 2P', cursive;
 	font-weight: normal;
 	font-size: 1.3em;
-	transform: translateY(-34px);
 	color: #34b1f8;
 }
 .projects {
@@ -338,10 +326,6 @@ export default {
 	}
 }
 
-button {
-	transform: translateY(50px);
-}
-
 .selected-frame {
 	width: 120px;
 	height: 500px;
@@ -352,15 +336,33 @@ button {
 	transform: translate(-50%, -50%);
 	outline: 8px solid #fff;
 }
+button {
+	z-index: 100;
+}
 
+/* ////////////////////////////// SHOW CASE SEKCIA //////////////////////////// */
 .hideBox {
 	display: none;
 }
 
 .projectShowcase {
-	// background: #fff;
-	.project {
+	.selected-frame {
+		outline: 8px solid #0b000f;
+		width: 200px;
+	}
+	.projects {
 		overflow: visible;
+		transform: translateX(0);
+		justify-content: center;
+		padding-left: 0;
+
+		.project-boxes {
+			transform: translateX(0) !important;
+
+			.ProjectBox {
+				margin-right: 0;
+			}
+		}
 	}
 }
 </style>
