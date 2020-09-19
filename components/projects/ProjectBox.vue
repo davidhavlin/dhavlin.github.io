@@ -77,6 +77,7 @@ export default {
 	transition: transform 1s ease;
 
 	.title {
+		position: absolute;
 		font-family: 'Press Start 2P', cursive;
 		font-style: normal;
 		font-weight: normal;
