@@ -1,5 +1,5 @@
 <template>
-	<div id="particles-js" class="container">
+	<div class="container">
 		<TheNavigationBar />
 		<Nuxt />
 		<Particles />
