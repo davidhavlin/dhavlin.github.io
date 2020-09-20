@@ -6,7 +6,9 @@
 		</div>
 		<div class="project-url showcase-content">
 			<h4>url</h4>
-			<a :href="project.url" target="new_blank">{{ project.url }}</a>
+			<a :href="project.url" target="new_blank">{{
+				shortUrl(project.url)
+			}}</a>
 		</div>
 		<div class="project-stack showcase-content">
 			<h4>stack</h4>
@@ -17,6 +19,7 @@
 					:key="index"
 				>
 					<img :src="makeIcon(utility)" alt="" />
+					<span class="icon-tooltip">{{ utility }}</span>
 				</div>
 			</div>
 		</div>
@@ -37,7 +40,7 @@ export default {
 					return require('@/assets/images/software/html5.png')
 
 				case 'SCSS':
-					return require('@/assets/images/software/css.svg')
+					return require('@/assets/images/software/css.png')
 
 				case 'ES6':
 					return require('@/assets/images/software/js.png')
@@ -46,6 +49,7 @@ export default {
 					return require('@/assets/images/software/vue.png')
 			}
 		},
+		shortUrl(url) {},
 	},
 }
 </script>
@@ -81,6 +85,8 @@ export default {
 		}
 
 		h4 {
+			position: absolute;
+			transform: translate(0px, -28px);
 			color: #0c94ff;
 		}
 
@@ -116,10 +122,41 @@ export default {
 			display: flex;
 		}
 		.prj-icon {
+			position: relative;
+			display: inline-block;
 			width: 20px;
 			margin-right: 0.5rem;
 			img {
 				width: 100%;
+			}
+			.icon-tooltip {
+				visibility: hidden;
+				width: 50px;
+				left: 50%;
+				margin-left: -25px;
+				background-color: #fff;
+				color: #000;
+				text-align: center;
+				border-radius: 6px;
+				padding: 0.1rem 0.4rem;
+				position: absolute;
+				bottom: 37px;
+				z-index: 1;
+				font-size: 0.9em;
+			}
+			.icon-tooltip::after {
+				content: ' ';
+				position: absolute;
+				top: 100%; /* At the bottom of the tooltip */
+				left: 50%;
+				margin-left: -5px;
+				border-width: 5px;
+				border-style: solid;
+				border-color: #fff transparent transparent transparent;
+			}
+
+			&:hover .icon-tooltip {
+				visibility: visible;
 			}
 		}
 	}
