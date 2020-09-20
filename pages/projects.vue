@@ -78,7 +78,11 @@ export default {
 					logo: require('@/assets/images/projects/vr-logo.png'),
 					colors: ['#f80f2b', '#4a12be', '#0c95ff', '#100c1d'],
 					stack: ['HTML', 'SCSS', 'ES6', 'Vue'],
-					images: [require('@/assets/images/projects/vr-bg.png')],
+					images: [
+						require('@/assets/images/projects/vr-bg.png'),
+						require('@/assets/images/projects/mobile-right.png'),
+						require('@/assets/images/projects/desktop-left.jpg'),
+					],
 					id: 0,
 				},
 				{
@@ -287,6 +291,7 @@ export default {
 	font-weight: normal;
 	font-size: 1.3em;
 	color: #34b1f8;
+	z-index: 1;
 }
 .projects {
 	position: relative;

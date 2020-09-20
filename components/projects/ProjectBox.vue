@@ -74,7 +74,7 @@ export default {
 	background-size: cover;
 	z-index: 10;
 	cursor: pointer;
-	transition: transform 1s ease;
+	transition: transform 1s ease, background-position 0.5s ease;
 
 	.title {
 		position: absolute;
@@ -92,6 +92,7 @@ export default {
 
 	&:hover {
 		outline: 3px solid #34b1f8;
+		background-position: -192px;
 
 		.title {
 			transform: translateX(40px);
@@ -133,7 +134,7 @@ export default {
 
 	.project:hover {
 		.title {
-			transform: translateX(200px);
+			transform: translateX(203px);
 		}
 	}
 }

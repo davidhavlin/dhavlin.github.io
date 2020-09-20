@@ -1,15 +1,21 @@
 <template>
-	<div class="project-showcase-images">
+	<div
+		class="project-showcase-images"
+		:style="{
+			background: `linear-gradient(0deg, rgba(16,3,23,0) 0%, ${project.colors[1]} 240%)`,
+		}"
+	>
 		<div
 			class="prj-image-right"
 			:style="{
-				backgroundImage: `url(${project.images[0]})`,
+				backgroundImage: `url(${project.images[1]})`,
+				backgroundColor: project.colors[1],
 			}"
 		></div>
 		<div
 			class="prj-image-left"
 			:style="{
-				backgroundImage: `url(${project.images[0]})`,
+				backgroundImage: `url(${project.images[2]})`,
 			}"
 		></div>
 	</div>
@@ -70,6 +76,23 @@ export default {
 			left: 0;
 			animation: leftImage 0.5s forwards ease;
 			animation-delay: 1s;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(
+					90deg,
+					rgba(16, 3, 23, 1) 0%,
+					rgba(16, 3, 23, 0.20772058823529416) 100%
+				);
+			}
 		}
 
 		@keyframes leftImage {

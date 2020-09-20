@@ -49,7 +49,10 @@ export default {
 					return require('@/assets/images/software/vue.png')
 			}
 		},
-		shortUrl(url) {},
+		shortUrl(url) {
+			const editedUrl = url.slice(8, url.length - 1)
+			return editedUrl
+		},
 	},
 }
 </script>
