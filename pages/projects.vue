@@ -6,7 +6,6 @@
 		<div class="under-projects">
 			<!-- ------------------- ARROWS A FRAME ---------- -->
 			<div v-if="!showCase" class="arrows">
-				<!-- <div class="left-arrow" @click="prevProject()">&lt;</div> -->
 				<div class="left-arrow" @click="prevProject()">
 					<svg
 						width="70"
@@ -23,7 +22,6 @@
 						/>
 					</svg>
 				</div>
-				<!-- <div class="right-arrow" @click="nextProject()">&gt;</div> -->
 				<div class="right-arrow" @click="nextProject()">
 					<svg
 						width="70"
@@ -166,7 +164,7 @@ export default {
 
 			this.selectMidleBox(true)
 
-			this.container.style.transition = 'transform 0.3s ease'
+			this.container.style.transition = 'transform 0.1s ease'
 			this.counter++
 			this.container.style.transform = `translateX(${
 				-this.size * this.counter
@@ -185,7 +183,7 @@ export default {
 
 			this.selectMidleBox(false)
 
-			this.container.style.transition = 'transform 0.3s ease'
+			this.container.style.transition = 'transform 0.1s ease'
 			this.counter--
 			this.container.style.transform = `translateX(${
 				-this.size * this.counter

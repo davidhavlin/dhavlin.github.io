@@ -137,14 +137,4 @@ export default {
 		}
 	}
 }
-
-// .title {
-// 		transform: translateX(180px);
-// 	}
-// 	&:hover {
-// 		background-position: 660px;
-// 		.title {
-// 			transform: translateX(200px);
-// 		}
-// 	}
 </style>

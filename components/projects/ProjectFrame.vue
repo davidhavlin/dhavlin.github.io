@@ -10,9 +10,8 @@ export default {}
 .selected-frame {
 	width: 120px;
 	height: 500px;
-	background: transparent;
 	position: absolute;
-	top: 50%;
+	top: 49.7%;
 	left: 49.9%;
 	transform: translate(-50%, -50%);
 	outline: 6px solid #00f3ff;
