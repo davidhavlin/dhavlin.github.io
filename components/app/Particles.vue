@@ -46,7 +46,6 @@ export default {
 	},
 	methods: {
 		addStar() {
-			// const pos = this.starPosition()
 			const size = this.starRandomize()
 			const left = this.starPosition().left
 			const top = this.starPosition().top
@@ -54,7 +53,6 @@ export default {
 			this.stars.push({
 				id: this.starId,
 				size,
-				// position: pos,
 				top,
 				left,
 			})
@@ -72,6 +70,7 @@ export default {
 		},
 
 		starPosition() {
+			// asi len ulozit raz, takto sa pocita innerWaH kazdych 300 ms, potom reulozit na resize event
 			const randomWidth = Math.floor(Math.random() * window.innerWidth)
 			const randomHeight = Math.floor(Math.random() * window.innerHeight)
 			// return `translate(${randomWidth}px, ${randomHeight}px)`
@@ -90,19 +89,19 @@ export default {
 				this.addStar()
 				this.autoAddingStars()
 			}, 200)
-			// bolo 300
 		},
+
 		magicStars() {
-			// tak toto netusim ci sa da krajsie napisat
-			Object.assign(this.stars[0], {
+			// tak toto netusim ci sa da krajsie/jednoduchsie napisat
+			Object.assign(this.stars[44], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('='),
 			})
-			Object.assign(this.stars[1], {
+			Object.assign(this.stars[28], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('+'),
 			})
-			Object.assign(this.stars[2], {
+			Object.assign(this.stars[22], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('+'),
 			})
@@ -115,7 +114,7 @@ export default {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('+'),
 			})
-			Object.assign(this.stars[5], {
+			Object.assign(this.stars[24], {
 				top: this.calculateTop('+'),
 				left: this.calculateLeft('='),
 			})
@@ -133,7 +132,7 @@ export default {
 				left: this.calculateLeft('+'),
 			})
 
-			Object.assign(this.stars[9], {
+			Object.assign(this.stars[17], {
 				top: this.calculateTop('-'),
 				left: this.calculateLeft('='),
 			})
@@ -141,7 +140,7 @@ export default {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('+'),
 			})
-			Object.assign(this.stars[11], {
+			Object.assign(this.stars[30], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('+'),
 			})
@@ -150,7 +149,7 @@ export default {
 				top: this.calculateTop('+'),
 				left: this.calculateLeft('='),
 			})
-			Object.assign(this.stars[13], {
+			Object.assign(this.stars[32], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('+'),
 			})
@@ -159,20 +158,20 @@ export default {
 				left: this.calculateLeft('='),
 			})
 
-			Object.assign(this.stars[15], {
+			Object.assign(this.stars[40], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('+'),
 			})
-			Object.assign(this.stars[16], {
+			Object.assign(this.stars[43], {
 				top: this.calculateTop('+'),
 				left: this.calculateLeft('='),
 			})
-			Object.assign(this.stars[17], {
+			Object.assign(this.stars[9], {
 				top: this.calculateTop('+'),
 				left: this.calculateLeft('='),
 			})
 
-			Object.assign(this.stars[18], {
+			Object.assign(this.stars[37], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('-'),
 			})
@@ -180,7 +179,7 @@ export default {
 				top: this.calculateTop('+'),
 				left: this.calculateLeft('='),
 			})
-			Object.assign(this.stars[20], {
+			Object.assign(this.stars[35], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('-'),
 			})
@@ -189,7 +188,7 @@ export default {
 				top: this.calculateTop('+'),
 				left: this.calculateLeft('='),
 			})
-			Object.assign(this.stars[22], {
+			Object.assign(this.stars[2], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('-'),
 			})
@@ -198,7 +197,7 @@ export default {
 				left: this.calculateLeft('='),
 			})
 
-			Object.assign(this.stars[24], {
+			Object.assign(this.stars[5], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('-'),
 			})
@@ -215,7 +214,7 @@ export default {
 				top: this.calculateTop('+'),
 				left: this.calculateLeft('='),
 			})
-			Object.assign(this.stars[28], {
+			Object.assign(this.stars[45], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('-'),
 			})
@@ -224,7 +223,7 @@ export default {
 				left: this.calculateLeft('='),
 			})
 
-			Object.assign(this.stars[30], {
+			Object.assign(this.stars[11], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('-'),
 			})
@@ -232,12 +231,12 @@ export default {
 				top: this.calculateTop('-'),
 				left: this.calculateLeft('='),
 			})
-			Object.assign(this.stars[32], {
+			Object.assign(this.stars[13], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('-'),
 			})
 
-			Object.assign(this.stars[33], {
+			Object.assign(this.stars[15], {
 				top: this.calculateTop('-'),
 				left: this.calculateLeft('='),
 			})
@@ -245,7 +244,7 @@ export default {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('-'),
 			})
-			Object.assign(this.stars[35], {
+			Object.assign(this.stars[20], {
 				top: this.calculateTop('-'),
 				left: this.calculateLeft('='),
 			})
@@ -254,7 +253,7 @@ export default {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('-'),
 			})
-			Object.assign(this.stars[37], {
+			Object.assign(this.stars[18], {
 				top: this.calculateTop('-'),
 				left: this.calculateLeft('='),
 			})
@@ -267,7 +266,7 @@ export default {
 				top: this.calculateTop('-'),
 				left: this.calculateLeft('='),
 			})
-			Object.assign(this.stars[40], {
+			Object.assign(this.stars[33], {
 				top: this.calculateTop('-'),
 				left: this.calculateLeft('='),
 			})
@@ -280,10 +279,13 @@ export default {
 				top: this.calculateTop('-'),
 				left: this.calculateLeft('='),
 			})
-			Object.assign(this.stars[43], {
+			Object.assign(this.stars[16], {
 				top: this.calculateTop('='),
 				left: this.calculateLeft('+'),
 			})
+
+			this.left = 1023
+			this.top = 530
 		},
 
 		calculateTop(sign) {
