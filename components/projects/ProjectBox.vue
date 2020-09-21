@@ -3,7 +3,7 @@
 		<div
 			class="project"
 			:style="{
-				backgroundColor: project.colors[0],
+				backgroundColor: project.color.main,
 				backgroundImage: `url(${project.images[0]})`,
 			}"
 		>
@@ -11,7 +11,7 @@
 			<div
 				class="gradient"
 				:style="{
-					background: `linear-gradient(0deg, rgba(14,6,28,0) 0%, ${project.colors[1]} 100%)`,
+					background: `linear-gradient(0deg, rgba(14,6,28,0) 0%, ${project.color.main} 100%)`,
 				}"
 			></div>
 
@@ -105,7 +105,6 @@ export default {
 	height: 100%;
 	top: 0;
 	left: 0;
-	background: yellow;
 	z-index: -1;
 }
 
@@ -120,11 +119,14 @@ export default {
 	transform: translate(-50%, 50%);
 	background-position: center;
 	background-repeat: no-repeat;
-	transition: all 0.5s ease;
+	background-size: 30px;
+	// transition: all 0.2s ease;
 }
 
 .selected .logo {
-	transform: translate(-50%, 60%);
+	// transform: translate(-50%, 60%);
+	box-sizing: content-box;
+	border: 3px solid #34b1f8;
 }
 
 .show {
@@ -136,6 +138,9 @@ export default {
 		.title {
 			transform: translateX(203px);
 		}
+	}
+	.logo {
+		border: 8px solid #0b000f;
 	}
 }
 </style>

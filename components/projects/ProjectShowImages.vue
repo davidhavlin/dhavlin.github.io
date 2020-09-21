@@ -2,14 +2,14 @@
 	<div
 		class="project-showcase-images"
 		:style="{
-			background: `linear-gradient(0deg, rgba(16,3,23,0) 0%, ${project.colors[1]} 240%)`,
+			background: `linear-gradient(0deg, rgba(16,3,23,0) 50%, ${project.color.main} 200%)`,
 		}"
 	>
 		<div
 			class="prj-image-right"
 			:style="{
 				backgroundImage: `url(${project.images[1]})`,
-				backgroundColor: project.colors[1],
+				backgroundColor: project.color.main,
 			}"
 		></div>
 		<div

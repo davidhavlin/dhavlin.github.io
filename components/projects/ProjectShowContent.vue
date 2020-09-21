@@ -6,9 +6,13 @@
 		</div>
 		<div class="project-url showcase-content">
 			<h4>url</h4>
-			<a :href="project.url" target="new_blank">{{
-				shortUrl(project.url)
-			}}</a>
+			<a
+				:href="project.url"
+				:style="{ color: project.color.second }"
+				target="new_blank"
+			>
+				{{ shortUrl(project.url) }}
+			</a>
 		</div>
 		<div class="project-stack showcase-content">
 			<h4>stack</h4>
@@ -18,7 +22,7 @@
 					v-for="(utility, index) in project.stack"
 					:key="index"
 				>
-					<img :src="makeIcon(utility)" alt="" />
+					<img :src="makeIcon(utility)" alt />
 					<span class="icon-tooltip">{{ utility }}</span>
 				</div>
 			</div>
@@ -47,6 +51,12 @@ export default {
 
 				case 'Vue':
 					return require('@/assets/images/software/vue.png')
+
+				case 'Nuxt':
+					return require('@/assets/images/software/nuxt.png')
+
+				case 'React':
+					return require('@/assets/images/software/react.png')
 			}
 		},
 		shortUrl(url) {
