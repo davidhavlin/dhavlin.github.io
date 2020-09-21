@@ -181,7 +181,7 @@ export default {
 
 			this.selectMidleBox(true)
 
-			this.container.style.transition = 'transform 0.1s ease'
+			this.container.style.transition = 'transform 0.2s ease'
 			this.counter++
 			this.container.style.transform = `translateX(${
 				-this.size * this.counter
@@ -200,7 +200,7 @@ export default {
 
 			this.selectMidleBox(false)
 
-			this.container.style.transition = 'transform 0.1s ease'
+			this.container.style.transition = 'transform 0.2s ease'
 			this.counter--
 			this.container.style.transform = `translateX(${
 				-this.size * this.counter
