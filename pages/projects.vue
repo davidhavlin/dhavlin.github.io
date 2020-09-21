@@ -44,6 +44,7 @@
 			<!-- **************************** -->
 			<div class="projects">
 				<div class="project-boxes" @click="whichHalf">
+
 					<ProjectBox
 						v-for="project in projects"
 						:id="project.id"
@@ -57,6 +58,15 @@
 
 		<button v-if="!showCase" @click="showProject()">show me</button>
 		<button v-if="showCase" @click="closeProject()">close me</button>
+
+		<MyButton
+			class="projects-btn"
+			main-color="#df1041"
+			second-color="#800623"
+			border-color="#df1041"
+			>Show me</MyButton
+		>
+
 	</div>
 </template>
 
@@ -360,8 +370,14 @@ export default {
 	}
 }
 
+
 button {
 	z-index: 100;
+}
+.projects-btn {
+	// transform: translateY(50px);
+	bottom: -3rem;
+	border-color: yellow;
 }
 
 /* ////////////////////////////// SHOW CASE SEKCIA //////////////////////////// */

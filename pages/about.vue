@@ -1,7 +1,12 @@
 <template>
 	<div class="about-container">
 		<h1>about</h1>
-		<MyButton>Click</MyButton>
+		<MyButton
+			main-color="#e60597"
+			second-color="#610240"
+			border-color="#df108b"
+			>Click</MyButton
+		>
 		<HoverButton render="Click" color="#08b0ea" />
 	</div>
 </template>

@@ -76,6 +76,7 @@ export default {
 	cursor: pointer;
 	transition: transform 1s ease, background-position 0.5s ease;
 
+
 	.title {
 		position: absolute;
 		font-family: 'Press Start 2P', cursive;
