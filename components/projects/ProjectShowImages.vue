@@ -2,7 +2,7 @@
 	<div
 		class="project-showcase-images"
 		:style="{
-			background: `linear-gradient(0deg, rgba(16,3,23,0) 50%, ${project.color.main} 200%)`,
+			background: `linear-gradient(0deg, rgba(16,3,23,0) 29%, ${project.color.main} 302%)`,
 		}"
 	>
 		<div

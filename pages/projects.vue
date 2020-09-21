@@ -123,7 +123,11 @@ export default {
 						title: '#00f3ff',
 					},
 					stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt'],
-					images: [],
+					images: [
+						require('@/assets/images/projects/desktop-left.jpg'),
+						require('@/assets/images/projects/desktop-left.jpg'),
+						require('@/assets/images/projects/desktop-left.jpg'),
+					],
 					id: 1,
 				},
 				{
@@ -137,7 +141,11 @@ export default {
 						title: '#00f3ff',
 					},
 					stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt'],
-					images: [],
+					images: [
+						require('@/assets/images/projects/nf-desktop-left.png'),
+						require('@/assets/images/projects/nf-desktop-left.png'),
+						require('@/assets/images/projects/nf-desktop-left.png'),
+					],
 					id: 2,
 				},
 			],
