@@ -33,16 +33,33 @@
 export default {
 	data() {
 		return {
+			clicked: 0,
 			showSky: false,
 			starId: 0,
 			stars: [],
 			top: 150,
 			left: 350,
+			gap: 15,
+			// prettier-ignore
+			movement: [
+                '=','>','>','v','>','v','>','^','>','^','>',
+                '>','v','>','v','>','v','v','<','v','<','v',
+                '<','v','<','v','<','v','<','^','<','^','<',
+                '^','<','^','<','^','<','^','^','>','^','>',
+			]
 		}
 	},
 
 	mounted() {
 		this.autoAddingStars()
+	},
+	computed: {
+		wInnerWidth() {
+			return window.innerWidth
+		},
+		wInnerHeight() {
+			return window.innerHeight
+		},
 	},
 	methods: {
 		addStar() {
@@ -70,9 +87,8 @@ export default {
 		},
 
 		starPosition() {
-			// asi len ulozit raz, takto sa pocita innerWaH kazdych 300 ms, potom reulozit na resize event
-			const randomWidth = Math.floor(Math.random() * window.innerWidth)
-			const randomHeight = Math.floor(Math.random() * window.innerHeight)
+			const randomWidth = Math.floor(Math.random() * this.wInnerWidth)
+			const randomHeight = Math.floor(Math.random() * this.wInnerHeight)
 			// return `translate(${randomWidth}px, ${randomHeight}px)`
 			return {
 				left: randomWidth + 'px',
@@ -92,208 +108,59 @@ export default {
 		},
 
 		magicStars() {
-			// tak toto netusim ci sa da krajsie/jednoduchsie napisat
-			Object.assign(this.stars[44], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[28], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
-			Object.assign(this.stars[22], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
+			if (this.stars.length < 46) return
 
-			Object.assign(this.stars[42], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[4], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
-			Object.assign(this.stars[24], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
-			})
+			const starsCount = []
+			this.movement.map((move, index) => starsCount.push(index + 2))
 
-			Object.assign(this.stars[6], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
-			Object.assign(this.stars[38], {
-				top: this.calculateTop('-'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[8], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
+			this.movement.forEach((move) => {
+				const number = Math.floor(Math.random() * starsCount.length)
+				const randomNum = starsCount[number]
 
-			Object.assign(this.stars[17], {
-				top: this.calculateTop('-'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[10], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
-			Object.assign(this.stars[30], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
+				starsCount.splice(number, 1)
 
-			Object.assign(this.stars[12], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
+				if (move === '>') {
+					Object.assign(this.stars[randomNum], this.starToRight())
+				} else if (move === 'v') {
+					Object.assign(this.stars[randomNum], this.starToBottom())
+				} else if (move === '<') {
+					Object.assign(this.stars[randomNum], this.starToLeft())
+				} else if (move === '^') {
+					Object.assign(this.stars[randomNum], this.starToTop())
+				} else {
+					Object.assign(this.stars[randomNum], {
+						top: this.calculateTop('='),
+						left: this.calculateLeft('='),
+					})
+				}
 			})
-			Object.assign(this.stars[32], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
-			Object.assign(this.stars[14], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
-			})
+			switch (this.clicked) {
+				case 0:
+					this.top = 240
+					this.left = 750
+					this.clicked++
+					break
+				case 1:
+					this.top = 540
+					this.left = 170
+					this.clicked++
 
-			Object.assign(this.stars[40], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
-			Object.assign(this.stars[43], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[9], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
-			})
+					break
+				case 2:
+					this.top = 150
+					this.left = 350
+					this.clicked = 0
 
-			Object.assign(this.stars[37], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-			Object.assign(this.stars[19], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[35], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-
-			Object.assign(this.stars[21], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[2], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-			Object.assign(this.stars[23], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
-			})
-
-			Object.assign(this.stars[5], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-			Object.assign(this.stars[25], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[26], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-
-			Object.assign(this.stars[27], {
-				top: this.calculateTop('+'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[45], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-			Object.assign(this.stars[29], {
-				top: this.calculateTop('-'),
-				left: this.calculateLeft('='),
-			})
-
-			Object.assign(this.stars[11], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-			Object.assign(this.stars[31], {
-				top: this.calculateTop('-'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[13], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-
-			Object.assign(this.stars[15], {
-				top: this.calculateTop('-'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[34], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-			Object.assign(this.stars[20], {
-				top: this.calculateTop('-'),
-				left: this.calculateLeft('='),
-			})
-
-			Object.assign(this.stars[36], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-			Object.assign(this.stars[18], {
-				top: this.calculateTop('-'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[7], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('-'),
-			})
-
-			Object.assign(this.stars[39], {
-				top: this.calculateTop('-'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[33], {
-				top: this.calculateTop('-'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[41], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
-
-			Object.assign(this.stars[3], {
-				top: this.calculateTop('-'),
-				left: this.calculateLeft('='),
-			})
-			Object.assign(this.stars[16], {
-				top: this.calculateTop('='),
-				left: this.calculateLeft('+'),
-			})
-
-			this.left = 1023
-			this.top = 530
+					break
+			}
 		},
 
 		calculateTop(sign) {
 			if (sign === '+') {
-				this.top += 15
+				this.top += this.gap
 				return this.top + 'px'
 			} else if (sign === '-') {
-				this.top -= 15
+				this.top -= this.gap
 				return this.top + 'px'
 			} else {
 				return this.top + 'px'
@@ -301,13 +168,41 @@ export default {
 		},
 		calculateLeft(sign) {
 			if (sign === '+') {
-				this.left += 15
+				this.left += this.gap
 				return this.left + 'px'
 			} else if (sign === '-') {
-				this.left -= 15
+				this.left -= this.gap
 				return this.left + 'px'
 			} else {
 				return this.left + 'px'
+			}
+		},
+
+		starToRight() {
+			return {
+				top: this.calculateTop('='),
+				left: this.calculateLeft('+'),
+			}
+		},
+
+		starToBottom() {
+			return {
+				top: this.calculateTop('+'),
+				left: this.calculateLeft('='),
+			}
+		},
+
+		starToLeft() {
+			return {
+				top: this.calculateTop('='),
+				left: this.calculateLeft('-'),
+			}
+		},
+
+		starToTop() {
+			return {
+				top: this.calculateTop('-'),
+				left: this.calculateLeft('='),
 			}
 		},
 	},
@@ -359,16 +254,13 @@ export default {
 @keyframes star {
 	0% {
 		opacity: 0.6;
-		// border: 1px solid rgb(0, 229, 255);
 	}
 	50% {
 		opacity: 1;
 		transform: scale(1.2);
-		// border: none;
 	}
 	100% {
 		opacity: 0.6;
-		// border: 1px solid rgb(0, 229, 255);
 	}
 }
 
