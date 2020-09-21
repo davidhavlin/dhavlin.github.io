@@ -1,23 +1,28 @@
 <template>
-	<div
-		class="project"
-		:style="{
-			backgroundColor: project.colors[0],
-			backgroundImage: `url(${project.images[0]})`,
-		}"
-	>
-		<h1 class="title">{{ project.title }}</h1>
+	<div>
 		<div
-			class="gradient"
+			class="project"
 			:style="{
-				background: `linear-gradient(0deg, rgba(14,6,28,0) 0%, ${project.colors[1]} 100%)`,
+				backgroundColor: project.color.main,
+				backgroundImage: `url(${project.images[0]})`,
 			}"
-		></div>
+		>
+			<h1 class="title">{{ project.title }}</h1>
+			<div
+				class="gradient"
+				:style="{
+					background: `linear-gradient(0deg, rgba(14,6,28,0) 0%, ${project.color.main} 100%)`,
+				}"
+			></div>
 
-		<div
-			class="logo"
-			:style="{ backgroundImage: `url(${project.logo})` }"
-		></div>
+			<div
+				class="logo"
+				:style="{ backgroundImage: `url(${project.logo})` }"
+			></div>
+		</div>
+
+		<ProjectShowContent :project="project" />
+		<ProjectShowImages :project="project" />
 	</div>
 </template>
 
@@ -26,6 +31,18 @@ export default {
 	props: {
 		project: {
 			type: Object,
+			default() {
+				return {
+					title: 'coming soon',
+					url: 'none',
+					desc: 'none',
+					logo: 'none',
+					colors: ['#f80f2b', '#4a12be', '#0c95ff', '#100c1d'],
+					stack: ['HTML', 'SCSS', 'ES6', 'Vue'],
+					images: 'none',
+					id: 0,
+				}
+			},
 		},
 	},
 	computed: {
@@ -40,11 +57,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.selected {
-	transform: translateY(-15px);
-	transition: transform 0.2s ease;
+.selected .project {
+	color: #00f3ff;
 }
+.show .project {
+	width: 200px;
+}
+
 .project {
+	display: inline-block;
 	position: relative;
 	color: #fff;
 	width: 120px;
@@ -53,8 +74,11 @@ export default {
 	background-size: cover;
 	z-index: 10;
 	cursor: pointer;
+	transition: transform 1s ease, background-position 0.5s ease;
+
 
 	.title {
+		position: absolute;
 		font-family: 'Press Start 2P', cursive;
 		font-style: normal;
 		font-weight: normal;
@@ -69,6 +93,7 @@ export default {
 
 	&:hover {
 		outline: 3px solid #34b1f8;
+		background-position: -192px;
 
 		.title {
 			transform: translateX(40px);
@@ -81,7 +106,6 @@ export default {
 	height: 100%;
 	top: 0;
 	left: 0;
-	background: yellow;
 	z-index: -1;
 }
 
@@ -96,10 +120,28 @@ export default {
 	transform: translate(-50%, 50%);
 	background-position: center;
 	background-repeat: no-repeat;
-	transition: all 0.5s ease;
+	background-size: 30px;
+	// transition: all 0.2s ease;
 }
 
 .selected .logo {
-	transform: translate(-50%, 60%);
+	// transform: translate(-50%, 60%);
+	box-sizing: content-box;
+	border: 3px solid #34b1f8;
+}
+
+.show {
+	.title {
+		transform: translateX(180px);
+	}
+
+	.project:hover {
+		.title {
+			transform: translateX(203px);
+		}
+	}
+	.logo {
+		border: 8px solid #0b000f;
+	}
 }
 </style>
