@@ -45,14 +45,6 @@ export default {
 			},
 		},
 	},
-	computed: {
-		projectStyle() {
-			return {
-				backgroundColor: this.data,
-				backgroundImage: this.project.images[0],
-			}
-		},
-	},
 }
 </script>
 
@@ -75,7 +67,6 @@ export default {
 	z-index: 10;
 	cursor: pointer;
 	transition: transform 1s ease, background-position 0.5s ease;
-
 
 	.title {
 		position: absolute;

@@ -92,7 +92,7 @@ export default {
 			position: relative;
 			background: #0b000f;
 			padding: 1rem;
-			margin-bottom: 1rem;
+			margin-bottom: 1.6rem;
 			width: fit-content;
 			min-width: 150px;
 		}

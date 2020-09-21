@@ -1,6 +1,6 @@
 <template>
 	<div class="project-page" :class="{ projectShowcase: showCase }">
-		<h1 class="project-page-title">
+		<h1 ref="pageTitle" class="project-page-title">
 			My Projects ({{ index }}/{{ projects.length }})
 		</h1>
 		<div class="under-projects">
@@ -40,11 +40,9 @@
 				</div>
 			</div>
 			<ProjectFrame />
-
 			<!-- **************************** -->
 			<div class="projects">
 				<div class="project-boxes" @click="whichHalf">
-
 					<ProjectBox
 						v-for="project in projects"
 						:id="project.id"
@@ -56,17 +54,30 @@
 			</div>
 		</div>
 
-		<button v-if="!showCase" @click="showProject()">show me</button>
-		<button v-if="showCase" @click="closeProject()">close me</button>
+		<!-- <button v-if="!showCase" @click="showProject()">show me</button>
+		<button v-if="showCase" @click="closeProject()">close me</button> -->
 
 		<MyButton
+			v-if="!showCase"
 			class="projects-btn"
-			main-color="#df1041"
-			second-color="#800623"
-			border-color="#df1041"
-			>Show me</MyButton
-		>
+			main-color="#100317"
+			second-color="#0b0010"
+			border-color="#0b0010"
+			text-color="#00f3ff"
+			@click.native="showProject()"
+			>Show me
+		</MyButton>
 
+		<MyButton
+			v-if="showCase"
+			class="projects-btn"
+			main-color="#100317"
+			second-color="#0b000f"
+			border-color="#0b000f"
+			text-color="#fff"
+			@click.native="closeProject()"
+			>Close me
+		</MyButton>
 	</div>
 </template>
 
@@ -75,6 +86,7 @@ export default {
 	data() {
 		return {
 			index: 1,
+			realIndex: 1,
 			counter: 3,
 			active: false,
 			size: 210,
@@ -174,6 +186,10 @@ export default {
 			})
 			this.showCase = true
 			selected.classList.add('show')
+
+			this.$refs.pageTitle.textContent = this.projects[
+				this.realIndex
+			].title
 		},
 
 		closeProject() {
@@ -196,12 +212,10 @@ export default {
 			this.container.style.transform = `translateX(${
 				-this.size * this.counter
 			}px)`
-
-			if (this.index === this.projects.length) {
-				this.index = 1
-				return
-			}
-			this.index++
+			// prettier-ignore
+			this.realIndex === this.projects.length - 1	? (this.realIndex = 0) : this.realIndex++
+			// prettier-ignore
+			this.index === this.projects.length	? (this.index = 1) : this.index++
 		},
 
 		prevProject() {
@@ -216,11 +230,10 @@ export default {
 				-this.size * this.counter
 			}px)`
 
-			if (this.index === 1) {
-				this.index = this.projects.length
-				return
-			}
-			this.index--
+			// prettier-ignore
+			this.realIndex === 0 ? (this.realIndex = this.projects.length - 1) : this.realIndex--
+			// prettier-ignore
+			this.index === 1 ? (this.index = this.projects.length) : this.index--
 		},
 
 		onMountedStyles() {
@@ -370,14 +383,8 @@ export default {
 	}
 }
 
-
-button {
-	z-index: 100;
-}
 .projects-btn {
-	// transform: translateY(50px);
-	bottom: -3rem;
-	border-color: yellow;
+	// transform: translateY(16px);
 }
 
 /* ////////////////////////////// SHOW CASE SEKCIA //////////////////////////// */

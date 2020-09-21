@@ -1,8 +1,11 @@
 <template>
-	<a
+	<button
 		class="btn"
-		href="#"
-		:style="{ backgroundColor: mainColor, borderColor: borderColor }"
+		:style="{
+			backgroundColor: mainColor,
+			borderColor: borderColor,
+			color: textColor,
+		}"
 	>
 		<div class="btn-text">
 			<slot></slot>
@@ -11,7 +14,7 @@
 			class="btn-half-bg"
 			:style="{ backgroundColor: secondColor }"
 		></div>
-	</a>
+	</button>
 </template>
 
 <script>
@@ -29,6 +32,10 @@ export default {
 			type: String,
 			default: '#5dd2f7',
 		},
+		textColor: {
+			type: String,
+			default: '#fff',
+		},
 	},
 }
 </script>
@@ -40,9 +47,9 @@ export default {
 	font-size: 0.7em;
 	text-transform: uppercase;
 	background: #e9d41a;
-	color: #fff;
+	color: #100317;
 	border: 2px solid #fff200;
-	padding: 0.6rem 0.5rem;
+	padding: 0.5rem 0.5rem;
 	border-radius: 0.2rem;
 	overflow: hidden;
 	cursor: pointer;
@@ -65,7 +72,7 @@ export default {
 }
 
 .btn:hover {
-	border-color: #fff !important;
+	border-color: #00f3ff !important;
 	transform: translateY(2px);
 }
 
