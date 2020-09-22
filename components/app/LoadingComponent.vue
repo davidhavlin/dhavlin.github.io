@@ -63,14 +63,19 @@ export default {
 	},
 	methods: {
 		renderLines() {
-			const li = `<li class="line">${this.lines[this.index]}</li>`
-			this.$refs.terminal.insertAdjacentHTML('beforeend', li)
-			this.index++
-
-			if (this.index === this.lines.length) {
+			if (this.$refs.terminal) {
+				const li = `<li class="line">${this.lines[this.index]}</li>`
+				this.$refs.terminal.insertAdjacentHTML('beforeend', li)
+			} else {
 				this.index = 0
 				return
 			}
+
+			if (this.index >= this.lines.length - 1) {
+				this.index = 0
+				return
+			}
+			this.index++
 			setTimeout(() => {
 				this.renderLines()
 			}, 50)
