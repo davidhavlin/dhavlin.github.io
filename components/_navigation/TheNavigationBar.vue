@@ -21,9 +21,8 @@ export default {}
 	color: #fff;
 	position: absolute;
 	background: transparent;
-	// background: #7600e3;
 	height: 100vh;
-	width: 4em;
+	width: 4.4em;
 	z-index: 200;
 }
 </style>
