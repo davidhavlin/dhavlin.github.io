@@ -45,7 +45,7 @@
 				<div class="project-boxes" @click="whichHalf">
 					<ProjectBox
 						v-for="project in projects"
-						:id="project.id"
+						:id="'box-' + project.id"
 						:key="project.id"
 						:project="project"
 						class="ProjectBox"
@@ -53,10 +53,7 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- <button v-if="!showCase" @click="showProject()">show me</button>
-		<button v-if="showCase" @click="closeProject()">close me</button> -->
-
+		<!-- ------------- BUTTONY ------------- -->
 		<MyButton
 			v-if="!showCase"
 			class="projects-btn"
@@ -65,9 +62,8 @@
 			border-color="#0b0010"
 			text-color="#00f3ff"
 			@click.native="showProject()"
-			>Show me
-		</MyButton>
-
+			>Show me</MyButton
+		>
 		<MyButton
 			v-if="showCase"
 			class="projects-btn"
@@ -76,12 +72,14 @@
 			border-color="#0b000f"
 			text-color="#fff"
 			@click.native="closeProject()"
-			>Close me
-		</MyButton>
+			>Close me</MyButton
+		>
 	</div>
 </template>
 
 <script>
+import myProjects from '~/components/projects/Projects'
+
 export default {
 	data() {
 		return {
@@ -91,78 +89,19 @@ export default {
 			active: false,
 			size: 210,
 			showCase: false,
-			projects: [
-				{
-					title: 'VR Video Saratov',
-					url: 'https://videosaratov.netlify.app/',
-					desc:
-						'Prerobena moja prva web stranka a viac detailov k nej.',
-					logo: require('@/assets/images/projects/vr-logo.png'),
-					colors: ['#f80f2b', '#4a12be', '#0c95ff', '#100c1d'],
-					color: {
-						main: '#4a12be',
-						second: '#e9093e',
-						title: '#00f3ff',
-					},
-					stack: ['HTML', 'SCSS', 'ES6', 'Vue'],
-					images: [
-						require('@/assets/images/projects/vr-bg.png'),
-						require('@/assets/images/projects/mobile-right.png'),
-						require('@/assets/images/projects/desktop-left.jpg'),
-					],
-					id: 0,
-				},
-				{
-					title: 'David Havlín Portfolio',
-					url: 'https://davidhavlin.netlify.app/',
-					desc: 'skuska',
-					logo: require('@/assets/images/projects/vr-logo.png'),
-					color: {
-						main: '#4a12be',
-						second: '#e9093e',
-						title: '#00f3ff',
-					},
-					stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt'],
-					images: [
-						require('@/assets/images/projects/desktop-left.jpg'),
-						require('@/assets/images/projects/desktop-left.jpg'),
-						require('@/assets/images/projects/desktop-left.jpg'),
-					],
-					id: 1,
-				},
-				{
-					title: 'NETFLIX clone',
-					url: 'https://davidhavlin.netlify.app/',
-					desc: 'skuska',
-					logo: require('@/assets/images/projects/nf-logo.png'),
-					color: {
-						main: '#e61e25',
-						second: '#e9093e',
-						title: '#00f3ff',
-					},
-					stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt'],
-					images: [
-						require('@/assets/images/projects/nf-desktop-left.png'),
-						require('@/assets/images/projects/nf-desktop-left.png'),
-						require('@/assets/images/projects/nf-desktop-left.png'),
-					],
-					id: 2,
-				},
-			],
+			projects: myProjects,
 		}
 	},
 	computed: {
 		container() {
 			return document.querySelector('.project-boxes')
 		},
-
 		boxes() {
 			return document.querySelectorAll('.ProjectBox')
 		},
 	},
 	mounted() {
 		this.cloneElements()
-
 		this.onMountedStyles()
 
 		this.container.addEventListener('transitionend', (event) => {
@@ -171,6 +110,19 @@ export default {
 			}
 			this.carouselMagic()
 		})
+
+		document
+			.getElementById('box-2')
+			.addEventListener('animationend', () => {
+				const btn = document.querySelector('.projects-btn')
+				btn.classList.add('showMeButton')
+				document
+					.querySelector('.left-arrow')
+					.classList.add('showLeftArrow')
+				document
+					.querySelector('.right-arrow')
+					.classList.add('showRightArrow')
+			})
 	},
 
 	methods: {
@@ -187,6 +139,7 @@ export default {
 
 		showProject() {
 			const selected = document.querySelector('.selected')
+			/* pokial nemaju classu selected tak dostanu classu ktora ich schova */
 			this.boxes.forEach((box) => {
 				if (!box.classList.contains('selected')) {
 					box.classList.add('hideBox')
@@ -194,10 +147,9 @@ export default {
 			})
 			this.showCase = true
 			selected.classList.add('show')
-
-			this.$refs.pageTitle.textContent = this.projects[
-				this.realIndex
-			].title
+			// zafarbim page title podla vybraneho projektu, nech ladia farby
+			// prettier-ignore
+			this.$refs.pageTitle.style.color = this.projects[this.realIndex].color.main
 		},
 
 		closeProject() {
@@ -207,12 +159,20 @@ export default {
 			})
 			selected.classList.remove('show')
 			this.showCase = false
+
+			this.$refs.pageTitle.style.color = '#34b1f8'
+			document
+				.querySelectorAll('.project-boxes .ProjectBox')
+				.forEach((box) => {
+					box.style.animationDelay = '50ms'
+				})
 		},
 
 		nextProject() {
 			if (this.active) return
+			// nechcem aby sa dalo klikat na dalsi projekt kym je animacia active
 			this.active = true
-
+			// pridava classu selected strednemu projektu
 			this.selectMidleBox(true)
 
 			this.container.style.transition = 'transform 0.2s ease'
@@ -229,7 +189,6 @@ export default {
 		prevProject() {
 			if (this.active) return
 			this.active = true
-
 			this.selectMidleBox(false)
 
 			this.container.style.transition = 'transform 0.2s ease'
@@ -245,6 +204,7 @@ export default {
 		},
 
 		onMountedStyles() {
+			// nastavim spravny transform a selected po nacitani stranky
 			this.container.style.transform = `translateX(${
 				-this.size * this.counter
 			}px)`
@@ -281,6 +241,7 @@ export default {
 		},
 
 		cloneElements() {
+			// klonujem projekty aby carousel fungoval donekonecna, ked bude viac projektov toto nebude treba
 			const clonedLastBox = this.container.lastChild.cloneNode(true)
 			const clonedLastPrevBox = this.container.lastChild.previousSibling.cloneNode(
 				true
@@ -308,6 +269,7 @@ export default {
 		},
 
 		selectMidleBox(direction) {
+			// prve odstranim vsetkym classu a potom pridam na zaklade smeru kam carousel ide
 			this.boxes.forEach((box) => {
 				box.classList.remove('selected')
 			})
@@ -350,6 +312,30 @@ export default {
 	.ProjectBox {
 		margin-right: 90px;
 	}
+
+	#box-0,
+	#box-1,
+	#box-2 {
+		opacity: 0;
+		animation: boxIn 0.5s forwards ease;
+		animation-delay: 1400ms;
+	}
+	#box-1 {
+		animation-delay: 1200ms;
+	}
+	#box-2 {
+		animation-delay: 1600ms;
+	}
+
+	@keyframes boxIn {
+		from {
+			transform: translateY(-600px);
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
 }
 .under-projects {
 	position: relative;
@@ -374,13 +360,12 @@ export default {
 		path {
 			fill: #df1041;
 			stroke: #100317;
-			stroke-width: 3px;
+			stroke-width: 4px;
 		}
 
 		&:hover {
-			// transform: translate(-105px, -50%);
 			path {
-				stroke: #34b1f8;
+				stroke: #00f2fe;
 			}
 		}
 	}
@@ -392,7 +377,28 @@ export default {
 }
 
 .projects-btn {
-	// transform: translateY(16px);
+	opacity: 0;
+	top: 15px;
+}
+
+.showMeButton {
+	opacity: 1;
+	animation: backInUp;
+	animation-duration: 1s;
+}
+.left-arrow svg,
+.right-arrow svg {
+	opacity: 0;
+}
+.showLeftArrow svg {
+	opacity: 1;
+	animation: fadeInLeft;
+	animation-duration: 1s;
+}
+.showRightArrow svg {
+	opacity: 1;
+	animation: fadeInRight;
+	animation-duration: 1s;
 }
 
 /* ////////////////////////////// SHOW CASE SEKCIA //////////////////////////// */

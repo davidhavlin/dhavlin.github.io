@@ -133,6 +133,7 @@ export default {
 	}
 	.logo {
 		border: 8px solid #0b000f;
+		background-color: #0b000f;
 	}
 }
 </style>

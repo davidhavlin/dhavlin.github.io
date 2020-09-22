@@ -57,8 +57,8 @@ export default {
 			right: 0;
 			background-size: cover;
 			// background-position: 1015px;
-			animation: rightImage 0.5s forwards ease;
-			animation-delay: 0.8s;
+			animation: rightImage 1s forwards ease;
+			animation-delay: 1.3s;
 			opacity: 0;
 		}
 
@@ -74,8 +74,8 @@ export default {
 
 		.prj-image-left {
 			left: 0;
-			animation: leftImage 0.5s forwards ease;
-			animation-delay: 1s;
+			animation: leftImage 1s forwards ease;
+			animation-delay: 1.3s;
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
