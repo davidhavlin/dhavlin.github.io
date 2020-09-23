@@ -630,7 +630,6 @@
 						height="104"
 						viewBox="0 0 113 104"
 						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
 					>
 						<mask
 							id="mask100"
@@ -913,7 +912,6 @@ export default {
 	transform: scale(20.5);
 }
 // VYSKAKUJUCE SOCIALS IKONKY
-
 .social-icons {
 	z-index: 0;
 	.icon {
@@ -942,22 +940,22 @@ export default {
 	}
 
 	.facebookIn {
-		transform: translate(17px, -149px) scale(1);
+		transform: translate(11px, -144px) scale(1);
 	}
 	.twitterIn {
-		transform: translate(54px, -136px) scale(1);
+		transform: translate(52px, -136px) scale(1);
 		transition-delay: 100ms;
 	}
 	.youtubeIn {
-		transform: translate(90px, -116px) scale(1);
+		transform: translate(89px, -113px) scale(1);
 		transition-delay: 200ms;
 	}
 	.githubIn {
-		transform: translate(111px, -81px) scale(1);
+		transform: translate(107px, -78px) scale(1);
 		transition-delay: 300ms;
 	}
 	.instagramIn {
-		transform: translate(120px, -46px) scale(1);
+		transform: translate(114px, -41px) scale(1);
 		transition-delay: 400ms;
 	}
 }

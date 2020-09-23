@@ -194,11 +194,13 @@ export default {}
 
 /* --------- HOVERY----------- */
 .link:hover .home-icon,
-.link:hover .link-name,
 .link:hover .about-icon,
 .link:hover .projects-icon-under,
 .link:hover .contact-icon-under-stroke {
 	stroke: #0fd7d7;
+}
+.link:hover .link-name {
+	color: #0fd7d7;
 	opacity: 1;
 }
 // pri hoverovani nech neblika to lomitko
