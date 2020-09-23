@@ -4,7 +4,7 @@ const myProjects = [
 		url: 'https://videosaratov.netlify.app/',
 		desc: 'Prerobena moja prva web stranka a viac detailov k nej.',
 		logo: require('@/assets/images/projects/vr-logo.png'),
-		colors: ['#f80f2b', '#4a12be', '#0c95ff', '#100c1d'],
+		github: '',
 		color: {
 			main: '#4a12be',
 			second: '#e9093e',
