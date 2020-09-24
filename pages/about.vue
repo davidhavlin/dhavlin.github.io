@@ -57,9 +57,9 @@ section {
 }
 
 .about-section {
-	background: red;
+	// background: red;
 }
 .skill-section {
-	background: yellow;
+	// background: yellow;
 }
 </style>

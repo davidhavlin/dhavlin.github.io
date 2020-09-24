@@ -1,6 +1,8 @@
 <template>
 	<div class="stage">
-		<div ref="david" id="david" class="david"></div>
+		<div class="ironman-cockpit">
+			<div ref="david" id="david" class="david"></div>
+		</div>
 	</div>
 </template>
 
@@ -114,8 +116,10 @@ export default {
 }
 
 /* sprite tile dimensions */
-$spriteWidth: 70px;
-$spriteHeight: 80px;
+// $spriteWidth: 70px;
+// $spriteHeight: 80px;
+$spriteWidth: 100px;
+$spriteHeight: 140px;
 
 /* postavicka */
 .david {
@@ -124,7 +128,7 @@ $spriteHeight: 80px;
 	margin-left: 150px;
 	width: $spriteWidth;
 	height: $spriteHeight;
-	background-image: url('~assets/images/ken.png');
+	background-image: url('~assets/images/ironman.png');
 }
 
 /* punch */
@@ -137,8 +141,8 @@ $spriteHeight: 80px;
 /* walking */
 @include anim(
 	$animName: walk,
-	$steps: 5,
-	$animNbr: 4,
+	$steps: 7,
+	$animNbr: 1,
 	$animParams: 0.5s infinite
 );
 /* kneel down */
@@ -149,10 +153,22 @@ $spriteHeight: 80px;
 	$animParams: 0.2s infinite
 );
 /* jump */
+// @include anim(
+// 	$animName: jump,
+// 	$steps: 7,
+// 	$animNbr: 9,
+// 	$animParams: 1s infinite
+// ) {
+// 	transition: bottom 0.5s cubic-bezier(0.99, 0.005, 0, 0.42);
+// 	bottom: 225px;
+// 	&.down {
+// 		bottom: 112px;
+// 	}
+// }
 @include anim(
 	$animName: jump,
 	$steps: 7,
-	$animNbr: 9,
+	$animNbr: 1,
 	$animParams: 1s infinite
 ) {
 	transition: bottom 0.5s cubic-bezier(0.99, 0.005, 0, 0.42);
@@ -162,20 +178,28 @@ $spriteHeight: 80px;
 	}
 }
 
-.stage {
+.ironman-cockpit {
+	animation: idle 1s infinite ease;
 	position: absolute;
-	top: 0;
-	width: 450px;
-	height: 330px;
-	// background: url('https://raw.githubusercontent.com/jkneb/street-fighter-css/master/images/bg2.jpg')
-	// 	no-repeat 0px -100px;
-	background-color: grey;
-	background-size: contain;
-	float: left;
-	margin-right: 20px;
+	width: $spriteWidth;
+	height: $spriteHeight;
 }
-body {
-	margin: 0px;
-	padding: 0;
+
+@keyframes idle {
+	0% {
+		transform: translateY(-10px);
+	}
+	50% {
+		transform: translateY(10px);
+	}
+	100% {
+		transform: translateY(-10px);
+	}
+}
+
+.stage {
+	position: relative;
+	width: 100%;
+	height: 100%;
 }
 </style>
