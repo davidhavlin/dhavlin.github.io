@@ -1,29 +1,65 @@
 <template>
-	<div class="about-container">
-		<h1>about</h1>
-		<MyButton
-			main-color="#e60597"
-			second-color="#610240"
-			border-color="#df108b"
-			>Click</MyButton
-		>
-		<HoverButton render="Click" color="#08b0ea" />
+	<div class="page-about-container">
+		<main ref="main">
+			<section class="about-section">
+				<button
+					style="transform: translateX(300px);"
+					@click="handleClickNext()"
+				>
+					CLICK
+				</button>
+				<CharAnimation />
+			</section>
+			<section class="skill-section">
+				<button
+					style="transform: translateX(300px);"
+					@click="handleClickPrev()"
+				>
+					CLICK
+				</button>
+			</section>
+		</main>
 	</div>
 </template>
 
 <script>
-/* eslint-disable */
-
-export default {}
+export default {
+	methods: {
+		handleClickNext() {
+			this.$refs.main.style.transform = 'translateX(-50%)'
+		},
+		handleClickPrev() {
+			this.$refs.main.style.transform = 'translateX(0)'
+		},
+	},
+}
 </script>
 
 <style lang="scss" scoped>
-.about-container {
+.page-about-container {
+	width: 200vw;
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	color: #fff;
 	background: #100317;
+}
+main {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	transition: all 1s ease;
+}
+section {
+	width: 100%;
+	height: 100%;
+}
+
+.about-section {
+	background: red;
+}
+.skill-section {
+	background: yellow;
 }
 </style>
