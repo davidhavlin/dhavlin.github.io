@@ -99,6 +99,7 @@ export default {
 	color: #e9d41a;
 	font-weight: normal;
 	font-size: 2.5em;
+
 	margin-bottom: 1rem;
 	height: 40px;
 }
@@ -273,6 +274,43 @@ form {
 	to {
 		opacity: 1;
 		transform: scaleX(1);
+	}
+}
+
+@media (max-width: 950px) {
+	.contact-form-container {
+		margin-right: 0;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+@media (max-width: 520px) {
+	.contact-form-container {
+		width: 100%;
+		margin-right: 0;
+		position: relative;
+		left: 0;
+		transform: translateX(0);
+
+		form {
+			width: 100%;
+		}
+	}
+}
+
+@media (max-width: 470px) {
+	.contact-title {
+		font-size: 1.9em;
+		margin-bottom: 0.5rem;
+	}
+}
+
+@media (max-width: 350px) {
+	.contact-title {
+		font-size: 1.5em;
+		margin-bottom: 0rem;
 	}
 }
 </style>

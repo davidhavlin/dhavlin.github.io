@@ -38,9 +38,11 @@ export default {
 	background: #100317;
 }
 .contact {
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	display: flex;
+	position: relative;
+	overflow: hidden;
 }
 
 .left-section {
@@ -59,7 +61,33 @@ export default {
 
 .animate {
 	visibility: visible;
-	animation: slideInRight; /* referring directly to the animation's @keyframe declaration */
-	animation-duration: 2s; /* don't forget to set a duration! */
+	animation: slideInRight;
+	animation-duration: 2s;
+}
+
+@media (max-width: 520px) {
+	.contact {
+		flex-direction: column;
+		height: 200vh;
+	}
+
+	.left-section {
+		width: 100%;
+		// height: 100%;
+		// display: flex;
+		justify-content: center;
+		padding: 3rem;
+		// align-items: center;
+	}
+	.right-section {
+		width: 100%;
+		overflow: hidden;
+		// height: 100%;
+	}
+}
+@media (max-width: 520px) {
+	.left-section {
+		padding: 1rem;
+	}
 }
 </style>
