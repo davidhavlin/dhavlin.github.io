@@ -69,11 +69,16 @@ export default {
 	height: 50%;
 	// background: darken(inherit, 20);
 	z-index: -1;
+	transition: height 0.5s ease;
 }
 
 .btn:hover {
 	border-color: #00f3ff !important;
 	transform: translateY(2px);
+
+	.btn-half-bg {
+		height: 20%;
+	}
 }
 
 .btn:focus {

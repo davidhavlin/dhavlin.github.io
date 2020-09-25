@@ -7,30 +7,43 @@
 			action="https://formspree.io/xknqlebd"
 			method="POST"
 		>
-			<input
-				class="nameInput"
-				type="text"
-				name="name"
-				placeholder="Name"
-			/>
-			<input
-				class="emailInput"
-				type="email"
-				name="_replyto"
-				placeholder="Email"
-			/>
-			<textarea
-				ref="textarea"
-				class="textareaInput"
-				name="message"
-				placeholder="Message"
-			></textarea>
+			<div class="field">
+				<input
+					class="nameInput"
+					type="text"
+					name="name"
+					placeholder="Name"
+				/>
+				<div class="field-border"></div>
+			</div>
+			<div class="field">
+				<input
+					class="emailInput"
+					type="email"
+					name="_replyto"
+					placeholder="Email"
+				/>
+				<div class="field-border"></div>
+			</div>
+			<div class="field">
+				<textarea
+					ref="textarea"
+					class="textareaInput"
+					name="message"
+					placeholder="Message"
+				></textarea>
+				<div class="field-border"></div>
+			</div>
 			<button
 				ref="sendButton"
 				type="submit"
+				class="btn-send"
 				@click.prevent="writingEffect(title, $refs.title)"
 			>
-				Send
+				<div class="btn-text">
+					Send
+				</div>
+				<div class="btn-half-bg"></div>
 			</button>
 		</form>
 	</div>
@@ -53,6 +66,10 @@ export default {
 	},
 
 	methods: {
+		skuska(e) {
+			console.log(e)
+		},
+
 		writingEffect(typedString, element) {
 			if (this.index > typedString.length) {
 				this.index = 0
@@ -109,8 +126,25 @@ form {
 	width: 420px;
 	background: #7e1cef;
 
+	.field {
+		position: relative;
+		color: #fff;
+		background: #5b15ac;
+
+		.field-border {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 0%;
+			height: 3px;
+			background: #0fd7d7;
+			transition: width 0.5s ease;
+		}
+	}
+
 	input,
 	textarea {
+		position: relative;
 		color: $main-color;
 		background: #11001a;
 		display: block;
@@ -118,9 +152,17 @@ form {
 		border: none;
 		padding: 0.8rem 0.5rem;
 		margin-bottom: 0.7rem;
+
+		&:focus {
+			outline: 2px solid;
+		}
+
+		&:focus + .field-border {
+			width: 100%;
+		}
 	}
 
-	button {
+	.btn-send {
 		opacity: 0;
 		position: absolute;
 		bottom: -3rem;
@@ -128,42 +170,47 @@ form {
 		font-size: 0.7em;
 		text-transform: uppercase;
 		background: #e9d41a;
-		color: #fff;
+		color: #11001b;
 		border: 2px solid #fff200;
-		padding: 0.6rem 1rem;
+		padding: 0.5rem 0.6rem;
 		border-radius: 0.2rem;
 		cursor: pointer;
-	}
-	button::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		bottom: 0;
-		width: 100%;
-		height: 50%;
-		background: #d9aa01;
-		transition: all 0.3s ease;
-	}
-	button::after {
-		content: 'SEND';
-		color: #11001b;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
+		z-index: 10;
+
+		.btn-text {
+			word-spacing: -4px;
+			z-index: 1;
+		}
+
+		.btn-half-bg {
+			background: #d9aa01;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 50%;
+			z-index: -1;
+			transition: height 0.5s ease;
+		}
+
+		&:hover {
+			border: 2px solid #fff;
+			transform: translateY(2px);
+
+			.btn-half-bg {
+				height: 20%;
+			}
+		}
+		&:focus {
+			outline: none;
+			border: 2px solid #fff;
+		}
 	}
 
-	button:hover {
-		border: 2px solid #fff;
-		transform: translateY(2px);
-	}
-	button:hover:before {
-		height: 20%;
-	}
-
-	button:focus {
-		outline: none;
-		border: 2px solid #fff;
+	.sendButton {
+		opacity: 1;
+		animation: backInUp;
+		animation-duration: 1s;
 	}
 
 	::placeholder {
@@ -173,16 +220,6 @@ form {
 		font-size: 0.7em;
 		color: #fff;
 		color: lighten(#11001a, 20);
-		animation: typing 3.5s steps(40, end);
-	}
-
-	@keyframes typing {
-		from {
-			width: 0;
-		}
-		to {
-			width: 286px;
-		}
 	}
 
 	textarea {
@@ -194,12 +231,6 @@ form {
 	}
 }
 .formIn {
-	animation: backInUp;
-	animation-duration: 1s;
-}
-
-.sendButton {
-	opacity: 1;
 	animation: backInUp;
 	animation-duration: 1s;
 }
