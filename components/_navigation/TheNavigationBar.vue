@@ -1,10 +1,10 @@
 <template>
 	<nav class="navbar">
-		<NavigationLogo />
+		<!-- <NavigationLogo /> -->
 
 		<NavigationIcons />
 
-		<NavigationSocials />
+		<NavigationSocials class="socials" />
 	</nav>
 </template>
 
@@ -16,13 +16,35 @@ export default {}
 .navbar {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	color: #fff;
-	position: absolute;
-	background: transparent;
+	position: fixed;
+	// background: transparent;
+	background: #0b020f; // zeby?
 	height: 100vh;
 	width: 4.4em;
 	z-index: 200;
+}
+.socials {
+	margin-bottom: 1rem;
+	position: absolute;
+	bottom: 0;
+}
+
+@media (max-width: 700px) {
+	.navbar {
+		height: 4.4em;
+		width: 100%;
+		bottom: 0;
+		flex-direction: row;
+	}
+
+	.socials {
+		margin-bottom: 0.8rem;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+	}
 }
 </style>

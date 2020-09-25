@@ -131,16 +131,6 @@ export default {}
 			margin-bottom: 0.9rem;
 		}
 	}
-	// a:nth-child(3) {
-	// 	.link-name {
-	// 		color: #34b1f8;
-	// 	}
-	// }
-	// a:nth-child(4) {
-	// 	.link-name {
-	// 		color: #e9d41a;
-	// 	}
-	// }
 }
 
 .link-name::after {
@@ -209,5 +199,22 @@ export default {}
 }
 .link:hover .contact-icon-under {
 	fill: #0fd7d7;
+}
+
+// MEDIA QUERIES -------------
+@media (max-width: 700px) {
+	.navigation-links {
+		flex-direction: row;
+
+		.link {
+			margin-bottom: 0rem;
+			margin-right: 1rem;
+		}
+		a:nth-child(2) {
+			.link {
+				margin-bottom: 0rem;
+			}
+		}
+	}
 }
 </style>

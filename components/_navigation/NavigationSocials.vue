@@ -1,5 +1,5 @@
 <template>
-	<div class="socials">
+	<div>
 		<section
 			ref="boxButton"
 			class="social-box"
@@ -838,10 +838,11 @@ export default {
 <style lang="scss" scoped>
 @import '~assets/scss/_colors';
 
-.socials {
-	margin-bottom: 1rem;
-	position: relative;
-}
+// .socials {
+// 	margin-bottom: 1rem;
+// 	position: absolute;
+// 	bottom: 0;
+// }
 
 // IKONKA KRABICE A VSETKO OKOLO NEJ
 .social-box {
