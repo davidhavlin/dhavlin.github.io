@@ -26,6 +26,8 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
 }
 
 a {
@@ -33,10 +35,13 @@ a {
 }
 
 body {
+	width: 100%;
+	height: 100%;
 	// background: url('~assets/images/BackgroundpixelatedCOLORED.jpg');
 	// background-attachment: fixed;
 	overflow: hidden;
-	background-color: #180223;
+	// background-color: #180223;
+	background-color: #0b020f;
 	// cursor: url('~assets/images/cursor1.png'), auto;
 	// cursor: url('~assets/images/heart.png'), auto;
 }
@@ -81,6 +86,12 @@ body {
 	}
 	100% {
 		transform: scale(0.8);
+	}
+}
+
+@media (max-width: 520px) {
+	body {
+		overflow: visible;
 	}
 }
 </style>

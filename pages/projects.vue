@@ -381,6 +381,10 @@ export default {
 	top: 15px;
 }
 
+// .close-btn:hover {
+// 	border: 10px solid yellow;
+// }
+
 .showMeButton {
 	opacity: 1;
 	animation: backInUp;
