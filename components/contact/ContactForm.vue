@@ -298,18 +298,20 @@ form {
 			width: 100%;
 		}
 	}
+	.contact-title {
+		font-size: 7.9vw;
+	}
 }
 
 @media (max-width: 470px) {
 	.contact-title {
-		font-size: 1.9em;
 		margin-bottom: 0.5rem;
 	}
 }
 
 @media (max-width: 350px) {
 	.contact-title {
-		font-size: 1.5em;
+		font-size: 8.2vw;
 		margin-bottom: 0rem;
 	}
 }

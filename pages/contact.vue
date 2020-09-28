@@ -68,26 +68,25 @@ export default {
 @media (max-width: 520px) {
 	.contact {
 		flex-direction: column;
-		height: 200vh;
+		height: auto;
 	}
 
 	.left-section {
 		width: 100%;
-		// height: 100%;
-		// display: flex;
+		height: auto;
 		justify-content: center;
-		padding: 3rem;
-		// align-items: center;
+		align-items: flex-start;
+		padding: 4rem 2rem 9rem 2rem;
 	}
 	.right-section {
 		width: 100%;
 		overflow: hidden;
-		// height: 100%;
+		height: 100vh;
 	}
 }
-@media (max-width: 520px) {
+@media (max-width: 400px) {
 	.left-section {
-		padding: 1rem;
+		padding: 4rem 1rem 9rem 1rem;
 	}
 }
 </style>
