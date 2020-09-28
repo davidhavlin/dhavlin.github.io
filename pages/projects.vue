@@ -290,6 +290,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	background: #100317;
+	z-index: 10;
 }
 
 .project-page-title {

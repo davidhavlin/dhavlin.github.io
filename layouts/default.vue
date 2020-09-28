@@ -2,6 +2,7 @@
 	<div class="container">
 		<TheNavigationBar />
 		<Nuxt />
+		<Particles />
 	</div>
 </template>
 
