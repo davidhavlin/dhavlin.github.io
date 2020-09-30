@@ -1,5 +1,5 @@
 <template>
-	<div ref="sky" class="sky">
+	<div ref="sky" class="sky" :class="{ moveSky: something }">
 		<transition-group name="stars">
 			<div
 				v-for="star in stars"
@@ -9,28 +9,18 @@
 				:style="{ left: star.left, top: star.top }"
 			></div>
 		</transition-group>
-		<a @click.prevent="magicStars()">CLICK</a>
-		<div class="svg">
-			<svg
-				width="160"
-				height="131"
-				viewBox="0 0 160 131"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
-					d="M29 0H58V15H72V30H88V15H102V0H131V15H145V30H160V58H145V73H131V87H116V102H101V117H87V131H73V117H58V102H44V87H29V73H14V58H0V30H14V15H29V0ZM139 22H109V37H124V51H139V22Z"
-					fill="#4A006C"
-				/>
-			</svg>
-		</div>
+		<!-- <a @click.prevent="magicStars()">CLICK</a> -->
 	</div>
 </template>
 
 <script>
 export default {
+	props: {
+		something: {
+			type: Boolean,
+			default: false,
+		},
+	},
 	data() {
 		return {
 			clicked: 0,
@@ -52,6 +42,9 @@ export default {
 
 	mounted() {
 		this.autoAddingStars()
+		window.addEventListener('resize', () => {
+			console.log('resizee')
+		})
 	},
 	computed: {
 		wInnerWidth() {
@@ -210,19 +203,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.svg {
-	position: absolute;
-	transform: translate(323px, 130px);
-	z-index: -17;
-	opacity: 0;
-}
 .sky {
 	position: absolute;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	top: 0;
 	left: 0;
 	z-index: 0;
+	overflow: hidden;
 }
 .star {
 	position: absolute;

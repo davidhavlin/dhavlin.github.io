@@ -2,7 +2,7 @@
 	<div class="container">
 		<TheNavigationBar />
 		<Nuxt />
-		<Particles />
+		<!-- <Stars /> -->
 	</div>
 </template>
 
@@ -49,6 +49,7 @@ body {
 
 .container {
 	min-height: 100vh;
+	overflow: hidden;
 }
 
 .loading-component-enter-active,
