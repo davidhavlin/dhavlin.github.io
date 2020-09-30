@@ -11,7 +11,6 @@
 
 <script>
 /* eslint-disable */
-// import hoverEffect from 'hover-effect'
 export default {
 	methods: {
 		effectHover() {
