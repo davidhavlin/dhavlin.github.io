@@ -2,3 +2,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,400;0,700;1,400&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.home-header {
+	.letter {
+		// animation: letter 0.3s forwards ease;
+		display: inline-block;
+		width: 24px;
+	}
+	.letter-anim {
+		animation: bounceIn;
+		animation-duration: 1s;
+	}
+	.letter-bounce {
+		// color: #005f95;
+		animation: jello;
+		animation-duration: 1s;
+	}
+}
+
+@keyframes letter {
+	from {
+		transform: translateX(-10px);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0px);
+
+		opacity: 1;
+	}
+}
