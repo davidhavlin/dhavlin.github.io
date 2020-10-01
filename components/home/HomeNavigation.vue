@@ -12,6 +12,10 @@ export default {}
 
 <style lang="scss" scoped>
 .home-navigation {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
 	a {
 		&:hover {
 			color: #34b1f8;

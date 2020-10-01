@@ -89,13 +89,17 @@ export default {
 
 <style lang="scss" scoped>
 .home-header {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 	position: relative;
+	margin-bottom: 3rem;
 
 	.header {
 		position: relative;
 		height: 48px;
 		h1 {
-			position: absolute;
+			// position: absolute;
 			width: 150px;
 			color: #34b1f8;
 			text-transform: uppercase;
