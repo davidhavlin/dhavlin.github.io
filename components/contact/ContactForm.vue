@@ -1,14 +1,11 @@
 <template>
 	<div class="contact-form-container">
 		<h1 ref="title" class="contact-title"></h1>
-		<form
-			ref="form"
-			class="formIn"
-			action="https://formspree.io/xknqlebd"
-			method="POST"
-		>
+		<form ref="form" class="formIn" action="/send" method="POST">
 			<div class="field">
 				<input
+					v-model="formName"
+					ref="nameInput"
 					class="nameInput"
 					type="text"
 					name="name"
@@ -18,19 +15,25 @@
 			</div>
 			<div class="field">
 				<input
+					v-model="formEmail"
 					class="emailInput"
+					:class="{ highlight: emailError && !formEmail }"
 					type="email"
 					name="_replyto"
 					placeholder="Email"
+					required
 				/>
 				<div class="field-border"></div>
 			</div>
 			<div class="field">
 				<textarea
+					v-model="formText"
 					ref="textarea"
 					class="textareaInput"
+					:class="{ highlight: textError && !formText }"
 					name="message"
 					placeholder="Message"
+					required
 				></textarea>
 				<div class="field-border"></div>
 			</div>
@@ -38,7 +41,7 @@
 				ref="sendButton"
 				type="submit"
 				class="btn-send"
-				@click.prevent="writingEffect(title, $refs.title)"
+				@click.prevent="submitEmail"
 			>
 				<div class="btn-text">
 					Send
@@ -46,6 +49,11 @@
 				<div class="btn-half-bg"></div>
 			</button>
 		</form>
+		<transition name="succ">
+			<div class="success" v-if="success">
+				Email uspesne odoslany
+			</div>
+		</transition>
 	</div>
 </template>
 
@@ -56,6 +64,12 @@ export default {
 			title: 'Contact me',
 			letter: '',
 			index: 0,
+			formName: '',
+			formEmail: '',
+			formText: '',
+			success: false,
+			emailError: false,
+			textError: false,
 		}
 	},
 	mounted() {
@@ -66,8 +80,52 @@ export default {
 	},
 
 	methods: {
-		skuska(e) {
-			console.log(e)
+		submitEmail() {
+			if (!this.validateForm()) return
+			this.success = true
+			this.writingEffect('Thank you', this.$refs.title)
+			setTimeout(() => {
+				this.writingEffect(this.title, this.$refs.title)
+				this.success = false
+			}, 4000)
+			// const data = {
+			// 	name: this.formName,
+			// 	email: this.formEmail,
+			// 	subject: 'skuska',
+			// 	text: this.formText,
+			// }
+
+			// fetch('/api/contact', {
+			// 	method: 'POST',
+			// 	headers: {
+			// 		'Content-Type': 'application/json',
+			// 	},
+			// 	body: JSON.stringify(data),
+			// })
+			this.resetForm()
+		},
+
+		validateForm() {
+			if (!this.formEmail) {
+				this.emailError = true
+			}
+			if (!this.formText) {
+				this.textError = true
+			}
+			if (this.formEmail && this.formText) {
+				return true
+			} else {
+				return false
+			}
+		},
+
+		resetForm() {
+			this.formName = ''
+			this.formEmail = ''
+			this.formText = ''
+			this.emailError = false
+			this.textError = false
+			this.$refs.nameInput.focus()
 		},
 
 		writingEffect(typedString, element) {
@@ -80,7 +138,7 @@ export default {
 
 			setTimeout(() => {
 				this.writingEffect(typedString, element)
-			}, 200)
+			}, 150)
 		},
 	},
 }
@@ -88,6 +146,9 @@ export default {
 
 <style lang="scss" scoped>
 @import '~assets/scss/_colors';
+.highlight {
+	outline: 12px solid #ff0074;
+}
 
 .contact-form-container {
 	font-family: 'Press Start 2P', cursive;
@@ -99,7 +160,6 @@ export default {
 	color: #e9d41a;
 	font-weight: normal;
 	font-size: 2.5em;
-
 	margin-bottom: 1rem;
 	height: 40px;
 }
@@ -110,13 +170,10 @@ export default {
 	height: 1.1em;
 	border-right: 4px solid $main-color;
 	opacity: 0;
-	animation: type 1s steps(2, jump-none) infinite;
+	animation: cursorAtEnd 1s steps(2, jump-none) infinite;
 }
-@keyframes type {
-	0% {
-		opacity: 0;
-	}
-	100% {
+@keyframes cursorAtEnd {
+	to {
 		opacity: 100%;
 	}
 }
@@ -219,7 +276,6 @@ form {
 		font-family: 'Press Start 2P', cursive;
 		font-weight: normal;
 		font-size: 0.7em;
-		color: #fff;
 		color: lighten(#11001a, 20);
 	}
 
@@ -233,6 +289,27 @@ form {
 }
 .formIn {
 	animation: backInUp;
+	animation-duration: 1s;
+}
+
+.success {
+	position: absolute;
+	font-size: 0.6em;
+	color: #fff;
+	width: 150px;
+	background: #2b0142;
+	bottom: 10%;
+	left: calc(50% - 75px);
+	padding: 0.7rem;
+	box-shadow: rgb(0, 221, 255) 0px 0.4em, rgb(0, 221, 255) 0px -0.4em,
+		rgb(0, 221, 255) 0.4em 0px, rgb(0, 221, 255) -0.4em 0px;
+}
+.succ-enter-active {
+	animation: backInUp;
+	animation-duration: 1s;
+}
+.succ-leave-to {
+	animation: backOutDown;
 	animation-duration: 1s;
 }
 
