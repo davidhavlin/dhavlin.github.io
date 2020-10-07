@@ -113,7 +113,7 @@ export default {}
 		align-items: center;
 		margin-bottom: 0.8rem;
 		svg {
-			width: 35px;
+			width: 30px;
 		}
 	}
 
