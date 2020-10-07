@@ -62,12 +62,12 @@
 		</form>
 		<transition name="notify">
 			<div class="success" v-if="success">
-				Email uspesne odoslany
+				Email úspešne odoslaný.
 			</div>
 		</transition>
 		<transition name="notify">
 			<div class="alert" v-if="alert">
-				Prosim vyplnte polia.
+				Prosím vyplnte polia.
 			</div>
 		</transition>
 	</div>
@@ -339,21 +339,23 @@ form {
 
 .success,
 .alert {
+	font-family: 'IBM Plex Mono', monospace;
+	// font-family: 'Roboto Mono', monospace;
+	font-size: 0.8em;
 	position: absolute;
-	font-size: 0.6em;
-	color: #fff;
 	width: 150px;
-	background: #2b0142;
+	color: #fff;
+	background: #100317;
 	bottom: 10%;
 	left: calc(50% - 75px);
 	padding: 0.7rem;
-	box-shadow: rgb(0, 221, 255) 0px 0.4em, rgb(0, 221, 255) 0px -0.4em,
-		rgb(0, 221, 255) 0.4em 0px, rgb(0, 221, 255) -0.4em 0px;
+	box-shadow: #00ffac 0px 0.4em, #00ffac 0px -0.4em, #00ffac 0.4em 0px,
+		#00ffac -0.4em 0px;
 }
 .alert {
-	background: #330027;
-	box-shadow: #e91a1a 0px 0.4em, #e91a1a 0px -0.4em, #e91a1a 0.4em 0px,
-		#e91a1a -0.4em 0px;
+	background: #100317;
+	box-shadow: #fe006a 0px 0.4em, #fe006a 0px -0.4em, #fe006a 0.4em 0px,
+		#fe006a -0.4em 0px;
 }
 .notify-enter-active {
 	animation: backInUp;
