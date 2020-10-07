@@ -10,7 +10,6 @@ app.use(
 app.use(express.json())
 
 app.post('/', (req, res) => {
-	console.log(req.body)
 	const { name, email, subject, text } = req.body
 	sendEmail(name, email, subject, text, (err, data) => {
 		if (err) {
