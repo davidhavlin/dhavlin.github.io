@@ -4,27 +4,39 @@
 		<form ref="form" class="formIn" action="/send" method="POST">
 			<div class="field">
 				<input
-					v-model="formName"
-					ref="nameInput"
-					class="nameInput"
-					type="text"
-					name="name"
-					placeholder="Name"
-				/>
-				<div class="field-border"></div>
-			</div>
-			<div class="field">
-				<input
 					v-model="formEmail"
+					ref="emailInput"
 					class="emailInput"
 					:class="{ highlight: emailError && !formEmail }"
 					type="email"
 					name="_replyto"
-					placeholder="Email"
-					required
+					placeholder="*Your Email"
 				/>
 				<div class="field-border"></div>
 			</div>
+			<div class="two-fields">
+				<div class="field">
+					<input
+						v-model="formName"
+						class="nameInput"
+						type="text"
+						name="name"
+						placeholder="Name"
+					/>
+					<div class="field-border"></div>
+				</div>
+				<div class="field">
+					<input
+						v-model="formSubject"
+						class="subjectInput"
+						type="text"
+						name="name"
+						placeholder="Subject"
+					/>
+					<div class="field-border"></div>
+				</div>
+			</div>
+
 			<div class="field">
 				<textarea
 					v-model="formText"
@@ -32,8 +44,7 @@
 					class="textareaInput"
 					:class="{ highlight: textError && !formText }"
 					name="message"
-					placeholder="Message"
-					required
+					placeholder="*Message"
 				></textarea>
 				<div class="field-border"></div>
 			</div>
@@ -49,9 +60,14 @@
 				<div class="btn-half-bg"></div>
 			</button>
 		</form>
-		<transition name="succ">
+		<transition name="notify">
 			<div class="success" v-if="success">
 				Email uspesne odoslany
+			</div>
+		</transition>
+		<transition name="notify">
+			<div class="alert" v-if="alert">
+				Prosim vyplnte polia.
 			</div>
 		</transition>
 	</div>
@@ -61,11 +77,13 @@
 export default {
 	data() {
 		return {
+			alert: false,
 			title: 'Contact me',
 			letter: '',
 			index: 0,
-			formName: '',
 			formEmail: '',
+			formSubject: '',
+			formName: '',
 			formText: '',
 			success: false,
 			emailError: false,
@@ -88,20 +106,23 @@ export default {
 				this.writingEffect(this.title, this.$refs.title)
 				this.success = false
 			}, 4000)
-			// const data = {
-			// 	name: this.formName,
-			// 	email: this.formEmail,
-			// 	subject: 'skuska',
-			// 	text: this.formText,
-			// }
 
-			// fetch('/api/contact', {
-			// 	method: 'POST',
-			// 	headers: {
-			// 		'Content-Type': 'application/json',
-			// 	},
-			// 	body: JSON.stringify(data),
-			// })
+			if (!this.formName) this.formName = 'Anonym'
+			if (!this.formSubject) this.formSubject = 'Message'
+			const data = {
+				name: this.formName,
+				email: this.formEmail,
+				subject: this.formSubject,
+				msg: this.formText,
+			}
+
+			fetch('/api/contact', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			})
 			this.resetForm()
 		},
 
@@ -115,17 +136,22 @@ export default {
 			if (this.formEmail && this.formText) {
 				return true
 			} else {
+				this.alert = true
+				setTimeout(() => {
+					this.alert = false
+				}, 3000)
 				return false
 			}
 		},
 
 		resetForm() {
-			this.formName = ''
 			this.formEmail = ''
+			this.formName = ''
+			this.formSubject = ''
 			this.formText = ''
 			this.emailError = false
 			this.textError = false
-			this.$refs.nameInput.focus()
+			this.$refs.emailInput.focus()
 		},
 
 		writingEffect(typedString, element) {
@@ -146,8 +172,12 @@ export default {
 
 <style lang="scss" scoped>
 @import '~assets/scss/_colors';
+$higlight-color: #ff00bf;
+
 .highlight {
-	outline: 12px solid #ff0074;
+	outline: none;
+	box-shadow: $higlight-color 0px 0.4em, $higlight-color 0px -0.4em,
+		$higlight-color 0.4em 0px, $higlight-color -0.4em 0px;
 }
 
 .contact-form-container {
@@ -188,6 +218,7 @@ form {
 		position: relative;
 		color: #fff;
 		background: #5b15ac;
+		margin-bottom: 0.7rem;
 
 		.field-border {
 			position: absolute;
@@ -199,6 +230,9 @@ form {
 			transition: width 0.5s ease;
 		}
 	}
+	.field:nth-child(3) {
+		margin-bottom: 0;
+	}
 
 	input,
 	textarea {
@@ -209,7 +243,6 @@ form {
 		width: 100%;
 		border: none;
 		padding: 0.8rem 0.5rem;
-		margin-bottom: 0.7rem;
 
 		&:focus {
 			outline: 2px solid;
@@ -217,6 +250,18 @@ form {
 
 		&:focus + .field-border {
 			width: 100%;
+		}
+	}
+
+	.two-fields {
+		display: flex;
+
+		.field {
+			width: 50%;
+		}
+
+		.field:first-child {
+			margin-right: 0.7rem;
 		}
 	}
 
@@ -276,7 +321,7 @@ form {
 		font-family: 'Press Start 2P', cursive;
 		font-weight: normal;
 		font-size: 0.7em;
-		color: lighten(#11001a, 20);
+		color: #7e1cef6b;
 	}
 
 	textarea {
@@ -292,7 +337,8 @@ form {
 	animation-duration: 1s;
 }
 
-.success {
+.success,
+.alert {
 	position: absolute;
 	font-size: 0.6em;
 	color: #fff;
@@ -304,11 +350,16 @@ form {
 	box-shadow: rgb(0, 221, 255) 0px 0.4em, rgb(0, 221, 255) 0px -0.4em,
 		rgb(0, 221, 255) 0.4em 0px, rgb(0, 221, 255) -0.4em 0px;
 }
-.succ-enter-active {
+.alert {
+	background: #330027;
+	box-shadow: #e91a1a 0px 0.4em, #e91a1a 0px -0.4em, #e91a1a 0.4em 0px,
+		#e91a1a -0.4em 0px;
+}
+.notify-enter-active {
 	animation: backInUp;
 	animation-duration: 1s;
 }
-.succ-leave-to {
+.notify-leave-to {
 	animation: backOutDown;
 	animation-duration: 1s;
 }
@@ -322,6 +373,7 @@ form {
 
 .nameInput,
 .emailInput,
+.subjectInput,
 .textareaInput {
 	opacity: 0;
 	transform: scaleY(0);
@@ -329,7 +381,8 @@ form {
 	transform-origin: top;
 	animation-delay: 1s;
 }
-.emailInput {
+.nameInput,
+.subjectInput {
 	animation-delay: 1.3s;
 }
 .textareaInput {
