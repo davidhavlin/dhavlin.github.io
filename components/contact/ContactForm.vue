@@ -4,10 +4,12 @@
 		<form ref="form" class="formIn" action="/send" method="POST">
 			<div class="field">
 				<input
-					v-model="formEmail"
 					ref="emailInput"
+					v-model="formEmail"
 					class="emailInput"
-					:class="{ highlight: emailError && !formEmail }"
+					:class="{
+						highlight: isEmailInvalid(),
+					}"
 					type="email"
 					name="_replyto"
 					placeholder="*Your Email"
@@ -39,8 +41,8 @@
 
 			<div class="field">
 				<textarea
-					v-model="formText"
 					ref="textarea"
+					v-model="formText"
 					class="textareaInput"
 					:class="{ highlight: textError && !formText }"
 					name="message"
@@ -60,16 +62,7 @@
 				<div class="btn-half-bg"></div>
 			</button>
 		</form>
-		<transition name="notify">
-			<div class="success" v-if="success">
-				Email úspešne odoslaný.
-			</div>
-		</transition>
-		<transition name="notify">
-			<div class="alert" v-if="alert">
-				Prosím vyplnte polia.
-			</div>
-		</transition>
+		<FormNotifications :success="success" :alert="alert" :error="error" />
 	</div>
 </template>
 
@@ -77,17 +70,22 @@
 export default {
 	data() {
 		return {
-			alert: false,
 			title: 'Contact me',
-			letter: '',
-			index: 0,
-			formEmail: '',
-			formSubject: '',
-			formName: '',
-			formText: '',
+			// pre notifikacie
+			alert: false,
+			error: false,
 			success: false,
+			// pre inputy
+			formEmail: '',
+			formName: '',
+			formSubject: '',
+			formText: '',
+			// pre input errory
 			emailError: false,
 			textError: false,
+			// ostatne
+			letter: '',
+			index: 0,
 		}
 	},
 	mounted() {
@@ -100,20 +98,14 @@ export default {
 	methods: {
 		submitEmail() {
 			if (!this.validateForm()) return
-			this.success = true
-			this.writingEffect('Thank you', this.$refs.title)
-			setTimeout(() => {
-				this.writingEffect(this.title, this.$refs.title)
-				this.success = false
-			}, 4000)
 
 			if (!this.formName) this.formName = 'Anonym'
 			if (!this.formSubject) this.formSubject = 'Message'
 			const data = {
 				name: this.formName,
-				email: this.formEmail,
+				email: this.formEmail.toLowerCase(),
 				subject: this.formSubject,
-				msg: this.formText,
+				text: this.formText,
 			}
 
 			fetch('/api/contact', {
@@ -123,23 +115,47 @@ export default {
 				},
 				body: JSON.stringify(data),
 			})
+				.then((response) => {
+					if (response.ok) {
+						this.success = true
+						this.writingEffect('Thank you', this.$refs.title)
+					} else {
+						this.error = true
+					}
+				})
+				.then(() => {
+					setTimeout(() => {
+						this.writingEffect(this.title, this.$refs.title)
+						this.success = false
+						this.error = false
+					}, 4000)
+				})
 			this.resetForm()
 		},
 
 		validateForm() {
-			if (!this.formEmail) {
-				this.emailError = true
-			}
-			if (!this.formText) {
-				this.textError = true
-			}
-			if (this.formEmail && this.formText) {
+			if (!this.formEmail) this.emailError = true
+			if (!this.formText) this.textError = true
+			if (!this.isEmailInvalid() && this.formText) {
 				return true
 			} else {
 				this.alert = true
 				setTimeout(() => {
 					this.alert = false
 				}, 3000)
+				return false
+			}
+		},
+
+		isEmailInvalid() {
+			if (
+				(this.emailError && !this.formEmail) ||
+				(!this.formEmail.includes('@') && this.formEmail)
+			) {
+				return true
+			} else if (this.formEmail.length < 5 && this.formEmail) {
+				return true
+			} else {
 				return false
 			}
 		},
@@ -172,10 +188,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '~assets/scss/_colors';
-$higlight-color: #ff00bf;
+$higlight-color: #fe006a;
 
 .highlight {
-	outline: none;
+	outline: none !important;
 	box-shadow: $higlight-color 0px 0.4em, $higlight-color 0px -0.4em,
 		$higlight-color 0.4em 0px, $higlight-color -0.4em 0px;
 }
@@ -334,35 +350,6 @@ form {
 }
 .formIn {
 	animation: backInUp;
-	animation-duration: 1s;
-}
-
-.success,
-.alert {
-	font-family: 'IBM Plex Mono', monospace;
-	// font-family: 'Roboto Mono', monospace;
-	font-size: 0.8em;
-	position: absolute;
-	width: 150px;
-	color: #fff;
-	background: #100317;
-	bottom: 10%;
-	left: calc(50% - 75px);
-	padding: 0.7rem;
-	box-shadow: #00ffac 0px 0.4em, #00ffac 0px -0.4em, #00ffac 0.4em 0px,
-		#00ffac -0.4em 0px;
-}
-.alert {
-	background: #100317;
-	box-shadow: #fe006a 0px 0.4em, #fe006a 0px -0.4em, #fe006a 0.4em 0px,
-		#fe006a -0.4em 0px;
-}
-.notify-enter-active {
-	animation: backInUp;
-	animation-duration: 1s;
-}
-.notify-leave-to {
-	animation: backOutDown;
 	animation-duration: 1s;
 }
 
