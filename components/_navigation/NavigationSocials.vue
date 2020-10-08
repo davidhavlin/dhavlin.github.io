@@ -7,30 +7,30 @@
 			@mouseenter="openBox = true"
 			@mouseleave="openBox = false"
 		>
-			<div class="notification" v-if="notification">
+			<div v-if="notification" class="notification">
 				<span>5</span>
 			</div>
 			<!-- ZATVORENA KRABICA -->
-			<div class="box" v-show="!openBox && !socials">
+			<div v-show="!openBox && !socials" class="box">
 				<ClosedBox />
 			</div>
 			<!-- OTVORENA PLNA KRABICA -->
-			<div class="open-box" v-show="openBox && !socials">
+			<div v-show="openBox && !socials" class="open-box">
 				<OpenBoxFull />
 			</div>
 			<!-- OTVORENA PRAZDNA KRABICA -->
-			<div class="open-empty-box" v-show="socials">
+			<div v-show="socials" class="open-empty-box">
 				<OpenBoxEmpty />
 			</div>
 			<div class="box-title">Socials</div>
 		</section>
 
 		<section
-			class="social-icons"
 			v-closable="{
 				exclude: ['boxButton'],
 				handler: 'onClose',
 			}"
+			class="social-icons"
 		>
 			<div class="icon facebook" :class="{ facebookIn: socials }">
 				<a href="#">

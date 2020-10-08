@@ -1,7 +1,7 @@
 <template>
 	<div class="stage">
 		<div class="ironman-cockpit">
-			<div ref="david" id="david" class="david"></div>
+			<div id="david" ref="david" class="david"></div>
 		</div>
 	</div>
 </template>

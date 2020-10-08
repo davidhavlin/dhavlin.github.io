@@ -18,9 +18,9 @@
 			<h4>stack</h4>
 			<div class="project-icons">
 				<div
-					class="prj-icon"
 					v-for="(utility, index) in project.stack"
 					:key="index"
+					class="prj-icon"
 				>
 					<img :src="makeIcon(utility)" alt />
 					<span class="icon-tooltip">{{ utility }}</span>
@@ -35,6 +35,18 @@ export default {
 	props: {
 		project: {
 			type: Object,
+			default() {
+				return {
+					title: 'coming soon',
+					url: 'none',
+					desc: 'none',
+					logo: 'none',
+					colors: ['#f80f2b', '#4a12be', '#0c95ff', '#100c1d'],
+					stack: ['HTML', 'SCSS', 'ES6', 'Vue'],
+					images: 'none',
+					id: 0,
+				}
+			},
 		},
 	},
 	methods: {
