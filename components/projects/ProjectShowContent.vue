@@ -172,7 +172,7 @@ export default {
 			.icon-tooltip::after {
 				content: ' ';
 				position: absolute;
-				top: 100%; /* At the bottom of the tooltip */
+				top: 99%;
 				left: 50%;
 				margin-left: -5px;
 				border-width: 5px;
