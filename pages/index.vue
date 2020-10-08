@@ -8,7 +8,6 @@
 		<section class="right-section">
 			<div ref="hover" class="hover-image"></div>
 			<HomeCodingBackground />
-			<div class="right-name">david</div>
 		</section>
 	</div>
 </template>
@@ -54,16 +53,6 @@ export default {
 		position: relative;
 		width: 40%;
 		height: 100%;
-
-		.right-name {
-			position: absolute;
-			font-size: 3.5em;
-			left: 50%;
-			bottom: 29px;
-			color: #9212f8;
-			transform: translateX(-50%);
-			mix-blend-mode: color-dodge;
-		}
 	}
 }
 

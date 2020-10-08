@@ -1,14 +1,9 @@
 <template>
-	<header class="home-header">
+	<header ref="header" class="home-header">
 		<div class="header">
-			<h1 ref="header"></h1>
+			<h1 ref="friend"></h1>
 			<div ref="dots" class="dots"></div>
 		</div>
-		<!-- <div ref="dots" class="dots">
-			<div class="dot1">.</div>
-			<div class="dot2">.</div>
-			<div class="dot3">.</div>
-		</div> -->
 		<div class="home-sub-header">
 			<p>I am David</p>
 			<p>A Web Developer</p>
@@ -25,7 +20,18 @@ export default {
 		}
 	},
 	mounted() {
-		this.helloFriend()
+		this.$refs.header.addEventListener('animationstart', () => {
+			this.$refs.header.style.opacity = 1
+		})
+		this.$refs.header.addEventListener(
+			'animationend',
+			() => {
+				this.helloFriend()
+			},
+			{
+				once: true,
+			}
+		)
 	},
 	methods: {
 		helloFriend() {
@@ -44,7 +50,7 @@ export default {
 			const span = document.createElement('span')
 			span.classList.add('letter', 'letter-anim')
 			span.textContent = letter
-			this.$refs.header.appendChild(span)
+			this.$refs.friend.appendChild(span)
 
 			span.addEventListener('animationend', this.removeClass, {
 				once: true,
@@ -89,18 +95,37 @@ export default {
 
 <style lang="scss" scoped>
 .home-header {
+	opacity: 0;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	position: relative;
-	margin-bottom: 3rem;
+	margin-bottom: 6rem;
+	padding: 1rem;
+	animation: backInDown;
+	animation-duration: 2s;
+	animation-delay: 1000ms;
+
+	&::after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 80%;
+		left: 0;
+		bottom: 0;
+		background: #0b020f;
+		z-index: 0;
+	}
 
 	.header {
 		position: relative;
-		height: 48px;
+		height: 72px;
+		margin-bottom: 1rem;
+		z-index: 1;
 		h1 {
 			// position: absolute;
-			width: 150px;
+			font-size: 2.25em;
+			width: 225px;
 			color: #34b1f8;
 			text-transform: uppercase;
 		}
@@ -109,15 +134,18 @@ export default {
 			position: absolute;
 			font-size: 1.5em;
 			color: #34b1f8;
-			bottom: -1px;
-			left: 140px;
+			bottom: 0px;
+			left: 216px;
 		}
 	}
 	h1 {
 		// animation: glitch 2s steps(2, end) infinite;
 	}
 	.home-sub-header {
+		position: relative;
 		color: #fff;
+		font-size: 1.25em;
+		z-index: 1;
 	}
 }
 

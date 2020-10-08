@@ -24,6 +24,11 @@
 
 <script>
 export default {
+	mounted() {
+		if (this.$route.params.skillsPage) {
+			this.handleClickNext()
+		}
+	},
 	methods: {
 		handleClickNext() {
 			this.$refs.main.style.transform = 'translateX(-50%)'
