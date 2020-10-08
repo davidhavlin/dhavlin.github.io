@@ -121,8 +121,9 @@ export default {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-family: 'Press Start 2P', cursive;
-		font-size: 0.6em;
+		font-family: 'IBM Plex Mono', monospace;
+		font-weight: bold;
+		font-size: 0.7em;
 		position: absolute;
 		top: -5px;
 		left: 34px;
