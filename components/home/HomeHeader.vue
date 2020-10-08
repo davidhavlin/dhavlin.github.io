@@ -4,7 +4,7 @@
 			<h1 ref="friend"></h1>
 			<div ref="dots" class="dots"></div>
 		</div>
-		<div class="home-sub-header">
+		<div ref="subHeader" class="home-sub-header">
 			<p>I am David</p>
 			<p>A Web Developer</p>
 		</div>
@@ -27,6 +27,8 @@ export default {
 			'animationend',
 			() => {
 				this.helloFriend()
+				this.$refs.subHeader.style.opacity = 1
+				this.$refs.subHeader.classList.add('showText')
 			},
 			{
 				once: true,
@@ -40,10 +42,8 @@ export default {
 				setTimeout(() => {
 					this.createSpan(letter)
 					if (index === array.length - 1) this.threeDots()
-				}, 200 * (index + 1))
+				}, 100 * (index + 1))
 			})
-
-			// this.threeDots()
 		},
 
 		createSpan(letter) {
@@ -55,7 +55,6 @@ export default {
 			span.addEventListener('animationend', this.removeClass, {
 				once: true,
 			})
-
 			span.addEventListener('mouseenter', this.letterBounce)
 		},
 
@@ -94,6 +93,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.showText {
+	animation: fadeIn;
+	animation-duration: 1s;
+}
 .home-header {
 	opacity: 0;
 	display: flex;
@@ -138,12 +141,11 @@ export default {
 			left: 216px;
 		}
 	}
-	h1 {
-		// animation: glitch 2s steps(2, end) infinite;
-	}
+
 	.home-sub-header {
+		opacity: 0;
 		position: relative;
-		color: #fff;
+		color: #9dbae4;
 		font-size: 1.25em;
 		z-index: 1;
 	}
