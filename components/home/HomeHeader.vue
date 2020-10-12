@@ -21,6 +21,7 @@ export default {
 	},
 	mounted() {
 		this.$refs.header.addEventListener('animationstart', () => {
+			if (!this.$refs.header) return
 			this.$refs.header.style.opacity = 1
 		})
 		this.$refs.header.addEventListener(
@@ -47,6 +48,7 @@ export default {
 		},
 
 		createSpan(letter) {
+			if (!this.$refs.friend) return
 			const span = document.createElement('span')
 			span.classList.add('letter', 'letter-anim')
 			span.textContent = letter
@@ -78,6 +80,7 @@ export default {
 			const dotsArray = this.dots.split('')
 			dotsArray.forEach((dot, index) => {
 				setTimeout(() => {
+					if (!this.$refs.dots) return
 					this.$refs.dots.innerHTML += dot
 					if (index >= dotsArray.length - 1) {
 						setTimeout(() => {

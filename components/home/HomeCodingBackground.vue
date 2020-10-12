@@ -64,6 +64,7 @@ export default {
 			}
 			const line = this.lines[this.index].split('')
 			const div = document.createElement('div')
+			if (!this.$refs.background) return
 			this.$refs.background.appendChild(div)
 
 			line.forEach((letter, index) => {
@@ -87,9 +88,10 @@ export default {
 	left: 0;
 	height: 100%;
 	width: 100%;
-	color: #11ffa9;
+	color: #6daff6;
 	font-size: 0.7em;
 	pointer-events: none;
-	// mix-blend-mode: saturation;
+	mix-blend-mode: color-dodge;
+	opacity: 0.2;
 }
 </style>
