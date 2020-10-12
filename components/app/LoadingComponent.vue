@@ -58,9 +58,12 @@ export default {
 				setTimeout(() => {
 					this.renderLines()
 				}, 300)
+			} else {
+				this.index = 0
 			}
 		},
 	},
+
 	methods: {
 		renderLines() {
 			if (this.$refs.terminal) {
@@ -98,14 +101,14 @@ export default {
 
 <style lang="scss" scoped>
 .loading {
-	font-family: 'Press Start 2P', cursive;
-	// font-family: 'VT323', monospace;
+	// font-family: 'Press Start 2P', cursive;
+	font-family: 'VT323', monospace;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #1f002d;
+	background: #0b020f;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -120,26 +123,15 @@ export default {
 	left: 0;
 	width: 100%;
 	height: 100%;
+	font-size: 1.3em;
+	margin-left: 2rem;
 	list-style-type: none;
-	// font-size: 1.4em;
 }
 
 h1 {
 	font-family: 'Press Start 2P', cursive;
 	color: #34b1f8;
-	font-size: 24px;
-}
-
-h1::after {
-	content: '';
-	position: absolute;
-	width: 288px;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	height: 55px;
-	background: #11001a;
-	z-index: -1;
+	font-size: 1.1rem;
 }
 
 .icon {
@@ -167,58 +159,5 @@ h1::after {
 }
 .loadingComponent-leave-to {
 	transform: translateX(100%);
-}
-
-$screen-background: #121010;
-
-@keyframes flicker {
-	$steps: 20;
-	@for $i from 0 through $steps {
-		#{percentage($i*(1/$steps))} {
-			opacity: random();
-		}
-	}
-}
-.loading {
-	// flicker
-	&::after {
-		content: ' ';
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		background: transparentize($screen-background, 0.9);
-		opacity: 0;
-		z-index: 2;
-		pointer-events: none;
-	}
-	// scanlines
-	&::before {
-		content: ' ';
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		background: linear-gradient(
-				transparentize($screen-background, 1) 50%,
-				transparentize(darken($screen-background, 10), 0.75) 50%
-			),
-			linear-gradient(
-				90deg,
-				transparentize(#ff0000, 0.94),
-				transparentize(#00ff00, 0.98),
-				transparentize(#0000ff, 0.94)
-			);
-		z-index: 2;
-		background-size: 100% 2px, 3px 100%;
-		pointer-events: none;
-	}
-}
-.loading::after {
-	animation: flicker 0.15s infinite;
 }
 </style>
