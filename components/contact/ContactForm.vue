@@ -61,6 +61,9 @@
 				</div>
 				<div class="btn-half-bg"></div>
 			</button>
+			<div v-if="loading" class="loading-square">
+				<LoadingSquare />
+			</div>
 		</form>
 		<FormNotifications :success="success" :alert="alert" :error="error" />
 	</div>
@@ -86,6 +89,7 @@ export default {
 			// ostatne
 			letter: '',
 			index: 0,
+			loading: false,
 		}
 	},
 	mounted() {
@@ -107,7 +111,7 @@ export default {
 				subject: this.formSubject,
 				text: this.formText,
 			}
-
+			this.loading = true
 			fetch('/api/contact', {
 				method: 'POST',
 				headers: {
@@ -116,6 +120,7 @@ export default {
 				body: JSON.stringify(data),
 			})
 				.then((response) => {
+					this.loading = false
 					if (response.ok) {
 						this.success = true
 						this.writingEffect('Thank you', this.$refs.title)
@@ -194,6 +199,15 @@ $higlight-color: #fe006a;
 	outline: none !important;
 	box-shadow: $higlight-color 0px 0.4em, $higlight-color 0px -0.4em,
 		$higlight-color 0.4em 0px, $higlight-color -0.4em 0px;
+}
+
+.loading-square {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #34b1f84f;
 }
 
 .contact-form-container {
