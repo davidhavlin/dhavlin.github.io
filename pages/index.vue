@@ -15,8 +15,17 @@
 <script>
 /* eslint-disable */
 export default {
+	computed: {
+		rightSection() {
+			return document.querySelector('.right-section')
+		},
+	},
 	mounted() {
 		this.effectHover()
+
+		this.rightSection.addEventListener('animationstart', () => {
+			this.rightSection.style.opacity = 1
+		})
 	},
 	methods: {
 		effectHover() {
@@ -35,6 +44,7 @@ export default {
 <style lang="scss" scoped>
 .home-container {
 	font-family: 'Press Start 2P', cursive;
+	position: relative;
 	display: flex;
 	width: 100%;
 	height: 100vh;
@@ -50,18 +60,48 @@ export default {
 		align-items: center;
 	}
 	.right-section {
+		background: #1f0831;
 		position: relative;
 		width: 40%;
 		height: 100%;
+		opacity: 0;
+		animation: fadeInRight;
+		animation-duration: 2s;
+		animation-delay: 2000ms;
+		overflow: hidden;
 	}
 }
 
 .hover-image {
 	width: 100%;
 	height: 100%;
+	opacity: 0;
+	animation: picture 5s forwards ease;
+	animation-delay: 3s;
+}
+
+@keyframes picture {
+	to {
+		opacity: 1;
+	}
 }
 
 h1.letter {
 	color: red;
+}
+@media (max-width: 870px) {
+	.home-container {
+		.left-section {
+			width: 100%;
+		}
+		.right-section {
+			position: absolute;
+			right: 0;
+		}
+	}
+
+	//     .hover-image {
+	// 	opacity: 0.4;
+	// }
 }
 </style>
