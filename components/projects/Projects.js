@@ -1,10 +1,11 @@
+// prettier-ignore
 const myProjects = [
 	{
 		title: 'VR Video Saratov',
 		url: 'https://videosaratov.netlify.app/',
-		desc: 'Prerobena moja prva web stranka a viac detailov k nej.',
+		desc: 'Prerobená moja vôbec prvá web stránka pre virtuálnu realitu.',
 		logo: require('@/assets/images/projects/vr-logo.png'),
-		github: '',
+		github: 'https://github.com/davidhavlin/videosaratov',
 		color: {
 			main: '#4a12be',
 			second: '#e9093e',
@@ -21,8 +22,9 @@ const myProjects = [
 	{
 		title: 'David Havlín Website',
 		url: 'https://davidhavlin.netlify.app/',
-		desc: 'skuska',
-		logo: require('@/assets/images/projects/dh-logo.png'),
+		desc: 'Moja osobná portfolio stránka ktorú som sa pokúsil spraviť trošku netradične.',
+        logo: require('@/assets/images/projects/dh-logo.png'),
+        github: 'https://github.com/davidhavlin/dhavlin.github.io',
 		color: {
 			main: '#4a12be',
 			second: '#e9093e',
@@ -39,8 +41,9 @@ const myProjects = [
 	{
 		title: 'NETFLIX clone',
 		url: 'https://davidhavlin.netlify.app/',
-		desc: 'skuska',
-		logo: require('@/assets/images/projects/nf-logo.png'),
+		desc: 'Coming soon',
+        logo: require('@/assets/images/projects/nf-logo.png'),
+        github: 'none',
 		color: {
 			main: '#e61e25',
 			second: '#e9093e',
