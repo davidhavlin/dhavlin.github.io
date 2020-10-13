@@ -80,13 +80,13 @@ export default {
 		margin-bottom: 2rem;
 		animation: backInUp;
 		animation-duration: 2s;
-		animation-delay: 1000ms;
+		animation-delay: 500ms;
 
 		&:nth-child(2) {
-			animation-delay: 1200ms;
+			animation-delay: 700ms;
 		}
 		&:nth-child(3) {
-			animation-delay: 1400ms;
+			animation-delay: 900ms;
 			margin-bottom: 0;
 		}
 

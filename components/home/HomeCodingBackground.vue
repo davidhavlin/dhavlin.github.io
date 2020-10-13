@@ -8,23 +8,43 @@ export default {
 		return {
 			index: 0,
 			counter: 1,
+			size: 0,
 			lines: [
+				'$: > buffering page... 0%',
+				'$: > buffering page... 20%',
+				'$: > buffering page... 66%',
+				'$: > buffering page... 100%',
 				'$: export default {',
 				'$: data() {',
 				'$:     return {',
 				'$:         text: "hello friend",',
 				'$:         dots: "..."',
-				'$: }',
+				'$: },',
 				'$: mounted() {',
-				'$:    this.helloFriend();',
+				'$:    this.$refs.header.addEventListener("animationstart", () => {',
+				'$:     if (!this.$refs.header) return;',
+				'$:     this.$refs.header.style.opacity = 1;})',
+				'$:     this.$refs.header.addEventListener("animationend", () => {',
+				'$:     this.helloFriend();',
+				'$:     this.$refs.subHeader.style.opacity = 1;',
+				'$:     this.$refs.subHeader.classList.add("showText");',
+				'$:     },{	once: true	})',
+				'$: },',
+				'$: methods: {',
+				'$:     helloFriend() {',
+				'$:     const array = this.text.split("")',
+				'$:     array.forEach((letter, index) => {',
+				'$:     setTimeout(() => {',
+				'$:         this.createSpan(letter)',
+				'$:         if (index === array.length - 1) this.threeDots()',
+				'$:         }, 100 * (index + 1))',
+				'$:     })',
+				'$: },',
 				'$: > Welcome to My website version 1.3a',
 				'$:',
 				'$: > Hello friend. I am David..',
-				'$: I can has matrix?',
-				'$: > buffering matrix... 20%',
-				'$: > buffering matrix... 66%',
-				'$: > buffering matrix... 100%',
-				'$: > So, would you like a red or blue pill?',
+				'$: > ',
+				'$: > ',
 			],
 		}
 	},
@@ -41,6 +61,7 @@ export default {
 			this.index++
 			if (this.index >= this.lines.length) {
 				this.index = 0
+
 				return
 			}
 
@@ -53,6 +74,7 @@ export default {
 			if (this.index >= this.lines.length) {
 				this.index = 0
 				this.counter++
+				this.size = 0
 			}
 			if (this.counter === 3) {
 				setTimeout(() => {
@@ -66,6 +88,8 @@ export default {
 			const div = document.createElement('div')
 			if (!this.$refs.background) return
 			this.$refs.background.appendChild(div)
+			this.size -= 5
+			this.$refs.background.style.transform = `translateY(${this.size}px)`
 
 			line.forEach((letter, index) => {
 				setTimeout(() => {
@@ -74,7 +98,7 @@ export default {
 						this.index++
 						this.renderLetters()
 					}
-				}, 25 * (index + 1))
+				}, 15 * (index + 1))
 			})
 		},
 	},
@@ -93,5 +117,6 @@ export default {
 	pointer-events: none;
 	mix-blend-mode: color-dodge;
 	opacity: 0.2;
+	overflow: hidden;
 }
 </style>

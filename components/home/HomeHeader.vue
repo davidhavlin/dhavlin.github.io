@@ -110,7 +110,7 @@ export default {
 	padding: 1rem;
 	animation: backInDown;
 	animation-duration: 2s;
-	animation-delay: 1000ms;
+	animation-delay: 500ms;
 
 	&::after {
 		content: '';
@@ -121,6 +121,8 @@ export default {
 		bottom: 0;
 		background: #0b020f;
 		z-index: 0;
+		box-shadow: #0b020f 0px 0.4em, #0b020f 0px -0.4em, #0b020f 0.4em 0px,
+			#0b020f -0.4em 0px;
 	}
 
 	.header {
