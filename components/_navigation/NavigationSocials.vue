@@ -224,4 +224,46 @@ export default {
 		transition-delay: 400ms;
 	}
 }
+
+@media (max-width: 700px) {
+	.circle {
+		width: 100vw;
+		height: 54px;
+		position: absolute;
+		transform: scaleX(0.9);
+		border-radius: 0;
+		background: #12021c;
+		top: -68px;
+		left: 0;
+		opacity: 0;
+		transition: transform 0.5s cubic-bezier(0.68, -0.75, 0.265, 1.75);
+		transform-origin: top right;
+	}
+	.bigCircle {
+		opacity: 1;
+		transform: scaleX(2);
+	}
+
+	.social-icons {
+		.facebookIn {
+			transform: translate(-62vw, -101px) scale(1);
+		}
+		.twitterIn {
+			transform: translate(-52vw, -101px) scale(1);
+			transition-delay: 100ms;
+		}
+		.youtubeIn {
+			transform: translate(-42vw, -101px) scale(1);
+			transition-delay: 200ms;
+		}
+		.githubIn {
+			transform: translate(-32vw, -101px) scale(1);
+			transition-delay: 300ms;
+		}
+		.instagramIn {
+			transform: translate(-22vw, -101px) scale(1);
+			transition-delay: 400ms;
+		}
+	}
+}
 </style>

@@ -125,12 +125,6 @@ export default {}
 		padding-top: 0.3rem;
 		opacity: 0;
 	}
-
-	a:nth-child(2) {
-		.link {
-			margin-bottom: 0.9rem;
-		}
-	}
 }
 
 .link-name::after {
@@ -208,12 +202,16 @@ export default {}
 
 		.link {
 			margin-bottom: 0rem;
-			margin-right: 1rem;
+			margin-right: 2rem;
 		}
-		a:nth-child(2) {
+		a:last-child {
 			.link {
-				margin-bottom: 0rem;
+				margin-right: 0rem;
 			}
+		}
+
+		.link-name {
+			display: none;
 		}
 	}
 }

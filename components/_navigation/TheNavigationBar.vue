@@ -41,10 +41,10 @@ export default {}
 	}
 
 	.socials {
-		margin-bottom: 0.8rem;
+		margin-bottom: 0rem;
 		position: absolute;
-		left: 0;
-		bottom: 0;
+		right: 0;
+		bottom: 10px;
 	}
 }
 </style>
