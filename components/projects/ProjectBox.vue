@@ -59,6 +59,18 @@ export default {
 <style lang="scss" scoped>
 .selected .project {
 	color: #00f3ff;
+	// background-position: -192px;
+	// transition: none;
+	// transition: background-position 0.3s ease-out;
+
+	.title {
+		// transform: translateX(40px);
+		// transition: none;
+		// transition-delay: 0.3s;
+	}
+	// &:hover {
+	// 	outline: none;
+	// }
 }
 .show .project {
 	width: 200px;
@@ -74,7 +86,7 @@ export default {
 	background-size: cover;
 	z-index: 10;
 	cursor: pointer;
-	transition: transform 1s ease, background-position 0.5s ease;
+	transition: transform 1s ease, background-position 0.3s ease;
 
 	.title {
 		position: absolute;
@@ -87,7 +99,7 @@ export default {
 		text-transform: uppercase;
 		margin-top: 2rem;
 		transform: translateX(20px);
-		transition: transform 0.5s ease;
+		transition: transform 0.2s ease;
 	}
 
 	&:hover {

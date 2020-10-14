@@ -6,7 +6,7 @@
 		<div class="under-projects">
 			<!-- ------------------- ARROWS A FRAME ---------- -->
 			<div v-if="!showCase" class="arrows">
-				<div class="left-arrow" @click="prevProject()">
+				<div ref="leftArrow" class="left-arrow" @click="prevProject()">
 					<svg
 						width="70"
 						height="94"
@@ -22,7 +22,11 @@
 						/>
 					</svg>
 				</div>
-				<div class="right-arrow" @click="nextProject()">
+				<div
+					ref="rightArrow"
+					class="right-arrow"
+					@click="nextProject()"
+				>
 					<svg
 						width="70"
 						height="94"
@@ -57,7 +61,8 @@
 		<!-- ------------- BUTTONY ------------- -->
 		<MyButton
 			v-if="!showCase"
-			class="projects-btn"
+			ref="showBtn"
+			class="show-btn"
 			main-color="#100317"
 			second-color="#0b0010"
 			border-color="#0b0010"
@@ -67,7 +72,7 @@
 		>
 		<MyButton
 			v-if="showCase"
-			class="projects-btn"
+			class="close-btn showMeButton"
 			main-color="#100317"
 			second-color="#0b000f"
 			border-color="#0b000f"
@@ -114,19 +119,7 @@ export default {
 			this.carouselMagic()
 		})
 
-		document
-			.getElementById('box-2')
-			.addEventListener('animationend', () => {
-				const btn = document.querySelector('.projects-btn')
-				btn.classList.add('showMeButton')
-				document
-					.querySelector('.left-arrow')
-					.classList.add('showLeftArrow')
-				document
-					.querySelector('.right-arrow')
-					.classList.add('showRightArrow')
-			})
-
+		this.animationOnRender()
 		this.handleSwipe()
 	},
 
@@ -257,7 +250,6 @@ export default {
 		carouselMagic() {
 			if (this.boxes[this.counter].classList.contains('clone-prev')) {
 				this.container.style.transition = 'none'
-				// this.counter = this.boxes.length - 5
 				this.counter = this.boxes.length - 4
 				this.container.style.transform = `translateX(${
 					-this.size * this.counter
@@ -270,10 +262,7 @@ export default {
 			}
 
 			if (this.counter === this.boxes.length - 3) {
-				// if (this.boxes[this.counter].classList.contains('clone-next')) {
-
 				this.container.style.transition = 'none'
-				// this.counter = this.boxes.length - this.counter
 				this.counter = 1
 				this.container.style.transform = `translateX(${
 					-this.size * this.counter
@@ -289,17 +278,13 @@ export default {
 
 		cloneElements() {
 			// klonujem projekty aby carousel fungoval donekonecna, ked bude viac projektov toto nebude treba
-			const clonedLastBox = this.container.lastChild.cloneNode(true)
-			const clonedLastPrevBox = this.container.lastChild.previousSibling.cloneNode(
-				true
-			)
+			const lastchild = this.container.lastChild
+			const clonedLastBox = lastchild.cloneNode(true)
+			const clonedLastPrevBox = lastchild.previousSibling.cloneNode(true)
 			clonedLastPrevBox.classList.add('clone-prev')
-
-			const clonedFirstBox = this.container.firstChild.cloneNode(true)
-			const clonedFirstNextBox = this.container.firstChild.nextSibling.cloneNode(
-				true
-			)
-			clonedFirstBox.classList.add('clone-next')
+			const firstchild = this.container.firstChild
+			const clonedFirstBox = firstchild.cloneNode(true)
+			const clonedFirstNextBox = firstchild.nextSibling.cloneNode(true)
 
 			this.container.prepend(clonedLastBox)
 			this.container.prepend(clonedLastPrevBox)
@@ -315,6 +300,15 @@ export default {
 			direction
 				? this.boxes[this.counter + 2].classList.add('selected')
 				: this.boxes[this.counter].classList.add('selected')
+		},
+		animationOnRender() {
+			document
+				.getElementById('box-2')
+				.addEventListener('animationend', () => {
+					this.$refs.showBtn.$el.classList.add('showMeButton')
+					this.$refs.leftArrow.classList.add('showLeftArrow')
+					this.$refs.rightArrow.classList.add('showRightArrow')
+				})
 		},
 	},
 }
@@ -416,14 +410,15 @@ export default {
 	}
 }
 
-.projects-btn {
+.show-btn,
+.close-btn {
 	opacity: 0;
 	top: 15px;
 }
 
 .showMeButton {
 	opacity: 1;
-	animation: backInUp;
+	animation: fadeInUp;
 	animation-duration: 1s;
 }
 .left-arrow svg,
