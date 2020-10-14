@@ -56,7 +56,7 @@ const myProjects = [
 			require('@/assets/images/projects/nf-desktop-left.png'),
 		],
 		id: 2,
-	},
+    },
 ]
 
 export default myProjects

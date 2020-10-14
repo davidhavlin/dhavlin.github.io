@@ -86,7 +86,7 @@ export default {
 		return {
 			index: 1,
 			realIndex: 1,
-			counter: 3,
+			counter: 2,
 			active: false,
 			size: 210,
 			showCase: false,
@@ -255,12 +255,10 @@ export default {
 		},
 
 		carouselMagic() {
-			console.log('counter je: ', this.counter)
 			if (this.boxes[this.counter].classList.contains('clone-prev')) {
-				console.log('prev', this.counter)
 				this.container.style.transition = 'none'
 				// this.counter = this.boxes.length - 5
-				this.counter = this.boxes.length - 5
+				this.counter = this.boxes.length - 4
 				this.container.style.transform = `translateX(${
 					-this.size * this.counter
 				}px)`
@@ -270,16 +268,13 @@ export default {
 				})
 				this.boxes[this.counter + 1].classList.add('selected')
 			}
-			if (this.counter === 5) {
-				// nieco
-				console.log('nieco')
-			}
-			if (this.boxes[this.counter].classList.contains('clone-next')) {
-				console.log('next', this.counter)
+
+			if (this.counter === this.boxes.length - 3) {
+				// if (this.boxes[this.counter].classList.contains('clone-next')) {
 
 				this.container.style.transition = 'none'
 				// this.counter = this.boxes.length - this.counter
-				this.counter = 2
+				this.counter = 1
 				this.container.style.transform = `translateX(${
 					-this.size * this.counter
 				}px)`
@@ -298,26 +293,18 @@ export default {
 			const clonedLastPrevBox = this.container.lastChild.previousSibling.cloneNode(
 				true
 			)
-			const clonedLastLastPrevBox = this.container.lastChild.previousSibling.previousSibling.cloneNode(
-				true
-			)
 			clonedLastPrevBox.classList.add('clone-prev')
 
 			const clonedFirstBox = this.container.firstChild.cloneNode(true)
 			const clonedFirstNextBox = this.container.firstChild.nextSibling.cloneNode(
 				true
 			)
-			const clonedFirstNextNextBox = this.container.firstChild.nextSibling.nextSibling.cloneNode(
-				true
-			)
 			clonedFirstBox.classList.add('clone-next')
 
 			this.container.prepend(clonedLastBox)
 			this.container.prepend(clonedLastPrevBox)
-			this.container.prepend(clonedLastLastPrevBox)
 			this.container.appendChild(clonedFirstBox)
 			this.container.appendChild(clonedFirstNextBox)
-			this.container.appendChild(clonedFirstNextNextBox)
 		},
 
 		selectMidleBox(direction) {
