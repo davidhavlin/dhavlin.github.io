@@ -44,7 +44,10 @@ export default {
 	 ** Plugins to load before mounting the App
 	 ** https://nuxtjs.org/guide/plugins
 	 */
-	plugins: ['~/plugins/directives.js'],
+	plugins: [
+		'~/plugins/directives.js',
+		{ src: '~/plugins/vue-lazyload.js', mode: 'client' },
+	],
 	/*
 	 ** Auto import components
 	 ** See https://nuxtjs.org/api/configuration-components
