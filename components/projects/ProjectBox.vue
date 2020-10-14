@@ -21,14 +21,22 @@
 			></div>
 		</div>
 
-		<ProjectShowContent :project="project" />
-		<ProjectShowImages :project="project" />
+		<ProjectShowContent v-if="showtime" :project="project" />
+		<ProjectShowImages v-if="showtime" :project="project" />
 	</div>
 </template>
 
 <script>
 export default {
+	// components: {
+	// 	ProjectShowContent: () => import('../projects/ProjectShowContent.vue'),
+	// 	ProjectShowImages: () => import('../projects/ProjectShowImages.vue'),
+	// },
 	props: {
+		showtime: {
+			type: Boolean,
+			default: false,
+		},
 		project: {
 			type: Object,
 			default() {

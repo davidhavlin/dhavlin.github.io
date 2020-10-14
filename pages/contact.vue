@@ -12,6 +12,11 @@
 <script>
 /* eslint-disable */
 export default {
+	head() {
+		return {
+			title: 'Contact me',
+		}
+	},
 	methods: {
 		effectHover() {
 			const effect = new hoverEffect({

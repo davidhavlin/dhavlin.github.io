@@ -47,6 +47,7 @@
 						v-for="project in projects"
 						:id="'box-' + project.id"
 						:key="project.id"
+						:showtime="showCase"
 						:project="project"
 						class="ProjectBox"
 					/>
@@ -90,6 +91,8 @@ export default {
 			size: 210,
 			showCase: false,
 			projects: myProjects,
+			initialX: null,
+			initialY: null,
 		}
 	},
 	computed: {
@@ -123,16 +126,55 @@ export default {
 					.querySelector('.right-arrow')
 					.classList.add('showRightArrow')
 			})
+
+		this.handleSwipe()
 	},
 
 	methods: {
-		whichHalf(event) {
+		handleSwipe() {
+			this.container.addEventListener(
+				'touchstart',
+				this.handleTouchStart,
+				false
+			)
+			this.container.addEventListener(
+				'touchmove',
+				this.handleTouchMove,
+				false
+			)
+		},
+		handleTouchStart(e) {
+			this.initialX = e.touches[0].clientX
+			this.initialY = e.touches[0].clientY
+		},
+		handleTouchMove(e) {
+			if (
+				this.initialX === null ||
+				this.initialY === null ||
+				this.showtime
+			)
+				return
+			const currentX = e.touches[0].clientX
+			const currentY = e.touches[0].clientY
+			const diffX = this.initialX - currentX
+			const diffY = this.initialY - currentY
+
+			if (Math.abs(diffX) > Math.abs(diffY)) {
+				// horizontalne slidovanie.. left / right
+				diffX > 0 ? this.nextProject() : this.prevProject()
+			} else {
+				// vertikalne slidovanie.. up / down
+				diffY > 0 ? this.closeProject() : this.showProject()
+			}
+		},
+
+		whichHalf(e) {
 			const selected = document.querySelector('.selected')
-			if (event.composedPath()[2] === selected.previousSibling) {
+			if (e.composedPath()[2] === selected.previousSibling) {
 				this.prevProject()
-			} else if (event.composedPath()[2] === selected.nextSibling) {
+			} else if (e.composedPath()[2] === selected.nextSibling) {
 				this.nextProject()
-			} else if (event.composedPath()[2] === selected) {
+			} else if (e.composedPath()[2] === selected) {
 				this.showProject()
 			}
 		},
@@ -213,8 +255,11 @@ export default {
 		},
 
 		carouselMagic() {
+			console.log('counter je: ', this.counter)
 			if (this.boxes[this.counter].classList.contains('clone-prev')) {
+				console.log('prev', this.counter)
 				this.container.style.transition = 'none'
+				// this.counter = this.boxes.length - 5
 				this.counter = this.boxes.length - 5
 				this.container.style.transform = `translateX(${
 					-this.size * this.counter
@@ -225,9 +270,16 @@ export default {
 				})
 				this.boxes[this.counter + 1].classList.add('selected')
 			}
+			if (this.counter === 5) {
+				// nieco
+				console.log('nieco')
+			}
 			if (this.boxes[this.counter].classList.contains('clone-next')) {
+				console.log('next', this.counter)
+
 				this.container.style.transition = 'none'
-				this.counter = this.boxes.length - this.counter
+				// this.counter = this.boxes.length - this.counter
+				this.counter = 2
 				this.container.style.transform = `translateX(${
 					-this.size * this.counter
 				}px)`
@@ -381,10 +433,6 @@ export default {
 	opacity: 0;
 	top: 15px;
 }
-
-// .close-btn:hover {
-// 	border: 10px solid yellow;
-// }
 
 .showMeButton {
 	opacity: 1;

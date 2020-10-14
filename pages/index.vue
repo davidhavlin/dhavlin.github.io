@@ -15,6 +15,11 @@
 <script>
 /* eslint-disable */
 export default {
+	head() {
+		return {
+			title: 'Home',
+		}
+	},
 	computed: {
 		rightSection() {
 			return document.querySelector('.right-section')

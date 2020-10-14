@@ -49,6 +49,9 @@ export default {
 			},
 		},
 	},
+	mounted() {
+		console.log('toto sa nacitalo', this.project)
+	},
 	methods: {
 		makeIcon(tech) {
 			switch (tech) {
