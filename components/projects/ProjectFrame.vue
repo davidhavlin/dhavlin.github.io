@@ -16,4 +16,9 @@ export default {}
 	transform: translate(-50%, -50%);
 	outline: 6px solid #34b1f8;
 }
+@media (max-width: 680px) {
+	.selected-frame {
+		height: 400px;
+	}
+}
 </style>

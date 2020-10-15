@@ -21,17 +21,17 @@
 			></div>
 		</div>
 
-		<ProjectShowContent v-if="showtime" :project="project" />
-		<ProjectShowImages v-if="showtime" :project="project" />
+		<ProjectShowContent v-show="showtime" :project="project" />
+		<ProjectShowImages v-show="showtime" :project="project" />
 	</div>
 </template>
 
 <script>
 export default {
-	// components: {
-	// 	ProjectShowContent: () => import('../projects/ProjectShowContent.vue'),
-	// 	ProjectShowImages: () => import('../projects/ProjectShowImages.vue'),
-	// },
+	components: {
+		ProjectShowContent: () => import('../projects/ProjectShowContent.vue'),
+		ProjectShowImages: () => import('../projects/ProjectShowImages.vue'),
+	},
 	props: {
 		showtime: {
 			type: Boolean,
@@ -59,9 +59,10 @@ export default {
 <style lang="scss" scoped>
 .selected .project {
 	color: #00f3ff;
-	// background-position: -192px;
+	// background-position: -518px;
 	// transition: none;
 	// transition: background-position 0.3s ease-out;
+	// transition-delay: 0.2s;
 
 	.title {
 		// transform: translateX(40px);
@@ -99,12 +100,12 @@ export default {
 		text-transform: uppercase;
 		margin-top: 2rem;
 		transform: translateX(20px);
-		transition: transform 0.2s ease;
+		transition: transform 0.3s ease;
 	}
 
 	&:hover {
 		outline: 3px solid #34b1f8;
-		background-position: -192px;
+		background-position: -215px;
 
 		.title {
 			transform: translateX(40px);
@@ -154,6 +155,14 @@ export default {
 	.logo {
 		border: 8px solid #0b000f;
 		background-color: #0b000f;
+	}
+}
+
+@media (max-width: 930px) {
+}
+@media (max-width: 680px) {
+	.project {
+		height: 400px;
 	}
 }
 </style>

@@ -121,6 +121,20 @@ export default {
 
 		this.animationOnRender()
 		this.handleSwipe()
+
+		window.addEventListener('resize', (e) => {
+			if (e.target.innerWidth < 931) {
+				this.size = 180
+				this.container.style.transform = `translateX(${
+					-this.size * this.counter
+				}px)`
+			} else if (e.target.innerWidth > 931) {
+				this.size = 210
+				this.container.style.transform = `translateX(${
+					-this.size * this.counter
+				}px)`
+			}
+		})
 	},
 
 	methods: {
@@ -144,20 +158,20 @@ export default {
 			if (
 				this.initialX === null ||
 				this.initialY === null ||
-				this.showtime
+				this.showCase
 			)
 				return
 			const currentX = e.touches[0].clientX
 			const currentY = e.touches[0].clientY
-			const diffX = this.initialX - currentX
-			const diffY = this.initialY - currentY
-
-			if (Math.abs(diffX) > Math.abs(diffY)) {
-				// horizontalne slidovanie.. left / right
-				diffX > 0 ? this.nextProject() : this.prevProject()
-			} else {
-				// vertikalne slidovanie.. up / down
-				diffY > 0 ? this.closeProject() : this.showProject()
+			let diffX = this.initialX - currentX
+			let diffY = this.initialY - currentY
+			if (Math.abs(diffX) + Math.abs(diffY) > 100) {
+				if (Math.abs(diffX) > Math.abs(diffY)) {
+					// horizontalne slidovanie.. left / right
+					diffX > 0 ? this.nextProject() : this.prevProject()
+				}
+				diffX = null
+				diffY = null
 			}
 		},
 
@@ -240,9 +254,21 @@ export default {
 
 		onMountedStyles() {
 			// nastavim spravny transform a selected po nacitani stranky
-			this.container.style.transform = `translateX(${
-				-this.size * this.counter
-			}px)`
+
+			if (window.innerWidth < 931) {
+				this.size = 180
+				this.container.style.transform = `translateX(${
+					-this.size * this.counter
+				}px)`
+			} else if (window.innerWidth > 931) {
+				this.size = 210
+				this.container.style.transform = `translateX(${
+					-this.size * this.counter
+				}px)`
+			}
+			// this.container.style.transform = `translateX(${
+			// 	-this.size * this.counter
+			// }px)`
 
 			this.boxes[this.counter + 1].classList.add('selected')
 		},
@@ -279,10 +305,10 @@ export default {
 		cloneElements() {
 			// klonujem projekty aby carousel fungoval donekonecna, ked bude viac projektov toto nebude treba
 			const lastchild = this.container.lastChild
+			const firstchild = this.container.firstChild
 			const clonedLastBox = lastchild.cloneNode(true)
 			const clonedLastPrevBox = lastchild.previousSibling.cloneNode(true)
 			clonedLastPrevBox.classList.add('clone-prev')
-			const firstchild = this.container.firstChild
 			const clonedFirstBox = firstchild.cloneNode(true)
 			const clonedFirstNextBox = firstchild.nextSibling.cloneNode(true)
 
@@ -457,6 +483,87 @@ export default {
 
 			.ProjectBox {
 				margin-right: 0;
+			}
+		}
+	}
+}
+
+@media (max-width: 930px) {
+	.projects {
+		width: 539px;
+		transform: translateX(21px);
+
+		.ProjectBox {
+			margin-right: 60px;
+		}
+	}
+	.arrows {
+		.right-arrow {
+			transform: translate(50px, -50%);
+		}
+		.left-arrow {
+			transform: translate(-50px, -50%);
+		}
+	}
+}
+@media (max-width: 680px) {
+	.projects {
+		height: 480px;
+	}
+	.project-page-title {
+		font-size: 1em;
+	}
+
+	.show-btn {
+		margin-bottom: 6rem;
+	}
+
+	.arrows {
+		.right-arrow {
+			transform: translate(-70px, 85%);
+			bottom: 0;
+			top: auto;
+		}
+		.left-arrow {
+			transform: translate(70px, 85%);
+			bottom: 0;
+			top: auto;
+		}
+	}
+}
+
+@media (max-width: 440px) {
+	.arrows {
+		.right-arrow {
+			transform: translate(-125px, 85%);
+		}
+		.left-arrow {
+			transform: translate(125px, 85%);
+		}
+	}
+
+	.projects {
+		.ProjectBox:not(.selected) {
+			opacity: 0.2 !important;
+		}
+		.ProjectBox.selected {
+			opacity: 1 !important;
+		}
+
+		#box-0,
+		#box-1,
+		#box-2 {
+			opacity: 0;
+			animation: boxIn 0.5s forwards ease;
+		}
+
+		@keyframes boxIn {
+			from {
+				transform: translateY(-600px);
+			}
+			to {
+				transform: translateY(0);
+				opacity: 0.2;
 			}
 		}
 	}
