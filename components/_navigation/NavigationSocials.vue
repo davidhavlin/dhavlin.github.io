@@ -256,22 +256,22 @@ export default {
 
 	.social-icons {
 		.facebookIn {
-			transform: translate(-62vw, -90px) scale(1);
+			transform: translate(-66vw, -90px) scale(1);
 		}
 		.twitterIn {
-			transform: translate(-52vw, -90px) scale(1);
+			transform: translate(-56vw, -90px) scale(1);
 			transition-delay: 100ms;
 		}
 		.youtubeIn {
-			transform: translate(-42vw, -90px) scale(1);
+			transform: translate(-46vw, -90px) scale(1);
 			transition-delay: 200ms;
 		}
 		.githubIn {
-			transform: translate(-32vw, -90px) scale(1);
+			transform: translate(-36vw, -90px) scale(1);
 			transition-delay: 300ms;
 		}
 		.instagramIn {
-			transform: translate(-22vw, -90px) scale(1);
+			transform: translate(-26vw, -90px) scale(1);
 			transition-delay: 400ms;
 		}
 	}
