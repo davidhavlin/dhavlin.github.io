@@ -47,7 +47,8 @@ export default {
 	width: 12.625rem;
 	color: #fff;
 	background: #100317;
-	bottom: -45%;
+	// bottom: -45%;
+	bottom: 10%;
 	left: calc(50% - 6.3125rem);
 	padding: 0.7rem;
 	box-shadow: #00ffac 0px 0.4em, #00ffac 0px -0.4em, #00ffac 0.4em 0px,

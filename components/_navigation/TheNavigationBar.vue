@@ -32,9 +32,9 @@ export default {}
 	bottom: 0;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 	.navbar {
-		height: 4.4em;
+		height: 3.7em;
 		width: 100%;
 		bottom: 0;
 		flex-direction: row;
@@ -43,8 +43,8 @@ export default {}
 	.socials {
 		margin-bottom: 0rem;
 		position: absolute;
-		right: 0;
-		bottom: 10px;
+		right: 10px;
+		bottom: 12px;
 	}
 }
 </style>

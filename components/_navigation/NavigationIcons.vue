@@ -196,7 +196,7 @@ export default {}
 }
 
 // MEDIA QUERIES -------------
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 	.navigation-links {
 		flex-direction: row;
 

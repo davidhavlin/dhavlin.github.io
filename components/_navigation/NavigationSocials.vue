@@ -134,6 +134,7 @@ export default {
 		border-radius: 2px;
 		box-sizing: content-box;
 		z-index: 1;
+		pointer-events: none;
 	}
 
 	.box,
@@ -225,7 +226,16 @@ export default {
 	}
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
+	.social-box {
+		.box-title {
+			display: none;
+		}
+		.notification {
+			top: -5px;
+			left: 22px;
+		}
+	}
 	.circle {
 		width: 100vw;
 		height: 54px;
@@ -233,7 +243,7 @@ export default {
 		transform: scaleX(0.9);
 		border-radius: 0;
 		background: #12021c;
-		top: -68px;
+		top: -66px;
 		left: 0;
 		opacity: 0;
 		transition: transform 0.5s cubic-bezier(0.68, -0.75, 0.265, 1.75);
@@ -246,22 +256,22 @@ export default {
 
 	.social-icons {
 		.facebookIn {
-			transform: translate(-62vw, -101px) scale(1);
+			transform: translate(-62vw, -90px) scale(1);
 		}
 		.twitterIn {
-			transform: translate(-52vw, -101px) scale(1);
+			transform: translate(-52vw, -90px) scale(1);
 			transition-delay: 100ms;
 		}
 		.youtubeIn {
-			transform: translate(-42vw, -101px) scale(1);
+			transform: translate(-42vw, -90px) scale(1);
 			transition-delay: 200ms;
 		}
 		.githubIn {
-			transform: translate(-32vw, -101px) scale(1);
+			transform: translate(-32vw, -90px) scale(1);
 			transition-delay: 300ms;
 		}
 		.instagramIn {
-			transform: translate(-22vw, -101px) scale(1);
+			transform: translate(-22vw, -90px) scale(1);
 			transition-delay: 400ms;
 		}
 	}
