@@ -59,19 +59,6 @@ export default {
 <style lang="scss" scoped>
 .selected .project {
 	color: #00f3ff;
-	// background-position: -518px;
-	// transition: none;
-	// transition: background-position 0.3s ease-out;
-	// transition-delay: 0.2s;
-
-	.title {
-		// transform: translateX(40px);
-		// transition: none;
-		// transition-delay: 0.3s;
-	}
-	// &:hover {
-	// 	outline: none;
-	// }
 }
 .show .project {
 	width: 200px;
@@ -103,13 +90,22 @@ export default {
 		transition: transform 0.3s ease;
 	}
 
-	&:hover {
+	// &:hover {
+	// 	outline: 3px solid #34b1f8;
+	// 	background-position: -215px;
+
+	// 	.title {
+	// 		transform: translateX(40px);
+	// 	}
+	// }
+}
+.hovered {
+	.project {
 		outline: 3px solid #34b1f8;
 		background-position: -215px;
-
-		.title {
-			transform: translateX(40px);
-		}
+	}
+	.title {
+		transform: translateX(40px);
 	}
 }
 .gradient {

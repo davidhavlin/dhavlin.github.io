@@ -145,6 +145,7 @@ export default {
 		// podla id dam classu originalu a jeho kopii, aby transitiony boli plynule pri preskakovani
 		// z kopie na original, musim to riesit takto a nie cez css hover
 		hoverInHandler(e) {
+			if (this.showCase) return
 			const projectID = e.target.id
 			const hoveredProjects = Array.from(
 				this.container.querySelectorAll(`#${projectID}`)
@@ -153,6 +154,7 @@ export default {
 		},
 		// odstranim hovered classu zo vsetkych projektov
 		hoverOutHandler(e) {
+			if (this.showCase) return
 			this.projects.map((project) => project.classList.remove('hovered'))
 		},
 
@@ -435,7 +437,6 @@ export default {
 	opacity: 0;
 	top: 15px;
 }
-
 .showMeButton {
 	opacity: 1;
 	animation: fadeInUp;
@@ -465,19 +466,17 @@ export default {
 	.selected-frame {
 		outline: 8px solid #0b000f;
 		width: 200px;
+		left: 22.4%;
 	}
 	.projects {
 		overflow: visible;
-		transform: translateX(0);
-		justify-content: center;
+		width: 539px;
+		// transform: translateX(-25%);
+		justify-content: flex-start;
 		padding-left: 0;
 
 		.project-boxes {
 			transform: translateX(0) !important;
-
-			.ProjectBox {
-				margin-right: 0;
-			}
 		}
 	}
 }
