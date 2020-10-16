@@ -1,7 +1,7 @@
 <template>
 	<div class="project-page" :class="{ projectShowcase: showCase }">
 		<h1 ref="pageTitle" class="project-page-title">
-			My Projects ({{ index }}/{{ projects.length }})
+			My Projects ({{ index }}/{{ myProjects.length }})
 		</h1>
 		<div class="under-projects">
 			<!-- ------------------- ARROWS A FRAME ---------- -->
@@ -48,7 +48,7 @@
 			<div class="projects">
 				<div class="project-boxes" @click="whichHalf">
 					<ProjectBox
-						v-for="project in projects"
+						v-for="project in myProjects"
 						:id="'box-' + project.id"
 						:key="project.id"
 						:showtime="showCase"
@@ -95,7 +95,7 @@ export default {
 			active: false,
 			size: 210,
 			showCase: false,
-			projects: myProjects,
+			myProjects,
 			initialX: null,
 			initialY: null,
 		}
@@ -104,13 +104,14 @@ export default {
 		container() {
 			return document.querySelector('.project-boxes')
 		},
-		boxes() {
-			return document.querySelectorAll('.ProjectBox')
+		projects() {
+			return Array.from(document.querySelectorAll('.ProjectBox'))
 		},
 	},
 	mounted() {
 		this.cloneElements()
 		this.onMountedStyles()
+		this.handleHover()
 
 		this.container.addEventListener('transitionend', (event) => {
 			if (!event.target.classList.contains('project-boxes')) {
@@ -125,19 +126,36 @@ export default {
 		window.addEventListener('resize', (e) => {
 			if (e.target.innerWidth < 931) {
 				this.size = 180
-				this.container.style.transform = `translateX(${
-					-this.size * this.counter
-				}px)`
+				this.containerTransform()
 			} else if (e.target.innerWidth > 931) {
 				this.size = 210
-				this.container.style.transform = `translateX(${
-					-this.size * this.counter
-				}px)`
+				this.containerTransform()
 			}
 		})
 	},
-
 	methods: {
+		// HOVER LISTENERS
+		// kazdemu projektu dam event listener
+		handleHover() {
+			this.projects.map((project) => {
+				project.addEventListener('mouseenter', this.hoverInHandler)
+				project.addEventListener('mouseleave', this.hoverOutHandler)
+			})
+		},
+		// podla id dam classu originalu a jeho kopii, aby transitiony boli plynule pri preskakovani
+		// z kopie na original, musim to riesit takto a nie cez css hover
+		hoverInHandler(e) {
+			const projectID = e.target.id
+			const hoveredProjects = Array.from(
+				this.container.querySelectorAll(`#${projectID}`)
+			)
+			hoveredProjects.map((project) => project.classList.add('hovered'))
+		},
+		// odstranim hovered classu zo vsetkych projektov
+		hoverOutHandler(e) {
+			this.projects.map((project) => project.classList.remove('hovered'))
+		},
+
 		handleSwipe() {
 			this.container.addEventListener(
 				'touchstart',
@@ -167,7 +185,7 @@ export default {
 			let diffY = this.initialY - currentY
 			if (Math.abs(diffX) + Math.abs(diffY) > 100) {
 				if (Math.abs(diffX) > Math.abs(diffY)) {
-					// horizontalne slidovanie.. left / right
+					// horizontalne slidovanie.. right / left
 					diffX > 0 ? this.nextProject() : this.prevProject()
 				}
 				diffX = null
@@ -176,7 +194,7 @@ export default {
 		},
 
 		whichHalf(e) {
-			const selected = document.querySelector('.selected')
+			const selected = this.container.querySelector('.selected')
 			if (e.composedPath()[2] === selected.previousSibling) {
 				this.prevProject()
 			} else if (e.composedPath()[2] === selected.nextSibling) {
@@ -187,117 +205,95 @@ export default {
 		},
 
 		showProject() {
-			const selected = document.querySelector('.selected')
+			const selected = this.container.querySelector('.selected')
 			/* pokial nemaju classu selected tak dostanu classu ktora ich schova */
-			this.boxes.forEach((box) => {
-				if (!box.classList.contains('selected')) {
-					box.classList.add('hideBox')
-				}
+			this.projects.map((project) => {
+				if (!project.classList.contains('selected'))
+					project.classList.add('hideBox')
 			})
 			this.showCase = true
 			selected.classList.add('show')
 			// zafarbim page title podla vybraneho projektu, nech ladia farby
 			// prettier-ignore
-			this.$refs.pageTitle.style.color = this.projects[this.realIndex].color.main
+			this.$refs.pageTitle.style.color = this.myProjects[this.realIndex].color.main
 		},
-
 		closeProject() {
-			const selected = document.querySelector('.selected')
-			this.boxes.forEach((box) => {
-				box.classList.remove('hideBox')
-			})
-			selected.classList.remove('show')
+			this.projects.map((project) =>
+				project.classList.remove('hideBox', 'show')
+			)
 			this.showCase = false
 
 			this.$refs.pageTitle.style.color = '#34b1f8'
-			document
-				.querySelectorAll('.project-boxes .ProjectBox')
-				.forEach((box) => {
-					box.style.animationDelay = '50ms'
-				})
+			// aby po kliknuti na closebtn sa z animovali rychlejsie, inak by to trvalo ako pri renderi
+			this.projects.map(
+				(project) => (project.style.animationDelay = '50ms')
+			)
 		},
-
 		nextProject() {
-			if (this.active) return
 			// nechcem aby sa dalo klikat na dalsi projekt kym je animacia active
+			if (this.active) return
 			this.active = true
 			// pridava classu selected strednemu projektu
 			this.selectMidleBox(true)
-
-			this.container.style.transition = 'transform 0.2s ease'
 			this.counter++
-			this.container.style.transform = `translateX(${
-				-this.size * this.counter
-			}px)`
+			this.containerTransform()
 			// prettier-ignore
-			this.realIndex === this.projects.length - 1	? (this.realIndex = 0) : this.realIndex++
+			this.realIndex === this.myProjects.length - 1	? (this.realIndex = 0) : this.realIndex++
 			// prettier-ignore
-			this.index === this.projects.length	? (this.index = 1) : this.index++
+			this.index === this.myProjects.length	? (this.index = 1) : this.index++
 		},
-
 		prevProject() {
 			if (this.active) return
 			this.active = true
 			this.selectMidleBox(false)
-
-			this.container.style.transition = 'transform 0.2s ease'
 			this.counter--
+			this.containerTransform()
+
+			// prettier-ignore
+			this.realIndex === 0 ? (this.realIndex = this.myProjects.length - 1) : this.realIndex--
+			// prettier-ignore
+			this.index === 1 ? (this.index = this.myProjects.length) : this.index--
+		},
+
+		containerTransform(transition = true) {
+			transition
+				? (this.container.style.transition = 'transform 0.2s ease')
+				: (this.container.style.transition = 'none')
+
 			this.container.style.transform = `translateX(${
 				-this.size * this.counter
 			}px)`
-
-			// prettier-ignore
-			this.realIndex === 0 ? (this.realIndex = this.projects.length - 1) : this.realIndex--
-			// prettier-ignore
-			this.index === 1 ? (this.index = this.projects.length) : this.index--
 		},
 
 		onMountedStyles() {
 			// nastavim spravny transform a selected po nacitani stranky
-
 			if (window.innerWidth < 931) {
 				this.size = 180
-				this.container.style.transform = `translateX(${
-					-this.size * this.counter
-				}px)`
+				this.containerTransform()
 			} else if (window.innerWidth > 931) {
 				this.size = 210
-				this.container.style.transform = `translateX(${
-					-this.size * this.counter
-				}px)`
+				this.containerTransform()
 			}
-			// this.container.style.transform = `translateX(${
-			// 	-this.size * this.counter
-			// }px)`
 
-			this.boxes[this.counter + 1].classList.add('selected')
+			this.projects[this.counter + 1].classList.add('selected')
 		},
-
+		// spusti sa len ked dojdem na klona ktory ma nas portnut na original, vypne transition aby nebol vidiet skok
 		carouselMagic() {
-			if (this.boxes[this.counter].classList.contains('clone-prev')) {
-				this.container.style.transition = 'none'
-				this.counter = this.boxes.length - 4
-				this.container.style.transform = `translateX(${
-					-this.size * this.counter
-				}px)`
+			if (this.projects[this.counter].classList.contains('clone-prev')) {
+				this.counter = this.projects.length - 4
+				this.containerTransform(false)
 
-				this.boxes.forEach((box) => {
-					box.classList.remove('selected')
-				})
-				this.boxes[this.counter + 1].classList.add('selected')
+				this.projects.map((proj) => proj.classList.remove('selected'))
+				// oznaci original selected
+				this.projects[this.counter + 1].classList.add('selected')
 			}
 
-			if (this.counter === this.boxes.length - 3) {
-				this.container.style.transition = 'none'
+			if (this.counter === this.projects.length - 3) {
 				this.counter = 1
-				this.container.style.transform = `translateX(${
-					-this.size * this.counter
-				}px)`
+				this.containerTransform(false)
 
-				this.boxes.forEach((box) => {
-					box.classList.remove('selected')
-				})
-				this.boxes[this.counter + 1].classList.add('selected')
+				this.projects.map((proj) => proj.classList.remove('selected'))
+				this.projects[this.counter + 1].classList.add('selected')
 			}
 			this.active = false
 		},
@@ -320,12 +316,10 @@ export default {
 
 		selectMidleBox(direction) {
 			// prve odstranim vsetkym classu a potom pridam na zaklade smeru kam carousel ide
-			this.boxes.forEach((box) => {
-				box.classList.remove('selected')
-			})
+			this.projects.map((proj) => proj.classList.remove('selected'))
 			direction
-				? this.boxes[this.counter + 2].classList.add('selected')
-				: this.boxes[this.counter].classList.add('selected')
+				? this.projects[this.counter + 2].classList.add('selected')
+				: this.projects[this.counter].classList.add('selected')
 		},
 		animationOnRender() {
 			document
