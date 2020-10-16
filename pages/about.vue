@@ -2,21 +2,13 @@
 	<div class="page-about-container">
 		<main ref="main">
 			<section class="about-section">
-				<button
-					style="transform: translateX(300px);"
-					@click="handleClickNext()"
-				>
-					CLICK
-				</button>
+				<AboutMe />
+				<AboutInfoSign />
+				<AboutRightArrow @click.native="handleClickNext" />
 				<CharAnimation />
 			</section>
 			<section class="skill-section">
-				<button
-					style="transform: translateX(300px);"
-					@click="handleClickPrev()"
-				>
-					CLICK
-				</button>
+				<AboutLeftArrow @click.native="handleClickPrev" />
 			</section>
 		</main>
 	</div>
@@ -31,6 +23,7 @@ export default {
 	},
 	methods: {
 		handleClickNext() {
+			console.log('someting')
 			this.$refs.main.style.transform = 'translateX(-50%)'
 		},
 		handleClickPrev() {
@@ -57,14 +50,15 @@ main {
 	transition: all 1s ease;
 }
 section {
+	position: relative;
 	width: 100%;
 	height: 100%;
 }
 
-.about-section {
-	// background: red;
-}
-.skill-section {
-	// background: yellow;
-}
+// .about-section {
+
+// }
+// .skill-section {
+// 	// background: yellow;
+// }
 </style>
