@@ -22,8 +22,8 @@ export default {
 			const effect = new hoverEffect({
 				parent: this.$refs.parent,
 				intensity: 0.3,
-				image1: require('@/assets/images/1.jpg'),
-				image2: require('@/assets/images/2.jpg'),
+				image1: require('@/assets/images/sky.jpg'),
+				image2: require('@/assets/images/sky.jpg'),
 				displacementImage: require('@/assets/images/dist2.jpg'),
 			})
 		},
