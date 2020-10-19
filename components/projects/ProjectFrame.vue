@@ -16,7 +16,13 @@ export default {}
 	transform: translate(-50%, -50%);
 	outline: 6px solid #34b1f8;
 }
-@media (max-width: 680px) {
+.projectShowcase .selected-frame {
+	width: 400px;
+	outline: 8px solid #0b000f;
+	// left: 22.4%;
+}
+
+@media (max-width: 800px) {
 	.selected-frame {
 		height: 400px;
 	}

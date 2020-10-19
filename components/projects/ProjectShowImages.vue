@@ -8,7 +8,6 @@
 		<div
 			class="prj-image-right"
 			:style="{
-				backgroundImage: `url(${project.images[1]})`,
 				backgroundColor: project.color.main,
 			}"
 		></div>
@@ -48,9 +47,8 @@ export default {
 		width: 102vw;
 		height: 100vh;
 		top: 51%;
-		// left: 50%;
-		// right: 50%;
-		right: -50px;
+		left: 50%;
+		right: 50%;
 		margin-left: -50vw;
 		margin-right: -50vw;
 		margin-top: -50vh;

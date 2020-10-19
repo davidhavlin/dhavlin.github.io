@@ -135,11 +135,11 @@ export default {
 	},
 	methods: {
 		// HOVER LISTENERS
-		// kazdemu projektu dam event listener
+		// kazdemu projektu dam event listener, aj kopiam
 		handleHover() {
 			this.projects.map((project) => {
 				project.addEventListener('mouseenter', this.hoverInHandler)
-				project.addEventListener('mouseleave', this.hoverOutHandler)
+				project.addEventListener('mouseleave', this.removeHovered)
 			})
 		},
 		// podla id dam classu originalu a jeho kopii, aby transitiony boli plynule pri preskakovani
@@ -153,7 +153,7 @@ export default {
 			hoveredProjects.map((project) => project.classList.add('hovered'))
 		},
 		// odstranim hovered classu zo vsetkych projektov
-		hoverOutHandler(e) {
+		removeHovered() {
 			if (this.showCase) return
 			this.projects.map((project) => project.classList.remove('hovered'))
 		},
@@ -213,6 +213,7 @@ export default {
 				if (!project.classList.contains('selected'))
 					project.classList.add('hideBox')
 			})
+			this.removeHovered()
 			this.showCase = true
 			selected.classList.add('show')
 			// zafarbim page title podla vybraneho projektu, nech ladia farby
@@ -463,20 +464,18 @@ export default {
 }
 
 .projectShowcase {
-	.selected-frame {
-		outline: 8px solid #0b000f;
-		width: 200px;
-		left: 22.4%;
-	}
 	.projects {
 		overflow: visible;
-		width: 539px;
-		// transform: translateX(-25%);
+		width: auto;
+		transform: translateX(0px);
 		justify-content: flex-start;
 		padding-left: 0;
 
 		.project-boxes {
 			transform: translateX(0) !important;
+		}
+		.ProjectBox {
+			margin-right: 0;
 		}
 	}
 }
@@ -499,7 +498,7 @@ export default {
 		}
 	}
 }
-@media (max-width: 680px) {
+@media (max-width: 800px) {
 	.projects {
 		height: 480px;
 	}
