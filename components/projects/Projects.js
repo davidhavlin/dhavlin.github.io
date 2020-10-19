@@ -14,7 +14,7 @@ const myProjects = [
 		stack: ['HTML', 'SCSS', 'ES6', 'Vue'],
 		images: [
 			require('@/assets/images/projects/vr-bg.webp'),
-			require('@/assets/images/projects/mobile-right.webp'),
+			require('@/assets/images/projects/mobile-right.png'),
 			require('@/assets/images/projects/desktop-left.webp'),
 		],
 		id: 0,
