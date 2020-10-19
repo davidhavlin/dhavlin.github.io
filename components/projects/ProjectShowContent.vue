@@ -16,16 +16,31 @@
 		</div>
 		<div class="project-stack showcase-content">
 			<h4>stack</h4>
-			<div class="project-icons">
+			<div class="project-icons" style="display: flex;">
 				<div
 					v-for="(utility, index) in project.stack"
 					:key="index"
 					class="prj-icon"
 				>
-					<img :src="makeIcon(utility)" alt />
+					<img :src="makeIcon(utility)" :alt="utility" />
 					<span class="icon-tooltip">{{ utility }}</span>
 				</div>
 			</div>
+		</div>
+		<div class="project-gh showcase-content">
+			<h4>github</h4>
+			<a
+				:href="project.github"
+				:style="{ color: project.color.main, display: 'flex' }"
+				target="new_blank"
+			>
+				<img
+					class="github-icon"
+					:src="require('@/assets/images/software/github.png')"
+					alt="github"
+				/>
+				Github page
+			</a>
 		</div>
 	</div>
 </template>
@@ -82,17 +97,9 @@ export default {
 <style lang="scss" scoped>
 .project-showcase {
 	position: absolute;
-	width: 100%;
 	display: none;
 	top: 50%;
 	transform: translateY(-50%);
-}
-.url {
-	display: none;
-}
-
-.show .url {
-	display: block;
 }
 .show {
 	transition: all 1s ease;
@@ -107,6 +114,10 @@ export default {
 			margin-bottom: 1.6rem;
 			width: fit-content;
 			min-width: 150px;
+
+			a:hover {
+				text-decoration: underline;
+			}
 		}
 
 		h4 {
@@ -114,14 +125,29 @@ export default {
 			transform: translate(0px, -28px);
 			color: #0c94ff;
 		}
-
-		.project-info {
-			margin-top: 1rem;
-			color: #fff;
+		.project-info,
+		.project-url,
+		.project-stack,
+		.project-gh {
 			animation: slideIn 0.5s forwards ease;
-			animation-delay: 0.5s;
 			opacity: 0;
 		}
+		.project-info {
+			margin-top: 3rem;
+			color: #fff;
+			animation-delay: 0.5s;
+		}
+		.project-url {
+			color: #d3015e;
+			animation-delay: 0.7s;
+		}
+		.project-stack {
+			animation-delay: 0.9s;
+		}
+		.project-gh {
+			animation-delay: 1.1s;
+		}
+
 		@keyframes slideIn {
 			from {
 				transform: translateX(-100px);
@@ -132,20 +158,7 @@ export default {
 				opacity: 1;
 			}
 		}
-		.project-url {
-			color: #d3015e;
-			animation: slideIn 0.5s forwards ease;
-			animation-delay: 0.7s;
-			opacity: 0;
-		}
-		.project-stack {
-			animation: slideIn 0.5s forwards ease;
-			animation-delay: 0.9s;
-			opacity: 0;
-		}
-		.project-icons {
-			display: flex;
-		}
+
 		.prj-icon {
 			position: relative;
 			display: inline-block;
@@ -184,9 +197,26 @@ export default {
 				visibility: visible;
 			}
 		}
+		.prj-icon:last-child {
+			margin-right: 0;
+		}
+
+		.github-icon {
+			display: inline-block;
+			width: 20px;
+			margin-right: 0.5rem;
+		}
 	}
 	.gradient {
 		opacity: 0;
+	}
+}
+
+@media (max-width: 800px) {
+	.show .project-showcase {
+		.project-info {
+			margin-top: 7rem;
+		}
 	}
 }
 </style>
