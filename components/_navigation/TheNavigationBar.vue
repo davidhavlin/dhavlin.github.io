@@ -34,7 +34,7 @@ export default {}
 
 @media (max-width: 800px) {
 	.navbar {
-		height: 3.7em;
+		height: 4em;
 		width: 100%;
 		bottom: 0;
 		flex-direction: row;

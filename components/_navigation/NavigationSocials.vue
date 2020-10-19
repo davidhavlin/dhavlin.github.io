@@ -238,12 +238,12 @@ export default {
 	}
 	.circle {
 		width: 100vw;
-		height: 54px;
+		height: 80px;
 		position: absolute;
 		transform: scaleX(0.9);
 		border-radius: 0;
 		background: #12021c;
-		top: -66px;
+		top: -95px;
 		left: 0;
 		opacity: 0;
 		transition: transform 0.5s cubic-bezier(0.68, -0.75, 0.265, 1.75);
@@ -256,22 +256,45 @@ export default {
 
 	.social-icons {
 		.facebookIn {
-			transform: translate(-66vw, -90px) scale(1);
+			transform: translate(-66vw, -105px) scale(1);
 		}
 		.twitterIn {
-			transform: translate(-56vw, -90px) scale(1);
+			transform: translate(-56vw, -105px) scale(1);
 			transition-delay: 100ms;
 		}
 		.youtubeIn {
-			transform: translate(-46vw, -90px) scale(1);
+			transform: translate(-46vw, -105px) scale(1);
 			transition-delay: 200ms;
 		}
 		.githubIn {
-			transform: translate(-36vw, -90px) scale(1);
+			transform: translate(-36vw, -105px) scale(1);
 			transition-delay: 300ms;
 		}
 		.instagramIn {
-			transform: translate(-26vw, -90px) scale(1);
+			transform: translate(-26vw, -105px) scale(1);
+			transition-delay: 400ms;
+		}
+	}
+}
+@media (max-width: 400px) {
+	.social-icons {
+		.facebookIn {
+			transform: translate(-73vw, -105px) scale(1.2);
+		}
+		.twitterIn {
+			transform: translate(-58vw, -105px) scale(1.2);
+			transition-delay: 100ms;
+		}
+		.youtubeIn {
+			transform: translate(-43vw, -105px) scale(1.2);
+			transition-delay: 200ms;
+		}
+		.githubIn {
+			transform: translate(-28vw, -105px) scale(1.2);
+			transition-delay: 300ms;
+		}
+		.instagramIn {
+			transform: translate(-13vw, -105px) scale(1.2);
 			transition-delay: 400ms;
 		}
 	}
