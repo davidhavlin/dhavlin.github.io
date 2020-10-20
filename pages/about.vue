@@ -23,7 +23,6 @@ export default {
 	},
 	methods: {
 		handleClickNext() {
-			console.log('someting')
 			this.$refs.main.style.transform = 'translateX(-50%)'
 		},
 		handleClickPrev() {

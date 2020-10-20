@@ -46,7 +46,11 @@
 			<ProjectFrame />
 			<!-- **************************** -->
 			<div class="projects">
-				<div class="project-boxes" @click="whichHalf">
+				<div
+					class="project-boxes"
+					@click="whichHalf"
+					@transitionend="afterCarouselMove"
+				>
 					<ProjectBox
 						v-for="project in myProjects"
 						:id="'box-' + project.id"
@@ -108,17 +112,16 @@ export default {
 			return Array.from(document.querySelectorAll('.ProjectBox'))
 		},
 	},
+	created() {
+		// console.log('created: ', this.container)
+	},
+	destroyed() {
+		console.log('nieco')
+	},
 	mounted() {
 		this.cloneElements()
 		this.onMountedStyles()
 		this.handleHover()
-
-		this.container.addEventListener('transitionend', (event) => {
-			if (!event.target.classList.contains('project-boxes')) {
-				return
-			}
-			this.carouselMagic()
-		})
 
 		this.animationOnRender()
 		this.handleSwipe()
@@ -134,6 +137,10 @@ export default {
 		})
 	},
 	methods: {
+		afterCarouselMove() {
+			if (!event.target.classList.contains('project-boxes')) return
+			this.carouselMagic()
+		},
 		// HOVER LISTENERS
 		// kazdemu projektu dam event listener, aj kopiam
 		handleHover() {
@@ -277,7 +284,6 @@ export default {
 				this.size = 210
 				this.containerTransform()
 			}
-
 			this.projects[this.counter + 1].classList.add('selected')
 		},
 		// spusti sa len ked dojdem na klona ktory ma nas portnut na original, vypne transition aby nebol vidiet skok
