@@ -91,7 +91,12 @@ body {
 	}
 }
 
-@media (max-width: 520px) {
+@media (max-width: 620px) {
+	body {
+		overflow: visible;
+	}
+}
+@media (max-height: 880px) {
 	body {
 		overflow: visible;
 	}

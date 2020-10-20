@@ -215,7 +215,29 @@ export default {
 @media (max-width: 800px) {
 	.show .project-showcase {
 		.project-info {
-			margin-top: 7rem;
+			margin-top: 0;
+		}
+		.project-gh {
+			margin-bottom: 0;
+		}
+	}
+}
+@media (max-width: 620px) {
+	.show .project-showcase {
+		display: flex;
+		flex-wrap: wrap;
+		left: 0;
+		top: 100%;
+		transform: translateY(0);
+		background: #0c0110;
+		padding-top: 2rem;
+
+		.showcase-content {
+			margin-bottom: 1rem;
+		}
+
+		.project-info {
+			margin-top: 0rem;
 		}
 	}
 }

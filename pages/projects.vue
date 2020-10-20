@@ -355,6 +355,9 @@ export default {
 	font-size: 1.3em;
 	color: #34b1f8;
 	z-index: 1;
+	transform: translateZ(
+		0
+	); // zabranuje aby text glitchoval kvoli hover animacii na inom elem.
 }
 .projects {
 	position: relative;
@@ -467,7 +470,7 @@ export default {
 	.projects {
 		overflow: visible;
 		width: auto;
-		transform: translateX(0px);
+		transform: translateX(-90px);
 		justify-content: flex-start;
 		padding-left: 0;
 
@@ -499,6 +502,8 @@ export default {
 	}
 }
 @media (max-width: 800px) {
+	.projectShowcase {
+	}
 	.projects {
 		height: 480px;
 	}
@@ -523,6 +528,20 @@ export default {
 		}
 	}
 }
+@media (max-width: 620px) {
+	.projectShowcase {
+		justify-content: flex-start;
+		height: calc(100vh + 200px);
+		padding-top: 1.5rem;
+
+		.projects {
+			height: auto;
+			padding-top: 1.5rem;
+			padding-bottom: 17rem;
+			transform: translateX(0px);
+		}
+	}
+}
 
 @media (max-width: 440px) {
 	.arrows {
@@ -533,31 +552,28 @@ export default {
 			transform: translate(125px, 85%);
 		}
 	}
-
 	.projects {
-		.ProjectBox:not(.selected) {
-			opacity: 0.2 !important;
+		.ProjectBox:not(.selected)::after {
+			content: '';
+			position: absolute;
+			top: -10px;
+			left: -10px;
+			width: 150%;
+			height: 106%;
+			background: #100317cf;
+			z-index: 10;
+			pointer-events: none;
 		}
-		.ProjectBox.selected {
-			opacity: 1 !important;
-		}
-
-		#box-0,
-		#box-1,
-		#box-2 {
-			opacity: 0;
-			animation: boxIn 0.5s forwards ease;
-		}
-
-		@keyframes boxIn {
-			from {
-				transform: translateY(-600px);
-			}
-			to {
-				transform: translateY(0);
-				opacity: 0.2;
-			}
-		}
+	}
+}
+@media (max-height: 600px) {
+	.projects {
+		height: 350px;
+	}
+}
+@media (max-height: 500px) {
+	.projects {
+		height: 200px;
 	}
 }
 </style>

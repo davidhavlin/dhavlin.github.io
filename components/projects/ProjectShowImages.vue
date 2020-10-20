@@ -54,6 +54,7 @@ export default {
 		margin-top: -50vh;
 		z-index: -10;
 		pointer-events: none;
+		transform: translateX(90px);
 
 		.prj-image-right {
 			width: 30%;
