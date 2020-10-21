@@ -3,13 +3,17 @@
 		<div class="project" :style="bgImage">
 			<h1 class="title">{{ project.title }}</h1>
 
-			<ProjectGallery v-if="showtime" :gallery="project.images" />
+			<ProjectGallery
+				v-show="showtime"
+				:showtime="showtime"
+				:gallery="project.images"
+			/>
 			<div class="gradient" :style="gradient"></div>
 			<div class="logo" :style="logo"></div>
 		</div>
 
 		<ProjectShowContent v-show="showtime" :project="project" />
-		<!-- <ProjectShowImages v-show="showtime" :project="project" /> -->
+		<ProjectShowBackground v-show="showtime" :project="project" />
 	</div>
 </template>
 
