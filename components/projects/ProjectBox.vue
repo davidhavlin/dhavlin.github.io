@@ -1,26 +1,11 @@
 <template>
 	<div>
-		<div
-			class="project"
-			:style="{
-				backgroundColor: project.color.main,
-				backgroundImage: `url(${project.images[0]})`,
-			}"
-		>
+		<div class="project" :style="bgImage">
 			<h1 class="title">{{ project.title }}</h1>
 
 			<ProjectGallery v-if="showtime" :gallery="project.images" />
-			<div
-				class="gradient"
-				:style="{
-					background: `linear-gradient(0deg, rgba(14,6,28,0) 0%, ${project.color.main} 100%)`,
-				}"
-			></div>
-
-			<div
-				class="logo"
-				:style="{ backgroundImage: `url(${project.logo})` }"
-			></div>
+			<div class="gradient" :style="gradient"></div>
+			<div class="logo" :style="logo"></div>
 		</div>
 
 		<ProjectShowContent v-show="showtime" :project="project" />
@@ -43,21 +28,25 @@ export default {
 			default() {
 				return {
 					title: 'coming soon',
-					url: 'none',
-					desc: 'none',
-					logo: 'none',
-					colors: ['#f80f2b', '#4a12be', '#0c95ff', '#100c1d'],
-					stack: ['HTML', 'SCSS', 'ES6', 'Vue'],
-					images: 'none',
-					id: 0,
 				}
 			},
 		},
 	},
-	data() {
-		return {
-			index: 0,
-		}
+	computed: {
+		bgImage() {
+			return {
+				backgroundColor: this.project.color.main,
+				backgroundImage: `url(${this.project.images[0]})`,
+			}
+		},
+		gradient() {
+			return {
+				background: `linear-gradient(0deg, rgba(14,6,28,0) 0%, ${this.project.color.main} 100%)`,
+			}
+		},
+		logo() {
+			return { backgroundImage: `url(${this.project.logo})` }
+		},
 	},
 }
 </script>

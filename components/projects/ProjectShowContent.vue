@@ -8,7 +8,7 @@
 			<h4>url</h4>
 			<a
 				:href="project.url"
-				:style="{ color: project.color.second }"
+				:style="{ color: linkColor }"
 				target="new_blank"
 			>
 				{{ shortUrl(project.url) }}
@@ -31,7 +31,7 @@
 			<h4>github</h4>
 			<a
 				:href="project.github"
-				:style="{ color: project.color.main, display: 'flex' }"
+				:style="{ color: linkColor, display: 'flex' }"
 				target="new_blank"
 			>
 				<img
@@ -53,15 +53,13 @@ export default {
 			default() {
 				return {
 					title: 'coming soon',
-					url: 'none',
-					desc: 'none',
-					logo: 'none',
-					colors: ['#f80f2b', '#4a12be', '#0c95ff', '#100c1d'],
-					stack: ['HTML', 'SCSS', 'ES6', 'Vue'],
-					images: 'none',
-					id: 0,
 				}
 			},
+		},
+	},
+	computed: {
+		linkColor() {
+			return this.project.color.second
 		},
 	},
 	methods: {
@@ -87,8 +85,7 @@ export default {
 			}
 		},
 		shortUrl(url) {
-			const editedUrl = url.slice(8, url.length - 1)
-			return editedUrl
+			return url.slice(8, url.length - 1)
 		},
 	},
 }

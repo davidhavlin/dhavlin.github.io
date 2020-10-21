@@ -5,44 +5,12 @@
 		</h1>
 		<div class="under-projects">
 			<!-- ------------------- ARROWS A FRAME ---------- -->
-			<div v-if="!showCase" class="arrows">
-				<div ref="leftArrow" class="left-arrow" @click="prevProject()">
-					<svg
-						width="70"
-						height="94"
-						viewBox="0 0 70 94"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path
-							d="M67.5 5V2.5H65H41H38.5V5V14.5H29H26.5V17V26.5H17H14.5V29V38.5H5H2.5V41V53V55.5H5H14.5V65V67.5H17H26.5V77V79.5H29H38.5V89V91.5H41H65H67.5V89V77V74.5H65H55.5V65V62.5H53H43.5V53V50.5H41H31.5V43.5H41H43.5V41V31.5H53H55.5V29V19.5H65H67.5V17V5Z"
-							fill="white"
-							stroke="black"
-							stroke-width="5"
-						/>
-					</svg>
-				</div>
-				<div
-					ref="rightArrow"
-					class="right-arrow"
-					@click="nextProject()"
-				>
-					<svg
-						width="70"
-						height="94"
-						viewBox="0 0 70 94"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path
-							d="M2.5 89L2.5 91.5L5 91.5L29 91.5L31.5 91.5L31.5 89L31.5 79.5L41 79.5L43.5 79.5L43.5 77L43.5 67.5L53 67.5L55.5 67.5L55.5 65L55.5 55.5L65 55.5L67.5 55.5L67.5 53L67.5 41L67.5 38.5L65 38.5L55.5 38.5L55.5 29L55.5 26.5L53 26.5L43.5 26.5L43.5 17L43.5 14.5L41 14.5L31.5 14.5L31.5 5L31.5 2.5L29 2.5L4.99999 2.50001L2.49999 2.50001L2.49999 5.00001L2.49999 17L2.49999 19.5L4.99999 19.5L14.5 19.5L14.5 29L14.5 31.5L17 31.5L26.5 31.5L26.5 41L26.5 43.5L29 43.5L38.5 43.5L38.5 50.5L29 50.5L26.5 50.5L26.5 53L26.5 62.5L17 62.5L14.5 62.5L14.5 65L14.5 74.5L5 74.5L2.5 74.5L2.5 77L2.5 89Z"
-							fill="white"
-							stroke="black"
-							stroke-width="5"
-						/>
-					</svg>
-				</div>
-			</div>
+			<ProjectArrows
+				:class="{ showArrows: animated }"
+				v-if="!showCase"
+				@clickleft="prevProject"
+				@clickright="nextProject"
+			/>
 			<ProjectFrame />
 			<!-- **************************** -->
 			<div class="projects">
@@ -63,27 +31,12 @@
 			</div>
 		</div>
 		<!-- ------------- BUTTONY ------------- -->
-		<MyButton
-			v-if="!showCase"
-			ref="showBtn"
-			class="show-btn"
-			main-color="#100317"
-			second-color="#0b0010"
-			border-color="#0b0010"
-			text-color="#00f3ff"
-			@click.native="showProject()"
-			>Show me</MyButton
-		>
-		<MyButton
-			v-if="showCase"
-			class="close-btn showMeButton"
-			main-color="#100317"
-			second-color="#0b000f"
-			border-color="#0b000f"
-			text-color="#fff"
-			@click.native="closeProject()"
-			>Close me</MyButton
-		>
+		<ProjectButtons
+			:class="{ showMeButton: animated }"
+			:showCase="showCase"
+			@clickshow="showProject"
+			@clickclose="closeProject"
+		/>
 	</div>
 </template>
 
@@ -102,6 +55,7 @@ export default {
 			myProjects,
 			initialX: null,
 			initialY: null,
+			animated: false,
 		}
 	},
 	computed: {
@@ -116,17 +70,19 @@ export default {
 		// console.log('created: ', this.container)
 	},
 	destroyed() {
-		console.log('nieco')
+		window.removeEventListener('resize', this.resizeHandler)
 	},
 	mounted() {
 		this.cloneElements()
 		this.onMountedStyles()
 		this.handleHover()
-
 		this.animationOnRender()
 		this.handleSwipe()
 
-		window.addEventListener('resize', (e) => {
+		window.addEventListener('resize', this.resizeHandler)
+	},
+	methods: {
+		resizeHandler(e) {
 			if (e.target.innerWidth < 931) {
 				this.size = 180
 				this.containerTransform()
@@ -134,9 +90,7 @@ export default {
 				this.size = 210
 				this.containerTransform()
 			}
-		})
-	},
-	methods: {
+		},
 		afterCarouselMove() {
 			if (!event.target.classList.contains('project-boxes')) return
 			this.carouselMagic()
@@ -222,6 +176,7 @@ export default {
 			})
 			this.removeHovered()
 			this.showCase = true
+			this.animated = false
 			selected.classList.add('show')
 			// zafarbim page title podla vybraneho projektu, nech ladia farby
 			// prettier-ignore
@@ -331,13 +286,10 @@ export default {
 				: this.projects[this.counter].classList.add('selected')
 		},
 		animationOnRender() {
-			document
-				.getElementById('box-2')
-				.addEventListener('animationend', () => {
-					this.$refs.showBtn.$el.classList.add('showMeButton')
-					this.$refs.leftArrow.classList.add('showLeftArrow')
-					this.$refs.rightArrow.classList.add('showRightArrow')
-				})
+			const lastProject = this.projects.length - 1
+			this.projects[lastProject].addEventListener('animationend', () => {
+				this.animated = true
+			})
 		},
 	},
 }
@@ -410,62 +362,6 @@ export default {
 .project-boxes {
 	display: flex;
 }
-.arrows {
-	.left-arrow,
-	.right-arrow {
-		position: absolute;
-		left: 0;
-		top: 50%;
-		transform: translate(-80px, -50%);
-		z-index: 11;
-		cursor: pointer;
-
-		svg {
-			width: 37px;
-		}
-		path {
-			fill: #df1041;
-			stroke: #100317;
-			stroke-width: 4px;
-		}
-
-		&:hover {
-			path {
-				stroke: #00f2fe;
-			}
-		}
-	}
-	.right-arrow {
-		left: auto;
-		right: 0;
-		transform: translate(80px, -50%);
-	}
-}
-
-.show-btn,
-.close-btn {
-	opacity: 0;
-	top: 15px;
-}
-.showMeButton {
-	opacity: 1;
-	animation: fadeInUp;
-	animation-duration: 1s;
-}
-.left-arrow svg,
-.right-arrow svg {
-	opacity: 0;
-}
-.showLeftArrow svg {
-	opacity: 1;
-	animation: fadeInLeft;
-	animation-duration: 1s;
-}
-.showRightArrow svg {
-	opacity: 1;
-	animation: fadeInRight;
-	animation-duration: 1s;
-}
 
 /* ////////////////////////////// SHOW CASE SEKCIA //////////////////////////// */
 .hideBox {
@@ -498,14 +394,6 @@ export default {
 			margin-right: 60px;
 		}
 	}
-	.arrows {
-		.right-arrow {
-			transform: translate(50px, -50%);
-		}
-		.left-arrow {
-			transform: translate(-50px, -50%);
-		}
-	}
 }
 @media (max-width: 800px) {
 	.projectShowcase {
@@ -519,19 +407,6 @@ export default {
 
 	.show-btn {
 		margin-bottom: 6rem;
-	}
-
-	.arrows {
-		.right-arrow {
-			transform: translate(-70px, 85%);
-			bottom: 0;
-			top: auto;
-		}
-		.left-arrow {
-			transform: translate(70px, 85%);
-			bottom: 0;
-			top: auto;
-		}
 	}
 }
 @media (max-width: 620px) {
@@ -550,14 +425,6 @@ export default {
 }
 
 @media (max-width: 440px) {
-	.arrows {
-		.right-arrow {
-			transform: translate(-125px, 85%);
-		}
-		.left-arrow {
-			transform: translate(125px, 85%);
-		}
-	}
 	.projects {
 		.ProjectBox:not(.selected)::after {
 			content: '';
