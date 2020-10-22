@@ -1,13 +1,14 @@
 <template>
 	<div>
-		<div class="project" :style="bgImage">
+		<div ref="thisProject" class="project" :style="bgImage">
 			<h1 class="title">{{ project.title }}</h1>
-
-			<ProjectGallery
-				v-show="showtime"
-				:showtime="showtime"
-				:gallery="project.images"
-			/>
+			<keep-alive>
+				<LazyProjectGallery
+					v-if="showtime && neo"
+					:showtime="showtime"
+					:gallery="project.images"
+				/>
+			</keep-alive>
 			<div class="gradient" :style="gradient"></div>
 			<div class="logo" :style="logo"></div>
 		</div>
@@ -19,13 +20,14 @@
 
 <script>
 export default {
-	components: {
-		ProjectShowContent: () => import('../projects/ProjectShowContent.vue'),
-	},
 	props: {
 		showtime: {
 			type: Boolean,
 			default: false,
+		},
+		selected: {
+			type: null,
+			default: 's',
 		},
 		project: {
 			type: Object,
@@ -34,6 +36,21 @@ export default {
 					title: 'coming soon',
 				}
 			},
+		},
+	},
+	data() {
+		return {
+			neo: false,
+		}
+	},
+	watch: {
+		selected(newValue, oldValue) {
+			const parent = this.$refs.thisProject.parentElement
+			if (newValue === parent) {
+				this.neo = true // ked je vyvolenyy
+			} else {
+				this.neo = false
+			}
 		},
 	},
 	computed: {
@@ -89,7 +106,7 @@ export default {
 .hovered {
 	.project {
 		outline: 3px solid #34b1f8;
-		background-position: -215px;
+		background-position: -320px;
 	}
 	.title {
 		transform: translateX(40px);

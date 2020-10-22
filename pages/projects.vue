@@ -6,8 +6,8 @@
 		<div class="under-projects">
 			<!-- ------------------- ARROWS A FRAME ---------- -->
 			<ProjectArrows
-				:class="{ showArrows: animated }"
 				v-if="!showCase"
+				:class="{ showArrows: animated }"
 				@clickleft="prevProject"
 				@clickright="nextProject"
 			/>
@@ -23,6 +23,7 @@
 						v-for="project in myProjects"
 						:id="'box-' + project.id"
 						:key="project.id"
+						:selected="selected"
 						:showtime="showCase"
 						:project="project"
 						class="ProjectBox"
@@ -56,6 +57,8 @@ export default {
 			initialX: null,
 			initialY: null,
 			animated: false,
+			selected: null,
+			hovered: null,
 		}
 	},
 	computed: {
@@ -65,9 +68,9 @@ export default {
 		projects() {
 			return Array.from(document.querySelectorAll('.ProjectBox'))
 		},
-	},
-	created() {
-		// console.log('created: ', this.container)
+		title() {
+			return this.$refs.pageTitle
+		},
 	},
 	destroyed() {
 		window.removeEventListener('resize', this.resizeHandler)
@@ -75,6 +78,8 @@ export default {
 	mounted() {
 		this.cloneElements()
 		this.onMountedStyles()
+		this.selected = this.projects[this.counter + 1]
+
 		this.handleHover()
 		this.animationOnRender()
 		this.handleSwipe()
@@ -98,9 +103,9 @@ export default {
 		// HOVER LISTENERS
 		// kazdemu projektu dam event listener, aj kopiam
 		handleHover() {
-			this.projects.map((project) => {
-				project.addEventListener('mouseenter', this.hoverInHandler)
-				project.addEventListener('mouseleave', this.removeHovered)
+			this.projects.forEach((proj) => {
+				proj.addEventListener('mouseenter', this.hoverInHandler)
+				proj.addEventListener('mouseleave', this.removeHovered)
 			})
 		},
 		// podla id dam classu originalu a jeho kopii, aby transitiony boli plynule pri preskakovani
@@ -108,15 +113,15 @@ export default {
 		hoverInHandler(e) {
 			if (this.showCase) return
 			const projectID = e.target.id
-			const hoveredProjects = Array.from(
-				this.container.querySelectorAll(`#${projectID}`)
+			this.hovered = this.projects.filter(
+				(project) => project.id === projectID
 			)
-			hoveredProjects.map((project) => project.classList.add('hovered'))
+			this.hovered.forEach((project) => project.classList.add('hovered'))
 		},
 		// odstranim hovered classu zo vsetkych projektov
 		removeHovered() {
 			if (this.showCase) return
-			this.projects.map((project) => project.classList.remove('hovered'))
+			this.hovered.forEach((proj) => proj.classList.remove('hovered'))
 		},
 
 		handleSwipe() {
@@ -157,18 +162,16 @@ export default {
 		},
 
 		whichHalf(e) {
-			const selected = this.container.querySelector('.selected')
-			if (e.composedPath()[2] === selected.previousSibling) {
+			if (e.composedPath()[2] === this.selected.previousSibling) {
 				this.prevProject()
-			} else if (e.composedPath()[2] === selected.nextSibling) {
+			} else if (e.composedPath()[2] === this.selected.nextSibling) {
 				this.nextProject()
-			} else if (e.composedPath()[2] === selected) {
+			} else if (e.composedPath()[2] === this.selected) {
 				this.showProject()
 			}
 		},
 
 		showProject() {
-			const selected = this.container.querySelector('.selected')
 			/* pokial nemaju classu selected tak dostanu classu ktora ich schova */
 			this.projects.map((project) => {
 				if (!project.classList.contains('selected'))
@@ -177,21 +180,21 @@ export default {
 			this.removeHovered()
 			this.showCase = true
 			this.animated = false
-			selected.classList.add('show')
+			this.selected.classList.add('show')
 			// zafarbim page title podla vybraneho projektu, nech ladia farby
 			// prettier-ignore
-			this.$refs.pageTitle.style.color = this.myProjects[this.realIndex].color.main
+			this.title.style.color = this.myProjects[this.realIndex].color.main
 		},
 		closeProject() {
-			this.projects.map((project) =>
-				project.classList.remove('hideBox', 'show')
+			this.projects.forEach((proj) =>
+				proj.classList.remove('hideBox', 'show')
 			)
 			this.showCase = false
 
-			this.$refs.pageTitle.style.color = '#34b1f8'
+			this.title.style.color = '#34b1f8'
 			// aby po kliknuti na closebtn sa z animovali rychlejsie, inak by to trvalo ako pri renderi
-			this.projects.map(
-				(project) => (project.style.animationDelay = '50ms')
+			this.projects.forEach(
+				(proj) => (proj.style.animationDelay = '50ms')
 			)
 		},
 		nextProject() {
@@ -246,10 +249,11 @@ export default {
 			if (this.projects[this.counter].classList.contains('clone-prev')) {
 				this.counter = this.projects.length - 4
 				this.containerTransform(false)
-
 				this.projects.map((proj) => proj.classList.remove('selected'))
+
 				// oznaci original selected
-				this.projects[this.counter + 1].classList.add('selected')
+				this.selected = this.projects[this.counter + 1]
+				this.selected.classList.add('selected')
 			}
 
 			if (this.counter === this.projects.length - 3) {
@@ -257,20 +261,21 @@ export default {
 				this.containerTransform(false)
 
 				this.projects.map((proj) => proj.classList.remove('selected'))
-				this.projects[this.counter + 1].classList.add('selected')
+				this.selected = this.projects[this.counter + 1]
+				this.selected.classList.add('selected')
 			}
 			this.active = false
 		},
 
 		cloneElements() {
-			// klonujem projekty aby carousel fungoval donekonecna, ked bude viac projektov toto nebude treba
+			// klonujem projekty aby carousel fungoval donekonecna, ked bude viac projektov najde sa ine riesenie
 			const lastchild = this.container.lastChild
 			const firstchild = this.container.firstChild
 			const clonedLastBox = lastchild.cloneNode(true)
 			const clonedLastPrevBox = lastchild.previousSibling.cloneNode(true)
-			clonedLastPrevBox.classList.add('clone-prev')
 			const clonedFirstBox = firstchild.cloneNode(true)
 			const clonedFirstNextBox = firstchild.nextSibling.cloneNode(true)
+			clonedLastPrevBox.classList.add('clone', 'clone-prev')
 
 			this.container.prepend(clonedLastBox)
 			this.container.prepend(clonedLastPrevBox)
@@ -281,9 +286,13 @@ export default {
 		selectMidleBox(direction) {
 			// prve odstranim vsetkym classu a potom pridam na zaklade smeru kam carousel ide
 			this.projects.map((proj) => proj.classList.remove('selected'))
-			direction
-				? this.projects[this.counter + 2].classList.add('selected')
-				: this.projects[this.counter].classList.add('selected')
+			if (direction) {
+				this.selected = this.projects[this.counter + 2]
+				this.selected.classList.add('selected')
+			} else {
+				this.selected = this.projects[this.counter]
+				this.selected.classList.add('selected')
+			}
 		},
 		animationOnRender() {
 			const lastProject = this.projects.length - 1

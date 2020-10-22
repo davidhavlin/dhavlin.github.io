@@ -1,11 +1,11 @@
 <template>
 	<div ref="gallery" class="gallery">
-		<div class="loader" v-if="!loaded">
+		<img :src="src1" alt="" class="active" @load="afterLoad" />
+		<img :src="src2" alt="" @load="afterLoad" />
+		<img :src="src3" alt="" @load="afterLoad" />
+		<div v-if="!loaded" class="loader">
 			<LoadingSquare />
 		</div>
-		<img loading="lazy" :src="gallery[0]" alt="" />
-		<img loading="lazy" :src="gallery[1]" alt="" />
-		<img loading="lazy" :src="gallery[2]" alt="" @load="isImgLoaded()" />
 	</div>
 </template>
 
@@ -26,8 +26,12 @@ export default {
 	data() {
 		return {
 			loaded: false,
-			index: 0,
+			index: 1,
 			timeout: null,
+			src1: '',
+			src2: '',
+			src3: '',
+			counter: 0,
 		}
 	},
 	computed: {
@@ -35,16 +39,27 @@ export default {
 			return Array.from(this.$refs.gallery.querySelectorAll('img'))
 		},
 	},
-	watch: {
-		showtime(newValue, oldValue) {
-			if (newValue) {
-				this.changingGalery()
-			} else {
-				clearTimeout(this.timeout)
-			}
-		},
+	mounted() {
+		this.getUrls()
+	},
+	destroyed() {
+		clearTimeout(this.timeout)
 	},
 	methods: {
+		getUrls() {
+			// aby load event fungoval bezchybne musim tam dat src az po mountnuti
+			this.src1 = this.gallery[0]
+			this.src2 = this.gallery[1]
+			this.src3 = this.gallery[2]
+		},
+		afterLoad() {
+			this.counter++
+			if (this.counter === this.images.length) {
+				this.loaded = true
+				this.changingGalery()
+			}
+		},
+
 		changingGalery() {
 			this.timeout = setTimeout(() => {
 				if (this.index === this.images.length) {
@@ -58,9 +73,6 @@ export default {
 		changeImage() {
 			this.images.map((image) => image.classList.remove('active'))
 			this.images[this.index].classList.add('active')
-		},
-		isImgLoaded() {
-			this.loaded = true
 		},
 	},
 }
@@ -86,7 +98,7 @@ export default {
 		height: 100%;
 		top: 0;
 		left: 0;
-		background: #4a12be;
+		background: #4b12be8e;
 		z-index: 1;
 	}
 
