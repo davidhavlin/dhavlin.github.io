@@ -139,8 +139,7 @@ export default {
 	transform: translate(-50%, 50%);
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: 30px;
-	// transition: all 0.2s ease;
+	background-size: 27px;
 }
 
 .selected .logo {

@@ -91,6 +91,7 @@ export default {
 	display: none;
 	object-fit: cover;
 	overflow: hidden;
+	transform: translateZ(0);
 
 	.loader {
 		position: absolute;
@@ -111,6 +112,7 @@ export default {
 		animation: gallery 1s ease;
 		display: none;
 		z-index: 1;
+		transform: translateZ(0);
 	}
 
 	img.active {

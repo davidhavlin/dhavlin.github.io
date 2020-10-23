@@ -81,7 +81,6 @@ export default {
 		this.handleHover()
 		this.animationOnRender()
 		this.handleSwipe()
-
 		window.addEventListener('resize', this.resizeHandler)
 	},
 	methods: {
