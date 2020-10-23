@@ -16,6 +16,7 @@
 			<div class="projects">
 				<div
 					class="project-boxes"
+					ref="container"
 					@click="whichHalf"
 					@transitionend="afterCarouselMove"
 				>
@@ -67,9 +68,6 @@ export default {
 		},
 		projects() {
 			return Array.from(document.querySelectorAll('.ProjectBox'))
-		},
-		title() {
-			return this.$refs.pageTitle
 		},
 	},
 	destroyed() {
@@ -183,7 +181,7 @@ export default {
 			this.selected.classList.add('show')
 			// zafarbim page title podla vybraneho projektu, nech ladia farby
 			// prettier-ignore
-			this.title.style.color = this.myProjects[this.realIndex].color.main
+			this.$refs.pageTitle.style.color = this.myProjects[this.realIndex].color.main
 		},
 		closeProject() {
 			this.projects.forEach((proj) =>
@@ -191,13 +189,14 @@ export default {
 			)
 			this.showCase = false
 
-			this.title.style.color = '#34b1f8'
+			this.$refs.pageTitle.style.color = '#34b1f8'
 			// aby po kliknuti na closebtn sa z animovali rychlejsie, inak by to trvalo ako pri renderi
 			this.projects.forEach(
 				(proj) => (proj.style.animationDelay = '50ms')
 			)
 		},
 		nextProject() {
+			console.log(this.$refs.container.children)
 			// nechcem aby sa dalo klikat na dalsi projekt kym je animacia active
 			if (this.active) return
 			this.active = true
@@ -322,9 +321,8 @@ export default {
 	font-size: 1.3em;
 	color: #34b1f8;
 	z-index: 1;
-	transform: translateZ(
-		0
-	); // zabranuje aby text glitchoval kvoli hover animacii na inom elem.
+	// zabranuje aby text glitchoval kvoli hover animacii na inom elem.
+	transform: translateZ(0);
 }
 .projects {
 	position: relative;
