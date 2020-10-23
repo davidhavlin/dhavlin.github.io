@@ -15,6 +15,7 @@
 			<!-- **************************** -->
 			<div class="projects">
 				<div
+					ref="container"
 					class="project-boxes"
 					@click="whichHalf"
 					@transitionend="afterCarouselMove"
@@ -59,24 +60,25 @@ export default {
 			animated: false,
 			selected: null,
 			hovered: null,
+			container: null,
+			projectsS: null,
 		}
 	},
 	computed: {
-		container() {
-			return document.querySelector('.project-boxes')
-		},
-		projects() {
-			return Array.from(document.querySelectorAll('.ProjectBox'))
-		},
-		title() {
-			return this.$refs.pageTitle
-		},
+		// container() {
+		// 	return document.querySelector('.project-boxes')
+		// },
+		// projects() {
+		// 	return Array.from(document.querySelectorAll('.ProjectBox'))
+		// },
 	},
 	destroyed() {
 		window.removeEventListener('resize', this.resizeHandler)
 	},
 	mounted() {
+		this.container = this.$refs.container
 		this.cloneElements()
+		this.projects = Array.from(this.$refs.container.children)
 		this.onMountedStyles()
 		this.selected = this.projects[this.counter + 1]
 
@@ -183,7 +185,7 @@ export default {
 			this.selected.classList.add('show')
 			// zafarbim page title podla vybraneho projektu, nech ladia farby
 			// prettier-ignore
-			this.title.style.color = this.myProjects[this.realIndex].color.main
+			this.$refs.pageTitle.style.color = this.myProjects[this.realIndex].color.main
 		},
 		closeProject() {
 			this.projects.forEach((proj) =>
@@ -191,7 +193,7 @@ export default {
 			)
 			this.showCase = false
 
-			this.title.style.color = '#34b1f8'
+			this.$refs.pageTitle.style.color = '#34b1f8'
 			// aby po kliknuti na closebtn sa z animovali rychlejsie, inak by to trvalo ako pri renderi
 			this.projects.forEach(
 				(proj) => (proj.style.animationDelay = '50ms')
