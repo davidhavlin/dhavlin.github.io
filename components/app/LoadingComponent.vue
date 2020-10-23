@@ -2,7 +2,15 @@
 	<transition name="loadingComponent">
 		<div v-if="loading" class="loading">
 			<ul ref="terminal" class="terminal"></ul>
-			<h1>loading...</h1>
+			<div>
+				<h1 class="loading-title">loading</h1>
+				<div class="loading-bar">
+					<div ref="bar" class="bar"></div>
+				</div>
+				<div class="loading-time">
+					Estimated time remaining: {{ estimatedTime() }}
+				</div>
+			</div>
 			<div class="icon">
 				<svg
 					width="41"
@@ -49,6 +57,8 @@ export default {
 				'$: > buffering matrix... 100%',
 				'$: > So, would you like a red or blue pill?',
 			],
+			scale: 0,
+			loadingLines: ['2 days 13 hours 46 minutes', '2 seconds'],
 			index: 0,
 		}
 	},
@@ -60,6 +70,7 @@ export default {
 				}, 300)
 			} else {
 				this.index = 0
+				this.scale = 0
 			}
 		},
 	},
@@ -73,15 +84,28 @@ export default {
 				this.index = 0
 				return
 			}
-
-			if (this.index >= this.lines.length - 1) {
+			if (this.index === this.lines.length - 1) {
 				this.index = 0
 				return
+			}
+			if (this.index % 2) {
+				this.scale += 0.15
+				this.loadingBar()
 			}
 			this.index++
 			setTimeout(() => {
 				this.renderLines()
 			}, 50)
+		},
+		loadingBar() {
+			this.$refs.bar.style.transform = `scaleX(${this.scale})`
+		},
+		estimatedTime() {
+			if (this.scale < 1) {
+				return this.loadingLines[0]
+			} else {
+				return this.loadingLines[1]
+			}
 		},
 		start() {
 			setTimeout(() => {
@@ -92,6 +116,7 @@ export default {
 			// cas bol 1600
 			setTimeout(() => {
 				this.index = 0
+				this.scale = 0
 				this.loading = false
 			}, 1600)
 		},
@@ -100,42 +125,96 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$bar-border: #0a000f;
+// $bar-color: #68c01e;
+$bar-color: #8709ca;
+
 .loading {
-	// font-family: 'Press Start 2P', cursive;
-	font-family: 'VT323', monospace;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	// background: #0b020f;
-	background: #100317;
+	background: #1f002d;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	z-index: 100;
+	z-index: 1000;
 	transform: translateX(0);
 }
 
 .terminal {
-	color: #6813ac;
+	font-family: 'VT323', monospace;
+	color: #430061;
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	font-size: 1.3em;
-	margin-left: 2rem;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.5rem;
+	margin: 1rem;
 	list-style-type: none;
+	white-space: pre;
+	padding: 0;
+	pointer-events: none;
+	z-index: -1;
+	filter: blur(3px);
 }
 
-h1 {
+.loading-title {
 	font-family: 'Press Start 2P', cursive;
-	color: #34b1f8;
+	text-transform: uppercase;
 	font-size: 1.1rem;
+	font-weight: normal;
+	color: #34b1f8;
+	display: block;
+	margin-bottom: 1rem;
+}
+.loading-bar {
+	position: relative;
+	display: block;
+	width: 280px;
+	height: 25px;
+	margin-bottom: 1rem;
+	background: #180023;
+	box-shadow: $bar-border 0px 0.4em, $bar-border 0px -0.4em,
+		$bar-border 0.4em 0px, $bar-border -0.4em 0px;
+	overflow: hidden;
+
+	.bar {
+		position: absolute;
+		left: 0;
+		top: 0;
+		background: $bar-color;
+		width: 100%;
+		height: 100%;
+		transform: scaleX(0.1);
+		transform-origin: left;
+		transition: transform 0.3s ease;
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 50%;
+			background: lighten($bar-color, 10);
+		}
+	}
+}
+.loading-time {
+	color: #8709ca;
+	font-size: 0.8rem;
+	position: absolute;
 }
 
 .icon {
+	display: none;
 	position: absolute;
 	transform: translate();
 
@@ -155,10 +234,9 @@ h1 {
 .loadingComponent-enter {
 	opacity: 0.5;
 	transform: translateX(-100%);
-	// transform: scale(0.8);
-	// background: #000;
 }
 .loadingComponent-leave-to {
 	transform: translateX(100%);
+	opacity: 0.5;
 }
 </style>
