@@ -1,10 +1,25 @@
 <template>
 	<div class="container">
+		<div class="skuska" v-if="load"></div>
 		<TheNavigationBar />
 		<Nuxt />
 		<!-- <Stars /> -->
 	</div>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			load: true,
+		}
+	},
+	mounted() {
+		console.log('hmm?')
+		this.load = false
+	},
+}
+</script>
 
 <style lang="scss">
 @import 'node_modules/animate.css/animate.min.css';
@@ -50,6 +65,12 @@ body {
 .container {
 	min-height: 100vh;
 	overflow: hidden;
+}
+
+.skuska {
+	width: 500px;
+	height: 500px;
+	background: yellow;
 }
 
 .loading-component-enter-active,
