@@ -127,13 +127,18 @@ export default {
 					this.loading = false
 					if (response.ok) {
 						this.success = true
+
+						this.$refs.title.style.color = '#00ffac'
 						this.writingEffect('Thank you', this.$refs.title)
 					} else {
+						this.$refs.title.style.color = '#fec300'
+						this.writingEffect('Error', this.$refs.title)
 						this.error = true
 					}
 				})
 				.then(() => {
 					setTimeout(() => {
+						this.$refs.title.style.color = '#00a1ff'
 						this.writingEffect(this.title, this.$refs.title)
 						this.success = false
 						this.error = false
@@ -221,7 +226,7 @@ $higlight-color: #fe006a;
 }
 
 .contact-title {
-	color: #e9d41a;
+	color: #00a1ff;
 	font-weight: normal;
 	font-size: 2.5em;
 	margin-bottom: 1rem;
@@ -306,9 +311,9 @@ form {
 		font-family: inherit;
 		font-size: 0.7em;
 		text-transform: uppercase;
-		background: #e9d41a;
+		background: #00a1ff;
 		color: #11001b;
-		border: 2px solid #fff200;
+		border: 2px solid #00e5ff;
 		padding: 0.5rem 0.6rem;
 		border-radius: 0.2rem;
 		cursor: pointer;
@@ -320,7 +325,7 @@ form {
 		}
 
 		.btn-half-bg {
-			background: #d9aa01;
+			background: #0088cc;
 			position: absolute;
 			bottom: 0;
 			left: 0;

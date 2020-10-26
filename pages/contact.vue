@@ -22,9 +22,10 @@ export default {
 			const effect = new hoverEffect({
 				parent: this.$refs.parent,
 				intensity: 0.3,
-				image1: require('@/assets/images/sky.jpg'),
-				image2: require('@/assets/images/sky.jpg'),
+				image1: require('@/assets/images/bg01.webp'),
+				image2: require('@/assets/images/bg02.webp'),
 				displacementImage: require('@/assets/images/dist2.jpg'),
+				imagesRatio: 640 / 360,
 			})
 		},
 	},
@@ -61,6 +62,9 @@ export default {
 	visibility: hidden;
 	width: 50%;
 	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
 }
 
 .animate {
@@ -80,7 +84,7 @@ export default {
 		height: auto;
 		justify-content: center;
 		align-items: flex-start;
-		padding: 4rem 2rem 9rem 2rem;
+		padding: 6rem 1.5rem 7rem 1.5rem;
 	}
 	.right-section {
 		width: 100%;
@@ -90,7 +94,7 @@ export default {
 }
 @media (max-width: 400px) {
 	.left-section {
-		padding: 4rem 1rem 9rem 1rem;
+		padding: 6rem 1rem 7rem 1rem;
 	}
 }
 </style>
