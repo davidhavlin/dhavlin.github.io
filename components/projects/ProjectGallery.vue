@@ -40,7 +40,9 @@ export default {
 		},
 	},
 	mounted() {
-		this.getUrls()
+		setTimeout(() => {
+			this.getUrls()
+		}, 1000)
 	},
 	destroyed() {
 		clearTimeout(this.timeout)

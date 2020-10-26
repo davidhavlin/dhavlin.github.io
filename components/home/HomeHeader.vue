@@ -121,8 +121,6 @@ export default {
 		bottom: 0;
 		background: #0b020f;
 		z-index: 0;
-		box-shadow: #0b020f 0px 0.4em, #0b020f 0px -0.4em, #0b020f 0.4em 0px,
-			#0b020f -0.4em 0px;
 	}
 
 	.header {

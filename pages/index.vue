@@ -104,9 +104,20 @@ h1.letter {
 			right: 0;
 		}
 	}
+}
+@media (max-width: 800px) {
+	.home-container {
+		height: auto;
+		flex-direction: column;
 
-	//     .hover-image {
-	// 	opacity: 0.4;
-	// }
+		.left-section {
+			height: 100vh;
+		}
+		.right-section {
+			position: relative;
+			width: 100%;
+			height: 100vh;
+		}
+	}
 }
 </style>

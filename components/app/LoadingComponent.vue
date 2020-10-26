@@ -162,7 +162,7 @@ $bar-color: #8709ca;
 	padding: 0;
 	pointer-events: none;
 	z-index: -1;
-	filter: blur(3px);
+	filter: blur(2px);
 }
 
 .loading-title {

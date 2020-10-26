@@ -70,20 +70,13 @@ export default {
 				opacity: 1;
 			}
 		}
-
-		// &::after {
-		// 	content: '';
-		// 	position: absolute;
-		// 	top: 0;
-		// 	left: 0;
-		// 	width: 100%;
-		// 	height: 100%;
-		// 	background: linear-gradient(
-		// 		90deg,
-		// 		rgba(16, 3, 23, 1) 0%,
-		// 		rgba(16, 3, 23, 0.20772058823529416) 100%
-		// 	);
-		// }
+	}
+}
+@media (max-width: 620px) {
+	.show {
+		.project-showcase-images {
+			transform: translateX(0px);
+		}
 	}
 }
 </style>
