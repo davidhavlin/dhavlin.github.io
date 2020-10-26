@@ -44,7 +44,7 @@ export default {}
 		margin-bottom: 0rem;
 		position: absolute;
 		right: 10px;
-		bottom: calc(100vh - 80px);
+		bottom: calc(100vh - 67px);
 	}
 }
 </style>
