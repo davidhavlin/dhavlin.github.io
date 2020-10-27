@@ -31,17 +31,17 @@ export default {}
 	cursor: pointer;
 
 	svg {
-		// width: 37px;
+		width: 55px;
 	}
 	path {
-		fill: #34b1f8;
+		fill: #5903e2;
 		// fill: #df1041;
 		stroke: #100317;
 	}
 
 	&:hover {
 		path {
-			stroke: #fff;
+			stroke: #34b1f8;
 		}
 	}
 }

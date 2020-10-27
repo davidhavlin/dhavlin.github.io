@@ -31,7 +31,7 @@ export default {}
 	cursor: pointer;
 
 	svg {
-		// width: 37px;
+		width: 55px;
 	}
 	path {
 		fill: #df1041;
