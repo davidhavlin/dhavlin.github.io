@@ -8,11 +8,20 @@
 				/>
 			</div>
 			<div class="planet html">
-				<div class="icon icon-html">
+				<div class="icon">
 					<img
 						:src="require('@/assets/images/software/html5.png')"
 						alt="html"
 					/>
+				</div>
+			</div>
+			<div class="planet css">
+				<div class="icon icon-css">
+					<img
+						:src="require('@/assets/images/software/css.png')"
+						alt="css"
+					/>
+
 					<div class="sub-planet">
 						<div class="sub-icon">
 							<img
@@ -23,26 +32,8 @@
 							/>
 						</div>
 					</div>
-					<div class="sub-planet-second">
-						<div class="sub-icon">
-							<img
-								:src="
-									require('@/assets/images/software/css.png')
-								"
-								alt="css"
-							/>
-						</div>
-					</div>
 				</div>
 			</div>
-			<!-- <div class="planet css">
-				<div class="icon">
-					<img
-						:src="require('@/assets/images/software/css.png')"
-						alt="css"
-					/>
-				</div>
-			</div> -->
 			<div class="planet react">
 				<div class="icon">
 					<img
@@ -151,24 +142,24 @@ export default {
 	// }
 }
 
-// .css {
-// 	width: 300px;
-// 	height: 300px;
-// 	animation-duration: 15s;
-// }
-
-.react {
+.css {
 	width: 320px;
 	height: 320px;
+	animation-duration: 15s;
+}
+
+.react {
+	width: 470px;
+	height: 470px;
 	animation-duration: 17s;
 }
 .vue {
-	width: 470px;
-	height: 470px;
+	width: 620px;
+	height: 620px;
 	animation-duration: 25s;
 }
 .icon-vue,
-.icon-html {
+.icon-css {
 	left: calc(50% - 50px);
 	top: -50px;
 	width: 100px;

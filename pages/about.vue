@@ -1,9 +1,9 @@
 <template>
 	<div class="page-about-container">
 		<AboutMe :nextPage="nextPage" />
-		<transition name="aboutTransition">
+		<!-- <transition name="aboutTransition">
 			<AboutTransition v-if="animating" />
-		</transition>
+		</transition> -->
 		<main ref="main">
 			<section class="about-section">
 				<!-- <AboutMe /> -->
