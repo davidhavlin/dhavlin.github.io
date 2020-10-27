@@ -30,6 +30,9 @@ export default {
 			top: 150,
 			left: 350,
 			gap: 15,
+			timeout: null,
+			wInnerWidth: null,
+			wInnerHeight: null,
 			// prettier-ignore
 			movement: [
                 '=','>','>','v','>','v','>','^','>','^','>',
@@ -41,20 +44,28 @@ export default {
 	},
 
 	mounted() {
+		this.wInnerWidth = window.innerWidth
+		this.wInnerHeight = window.innerHeight
 		this.autoAddingStars()
-		window.addEventListener('resize', () => {
-			console.log('resizee')
-		})
-	},
-	computed: {
-		wInnerWidth() {
-			return window.innerWidth
-		},
-		wInnerHeight() {
-			return window.innerHeight
-		},
+		window.addEventListener('resize', this.debounce(this.handleResize, 500))
 	},
 	methods: {
+		debounce(cbFunc, delay = 250) {
+			let timeoutId
+			return (...args) => {
+				clearTimeout(timeoutId)
+				timeoutId = setTimeout(() => {
+					timeoutId = null
+					cbFunc(...args)
+				}, delay)
+			}
+		},
+		handleResize() {
+			this.wInnerWidth = window.innerWidth
+			this.wInnerHeight = window.innerHeight
+			clearTimeout(this.timeout)
+			this.autoAddingStars()
+		},
 		addStar() {
 			const size = this.starRandomize()
 			const left = this.starPosition().left
@@ -90,7 +101,7 @@ export default {
 		},
 
 		autoAddingStars() {
-			setTimeout(() => {
+			this.timeout = setTimeout(() => {
 				if (this.stars.length >= 50) {
 					this.stars.splice(0, 1)
 				}
@@ -204,6 +215,7 @@ export default {
 
 <style lang="scss" scoped>
 .sky {
+	pointer-events: none;
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -220,22 +232,20 @@ export default {
 	transition: all 1s ease;
 }
 
-.little {
+.little,
+.middle,
+.large {
 	width: 1px;
 	height: 1px;
 	animation: star 1s infinite ease;
 	animation-delay: 300ms;
 }
 .middle {
-	width: 1px;
-	height: 1px;
-	animation: star 1s infinite ease;
 	animation-delay: 100ms;
 }
 .large {
 	width: 2px;
 	height: 2px;
-	animation: star 1s infinite ease;
 	animation-delay: 500ms;
 }
 

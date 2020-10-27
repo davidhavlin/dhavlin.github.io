@@ -22,8 +22,8 @@ export default {
 			const effect = new hoverEffect({
 				parent: this.$refs.parent,
 				intensity: 0.3,
-				image1: require('@/assets/images/bg01.webp'),
-				image2: require('@/assets/images/bg02.webp'),
+				image1: require('@/assets/images/bg01exp.webp'),
+				image2: require('@/assets/images/bg02up.webp'),
 				displacementImage: require('@/assets/images/dist2.jpg'),
 				imagesRatio: 640 / 360,
 			})
@@ -59,18 +59,17 @@ export default {
 }
 
 .right-section {
-	visibility: hidden;
+	opacity: 0;
 	width: 50%;
 	height: 100%;
 	display: flex;
 	justify-content: flex-end;
 	align-items: flex-end;
+	transition: opacity 7s ease;
 }
 
 .animate {
-	visibility: visible;
-	animation: slideInRight;
-	animation-duration: 2s;
+	opacity: 1;
 }
 
 @media (max-width: 520px) {

@@ -251,7 +251,7 @@ form {
 	position: relative;
 	padding: 0.7rem;
 	width: 420px;
-	background: #7e1cef;
+	background: #6d1cef;
 
 	.field {
 		position: relative;

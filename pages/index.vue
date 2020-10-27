@@ -63,6 +63,7 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		z-index: 1;
 	}
 	.right-section {
 		background: #1f0831;

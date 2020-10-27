@@ -1,9 +1,9 @@
 <template>
 	<div class="container">
-		<div class="skuska" v-if="load"></div>
+		<div v-if="load" class="skuska"></div>
 		<TheNavigationBar />
 		<Nuxt />
-		<!-- <Stars /> -->
+		<Stars />
 	</div>
 </template>
 

@@ -363,6 +363,7 @@ export default {
 }
 .under-projects {
 	position: relative;
+	z-index: 1;
 }
 
 .project-boxes {
