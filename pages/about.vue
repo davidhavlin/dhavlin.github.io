@@ -13,7 +13,8 @@
 			</section>
 			<section class="skill-section">
 				<AboutLeftArrow @click.native="handleClickPrev" />
-				<AboutFloatingSkills />
+				<!-- <AboutFloatingSkills /> -->
+				<AboutSolarSystem />
 			</section>
 		</main>
 	</div>
