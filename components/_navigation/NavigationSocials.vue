@@ -225,10 +225,10 @@ export default {
 		.box,
 		.open-box,
 		.open-empty-box {
-			background: #100317;
+			background: #1d0629;
 			padding: 0.4rem;
 			border-radius: 50%;
-			border: 4px solid #0b020f;
+			border: 4px solid #340d48;
 			box-shadow: -1px 1px 8px 1px #0b020f6e;
 		}
 		.box-title {
