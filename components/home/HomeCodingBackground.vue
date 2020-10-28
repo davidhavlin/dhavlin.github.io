@@ -117,6 +117,7 @@ export default {
 	pointer-events: none;
 	mix-blend-mode: color-dodge;
 	opacity: 0.2;
-	overflow: hidden;
+	white-space: pre;
+	line-height: 1.125rem;
 }
 </style>
