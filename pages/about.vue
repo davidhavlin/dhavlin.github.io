@@ -1,9 +1,6 @@
 <template>
 	<div class="page-about-container">
 		<AboutMe :nextPage="nextPage" />
-		<!-- <transition name="aboutTransition">
-			<AboutTransition v-if="animating" />
-		</transition> -->
 		<main ref="main">
 			<section class="about-section">
 				<!-- <AboutMe /> -->
@@ -31,7 +28,6 @@
 export default {
 	data() {
 		return {
-			animating: false,
 			nextPage: false,
 			infoSign: true,
 		}
@@ -40,25 +36,18 @@ export default {
 		if (this.$route.params.skillsPage) {
 			this.handleClickNext()
 		}
-
-		this.$refs.main.addEventListener('transitionstart', () => {
-			console.log('zaciatok')
-			this.animating = true
-		})
-		this.$refs.main.addEventListener('transitionend', () => {
-			console.log('koniec')
-			this.animating = false
-		})
 	},
 	methods: {
 		handleClickNext() {
 			this.$refs.main.style.transform = 'translateX(-50%)'
 			this.nextPage = true
 			this.infoSign = false
+			this.$nuxt.$emit('clickedNext', this.nextPage)
 		},
 		handleClickPrev() {
 			this.$refs.main.style.transform = 'translateX(0)'
 			this.nextPage = false
+			this.$nuxt.$emit('clickedPrev', this.nextPage)
 		},
 	},
 }

@@ -3,7 +3,7 @@
 		<div v-if="load" class="skuska"></div>
 		<TheNavigationBar />
 		<Nuxt />
-		<Stars />
+		<Stars :moveStars="moveStars" />
 	</div>
 </template>
 
@@ -12,11 +12,24 @@ export default {
 	data() {
 		return {
 			load: true,
+			moveStars: false,
 		}
 	},
+	watch: {
+		'$route.path'(newValue, oldValue) {
+			if (this.moveStars) {
+				this.moveStars = false
+			}
+		},
+	},
 	mounted() {
-		console.log('hmm?')
 		this.load = false
+		this.$nuxt.$on('clickedNext', (data) => {
+			this.moveStars = true
+		})
+		this.$nuxt.$on('clickedPrev', (data) => {
+			this.moveStars = false
+		})
 	},
 }
 </script>
