@@ -1,5 +1,6 @@
 <template>
 	<div class="right-arrow">
+		<AboutInfoSign v-if="infoSign" />
 		<svg
 			width="70"
 			height="94"
@@ -18,7 +19,14 @@
 </template>
 
 <script>
-export default {}
+export default {
+	props: {
+		infoSign: {
+			type: Boolean,
+			default: true,
+		},
+	},
+}
 </script>
 
 <style lang="scss" scoped>
@@ -31,7 +39,7 @@ export default {}
 	cursor: pointer;
 
 	svg {
-		width: 55px;
+		width: 50px;
 	}
 	path {
 		fill: #5903e2;
@@ -43,6 +51,11 @@ export default {}
 		path {
 			stroke: #34b1f8;
 		}
+	}
+}
+@media (max-width: 600px) {
+	.right-arrow {
+		top: 80%;
 	}
 }
 </style>

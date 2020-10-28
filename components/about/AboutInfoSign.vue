@@ -9,12 +9,12 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-$sign-color: #e9d41a;
+$sign-color: #03e271;
 
 .info-sign {
 	position: absolute;
-	top: 37%;
-	right: 2rem;
+	top: -21px;
+	left: -66px;
 	background: $sign-color;
 	color: #000;
 	font-family: 'Press Start 2P', cursive;
@@ -39,13 +39,13 @@ $sign-color: #e9d41a;
 
 @keyframes move {
 	0% {
-		transform: translateY(-5px);
+		transform: translateY(-3px);
 	}
 	50% {
-		transform: translateY(5px);
+		transform: translateY(3px);
 	}
 	100% {
-		transform: translateY(-5px);
+		transform: translateY(-3px);
 	}
 }
 </style>
