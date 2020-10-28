@@ -121,6 +121,22 @@ export default {
 	left: 0;
 	z-index: -1;
 }
+.gradient::after {
+	content: 'X';
+	font-family: 'Press Start 2P', cursive;
+	font-size: 4em;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #34b0f858;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
 .gallery {
 	display: none;
 }
@@ -159,6 +175,15 @@ export default {
 		background-position: -215px;
 		.title {
 			transform: translateX(123px); // toto sposobuje ten text flickering
+		}
+		.gradient::after {
+			opacity: 1;
+		}
+	}
+	.project:active,
+	.project:focus {
+		.gradient::after {
+			opacity: 0;
 		}
 	}
 	.logo {

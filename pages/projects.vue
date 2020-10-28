@@ -117,7 +117,7 @@ export default {
 		},
 		// odstranim hovered classu zo vsetkych projektov
 		removeHovered() {
-			if (this.showCase) return
+			if (this.showCase || !this.hovered) return
 			this.hovered.forEach((proj) => proj.classList.remove('hovered'))
 		},
 
@@ -163,6 +163,8 @@ export default {
 				this.prevProject()
 			} else if (e.composedPath()[2] === this.selected.nextSibling) {
 				this.nextProject()
+			} else if (e.composedPath()[2] === this.selected && this.showCase) {
+				this.closeProject()
 			} else if (e.composedPath()[2] === this.selected) {
 				this.showProject()
 			}
