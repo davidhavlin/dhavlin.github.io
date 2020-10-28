@@ -31,7 +31,7 @@ export default {}
 	cursor: pointer;
 
 	svg {
-		width: 55px;
+		width: 50px;
 	}
 	path {
 		fill: #df1041;
@@ -42,6 +42,16 @@ export default {}
 		path {
 			stroke: #00f2fe;
 		}
+	}
+}
+@media (max-width: 800px) {
+	.left-arrow {
+		left: 1rem;
+	}
+}
+@media (max-width: 600px) {
+	.left-arrow {
+		top: 80%;
 	}
 }
 </style>

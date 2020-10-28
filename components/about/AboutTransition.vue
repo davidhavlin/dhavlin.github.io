@@ -1,5 +1,10 @@
 <template>
-	<div class="about-transition"></div>
+	<div
+		class="about-transition"
+		:style="{
+			backgroundImage: `url(${require('~/assets/images/bg-transition.webp')})`,
+		}"
+	></div>
 </template>
 
 <script>
@@ -17,8 +22,9 @@ export default {}
 	// flex-direction: column;
 	// justify-content: center;
 	// align-items: center;
-	z-index: 1;
+	z-index: 10000;
 	pointer-events: none;
-	background: rgba(255, 0, 0, 0.326);
+	// background: rgba(255, 0, 0, 0.326);
+	// background-image: url(require('@/assets/images/bg-transition.webp'));
 }
 </style>

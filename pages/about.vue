@@ -1,19 +1,27 @@
 <template>
 	<div class="page-about-container">
 		<AboutMe :nextPage="nextPage" />
-		<transition name="aboutTransition">
+		<!-- <transition name="aboutTransition">
 			<AboutTransition v-if="animating" />
-		</transition>
+		</transition> -->
 		<main ref="main">
 			<section class="about-section">
 				<!-- <AboutMe /> -->
-				<AboutInfoSign />
-				<AboutRightArrow @click.native="handleClickNext" />
+
+				<AboutRightArrow
+					v-show="!nextPage"
+					:infoSign="infoSign"
+					@click.native="handleClickNext"
+				/>
 				<!-- <CharAnimation /> -->
 			</section>
 			<section class="skill-section">
-				<AboutLeftArrow @click.native="handleClickPrev" />
-				<AboutFloatingSkills />
+				<AboutLeftArrow
+					v-show="nextPage"
+					@click.native="handleClickPrev"
+				/>
+				<!-- <AboutFloatingSkills /> -->
+				<AboutSolarSystem :nextPage="nextPage" />
 			</section>
 		</main>
 	</div>
@@ -25,6 +33,7 @@ export default {
 		return {
 			animating: false,
 			nextPage: false,
+			infoSign: true,
 		}
 	},
 	mounted() {
@@ -45,6 +54,7 @@ export default {
 		handleClickNext() {
 			this.$refs.main.style.transform = 'translateX(-50%)'
 			this.nextPage = true
+			this.infoSign = false
 		},
 		handleClickPrev() {
 			this.$refs.main.style.transform = 'translateX(0)'

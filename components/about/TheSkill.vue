@@ -1,8 +1,10 @@
 <template>
-	<div class="skill" :style="transform">
-		<img :src="makeIcon(skill)" alt="" :style="randomRotate()" />
-		<p class="skill-name">{{ skill }}</p>
-		<div class="circle"></div>
+	<div class="elipse" :style="[makeTransform(skill), randomRotate()]">
+		<div class="skill" :style="transform">
+			<img :src="makeIcon(skill)" alt="" :style="randomRotate()" />
+			<p class="skill-name">{{ skill }}</p>
+			<div class="circle"></div>
+		</div>
 	</div>
 </template>
 
@@ -46,28 +48,44 @@ export default {
 		makeIcon(tech) {
 			switch (tech) {
 				case 'HTML':
-					this.transform = { transform: `translate(55vw, 17vh)` }
 					return require('@/assets/images/software/html5.png')
 
 				case 'CSS/Sass':
-					this.transform = { transform: `translate(44vw, 75vh)` }
 					return require('@/assets/images/software/css.png')
 
 				case 'Javascript':
-					this.transform = { transform: `translate(65vw, 27vh)` }
 					return require('@/assets/images/software/js.png')
 
 				case 'Vue.js':
-					this.transform = { transform: `translate(55vw, 17vh)` }
 					return require('@/assets/images/software/vue.png')
 
 				case 'Nuxt.js':
-					this.transform = { transform: `translate(55vw, 17vh)` }
 					return require('@/assets/images/software/nuxt.png')
 
 				case 'React':
-					this.transform = { transform: `translate(35vw, 26vh)` }
 					return require('@/assets/images/software/react.png')
+			}
+		},
+
+		makeTransform(tech) {
+			switch (tech) {
+				case 'HTML':
+					return { width: '100px', height: '100px' }
+
+				case 'CSS/Sass':
+					return { width: '200px', height: '200px' }
+
+				case 'Javascript':
+					return { width: '300px', height: '300px' }
+
+				case 'Vue.js':
+					return { width: '400px', height: '400px' }
+
+				case 'Nuxt.js':
+					return { width: '500px', height: '500px' }
+
+				case 'React':
+					return { width: '600px', height: '600px' }
 			}
 		},
 	},
@@ -75,10 +93,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.elipse {
+	position: absolute;
+	width: 400px;
+	height: 400px;
+	border-radius: 50%;
+	border: 1px solid #7206d51a;
+	animation: rotate 20s infinite linear;
+}
+
+@keyframes rotate {
+	to {
+		transform: rotate(360deg);
+	}
+}
 .skill {
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: -17.5px;
+	left: calc(50% - 17.5px);
 	display: flex;
 	align-items: center;
 
