@@ -405,8 +405,6 @@ export default {
 	}
 }
 @media (max-width: 800px) {
-	.projectShowcase {
-	}
 	.projects {
 		height: 480px;
 	}
@@ -422,7 +420,7 @@ export default {
 	.projectShowcase {
 		justify-content: flex-start;
 		height: calc(100vh + 200px);
-		padding-top: 1.5rem;
+		padding-top: 5.5rem;
 
 		.projects {
 			height: auto;
