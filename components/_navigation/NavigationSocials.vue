@@ -1,64 +1,66 @@
 <template>
-	<div>
-		<section
-			ref="boxButton"
-			class="social-box"
-			@click="showIcons()"
-			@mouseenter="openBox = true"
-			@mouseleave="openBox = false"
-		>
-			<div v-if="notification" class="notification">
-				<span>5</span>
-			</div>
-			<!-- ZATVORENA KRABICA -->
-			<div v-show="!openBox && !socials" class="box">
-				<ClosedBox />
-			</div>
-			<!-- OTVORENA PLNA KRABICA -->
-			<div v-show="openBox && !socials" class="open-box">
-				<OpenBoxFull />
-			</div>
-			<!-- OTVORENA PRAZDNA KRABICA -->
-			<div v-show="socials" class="open-empty-box">
-				<OpenBoxEmpty />
-			</div>
-			<div class="box-title">Socials</div>
-		</section>
+	<div class="social-container">
+		<div class="socials">
+			<section
+				ref="boxButton"
+				class="social-box"
+				@click="showIcons()"
+				@mouseenter="openBox = true"
+				@mouseleave="openBox = false"
+			>
+				<div v-if="notification" class="notification">
+					<span>5</span>
+				</div>
+				<!-- ZATVORENA KRABICA -->
+				<div v-show="!openBox && !socials" class="box">
+					<ClosedBox />
+				</div>
+				<!-- OTVORENA PLNA KRABICA -->
+				<div v-show="openBox && !socials" class="open-box">
+					<OpenBoxFull />
+				</div>
+				<!-- OTVORENA PRAZDNA KRABICA -->
+				<div v-show="socials" class="open-empty-box">
+					<OpenBoxEmpty />
+				</div>
+				<div class="box-title">Socials</div>
+			</section>
 
-		<section
-			v-closable="{
-				exclude: ['boxButton'],
-				handler: 'onClose',
-			}"
-			class="social-icons"
-		>
-			<div class="icon facebook" :class="{ facebookIn: socials }">
-				<a href="#">
-					<Facebook />
-				</a>
-			</div>
-			<div class="icon twitter" :class="{ twitterIn: socials }">
-				<a href="#">
-					<Twitter />
-				</a>
-			</div>
-			<div class="icon youtube" :class="{ youtubeIn: socials }">
-				<a href="#">
-					<Youtube />
-				</a>
-			</div>
-			<div class="icon github" :class="{ githubIn: socials }">
-				<a href="https://github.com/davidhavlin" target="_blank">
-					<Github />
-				</a>
-			</div>
-			<div class="icon instagram" :class="{ instagramIn: socials }">
-				<a href="#">
-					<Instagram />
-				</a>
-			</div>
-		</section>
-		<div class="circle" :class="{ bigCircle: socials }"></div>
+			<section
+				v-closable="{
+					exclude: ['boxButton'],
+					handler: 'onClose',
+				}"
+				class="social-icons"
+			>
+				<div class="icon facebook" :class="{ facebookIn: socials }">
+					<a href="#">
+						<Facebook />
+					</a>
+				</div>
+				<div class="icon twitter" :class="{ twitterIn: socials }">
+					<a href="#">
+						<Twitter />
+					</a>
+				</div>
+				<div class="icon youtube" :class="{ youtubeIn: socials }">
+					<a href="#">
+						<Youtube />
+					</a>
+				</div>
+				<div class="icon github" :class="{ githubIn: socials }">
+					<a href="https://github.com/davidhavlin" target="_blank">
+						<Github />
+					</a>
+				</div>
+				<div class="icon instagram" :class="{ instagramIn: socials }">
+					<a href="#">
+						<Instagram />
+					</a>
+				</div>
+			</section>
+			<div class="circle" :class="{ bigCircle: socials }"></div>
+		</div>
 	</div>
 </template>
 
@@ -104,6 +106,21 @@ export default {
 
 <style lang="scss" scoped>
 @import '~assets/scss/_colors';
+.social-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	z-index: 200;
+	pointer-events: none;
+	overflow: hidden;
+}
+.socials {
+	margin-bottom: 1rem;
+	position: absolute;
+	bottom: 0;
+	pointer-events: all;
+}
 
 // IKONKA KRABICE A VSETKO OKOLO NEJ
 .social-box {
@@ -115,7 +132,7 @@ export default {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		// font-family: 'IBM Plex Mono', monospace;
+		color: #fff;
 		font-family: 'Press Start 2P', cursive;
 		font-size: 0.6em;
 		position: absolute;
@@ -221,6 +238,12 @@ export default {
 }
 
 @media (max-width: 800px) {
+	.socials {
+		margin-bottom: 0rem;
+		right: 1rem;
+		top: 1rem;
+		bottom: unset;
+	}
 	.social-box {
 		.box,
 		.open-box,

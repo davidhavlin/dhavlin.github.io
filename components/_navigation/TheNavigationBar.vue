@@ -1,10 +1,7 @@
 <template>
 	<nav class="navbar">
 		<!-- <NavigationLogo /> -->
-
 		<NavigationIcons />
-
-		<NavigationSocials class="socials" />
 	</nav>
 </template>
 
@@ -21,8 +18,8 @@ export default {}
 	color: #fff;
 	position: fixed;
 	// background: transparent;
-	background: #0b020f; // zeby?
-	height: 100vh;
+	background: #0b020f;
+	height: 100%;
 	width: 4.4em;
 	z-index: 200;
 	transform: translate3d(0, 0, 0);

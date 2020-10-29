@@ -2,6 +2,7 @@
 	<div class="container">
 		<!-- <div v-if="load" class="skuska"></div> -->
 		<TheNavigationBar />
+		<NavigationSocials />
 		<Nuxt />
 		<Stars :moveStars="moveStars" />
 	</div>
