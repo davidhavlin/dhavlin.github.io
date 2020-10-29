@@ -4,7 +4,7 @@
 
 		<NavigationIcons />
 
-		<!-- <NavigationSocials class="socials" /> -->
+		<NavigationSocials class="socials" />
 	</nav>
 </template>
 
