@@ -116,7 +116,7 @@ export default {
 				text: this.formText,
 			}
 			this.loading = true
-			fetch('/api/contact', {
+			fetch('/contact', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

@@ -21,6 +21,6 @@ app.post('/', (req, res) => {
 })
 
 export default {
-	path: '/api/contact',
+	path: '/contact',
 	handler: app,
 }
