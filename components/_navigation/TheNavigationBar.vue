@@ -25,6 +25,7 @@ export default {}
 	height: 100vh;
 	width: 4.4em;
 	z-index: 200;
+	transform: translate3d(0, 0, 0);
 }
 .socials {
 	margin-bottom: 1rem;
