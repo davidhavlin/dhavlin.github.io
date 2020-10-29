@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div v-if="load" class="skuska"></div>
+		<!-- <div v-if="load" class="skuska"></div> -->
 		<TheNavigationBar />
 		<Nuxt />
 		<Stars :moveStars="moveStars" />
@@ -23,7 +23,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.load = false
+		// this.load = false
 		this.$nuxt.$on('clickedNext', (data) => {
 			this.moveStars = true
 		})

@@ -107,6 +107,7 @@ export default {
 
 <style lang="scss" scoped>
 .coding-background {
+	font-family: 'VT323', monospace;
 	position: absolute;
 	top: 0;
 	left: 0;
