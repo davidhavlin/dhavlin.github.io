@@ -313,6 +313,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	background: #100317;
+	overflow: hidden;
 	z-index: 10;
 }
 

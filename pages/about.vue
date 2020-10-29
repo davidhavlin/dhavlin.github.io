@@ -39,7 +39,7 @@ export default {
 	},
 	methods: {
 		handleClickNext() {
-			this.$refs.main.style.transform = 'translateX(-50%)'
+			this.$refs.main.style.transform = 'translateX(-100%)'
 			this.nextPage = true
 			this.infoSign = false
 			this.$nuxt.$emit('clickedNext', this.nextPage)
@@ -55,33 +55,37 @@ export default {
 
 <style lang="scss" scoped>
 .page-about-container {
-	width: 200vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	color: #fff;
 	background: #100317;
+	overflow: hidden;
 }
 main {
+	position: relative;
 	width: 100%;
 	height: 100%;
 	display: flex;
 	transition: all 1s ease;
 }
 section {
-	position: relative;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	z-index: 1;
 }
 
 .about-section {
+	left: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .skill-section {
+	left: 100%;
 	background: #0d0213;
 }
 </style>
