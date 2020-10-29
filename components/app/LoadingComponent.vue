@@ -113,7 +113,6 @@ export default {
 			}, 400)
 		},
 		finish() {
-			// cas bol 1600
 			setTimeout(() => {
 				this.index = 0
 				this.scale = 0
@@ -126,7 +125,6 @@ export default {
 
 <style lang="scss" scoped>
 $bar-border: #0a000f;
-// $bar-color: #68c01e;
 $bar-color: #8709ca;
 
 .loading {
@@ -135,8 +133,7 @@ $bar-color: #8709ca;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	// background: #0b020f;
-	background: #1f002d;
+	background: #100317;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -147,7 +144,7 @@ $bar-color: #8709ca;
 
 .terminal {
 	font-family: 'VT323', monospace;
-	color: #430061;
+	color: #1c0629;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -162,7 +159,6 @@ $bar-color: #8709ca;
 	padding: 0;
 	pointer-events: none;
 	z-index: -1;
-	filter: blur(2px);
 }
 
 .loading-title {
@@ -232,11 +228,11 @@ $bar-color: #8709ca;
 	transition: all 300ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 .loadingComponent-enter {
-	opacity: 0.5;
-	transform: translateX(-100%);
+	// opacity: 0.5;
+	transform: translateY(-100%);
 }
 .loadingComponent-leave-to {
-	transform: translateX(100%);
-	opacity: 0.5;
+	transform: translateY(-100%);
+	// opacity: 0.5;
 }
 </style>
