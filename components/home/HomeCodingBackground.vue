@@ -114,7 +114,7 @@ export default {
 	height: 100%;
 	width: 100%;
 	color: #6daff6;
-	font-size: 0.7em;
+	font-size: 1.3em;
 	pointer-events: none;
 	mix-blend-mode: color-dodge;
 	opacity: 0.2;
