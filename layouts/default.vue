@@ -18,16 +18,10 @@ export default {
 	},
 	watch: {
 		'$route.path'(newValue, oldValue) {
-			if (this.moveStars) {
-				this.moveStars = false
-			}
+			if (this.moveStars) this.moveStars = false
 		},
 	},
 	mounted() {
-		// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-		const vh = window.innerHeight * 0.01
-		// Then we set the value in the --vh custom property to the root of the document
-		document.documentElement.style.setProperty('--vh', `${vh}px`)
 		// this.load = false
 		this.$nuxt.$on('clickedNext', (data) => {
 			this.moveStars = true
@@ -76,20 +70,12 @@ a {
 body {
 	width: 100%;
 	height: 100%;
-	// background: url('~assets/images/BackgroundpixelatedCOLORED.jpg');
-	// background-attachment: fixed;
+	background-color: #1f0831;
 	overflow: hidden;
-	// background-color: #180223;
-	background-color: #0b020f;
-	// cursor: url('~assets/images/cursor1.png'), auto;
-	// cursor: url('~assets/images/heart.png'), auto;
 }
 
 .container {
-	// height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-	// height: calc(var(--vh, 1vh) * 100);
 	height: 100%;
-	// overflow: hidden;
 }
 
 .skuska {
@@ -102,10 +88,12 @@ body {
 .loading-component-leave-active {
 	transition: opacity 0.5s;
 }
-.loading-component-enter, .loading-component-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.loading-component-enter,
+.loading-component-leave-to {
 	opacity: 0;
 }
 
+// "page" je default nazov transitionu pre hlavne stranky
 .page-enter-active {
 	animation: pageEnter 1s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
 	animation-delay: 400ms;
@@ -116,33 +104,39 @@ body {
 
 @keyframes pageEnter {
 	0% {
-		transform: scale(0.8);
+		transform: scale(0.8) translateY(100%);
+		opacity: 0.5;
 	}
-	60% {
-		transform: scale(0.8);
+	50% {
+		transform: scale(0.8) translateY(0);
+	}
+	70% {
+		transform: scale(0.8) translateY(0);
+		opacity: 0.5;
 	}
 	100% {
-		transform: scale(1);
+		transform: scale(1) translateY(0);
+		opacity: 1;
 	}
 }
 @keyframes pageLeave {
 	0% {
-		transform: scale(1);
+		transform: scale(1) translateY(0);
+		opacity: 1;
+	}
+	30% {
+		transform: scale(0.8) translateY(0);
+		opacity: 0.5;
 	}
 	40% {
-		transform: scale(0.8);
+		transform: scale(0.8) translateY(0);
 	}
-	100% {
-		transform: scale(0.8);
+	80% {
+		transform: scale(0.8) translateY(100%);
 	}
 }
 
-@media (max-width: 620px) {
-	body {
-		overflow: visible;
-	}
-}
-@media (max-height: 880px) {
+@media (max-width: 800px) {
 	body {
 		overflow: visible;
 	}

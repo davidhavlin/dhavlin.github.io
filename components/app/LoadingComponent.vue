@@ -140,6 +140,7 @@ $bar-color: #8709ca;
 	align-items: center;
 	z-index: 1000;
 	transform: translateX(0);
+	overflow: hidden;
 }
 
 .terminal {

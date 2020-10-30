@@ -10,7 +10,7 @@
 					:infoSign="infoSign"
 					@click.native="handleClickNext"
 				/>
-				<!-- <CharAnimation /> -->
+				<CharAnimation />
 			</section>
 			<section class="skill-section">
 				<AboutLeftArrow
