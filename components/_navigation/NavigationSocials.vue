@@ -263,8 +263,9 @@ export default {
 			display: none;
 		}
 		.notification {
-			top: 2px;
-			left: 30px;
+			top: -3px;
+			left: 24px;
+			transform: scaleX(-1);
 		}
 	}
 	.circle {
