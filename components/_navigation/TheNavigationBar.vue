@@ -11,20 +11,15 @@ export default {}
 
 <style lang="scss" scoped>
 .navbar {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	color: #fff;
 	position: fixed;
-	// background: transparent;
-	background: #0b020f;
 	height: 100%;
-	width: 4.4em;
+	width: 100%;
 	z-index: 200;
-	transform: translate3D(0, 0, 0);
-	-webkit-backface-visibility: visible;
-	backface-visibility: visible;
+	pointer-events: none;
+	// transform: translate3D(0, 0, 0);
+	// -webkit-backface-visibility: visible;
+	// backface-visibility: visible;
 }
 .socials {
 	margin-bottom: 1rem;
@@ -33,13 +28,6 @@ export default {}
 }
 
 @media (max-width: 800px) {
-	.navbar {
-		height: 4em;
-		width: 100%;
-		bottom: 0;
-		flex-direction: row;
-	}
-
 	.socials {
 		margin-bottom: 0rem;
 		position: absolute;

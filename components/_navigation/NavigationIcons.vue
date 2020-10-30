@@ -120,6 +120,12 @@ export default {}
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background: #0b020f;
+	height: 100%;
+	width: 4.4rem;
+	pointer-events: all;
+	position: fixed;
+	left: 0;
 
 	.link {
 		text-align: center;
@@ -220,6 +226,10 @@ export default {}
 @media (max-width: 800px) {
 	.navigation-links {
 		flex-direction: row;
+		width: 100%;
+		height: 4.4rem;
+		bottom: 0;
+		left: unset;
 
 		.link {
 			margin-bottom: 0rem;
