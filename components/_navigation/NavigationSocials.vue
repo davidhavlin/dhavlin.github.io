@@ -9,7 +9,7 @@
 				@mouseleave="openBox = false"
 			>
 				<div v-if="notification" class="notification">
-					<span>5</span>
+					<span>4</span>
 				</div>
 				<!-- ZATVORENA KRABICA -->
 				<div v-show="!openBox && !socials" class="box">
@@ -53,11 +53,6 @@
 						<Github />
 					</a>
 				</div>
-				<div class="icon instagram" :class="{ instagramIn: socials }">
-					<a href="#">
-						<Instagram />
-					</a>
-				</div>
 			</section>
 			<div class="circle" :class="{ bigCircle: socials }"></div>
 		</div>
@@ -72,7 +67,6 @@ import Facebook from '~/assets/images/svg/Facebook.svg'
 import Youtube from '~/assets/images/svg/Youtube.svg'
 import Twitter from '~/assets/images/svg/Twitter.svg'
 import Github from '~/assets/images/svg/Github.svg'
-import Instagram from '~/assets/images/svg/Instagram.svg'
 
 export default {
 	components: {
@@ -83,7 +77,6 @@ export default {
 		Youtube,
 		Twitter,
 		Github,
-		Instagram,
 	},
 	data() {
 		return {
@@ -117,7 +110,8 @@ export default {
 }
 .socials {
 	margin-bottom: 1rem;
-	position: absolute;
+	margin-left: 0.4rem;
+	position: fixed;
 	bottom: 0;
 	pointer-events: all;
 }
@@ -136,16 +130,26 @@ export default {
 		font-family: 'Press Start 2P', cursive;
 		font-size: 0.6em;
 		position: absolute;
-		top: -5px;
-		left: 34px;
+		top: -11px;
+		left: 23px;
 		width: 0.93rem;
 		height: 0.93rem;
 		background: #ff0023;
-		border: 2px solid #100317;
-		border-radius: 5px;
+		box-shadow: #ff0023 0px 0.1em, #ff0023 0px -0.1em, #ff0023 0.1em 0px,
+			#ff0023 -0.1em 0px;
 		box-sizing: content-box;
 		z-index: 1;
 		pointer-events: none;
+	}
+	.notification::after {
+		content: ' ';
+		position: absolute;
+		top: 101%;
+		left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: #ff0023 transparent transparent transparent;
 	}
 
 	.box,
@@ -245,6 +249,7 @@ export default {
 		bottom: unset;
 	}
 	.social-box {
+		transform: scaleX(-1);
 		.box,
 		.open-box,
 		.open-empty-box {

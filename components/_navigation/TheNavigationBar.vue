@@ -22,7 +22,9 @@ export default {}
 	height: 100%;
 	width: 4.4em;
 	z-index: 200;
-	transform: translate3d(0, 0, 0);
+	transform: translate3D(0, 0, 0);
+	-webkit-backface-visibility: visible;
+	backface-visibility: visible;
 }
 .socials {
 	margin-bottom: 1rem;
