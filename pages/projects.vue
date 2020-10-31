@@ -437,11 +437,11 @@ export default {
 		.ProjectBox:not(.selected)::after {
 			content: '';
 			position: absolute;
-			top: -10px;
+			top: -6px;
 			left: -10px;
 			width: 150%;
 			height: 106%;
-			background: #100317cf;
+			background: #140527e0;
 			z-index: 10;
 			pointer-events: none;
 		}
