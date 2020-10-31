@@ -312,7 +312,7 @@ export default {
 	height: 100%;
 	justify-content: center;
 	align-items: center;
-	background: #100317;
+	background: var(--main-bg-color);
 	overflow: hidden;
 	z-index: 10;
 }

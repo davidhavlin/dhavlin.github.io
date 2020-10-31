@@ -1,15 +1,17 @@
 <template>
 	<div ref="sky" class="sky">
-		<div class="sky-container" :class="{ moveStars: moveStars }">
-			<transition-group name="stars">
-				<div
-					v-for="star in stars"
-					:key="star.id"
-					class="star"
-					:class="star.size"
-					:style="{ left: star.left, top: star.top }"
-				></div>
-			</transition-group>
+		<div class="sky-overflow" :class="{ whileLoading: loading }">
+			<div class="sky-container" :class="{ moveStars: moveStars }">
+				<transition-group name="stars">
+					<div
+						v-for="star in stars"
+						:key="star.id"
+						class="star"
+						:class="star.size"
+						:style="{ left: star.left, top: star.top }"
+					></div>
+				</transition-group>
+			</div>
 		</div>
 		<!-- <a @click.prevent="magicStars()">CLICK</a> -->
 	</div>
@@ -19,6 +21,10 @@
 export default {
 	props: {
 		moveStars: {
+			type: Boolean,
+			default: false,
+		},
+		loading: {
 			type: Boolean,
 			default: false,
 		},
@@ -225,14 +231,24 @@ export default {
 	left: 0;
 	z-index: 0;
 	overflow: hidden;
+	transition: all 1s ease-in-out;
 }
 .sky-container {
 	width: 100%;
 	height: 100%;
 	transition: transform 1s ease;
 }
+.sky-overflow {
+	width: 100%;
+	height: 100%;
+	transition: transform 1s ease;
+}
 .moveStars {
 	transform: translateX(-25px);
+}
+.whileLoading {
+	transform: scale(7.5);
+	opacity: 0.2;
 }
 .star {
 	position: absolute;

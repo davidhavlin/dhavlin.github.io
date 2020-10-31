@@ -40,7 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 .contact-container {
-	background: #100317;
+	background: var(--main-bg-color);
 }
 .contact {
 	width: 100%;

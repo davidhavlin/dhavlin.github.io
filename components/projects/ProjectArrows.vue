@@ -51,7 +51,7 @@
 		}
 		path {
 			fill: #df1041;
-			stroke: #100317;
+			stroke: var(--main-bg-color);
 			stroke-width: 4px;
 		}
 

@@ -4,7 +4,7 @@
 		<TheNavigationBar />
 		<NavigationSocials />
 		<Nuxt />
-		<Stars :moveStars="moveStars" />
+		<Stars :moveStars="moveStars" :loading="loading" />
 	</div>
 </template>
 
@@ -14,11 +14,16 @@ export default {
 		return {
 			load: true,
 			moveStars: false,
+			loading: false,
 		}
 	},
 	watch: {
 		'$route.path'(newValue, oldValue) {
+			this.loading = true
 			if (this.moveStars) this.moveStars = false
+			setTimeout(() => {
+				this.loading = false
+			}, 2000)
 		},
 	},
 	mounted() {
@@ -70,7 +75,7 @@ a {
 body {
 	width: 100%;
 	height: 100%;
-	background-color: #1f0831;
+	background: var(--navbar-color);
 	overflow: hidden;
 }
 
@@ -105,14 +110,15 @@ body {
 @keyframes pageEnter {
 	0% {
 		transform: scale(0.8) translateY(100%);
-		opacity: 0.5;
+		opacity: 0;
 	}
 	50% {
 		transform: scale(0.8) translateY(0);
+		opacity: 0.2;
 	}
 	70% {
 		transform: scale(0.8) translateY(0);
-		opacity: 0.5;
+		opacity: 0.2;
 	}
 	100% {
 		transform: scale(1) translateY(0);
@@ -126,13 +132,14 @@ body {
 	}
 	30% {
 		transform: scale(0.8) translateY(0);
-		opacity: 0.5;
+		opacity: 0.2;
 	}
 	40% {
 		transform: scale(0.8) translateY(0);
 	}
 	80% {
 		transform: scale(0.8) translateY(100%);
+		opacity: 0;
 	}
 }
 

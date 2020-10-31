@@ -121,6 +121,7 @@ export default {}
 	justify-content: center;
 	align-items: center;
 	background: #0b020f;
+	background: var(--navbar-color);
 	height: 100%;
 	width: 4.4rem;
 	pointer-events: all;
@@ -180,12 +181,12 @@ export default {}
 // --------- FARBY IKONY
 .home-icon {
 	fill: #086aa6;
-	stroke: #110019;
+	stroke: var(--navbar-color);
 }
 .about-icon {
 	fill: #9212f8;
 	// fill: #ff076e;
-	stroke: #110019;
+	stroke: var(--navbar-color);
 }
 .projects-icon-color {
 	fill: #34b1f8;
@@ -198,10 +199,10 @@ export default {}
 	// fill: #0aff61;
 }
 .contact-icon-under {
-	fill: #110019;
+	fill: var(--navbar-color);
 }
 .contact-icon-under-stroke {
-	stroke: #110019;
+	stroke: var(--navbar-color);
 }
 
 /* --------- HOVERY----------- */

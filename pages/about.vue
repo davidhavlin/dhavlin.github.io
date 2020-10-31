@@ -61,7 +61,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	color: #fff;
-	background: #100317;
+	background: var(--main-bg-color);
 	overflow: hidden;
 }
 main {

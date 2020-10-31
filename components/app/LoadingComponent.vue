@@ -11,25 +11,6 @@
 					Estimated time remaining: {{ estimatedTime() }}
 				</div>
 			</div>
-			<div class="icon">
-				<svg
-					width="41"
-					height="35"
-					viewBox="0 0 41 35"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						class="about-icon"
-						fill-rule="evenodd"
-						clip-rule="evenodd"
-						d="M34.4019 1H6.78469V6.00562H1V22.691H6.78469V34H12.756V28.4382H17.6077V34H23.5789V28.4382H28.8038V34H34.4019V22.691H40V6.00562H34.4019V1ZM7.3445 11.9382H17.6077V17.1292H7.3445V11.9382ZM33.8421 11.9382H23.5789V17.1292H33.8421V11.9382Z"
-						fill="#9212F8"
-						stroke="#110019"
-						stroke-width="2"
-					/>
-				</svg>
-			</div>
 		</div>
 	</transition>
 </template>
@@ -125,7 +106,7 @@ export default {
 
 <style lang="scss" scoped>
 $bar-border: #0a000f;
-$bar-color: #8709ca;
+$bar-color: #46009e;
 
 .loading {
 	position: fixed;
@@ -133,7 +114,7 @@ $bar-color: #8709ca;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #100317;
+	background: var(--main-bg-color-darker);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -145,7 +126,7 @@ $bar-color: #8709ca;
 
 .terminal {
 	font-family: 'VT323', monospace;
-	color: #1c0629;
+	color: #210742;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -177,7 +158,7 @@ $bar-color: #8709ca;
 	width: 280px;
 	height: 25px;
 	margin-bottom: 1rem;
-	background: #180023;
+	background: #16062b;
 	box-shadow: $bar-border 0px 0.4em, $bar-border 0px -0.4em,
 		$bar-border 0.4em 0px, $bar-border -0.4em 0px;
 	overflow: hidden;
@@ -200,28 +181,14 @@ $bar-color: #8709ca;
 			top: 0;
 			width: 100%;
 			height: 50%;
-			background: lighten($bar-color, 10);
+			background: lighten($bar-color, 15);
 		}
 	}
 }
 .loading-time {
-	color: #8709ca;
+	color: #6800eb;
 	font-size: 0.8rem;
 	position: absolute;
-}
-
-.icon {
-	display: none;
-	position: absolute;
-	transform: translate();
-
-	.about-icon {
-		stroke: #1f002d;
-		fill: #11001a;
-	}
-	svg {
-		width: 28px;
-	}
 }
 
 .loadingComponent-enter-active,

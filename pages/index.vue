@@ -54,7 +54,7 @@ export default {
 	width: 100%;
 	height: 100vh;
 	overflow: hidden;
-	background: #100317;
+	background: var(--main-bg-color);
 
 	.left-section {
 		width: 60%;
