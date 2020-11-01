@@ -241,7 +241,7 @@ export default {
 .sky-overflow {
 	width: 100%;
 	height: 100%;
-	transition: transform 1s ease;
+	transition: all 1s ease;
 }
 .moveStars {
 	transform: translateX(-25px);

@@ -89,10 +89,10 @@
 		</div>
 
 		<!-- ***********    CONTACT link  ****************** -->
-		<div class="link">
+		<div class="link email">
 			<nuxt-link to="/contact">
 				<!-- prettier-ignore -->
-				<svg width="43" height="22"	viewBox="0 0 43 29" fill="none">
+				<!-- <svg width="43" height="22"	viewBox="0 0 43 29" fill="none">
 					<rect class="contact-icon-under" width="43"	height="29"	fill="#7E0CEF"/>
 					<path class="contact-icon" fill-rule="evenodd" clip-rule="evenodd"
 						d="M2 2H41V27H2V2ZM8.53757 5.07018V8.14035H5.26879V5.07018H8.53757ZM8.65029 8.35965H11.8064V11.2105H8.65029V8.35965ZM15.0751 11.4298H12.0318V14.5H15.0751V11.4298ZM18.4566 14.6096H15.3006V17.7895H18.4566V20.75H24.6561V17.7895H18.4566V14.6096ZM24.9942 14.6096H28.1503V17.7895H24.9942V14.6096ZM31.5318 11.4298H28.1503V14.5H31.5318V11.4298ZM31.5318 8.35965H34.5751V11.2105H31.5318V8.35965ZM34.5751 8.14035V5.07018H37.8439V8.14035H34.5751Z"
@@ -100,6 +100,32 @@
 					<path class="contact-icon-under-stroke icon-path"
 						d="M18.4566 17.7895H24.6561V20.75H18.4566V17.7895ZM18.4566 17.7895V14.6096H15.3006V17.7895H18.4566ZM2 2H41V27H2V2ZM8.53757 8.14035V5.07018H5.26879V8.14035H8.53757ZM34.5751 5.07018V8.14035H37.8439V5.07018H34.5751ZM8.65029 8.35965H11.8064V11.2105H8.65029V8.35965ZM12.0318 11.4298H15.0751V14.5H12.0318V11.4298ZM24.9942 14.6096H28.1503V17.7895H24.9942V14.6096ZM28.1503 11.4298H31.5318V14.5H28.1503V11.4298ZM31.5318 8.35965H34.5751V11.2105H31.5318V8.35965Z"
 						stroke="#7E0CEF"/>
+				</svg> -->
+
+				<svg
+					width="34"
+					height="23"
+					viewBox="0 0 34 23"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M31 3H3V20H31V3Z"
+						fill="#C4C4C4"
+						stroke="#08EFC5"
+						stroke-width="4"
+						class="contact-icon-under"
+					/>
+					<path
+						class="contact-icon"
+						d="M31 3H3V20H31V3Z"
+						fill="#E9D41A"
+					/>
+					<path
+						class="contact-icon-up"
+						d="M4.5 7.5V4H8V6.5H10V8.5H12.5V11H15V13.5H19V11H21.5V8.5H24V6.5H26V4H29.5V7.5H27V9.5H24.5V12H22V14.5H20V16.5H14V14.5H12V12H9.5V9.5H7V7.5H4.5Z"
+						fill="#08EFC5"
+					/>
 				</svg>
 
 				<div class="link-name">Contact</div>
@@ -161,7 +187,7 @@ export default {}
 	margin-top: -1px;
 	margin-left: 1px;
 	height: 1.1em;
-	border-right: 4px solid #ffffff;
+	border-right: 4px solid #0af0f0;
 	opacity: 0;
 	-webkit-animation: type 1s steps(2, jump-none) infinite;
 	animation: type 1s steps(2, jump-none) infinite;
@@ -175,7 +201,14 @@ export default {}
 // ------- AKTIV KLASSA
 .nuxt-link-exact-active {
 	.link-name {
+		color: #0af0f0;
 		opacity: 1;
+	}
+	.icon-path {
+		stroke: #0af0f0;
+	}
+	.contact-icon-under {
+		fill: #0af0f0;
 	}
 }
 // --------- FARBY IKONY
@@ -195,14 +228,14 @@ export default {}
 	fill: darken(#34b1f8, 20);
 }
 .contact-icon {
-	fill: #ffd60a;
 	// fill: #0aff61;
+	fill: #f7db06;
 }
 .contact-icon-under {
-	fill: var(--navbar-color);
-}
-.contact-icon-under-stroke {
 	stroke: var(--navbar-color);
+}
+.contact-icon-up {
+	fill: var(--navbar-color);
 }
 
 /* --------- HOVERY----------- */
@@ -219,8 +252,18 @@ export default {}
 .link:hover .link-name::after {
 	display: none;
 }
-.link:hover .contact-icon-under {
-	fill: #0af0f0;
+.email:hover {
+	.contact-icon {
+		// fill: #0af0f0;
+		// fill: #0af0f0;
+	}
+	.contact-icon-under {
+		stroke: #0af0f0;
+	}
+	.contact-icon-up {
+		// fill: var(--navbar-color);
+		fill: #0af0f0;
+	}
 }
 
 // MEDIA QUERIES -------------

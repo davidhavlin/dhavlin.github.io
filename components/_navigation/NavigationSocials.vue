@@ -245,7 +245,7 @@ export default {
 	.socials {
 		margin-bottom: 0rem;
 		right: 1rem;
-		top: 1rem;
+		top: 0.5rem;
 		bottom: unset;
 	}
 	.social-box {
@@ -274,7 +274,7 @@ export default {
 		position: absolute;
 		transform: scaleX(0.9);
 		border-radius: 0;
-		background: #12021c;
+		background: #190631;
 		top: -21px;
 		left: 0;
 		opacity: 0;

@@ -96,28 +96,10 @@ export default {
 			.link-bg {
 				height: calc(100% + 12px);
 				// outline: 2px solid #0fd7d7;
-				background: rgba(88, 21, 150, 0.22);
+				background: #260a4b;
 			}
 			.link-text {
 				color: #0fd7d7;
-			}
-		}
-		&:nth-child(1):hover {
-			.link-bg {
-				// background: #9212f8;
-				// outline: 2px solid #9212f8;
-			}
-		}
-		&:nth-child(2):hover {
-			.link-bg {
-				// background: #34b1f8;
-				// outline: 2px solid #34b1f8;
-			}
-		}
-		&:nth-child(3):hover {
-			.link-bg {
-				// background: #ffc30a;
-				// outline: 2px solid #ffc30a;
 			}
 		}
 	}
@@ -125,6 +107,7 @@ export default {
 		opacity: 0;
 		position: relative;
 		z-index: 1;
+		color: #9212f8;
 	}
 	.link-bg {
 		position: absolute;
@@ -133,7 +116,7 @@ export default {
 		right: -33px;
 		width: 106%;
 		height: 12px;
-		background: rgba(85, 26, 139, 0.21961);
+		background: #200840;
 		z-index: 0;
 		transition: height 0.1s ease;
 	}
