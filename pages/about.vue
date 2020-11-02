@@ -10,7 +10,7 @@
 					:infoSign="infoSign"
 					@click.native="handleClickNext"
 				/>
-				<div class="planet"></div>
+				<div class="planet" :class="{ planetMove: nextPage }"></div>
 				<CharAnimation />
 			</section>
 			<section class="skill-section">
@@ -87,7 +87,11 @@ section {
 	background-size: cover;
 	background-position: bottom;
 	bottom: -75px;
-	right: 0;
+	right: 30%;
+	transition: transform 1s ease;
+}
+.planetMove {
+	transform: translateX(340px);
 }
 
 .about-section {
