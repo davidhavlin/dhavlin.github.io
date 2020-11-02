@@ -119,7 +119,7 @@ export default {
 		height: 80%;
 		left: 0;
 		bottom: 0;
-		background: #0b020f;
+		// background: #110422;
 		z-index: 0;
 	}
 

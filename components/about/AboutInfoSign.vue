@@ -22,14 +22,16 @@ $sign-color: #03e271;
 	font-weight: normal;
 	font-size: 0.5em;
 	padding: 0.5rem;
-	border-radius: 6px;
+	// border-radius: 6px;
 	text-align: center;
 	animation: move 2s infinite ease;
+	box-shadow: #00ffac 0px 0.4em, #00ffac 0px -0.4em, #00ffac 0.4em 0px,
+		#00ffac -0.4em 0px;
 }
 .info-sign::after {
 	content: ' ';
 	position: absolute;
-	top: 98%;
+	top: 114%;
 	left: 75%;
 	margin-left: -5px;
 	border-width: 5px;
@@ -39,13 +41,13 @@ $sign-color: #03e271;
 
 @keyframes move {
 	0% {
-		transform: translateY(-3px);
+		transform: translateY(-5px);
 	}
 	50% {
-		transform: translateY(3px);
+		transform: translateY(0px);
 	}
 	100% {
-		transform: translateY(-3px);
+		transform: translateY(-5px);
 	}
 }
 </style>

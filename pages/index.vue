@@ -66,15 +66,15 @@ export default {
 		z-index: 1;
 	}
 	.right-section {
-		background: #1f0831;
+		background: var(--main-bg-color);
 		position: relative;
 		width: 40%;
 		height: 100%;
 		opacity: 0;
-		animation: fadeInRight;
-		animation-duration: 2s;
-		animation-delay: 2000ms;
 		overflow: hidden;
+		mix-blend-mode: screen;
+		transition: opacity 2s ease;
+		z-index: 1;
 	}
 }
 
@@ -92,9 +92,6 @@ export default {
 	}
 }
 
-h1.letter {
-	color: red;
-}
 @media (max-width: 870px) {
 	.home-container {
 		.left-section {

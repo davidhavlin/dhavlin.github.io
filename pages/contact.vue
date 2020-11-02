@@ -22,7 +22,7 @@ export default {
 			const effect = new hoverEffect({
 				parent: this.$refs.parent,
 				intensity: 0.3,
-				image1: require('@/assets/images/bg01up.webp'),
+				image1: require('@/assets/images/bg01exp.webp'),
 				image2: require('@/assets/images/bg02up.webp'),
 				displacementImage: require('@/assets/images/dist2.jpg'),
 				imagesRatio: 640 / 360,

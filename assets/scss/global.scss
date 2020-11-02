@@ -23,9 +23,20 @@
 	/*-------------------- COLORS ------------------------*/
 	// --main-bg-color: #100317; // old color
 	--main-bg-color: #140527;
-	--main-bg-color-darker: #0f041d;
+	// --main-bg-color-darker: #0f041d;
+	--main-bg-color-darker: #0e031b;
 	--navbar-color: #190631;
 
-	--highlight-color: ;
+	--highlight-color: #0af0f0;
 	/*-------------------- //// ------------------------*/
 }
+
+// .HomeIcon_svg__home-stroke {
+// 	stroke: var(--navbar-color);
+// }
+// .link:hover,
+// .link:focus {
+// 	.HomeIcon_svg__home-stroke {
+// 		stroke: var(--highlight-color);
+// 	}
+// }

@@ -10,6 +10,7 @@
 					:infoSign="infoSign"
 					@click.native="handleClickNext"
 				/>
+				<div class="planet"></div>
 				<CharAnimation />
 			</section>
 			<section class="skill-section">
@@ -78,6 +79,17 @@ section {
 	z-index: 1;
 }
 
+.planet {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	background: url('~assets/images/planet.webp') no-repeat;
+	background-size: cover;
+	background-position: bottom;
+	bottom: -75px;
+	right: 0;
+}
+
 .about-section {
 	left: 0;
 	display: flex;
@@ -86,6 +98,6 @@ section {
 }
 .skill-section {
 	left: 100%;
-	background: #0d0213;
+	background: #0e031b;
 }
 </style>

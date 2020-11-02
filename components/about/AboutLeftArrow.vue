@@ -35,12 +35,13 @@ export default {}
 	}
 	path {
 		fill: #df1041;
-		stroke: #100317;
+		stroke: var(--main-bg-color-darker);
 	}
 
-	&:hover {
+	&:hover,
+	&:focus {
 		path {
-			stroke: #00f2fe;
+			stroke: var(--highlight-color);
 		}
 	}
 }

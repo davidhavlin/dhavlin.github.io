@@ -3,9 +3,9 @@
 		<MyButton
 			v-if="!showCase"
 			class="show-btn"
-			main-color="#100317"
-			second-color="#0b0010"
-			border-color="#0b0010"
+			main-color="var(--navbar-color)"
+			second-color="#100317"
+			border-color="#100317"
 			text-color="#00f3ff"
 			@click.native="$emit('clickshow')"
 			>Show me</MyButton

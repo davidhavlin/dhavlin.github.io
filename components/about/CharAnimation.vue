@@ -115,7 +115,6 @@ export default {
 	transform: scaleX(-1);
 }
 
-/* sprite tile dimensions */
 // $spriteWidth: 70px;
 // $spriteHeight: 80px;
 $spriteWidth: 100px;
@@ -124,8 +123,6 @@ $spriteHeight: 140px;
 /* postavicka */
 .david {
 	position: absolute;
-	bottom: 112px;
-	margin-left: 150px;
 	width: $spriteWidth;
 	height: $spriteHeight;
 	background-image: url('~assets/images/ironman.png');
@@ -183,23 +180,28 @@ $spriteHeight: 140px;
 	position: absolute;
 	width: $spriteWidth;
 	height: $spriteHeight;
+	transform: scale(0.7);
 }
 
 @keyframes idle {
-	0% {
-		transform: translateY(-10px);
+	0%,
+	100% {
+		transform: scale(0.7) translateY(-10px);
 	}
 	50% {
-		transform: translateY(10px);
+		transform: scale(0.7) translateY(10px);
 	}
-	100% {
-		transform: translateY(-10px);
-	}
+	// 100% {
+	// 	transform: translateY(-10px);
+	// }
 }
 
 .stage {
 	position: relative;
 	width: 100%;
 	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 </style>

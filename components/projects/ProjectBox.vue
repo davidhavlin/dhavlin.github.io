@@ -148,7 +148,7 @@ export default {
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;
-	background: #100317;
+	background: var(--main-bg-color);
 	position: absolute;
 	bottom: 0;
 	left: 50%;
@@ -161,6 +161,7 @@ export default {
 .selected .logo {
 	box-sizing: content-box;
 	border: 3px solid #34b1f8;
+	background-color: #100317;
 }
 
 .show {

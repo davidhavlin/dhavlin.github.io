@@ -107,7 +107,7 @@ export default {
 		opacity: 0;
 		position: relative;
 		z-index: 1;
-		color: #9212f8;
+		color: #6a24f3;
 	}
 	.link-bg {
 		position: absolute;

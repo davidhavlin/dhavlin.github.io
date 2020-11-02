@@ -112,7 +112,7 @@ $border-color-skill: #7206d5;
 	font-family: 'IBM Plex Mono', monospace;
 	font-style: normal;
 	font-weight: normal;
-	background: #2f0277;
+	background: #310a61;
 	width: 25rem;
 	padding: 1.5rem;
 	box-shadow: $border-color-about 0px 0.4em, $border-color-about 0px -0.4em,

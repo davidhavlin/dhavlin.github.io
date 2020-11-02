@@ -44,12 +44,14 @@ export default {
 	path {
 		fill: #5903e2;
 		// fill: #df1041;
-		stroke: #100317;
+		stroke: var(--main-bg-color);
 	}
 
-	&:hover {
+	&:hover,
+	&:focus {
 		path {
-			stroke: #34b1f8;
+			// stroke: #34b1f8;
+			stroke: #0af0f0;
 		}
 	}
 }
