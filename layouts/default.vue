@@ -80,7 +80,7 @@ body {
 }
 
 .container {
-	height: auto;
+	height: 100%;
 }
 
 .skuska {

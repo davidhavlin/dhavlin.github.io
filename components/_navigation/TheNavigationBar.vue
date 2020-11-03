@@ -15,11 +15,12 @@ export default {}
 	position: fixed;
 	height: 100%;
 	width: 100%;
-	display: flex;
 	z-index: 200;
 	pointer-events: none;
-	justify-content: flex-end;
-	align-items: flex-end;
+	// transform: translate3D(0, 0, 0);
+	// -webkit-backface-visibility: visible;
+	// backface-visibility: visible;
+	transform: translateZ(0) translateX(0);
 }
 .socials {
 	margin-bottom: 1rem;
