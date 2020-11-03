@@ -50,7 +50,7 @@ export default {
 .error {
 	font-family: 'IBM Plex Mono', monospace;
 	font-size: 0.8em;
-	position: absolute;
+	position: fixed;
 	width: 12.625rem;
 	color: #fff;
 	background: #100317;
@@ -83,7 +83,7 @@ export default {
 	.success,
 	.alert,
 	.error {
-		bottom: 15%;
+		bottom: 18%;
 	}
 }
 </style>
