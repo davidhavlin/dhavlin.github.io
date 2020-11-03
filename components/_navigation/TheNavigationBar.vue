@@ -12,7 +12,7 @@ export default {}
 <style lang="scss" scoped>
 .navbar {
 	color: #fff;
-	position: fixed;
+	position: absolute;
 	height: 100%;
 	width: 100%;
 	z-index: 200;
@@ -20,7 +20,7 @@ export default {}
 	// transform: translate3D(0, 0, 0);
 	// -webkit-backface-visibility: visible;
 	// backface-visibility: visible;
-	transform: translateZ(0) translateX(0);
+	// transform: translateZ(0) translateX(0);
 }
 .socials {
 	margin-bottom: 1rem;
