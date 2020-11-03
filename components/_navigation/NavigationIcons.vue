@@ -312,9 +312,7 @@
 	width: 4.4rem;
 	pointer-events: all;
 	position: fixed;
-	transform: translateZ(0);
-	backface-visibility: hidden;
-	-webkit-backface-visibility: hidden;
+	transform: translateZ(0) translateX(0);
 	left: 0;
 
 	.link {
