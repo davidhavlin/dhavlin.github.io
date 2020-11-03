@@ -312,6 +312,7 @@
 	width: 4.4rem;
 	pointer-events: all;
 	position: fixed;
+	transform: translate3D(0, 0, 0);
 	left: 0;
 
 	.link {

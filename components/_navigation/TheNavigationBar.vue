@@ -12,7 +12,7 @@ export default {}
 <style lang="scss" scoped>
 .navbar {
 	color: #fff;
-	position: fixed;
+	position: absolute;
 	height: 100%;
 	width: 100%;
 	z-index: 200;

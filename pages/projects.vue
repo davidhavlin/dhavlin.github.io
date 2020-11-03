@@ -420,8 +420,8 @@ export default {
 	.projectShowcase {
 		justify-content: flex-start;
 		height: auto;
-		padding-top: 5.5rem;
-		margin-bottom: 5rem;
+		padding-top: 5rem;
+		padding-bottom: 10rem;
 
 		.projects {
 			height: auto;
@@ -431,9 +431,14 @@ export default {
 		}
 	}
 }
+@media (max-height: 750px) and (max-width: 800px) {
+	.project-page {
+		padding-bottom: 4rem;
+	}
+}
 @media (max-width: 620px) and (max-height: 830px) {
 	.projectShowcase {
-		padding-bottom: 6rem;
+		padding-bottom: 10rem;
 	}
 }
 
@@ -468,12 +473,6 @@ export default {
 @media (max-height: 570px) {
 	.projects {
 		height: 200px;
-	}
-}
-
-@media (max-height: 750px) and (max-width: 800px) {
-	.project-page {
-		padding-bottom: 4rem;
 	}
 }
 </style>
