@@ -21,8 +21,6 @@ export default {}
 	// -webkit-backface-visibility: visible;
 	// backface-visibility: visible;
 	transform: translateZ(0) translateX(0);
-	display: flex;
-	align-items: flex-end;
 }
 .socials {
 	margin-bottom: 1rem;
