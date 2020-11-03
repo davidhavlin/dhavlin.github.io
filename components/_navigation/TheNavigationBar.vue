@@ -12,14 +12,14 @@ export default {}
 <style lang="scss" scoped>
 .navbar {
 	color: #fff;
-	position: absolute;
+	position: fixed;
 	height: 100%;
 	width: 100%;
+	display: flex;
 	z-index: 200;
 	pointer-events: none;
-	// transform: translate3D(0, 0, 0);
-	// -webkit-backface-visibility: visible;
-	// backface-visibility: visible;
+	justify-content: flex-end;
+	align-items: flex-end;
 }
 .socials {
 	margin-bottom: 1rem;

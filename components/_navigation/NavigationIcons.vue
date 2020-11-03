@@ -311,7 +311,7 @@
 	height: 100%;
 	width: 4.4rem;
 	pointer-events: all;
-	position: fixed;
+	// position: fixed;
 	transform: translateZ(0) translateX(0);
 	left: 0;
 
