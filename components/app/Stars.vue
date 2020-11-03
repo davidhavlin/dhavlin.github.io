@@ -252,7 +252,8 @@ export default {
 }
 .star {
 	position: absolute;
-	background: rgb(0, 247, 255);
+	// background: rgb(0, 247, 255);
+	background: rgb(0, 187, 255);
 	z-index: 0;
 	display: inline-block;
 	transition: all 1s ease;
