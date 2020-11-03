@@ -37,7 +37,7 @@ export default {
 			const effect = new hoverEffect({
 				parent: this.$refs.hover,
 				intensity: 0.3,
-				image1: require('@/assets/images/me01v2.webp'),
+				image1: require('@/assets/images/skuska.webp'),
 				image2: require('@/assets/images/me02.webp'),
 				displacementImage: require('@/assets/images/dist2.jpg'),
 			})
@@ -115,6 +115,24 @@ export default {
 			position: relative;
 			width: 100%;
 			height: 100vh;
+		}
+	}
+}
+@media (max-height: 500px) {
+	.home-container {
+		.left-section {
+			padding-top: 2rem;
+			justify-content: flex-start;
+		}
+	}
+}
+@media (max-height: 430px) {
+	.home-container {
+		.left-section {
+			padding-top: 2rem;
+			padding-bottom: 3rem;
+			justify-content: center;
+			height: 100%;
 		}
 	}
 }

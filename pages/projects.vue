@@ -412,7 +412,6 @@ export default {
 	.project-page-title {
 		font-size: 1em;
 	}
-
 	.show-btn {
 		margin-bottom: 6rem;
 	}
@@ -420,8 +419,9 @@ export default {
 @media (max-width: 620px) {
 	.projectShowcase {
 		justify-content: flex-start;
-		height: calc(100vh + 200px);
+		height: auto;
 		padding-top: 5.5rem;
+		margin-bottom: 5rem;
 
 		.projects {
 			height: auto;
@@ -429,6 +429,11 @@ export default {
 			padding-bottom: 17rem;
 			transform: translateX(0px);
 		}
+	}
+}
+@media (max-width: 620px) and (max-height: 830px) {
+	.projectShowcase {
+		padding-bottom: 6rem;
 	}
 }
 
@@ -447,14 +452,28 @@ export default {
 		}
 	}
 }
-@media (max-height: 600px) {
+@media (min-width: 800px) and (max-height: 700px) {
+	.projectShowcase {
+		.projects {
+			height: 450px;
+		}
+	}
+}
+
+@media (max-height: 690px) {
 	.projects {
 		height: 350px;
 	}
 }
-@media (max-height: 500px) {
+@media (max-height: 570px) {
 	.projects {
 		height: 200px;
+	}
+}
+
+@media (max-height: 750px) and (max-width: 800px) {
+	.project-page {
+		padding-bottom: 4rem;
 	}
 }
 </style>

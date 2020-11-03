@@ -76,6 +76,8 @@ export default {
 	.show {
 		.project-showcase-images {
 			transform: translateX(0px);
+			top: 0;
+			margin-top: -128px;
 		}
 	}
 }

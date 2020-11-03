@@ -241,7 +241,7 @@ export default {
 	}
 }
 
-@media (max-width: 800px) {
+@media (max-width: 800px), (max-height: 500px) {
 	.socials {
 		margin-bottom: 0rem;
 		right: 1rem;

@@ -1,8 +1,18 @@
 <template>
 	<div class="contact-container">
 		<div class="contact">
+			<FormNotifications
+				:success="success"
+				:alert="alert"
+				:error="error"
+			/>
 			<div class="left-section">
-				<ContactForm class="contact-form" />
+				<ContactForm
+					class="contact-form"
+					@alertLis="alertHandler"
+					@successLis="successHandler"
+					@errorLis="errorHandler"
+				/>
 			</div>
 			<div ref="parent" class="right-section"></div>
 		</div>
@@ -12,12 +22,28 @@
 <script>
 /* eslint-disable */
 export default {
+	data() {
+		return {
+			success: false,
+			alert: false,
+			error: false,
+		}
+	},
 	head() {
 		return {
 			title: 'Contact me',
 		}
 	},
 	methods: {
+		alertHandler(value) {
+			this.alert = value
+		},
+		successHandler(value) {
+			this.success = value
+		},
+		errorHandler(value) {
+			this.error = value
+		},
 		effectHover() {
 			const effect = new hoverEffect({
 				parent: this.$refs.parent,
@@ -65,14 +91,14 @@ export default {
 	display: flex;
 	justify-content: flex-end;
 	align-items: flex-end;
-	transition: opacity 7s ease;
+	transition: opacity 5s ease;
 }
 
 .animate {
 	opacity: 1;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 460px), (max-height: 460px) {
 	.contact {
 		flex-direction: column;
 		height: auto;

@@ -220,14 +220,31 @@ export default {
 		width: 100vw;
 	}
 }
-@media (max-height: 600px) {
+@media (max-height: 690px) {
+	.show .project {
+		height: 400px;
+	}
 	.project {
 		height: 300px;
 	}
 }
-@media (max-height: 500px) {
+@media (max-height: 570px) {
+	.show .project {
+		height: 300px;
+	}
 	.project {
 		height: 150px;
+	}
+}
+
+@media (min-width: 800px) and (max-height: 700px) {
+	.show .title {
+		transform: translateX(0px);
+	}
+}
+@media (min-width: 800px) and (max-height: 320px) {
+	.show .project {
+		height: 100vh;
 	}
 }
 </style>

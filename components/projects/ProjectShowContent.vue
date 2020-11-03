@@ -238,4 +238,17 @@ export default {
 		}
 	}
 }
+
+@media (min-width: 800px) and (max-height: 570px) {
+	.show .project-showcase {
+		.project-info {
+			margin-top: 1.6rem;
+		}
+		.showcase-content {
+			padding: 0.6rem;
+			margin-bottom: 1.2rem;
+			font-size: 0.9em;
+		}
+	}
+}
 </style>

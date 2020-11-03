@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="notification-container">
 		<transition name="notify">
 			<div v-if="success" class="success">
 				Email úspešne odoslaný.
@@ -38,6 +38,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.notification-container {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	pointer-events: none;
+	z-index: 100;
+}
 .success,
 .alert,
 .error {
@@ -47,7 +54,6 @@ export default {
 	width: 12.625rem;
 	color: #fff;
 	background: #100317;
-	// bottom: -45%;
 	bottom: 10%;
 	left: calc(50% - 6.3125rem);
 	padding: 0.7rem;
@@ -71,5 +77,13 @@ export default {
 .notify-leave-to {
 	animation: fadeOutDown;
 	animation-duration: 0.5s;
+}
+
+@media (max-width: 800px) {
+	.success,
+	.alert,
+	.error {
+		bottom: 15%;
+	}
 }
 </style>

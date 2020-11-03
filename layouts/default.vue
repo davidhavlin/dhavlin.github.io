@@ -143,7 +143,7 @@ body {
 	}
 }
 
-@media (max-width: 800px) {
+@media (max-width: 800px), (max-height: 460px) {
 	body {
 		overflow: visible;
 	}

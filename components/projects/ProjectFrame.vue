@@ -35,14 +35,27 @@ export default {}
 	}
 }
 
-@media (max-height: 600px) {
+@media (max-height: 690px) {
+	.projectShowcase .selected-frame {
+		height: 400px;
+	}
 	.selected-frame {
 		height: 300px;
 	}
 }
-@media (max-height: 500px) {
+@media (max-height: 570px) {
+	.projectShowcase .selected-frame {
+		height: 300px;
+		top: 29%;
+	}
 	.selected-frame {
 		height: 150px;
+	}
+}
+@media (min-width: 800px) and (max-height: 570px) {
+	.projectShowcase .selected-frame {
+		height: 300px;
+		top: 49.7%;
 	}
 }
 </style>

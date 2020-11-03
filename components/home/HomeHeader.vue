@@ -20,21 +20,10 @@ export default {
 		}
 	},
 	mounted() {
-		this.$refs.header.addEventListener('animationstart', () => {
-			if (!this.$refs.header) return
-			this.$refs.header.style.opacity = 1
-		})
-		this.$refs.header.addEventListener(
-			'animationend',
-			() => {
-				this.helloFriend()
-				this.$refs.subHeader.style.opacity = 1
-				this.$refs.subHeader.classList.add('showText')
-			},
-			{
-				once: true,
-			}
-		)
+		setTimeout(() => {
+			this.helloFriend()
+			this.$refs.subHeader.style.opacity = 1
+		}, 2000)
 	},
 	methods: {
 		helloFriend() {
@@ -96,32 +85,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.showText {
-	animation: fadeIn;
-	animation-duration: 1s;
-}
 .home-header {
-	opacity: 0;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	position: relative;
+	opacity: 1;
 	margin-bottom: 6rem;
 	padding: 1rem;
-	animation: backInDown;
-	animation-duration: 2s;
-	animation-delay: 500ms;
-
-	&::after {
-		content: '';
-		position: absolute;
-		width: 100%;
-		height: 80%;
-		left: 0;
-		bottom: 0;
-		// background: #110422;
-		z-index: 0;
-	}
 
 	.header {
 		position: relative;
@@ -129,13 +96,11 @@ export default {
 		margin-bottom: 1rem;
 		z-index: 1;
 		h1 {
-			// position: absolute;
 			font-size: 2.25em;
 			width: 225px;
 			color: #34b1f8;
 			text-transform: uppercase;
 		}
-
 		.dots {
 			position: absolute;
 			font-size: 1.5em;
@@ -151,32 +116,13 @@ export default {
 		color: #9dbae4;
 		font-size: 1.25em;
 		z-index: 1;
+		transition: opacity 1s ease;
 	}
 }
 
-@keyframes glitch {
-	0% {
-		transform: translate(0px, 0px);
-	}
-
-	20% {
-		transform: translate(-20px, 0px);
-	}
-
-	40% {
-		transform: translate(0px, -2px);
-	}
-
-	60% {
-		transform: translate(-4px, 0px);
-	}
-
-	80% {
-		transform: translate(7px, -1px);
-	}
-
-	100% {
-		transform: translate(0px, 0px);
+@media (max-height: 600px) {
+	.home-header {
+		margin-bottom: 2rem;
 	}
 }
 </style>

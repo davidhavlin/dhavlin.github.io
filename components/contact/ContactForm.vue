@@ -65,7 +65,7 @@
 				<LoadingSquare />
 			</div>
 		</form>
-		<FormNotifications :success="success" :alert="alert" :error="error" />
+		<!-- <FormNotifications :success="success" :alert="alert" :error="error" /> -->
 	</div>
 </template>
 
@@ -127,13 +127,14 @@ export default {
 					this.loading = false
 					if (response.ok) {
 						this.success = true
-
+						this.$emit('successLis', this.success)
 						this.$refs.title.style.color = '#00ffac'
 						this.writingEffect('Thank you', this.$refs.title)
 					} else {
 						this.$refs.title.style.color = '#fec300'
 						this.writingEffect('Error', this.$refs.title)
 						this.error = true
+						this.$emit('errorLis', this.error)
 					}
 				})
 				.then(() => {
@@ -142,6 +143,8 @@ export default {
 						this.writingEffect(this.title, this.$refs.title)
 						this.success = false
 						this.error = false
+						this.$emit('successLis', this.success)
+						this.$emit('errorLis', this.error)
 					}, 4000)
 				})
 			this.resetForm()
@@ -154,8 +157,10 @@ export default {
 				return true
 			} else {
 				this.alert = true
+				this.$emit('alertLis', this.alert)
 				setTimeout(() => {
 					this.alert = false
+					this.$emit('alertLis', this.alert)
 				}, 3000)
 				return false
 			}
@@ -228,16 +233,16 @@ $higlight-color: #fe006a;
 .contact-title {
 	color: #00a1ff;
 	font-weight: normal;
-	font-size: 2.5em;
-	margin-bottom: 1rem;
-	height: 40px;
+	font-size: 2.1em;
+	margin-bottom: 0.7rem;
+	height: 33px;
 }
 .contact-title::after {
 	content: '';
 	position: absolute;
 	width: 3px;
-	height: 1.1em;
-	border-right: 4px solid $main-color;
+	height: 1em;
+	border-right: 4px solid #00a1ff;
 	opacity: 0;
 	animation: cursorAtEnd 1s steps(2, jump-none) infinite;
 }
@@ -249,7 +254,7 @@ $higlight-color: #fe006a;
 
 form {
 	position: relative;
-	padding: 0.7rem;
+	padding: 0.5rem;
 	width: 420px;
 	background: #6d1cef;
 
@@ -257,7 +262,7 @@ form {
 		position: relative;
 		color: #fff;
 		background: #5b15ac;
-		margin-bottom: 0.7rem;
+		margin-bottom: 0.5rem;
 
 		.field-border {
 			position: absolute;
@@ -277,7 +282,7 @@ form {
 	textarea {
 		position: relative;
 		color: $main-color;
-		background: #11001a;
+		background: #0e031b;
 		display: block;
 		width: 100%;
 		border: none;
@@ -300,7 +305,7 @@ form {
 		}
 
 		.field:first-child {
-			margin-right: 0.7rem;
+			margin-right: 0.5rem;
 		}
 	}
 
@@ -371,10 +376,10 @@ form {
 		margin-bottom: 0;
 	}
 }
-.formIn {
-	animation: backInUp;
-	animation-duration: 1s;
-}
+// .formIn {
+// 	animation: backInUp;
+// 	animation-duration: 1s;
+// }
 
 @keyframes buttonIn {
 	to {
@@ -427,8 +432,16 @@ form {
 		transform: translateX(-50%);
 	}
 }
+@media (max-height: 460px) {
+	.contact-form-container {
+		margin-right: 0;
+		position: relative;
+		left: unset;
+		transform: unset;
+	}
+}
 
-@media (max-width: 520px) {
+@media (max-width: 460px) {
 	.contact-form-container {
 		width: 100%;
 		margin-right: 0;
@@ -441,17 +454,12 @@ form {
 		}
 	}
 	.contact-title {
-		font-size: 7.9vw;
+		font-size: 7vw;
+		margin-bottom: 0.4rem;
 	}
 }
 
-@media (max-width: 470px) {
-	.contact-title {
-		margin-bottom: 0.5rem;
-	}
-}
-
-@media (max-width: 350px) {
+@media (max-width: 360px) {
 	.contact-title {
 		font-size: 8.2vw;
 		margin-bottom: 0rem;
