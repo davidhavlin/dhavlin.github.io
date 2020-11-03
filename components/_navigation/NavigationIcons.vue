@@ -313,6 +313,8 @@
 	pointer-events: all;
 	position: fixed;
 	transform: translateZ(0);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 	left: 0;
 
 	.link {
