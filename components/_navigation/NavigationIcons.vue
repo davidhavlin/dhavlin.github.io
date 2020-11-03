@@ -452,7 +452,8 @@
 		flex-direction: row;
 		width: 100%;
 		height: 4.4rem;
-		bottom: 0;
+		// bottom: 0;
+		top: calc(100% - 4.4rem);
 		left: unset;
 
 		.link {
