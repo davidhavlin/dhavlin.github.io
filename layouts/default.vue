@@ -148,9 +148,9 @@ body {
 		overflow: visible;
 	}
 }
-@media (max-height: 450px) {
-	body {
-		height: 100vh;
-	}
-}
+// @media (max-height: 450px) {
+// 	body {
+// 		height: 100vh;
+// 	}
+// }
 </style>

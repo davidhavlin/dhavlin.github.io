@@ -188,6 +188,7 @@ $bar-color: #46009e;
 .loading-time {
 	color: #6800eb;
 	font-size: 0.8rem;
+	width: 280px;
 	position: absolute;
 }
 

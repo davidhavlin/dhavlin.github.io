@@ -109,7 +109,9 @@ export default {
 		flex-direction: column;
 
 		.left-section {
-			height: 100vh;
+			height: auto;
+			padding: 7rem 0;
+			// height: 100vh;
 		}
 		.right-section {
 			position: relative;

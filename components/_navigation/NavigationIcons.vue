@@ -63,8 +63,8 @@ export default {
 	height: 100%;
 	width: 4.4rem;
 	pointer-events: all;
-	position: fixed;
-	transform: translateZ(0) translateX(0);
+
+	// transform: translateZ(0) translateX(0);
 	left: 0;
 
 	.link {
@@ -144,11 +144,13 @@ export default {
 		flex-direction: row;
 		width: 100%;
 		height: 4.4rem;
-		// bottom: 0;
-		top: calc(100% - 4.4rem);
+		bottom: 0;
 		left: unset;
+		position: fixed;
+		transform: translate3D(0, 0, 0);
 
 		.link {
+			position: relative;
 			margin-bottom: 0rem;
 			margin-right: 2rem;
 
@@ -157,6 +159,13 @@ export default {
 			}
 		}
 		.link-name {
+			// display: none;
+			position: absolute;
+			top: 87%;
+			left: -8px;
+			// opacity: 0;
+		}
+		.link-name::after {
 			display: none;
 		}
 	}

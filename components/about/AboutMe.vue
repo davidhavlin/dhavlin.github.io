@@ -109,13 +109,13 @@ $border-color-skill: #7206d5;
 .box-text {
 	position: relative;
 	font-family: 'IBM Plex Mono', monospace;
-	font-style: normal;
-	font-weight: normal;
+	font-weight: bold;
 	background: #310a61;
+	color: #84cbf3;
 	width: 25rem;
 	padding: 1.5rem;
-	box-shadow: $border-color-about 0px 0.4em, $border-color-about 0px -0.4em,
-		$border-color-about 0.4em 0px, $border-color-about -0.4em 0px;
+	box-shadow: #5903e2 0px 0.4em, #5903e2 0px -0.4em, #5903e2 0.4em 0px,
+		#5903e2 -0.4em 0px;
 	transition: background 2s ease;
 	p {
 		opacity: 0;
