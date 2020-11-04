@@ -58,13 +58,12 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: #0b020f;
 	background: var(--navbar-color);
 	height: 100%;
 	width: 4.4rem;
 	pointer-events: all;
-
-	// transform: translateZ(0) translateX(0);
+	position: fixed;
+	transform: translate3D(0, 0, 0);
 	left: 0;
 
 	.link {
@@ -146,8 +145,6 @@ export default {
 		height: 4.4rem;
 		bottom: 0;
 		left: unset;
-		position: fixed;
-		transform: translate3D(0, 0, 0);
 
 		.link {
 			position: relative;

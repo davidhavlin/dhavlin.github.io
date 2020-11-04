@@ -274,7 +274,7 @@ export default {
 		position: absolute;
 		transform: scaleX(0.9);
 		border-radius: 0;
-		background: #190631;
+		background: var(--navbar-color);
 		top: -22px;
 		left: 0;
 		opacity: 0;
@@ -284,7 +284,6 @@ export default {
 	.bigCircle {
 		opacity: 1;
 		transform: scaleX(2);
-		box-shadow: -1px 1px 8px 1px #0b020f6e;
 	}
 
 	.social-icons {
