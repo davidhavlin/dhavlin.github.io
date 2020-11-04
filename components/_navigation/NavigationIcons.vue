@@ -58,7 +58,7 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: var(--navbar-color);
+	background: transparent;
 	height: 100%;
 	width: 4.4rem;
 	pointer-events: all;
@@ -75,7 +75,8 @@ export default {
 		margin-bottom: 1.3rem;
 
 		svg {
-			width: 32px;
+			width: 35px;
+			height: auto;
 		}
 	}
 	.link:last-child {
@@ -135,6 +136,8 @@ export default {
 @media (max-width: 800px) {
 	.navigation-links {
 		flex-direction: row;
+		background: var(--navbar-color);
+
 		width: 100%;
 		height: 4.4rem;
 		bottom: 0;
@@ -152,10 +155,11 @@ export default {
 		.link-name {
 			position: absolute;
 			top: 87%;
+			padding-top: 6px;
 			// opacity: 0;
 		}
 		.home-icon .link-name {
-			left: 2px;
+			left: 4px;
 		}
 		.about-icon .link-name {
 			left: 0;

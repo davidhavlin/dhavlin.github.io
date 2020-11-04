@@ -4,7 +4,12 @@
 		<TheNavigationBar />
 		<NavigationSocials />
 		<Nuxt />
-		<Stars :moveStars="moveStars" :loading="loading" />
+		<Stars
+			:showStars="showStars"
+			:moveStars="moveStars"
+			:loading="loading"
+			:doMagic="doMagic"
+		/>
 	</div>
 </template>
 
@@ -14,11 +19,17 @@ export default {
 		return {
 			load: true,
 			moveStars: false,
+			showStars: false,
+			doMagic: false,
 			loading: false,
 		}
 	},
 	watch: {
 		'$route.path'(newValue, oldValue) {
+			newValue === '/about' || newValue === '/contact'
+				? (this.showStars = true)
+				: (this.showStars = false)
+
 			this.loading = true
 			if (this.moveStars) this.moveStars = false
 			setTimeout(() => {
@@ -34,6 +45,13 @@ export default {
 		this.$nuxt.$on('clickedPrev', (data) => {
 			this.moveStars = false
 		})
+		this.$nuxt.$on('loveJavascript', (data) => {
+			this.doMagic = data
+		})
+
+		this.$route.name === 'about' || this.$route.name === 'contact'
+			? (this.showStars = true)
+			: (this.showStars = false)
 	},
 }
 </script>

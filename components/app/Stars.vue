@@ -1,5 +1,5 @@
 <template>
-	<div ref="sky" class="sky">
+	<div v-if="showStars" ref="sky" class="sky">
 		<div class="sky-overflow" :class="{ whileLoading: loading }">
 			<div class="sky-container" :class="{ moveStars: moveStars }">
 				<transition-group name="stars">
@@ -13,7 +13,6 @@
 				</transition-group>
 			</div>
 		</div>
-		<!-- <a @click.prevent="magicStars()">CLICK</a> -->
 	</div>
 </template>
 
@@ -25,6 +24,14 @@ export default {
 			default: false,
 		},
 		loading: {
+			type: Boolean,
+			default: false,
+		},
+		showStars: {
+			type: Boolean,
+			default: true,
+		},
+		doMagic: {
 			type: Boolean,
 			default: false,
 		},
@@ -49,6 +56,11 @@ export default {
                 '^','<','^','<','^','<','^','^','>','^','>',
 			]
 		}
+	},
+	watch: {
+		doMagic(newValue, oldValue) {
+			this.magicStars()
+		},
 	},
 
 	mounted() {

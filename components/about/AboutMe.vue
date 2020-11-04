@@ -4,11 +4,6 @@
 			<h2 v-show="!nextPage" class="about-title">About me</h2>
 			<h2 v-show="nextPage" class="skills-title">Skills</h2>
 			<div class="box-text">
-				<div class="box-text-skeleton">
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
 				<p v-show="!nextPage">
 					Vyučeny grafik, ale vždy ma to viac ťahalo k programovaniu a
 					že som sa v tom našiel. <br />
@@ -34,18 +29,13 @@ export default {
 		},
 	},
 	mounted() {
-		setTimeout(() => {
-			this.$refs.box.classList.add('box-in')
-		}, 1000)
 		this.$refs.box.addEventListener('animationend', this.boxFinished, {
 			once: true,
 		})
 	},
 	methods: {
 		boxFinished(e) {
-			setTimeout(() => {
-				this.$refs.box.classList.add('box-finished')
-			}, 2000)
+			this.$refs.box.classList.add('box-finished')
 		},
 	},
 }
@@ -69,14 +59,6 @@ $border-color-skill: #7206d5;
 	pointer-events: none;
 	overflow: hidden;
 }
-.box-content {
-	opacity: 0;
-}
-.box-in {
-	opacity: 1;
-	animation: backInDown forwards;
-	animation-duration: 1s;
-}
 
 .about-title,
 .skills-title {
@@ -88,7 +70,7 @@ $border-color-skill: #7206d5;
 	margin-bottom: 1rem;
 	transition: all 2s ease;
 
-	animation: slideInUp forwards;
+	animation: slideInUp;
 	animation-duration: 0.5s;
 }
 .skills-title {
@@ -98,21 +80,17 @@ $border-color-skill: #7206d5;
 .box-finished {
 	.box-text p {
 		opacity: 1;
-		animation: fadeIn forwards;
-		animation-duration: 0.5s;
-	}
-	.box-text-skeleton {
-		animation: fadeOut forwards;
-		animation-duration: 0.5s;
+		animation: fadeIn;
+		animation-duration: 0.3s;
 	}
 }
 
 .box-text {
 	position: relative;
 	font-family: 'IBM Plex Mono', monospace;
-	font-weight: bold;
+	font-weight: normal;
 	background: #310a61;
-	color: #cfb3fa;
+	color: #e6d6ff;
 	width: 25rem;
 	padding: 1.5rem;
 	box-shadow: #5903e2 0px 0.4em, #5903e2 0px -0.4em, #5903e2 0.4em 0px,
@@ -128,38 +106,6 @@ $border-color-skill: #7206d5;
 		box-shadow: $border-color-skill 0px 0.4em,
 			$border-color-skill 0px -0.4em, $border-color-skill 0.4em 0px,
 			$border-color-skill -0.4em 0px;
-	}
-	.box-text-skeleton {
-		div {
-			background: $border-color-skill;
-		}
-	}
-}
-
-.box-text-skeleton {
-	position: absolute;
-	width: calc(100% - 3rem);
-	z-index: 1;
-	div {
-		height: 20px;
-		background: $border-color-about;
-		margin-bottom: 0.4rem;
-		animation: pulse 1s infinite ease;
-	}
-
-	@keyframes pulse {
-		50% {
-			background: darken($border-color-about, 10);
-		}
-	}
-	div:nth-child(2) {
-		width: 100%;
-	}
-	div:nth-child(3) {
-		width: 330px;
-	}
-	div:nth-child(4) {
-		width: 290px;
 	}
 }
 

@@ -2,7 +2,7 @@
 	<transition name="solar">
 		<div v-show="nextPage" class="solar-system">
 			<div class="sun">
-				<div class="icon js">
+				<div class="icon js" @click="loveJavascript">
 					<img
 						:src="require('@/assets/images/software/js.png')"
 						alt="javascript"
@@ -74,9 +74,15 @@
 
 <script>
 export default {
+	data() {
+		return {
+			magicStars: false,
+		}
+	},
 	methods: {
-		skuska(e) {
-			console.log(e)
+		loveJavascript(e) {
+			this.magicStars = !this.magicStars
+			this.$nuxt.$emit('loveJavascript', this.magicStars)
 		},
 	},
 	props: {
@@ -141,6 +147,13 @@ export default {
 	background: #f7df1e;
 	padding: 0.4rem;
 	border-radius: 50%;
+	pointer-events: all;
+	cursor: pointer;
+	transition: transform 0.3s ease;
+
+	&:hover {
+		transform: scale(1.2);
+	}
 
 	img {
 		animation: rotate 20s infinite linear;
@@ -155,6 +168,7 @@ export default {
 	border-radius: 50%;
 	border: 1px solid #7206d51a;
 	animation: rotate 20s infinite linear;
+	pointer-events: none;
 }
 
 .icon {

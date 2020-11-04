@@ -3,8 +3,6 @@
 		<AboutMe :nextPage="nextPage" />
 		<main ref="main">
 			<section class="about-section">
-				<!-- <AboutMe /> -->
-
 				<AboutRightArrow
 					v-show="!nextPage"
 					:infoSign="infoSign"
@@ -18,7 +16,6 @@
 					v-show="nextPage"
 					@click.native="handleClickPrev"
 				/>
-				<!-- <AboutFloatingSkills /> -->
 				<AboutSolarSystem :nextPage="nextPage" />
 			</section>
 		</main>

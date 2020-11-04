@@ -2,16 +2,9 @@
 	<div
 		class="project-showcase-images"
 		:style="{
-			background: `linear-gradient(0deg, rgba(16,3,23,0) 29%, ${project.color.main} 302%)`,
+			background: `linear-gradient(0deg, var(--navbar-color) 29%, ${project.color.main} 302%)`,
 		}"
-	>
-		<!-- <div
-			class="prj-image-right"
-			:style="{
-				backgroundColor: project.color.main,
-			}"
-		></div> -->
-	</div>
+	></div>
 </template>
 
 <script>

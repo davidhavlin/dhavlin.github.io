@@ -197,7 +197,6 @@ export default {
 			)
 		},
 		nextProject() {
-			console.log(this.$refs.container.children)
 			// nechcem aby sa dalo klikat na dalsi projekt kym je animacia active
 			if (this.active) return
 			this.active = true
@@ -322,7 +321,7 @@ export default {
 	font-weight: normal;
 	font-size: 1.3em;
 	color: #34b1f8;
-	z-index: 1;
+	z-index: 10;
 	// zabranuje aby text glitchoval kvoli hover animacii na inom elem.
 	transform: translateZ(0);
 }

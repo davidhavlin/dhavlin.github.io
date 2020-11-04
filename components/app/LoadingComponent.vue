@@ -105,6 +105,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// $bar-border: #210742;
 $bar-border: #0a000f;
 $bar-color: #46009e;
 
@@ -186,8 +187,8 @@ $bar-color: #46009e;
 	}
 }
 .loading-time {
-	color: #6800eb;
-	font-size: 0.8rem;
+	color: #9dbae4;
+	font-size: 0.7rem;
 	width: 280px;
 	position: absolute;
 }

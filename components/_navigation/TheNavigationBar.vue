@@ -17,10 +17,6 @@ export default {}
 	width: 100%;
 	z-index: 200;
 	pointer-events: none;
-	// transform: translate3D(0, 0, 0);
-	// -webkit-backface-visibility: visible;
-	// backface-visibility: visible;
-	// transform: translateZ(0) translateX(0);
 }
 .socials {
 	margin-bottom: 1rem;
