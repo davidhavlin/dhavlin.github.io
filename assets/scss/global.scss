@@ -30,3 +30,27 @@
 	--highlight-color: #0af0f0;
 	/*-------------------- //// ------------------------*/
 }
+
+// **** NAGIATION LINKY ****** //
+.contact-icon:hover {
+	.ContactIcon_svg__contact-stroke {
+		stroke: var(--highlight-color);
+	}
+}
+
+.link:hover,
+.link:focus {
+	.ContactIcon_svg__icon-stroke,
+	.AboutIcon_svg__icon-stroke,
+	.ProjectsIcon_svg__icon-stroke,
+	.HomeIcon_svg__icon-stroke {
+		stroke: var(--highlight-color);
+	}
+}
+
+.nuxt-link-exact-active {
+	// background: yellow;
+	.ContactIcon_svg__icon-stroke {
+		fill: var(--highlight-color);
+	}
+}

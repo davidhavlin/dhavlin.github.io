@@ -181,6 +181,15 @@ export default {
 			opacity: 1;
 		}
 	}
+	@media (hover: none) {
+		.project:hover {
+			outline: none;
+
+			.gradient::after {
+				opacity: 0;
+			}
+		}
+	}
 	.project:active,
 	.project:focus {
 		.gradient::after {
@@ -208,7 +217,7 @@ export default {
 		}
 
 		&:hover {
-			background-position: -115px;
+			// background-position: -115px;
 			.title {
 				transform: translateX(40px);
 			}
