@@ -190,7 +190,7 @@ export default {
 	transition: transform 0.5s cubic-bezier(0.68, -0.75, 0.265, 1.75);
 }
 .bigCircle {
-	transform: scale(20.5);
+	transform: scale(20.5) translate3d(0, 0, 0);
 }
 // VYSKAKUJUCE SOCIALS IKONKY
 .social-icons {
@@ -210,34 +210,28 @@ export default {
 	.facebookIn,
 	.twitterIn,
 	.youtubeIn,
-	.githubIn,
-	.instagramIn {
+	.githubIn {
 		opacity: 1;
 
 		&:hover svg {
-			animation: jello;
-			animation-duration: 1s;
+			transform: scale(1.1);
 		}
 	}
 
 	.facebookIn {
-		transform: translate(11px, -144px) scale(1);
+		transform: translate(21px, -143px) scale(1);
 	}
 	.twitterIn {
-		transform: translate(52px, -136px) scale(1);
+		transform: translate(69px, -128px) scale(1);
 		transition-delay: 100ms;
 	}
 	.youtubeIn {
-		transform: translate(89px, -113px) scale(1);
+		transform: translate(106px, -89px) scale(1);
 		transition-delay: 200ms;
 	}
 	.githubIn {
-		transform: translate(107px, -78px) scale(1);
+		transform: translate(120px, -44px) scale(1);
 		transition-delay: 300ms;
-	}
-	.instagramIn {
-		transform: translate(114px, -41px) scale(1);
-		transition-delay: 400ms;
 	}
 }
 
@@ -304,27 +298,4 @@ export default {
 		}
 	}
 }
-// @media (max-width: 400px) {
-// 	.social-icons {
-// 		.facebookIn {
-// 			transform: translate(-73vw, -105px) scale(1.2);
-// 		}
-// 		.twitterIn {
-// 			transform: translate(-58vw, -105px) scale(1.2);
-// 			transition-delay: 100ms;
-// 		}
-// 		.youtubeIn {
-// 			transform: translate(-43vw, -105px) scale(1.2);
-// 			transition-delay: 200ms;
-// 		}
-// 		.githubIn {
-// 			transform: translate(-28vw, -105px) scale(1.2);
-// 			transition-delay: 300ms;
-// 		}
-// 		.instagramIn {
-// 			transform: translate(-13vw, -105px) scale(1.2);
-// 			transition-delay: 400ms;
-// 		}
-// 	}
-// }
 </style>

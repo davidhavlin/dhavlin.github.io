@@ -1,11 +1,11 @@
 <template>
 	<div class="project-showcase">
 		<div class="project-info showcase-content">
-			<h4>info</h4>
+			<h4 :style="{ color: project.color.titles }">info</h4>
 			{{ project.desc }}
 		</div>
 		<div class="project-url showcase-content">
-			<h4>url</h4>
+			<h4 :style="{ color: project.color.titles }">url</h4>
 			<a
 				:href="project.url"
 				:style="{ color: linkColor }"
@@ -15,7 +15,7 @@
 			</a>
 		</div>
 		<div class="project-stack showcase-content">
-			<h4>stack</h4>
+			<h4 :style="{ color: project.color.titles }">stack</h4>
 			<div class="project-icons" style="display: flex;">
 				<div
 					v-for="(utility, index) in project.stack"
@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="project-gh showcase-content">
-			<h4>github</h4>
+			<h4 :style="{ color: project.color.titles }">github</h4>
 			<a
 				:href="project.github"
 				:style="{ color: linkColor, display: 'flex' }"
@@ -59,7 +59,7 @@ export default {
 	},
 	computed: {
 		linkColor() {
-			return this.project.color.second
+			return this.project.color.url
 		},
 	},
 	methods: {
@@ -120,7 +120,7 @@ export default {
 		h4 {
 			position: absolute;
 			transform: translate(0px, -28px);
-			color: #0c94ff;
+			// color: #0c94ff;
 		}
 		.project-info,
 		.project-url,

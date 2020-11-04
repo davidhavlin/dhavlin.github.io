@@ -1,7 +1,7 @@
 <template>
 	<div class="navigation-links">
 		<!-- ***********    HOME link  ****************** -->
-		<div class="link">
+		<div class="link home-icon">
 			<nuxt-link to="/">
 				<HomeIcon />
 				<div class="link-name">Home</div>
@@ -9,7 +9,7 @@
 		</div>
 
 		<!-- ***********    ABOUT ME link  ****************** -->
-		<div class="link">
+		<div class="link about-icon">
 			<nuxt-link to="/about">
 				<AboutIcon />
 				<div class="link-name">About</div>
@@ -17,7 +17,7 @@
 		</div>
 
 		<!-- ***********    PROJECTS link  ****************** -->
-		<div class="link">
+		<div class="link projects-icon">
 			<nuxt-link to="/projects">
 				<ProjectsIcon />
 				<div class="link-name">Projects</div>
@@ -121,12 +121,6 @@ export default {
 /* --------- HOVERY----------- */
 .link:hover,
 .link:focus {
-	.home-stroke {
-		stroke: var(--highlight-color);
-	}
-	.icon-path {
-		stroke: #0af0f0;
-	}
 	.link-name {
 		color: #0af0f0;
 		opacity: 1;
@@ -156,11 +150,21 @@ export default {
 			}
 		}
 		.link-name {
-			// display: none;
 			position: absolute;
 			top: 87%;
-			left: -8px;
 			// opacity: 0;
+		}
+		.home-icon .link-name {
+			left: 2px;
+		}
+		.about-icon .link-name {
+			left: 0;
+		}
+		.projects-icon .link-name {
+			left: -11px;
+		}
+		.contact-icon .link-name {
+			left: -8px;
 		}
 		.link-name::after {
 			display: none;

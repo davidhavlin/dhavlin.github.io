@@ -11,8 +11,9 @@
 				</div>
 				<p v-show="!nextPage">
 					Vyučeny grafik, ale vždy ma to viac ťahalo k programovaniu a
-					že som sa v tom našiel :) Osoba s citom pre detail, fanúšik
-					prírody, hier, serialov a kinematografie.
+					že som sa v tom našiel. <br />
+					Osoba s citom pre detail, fanúšik prírody, hier, serialov a
+					kinematografie.
 				</p>
 				<p v-show="nextPage">
 					Zameriavam sa hlavne na front end development. <br />
@@ -111,7 +112,7 @@ $border-color-skill: #7206d5;
 	font-family: 'IBM Plex Mono', monospace;
 	font-weight: bold;
 	background: #310a61;
-	color: #84cbf3;
+	color: #cfb3fa;
 	width: 25rem;
 	padding: 1.5rem;
 	box-shadow: #5903e2 0px 0.4em, #5903e2 0px -0.4em, #5903e2 0.4em 0px,

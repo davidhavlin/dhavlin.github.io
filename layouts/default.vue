@@ -109,36 +109,36 @@ body {
 
 @keyframes pageEnter {
 	0% {
-		transform: scale(0.8) translateY(100%);
+		transform: scale(0.8);
 		opacity: 0;
 	}
 	50% {
-		transform: scale(0.8) translateY(0);
+		transform: scale(0.8);
 		opacity: 0.2;
 	}
 	70% {
-		transform: scale(0.8) translateY(0);
+		transform: scale(0.8);
 		opacity: 0.2;
 	}
 	100% {
-		transform: scale(1) translateY(0);
+		transform: scale(1);
 		opacity: 1;
 	}
 }
 @keyframes pageLeave {
 	0% {
-		transform: scale(1) translateY(0);
+		transform: scale(1);
 		opacity: 1;
 	}
 	30% {
-		transform: scale(0.8) translateY(0);
+		transform: scale(0.8);
 		opacity: 0.2;
 	}
 	40% {
-		transform: scale(0.8) translateY(0);
+		transform: scale(0.8);
 	}
 	80% {
-		transform: scale(0.8) translateY(100%);
+		transform: scale(0.8);
 		opacity: 0;
 	}
 }

@@ -1,7 +1,12 @@
 <template>
 	<div>
 		<div ref="thisProject" class="project" :style="bgImage">
-			<h1 class="title">{{ project.title }}</h1>
+			<h1
+				class="title"
+				:style="{ color: showtime ? project.color.title : '' }"
+			>
+				{{ project.title }}
+			</h1>
 			<keep-alive>
 				<LazyProjectGallery
 					v-if="showtime && neo"

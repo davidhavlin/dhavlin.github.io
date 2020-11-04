@@ -127,6 +127,7 @@ export default {
 	width: 600px;
 	height: 600px;
 	border-radius: 50%;
+	right: 15%;
 }
 .icon {
 	position: absolute;

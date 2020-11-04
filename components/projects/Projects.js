@@ -9,7 +9,9 @@ const myProjects = [
 		color: {
 			main: '#4a12be',
 			second: '#e9093e',
-			title: '#00f3ff',
+            title: '#00f3ff',
+            titles: '#00f3ff',
+            url: '#03e8fc',
 		},
 		stack: ['HTML', 'SCSS', 'ES6', 'Vue'],
 		images: [
@@ -28,7 +30,9 @@ const myProjects = [
 		color: {
 			main: '#4a12be',
 			second: '#e9093e',
-			title: '#00f3ff',
+            title: '#00f3ff',
+            titles: '#00f3ff',
+            url: '#81ffff',
 		},
 		stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt'],
 		images: [
@@ -47,7 +51,9 @@ const myProjects = [
 		color: {
 			main: '#e61e25',
 			second: '#e9093e',
-			title: '#00f3ff',
+            title: '#fff',
+            titles: '#fff',
+            url: '#ff0841',
 		},
 		stack: ['HTML', 'SCSS', 'ES6', 'Vue', 'Nuxt'],
 		images: [
