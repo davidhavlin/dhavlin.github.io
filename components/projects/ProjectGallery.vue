@@ -3,9 +3,6 @@
 		<img :src="src1" alt="" class="active" @load="afterLoad" />
 		<img :src="src2" alt="" @load="afterLoad" />
 		<img :src="src3" alt="" @load="afterLoad" />
-		<div v-if="!loaded" class="loader">
-			<LoadingSquare />
-		</div>
 	</div>
 </template>
 
@@ -58,6 +55,8 @@ export default {
 			this.counter++
 			if (this.counter === this.images.length) {
 				this.loaded = true
+				this.$emit('imgLoaded', this.loaded)
+				this.$refs.gallery.style.backgroundColor = '#4a12be'
 				this.changingGalery()
 			}
 		},
@@ -83,7 +82,7 @@ export default {
 <style lang="scss" scoped>
 .gallery {
 	background-size: cover;
-	background-color: #4a12be;
+	// background-color: #4a12be;
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -95,15 +94,15 @@ export default {
 	overflow: hidden;
 	transform: translateZ(0);
 
-	.loader {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		background: #4b12be8e;
-		z-index: 1;
-	}
+	// .loader {
+	// 	position: absolute;
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	top: 0;
+	// 	left: 0;
+	// 	background: #4b12be8e;
+	// 	z-index: 1;
+	// }
 
 	img {
 		min-width: 100%;

@@ -12,8 +12,12 @@
 					v-if="showtime && neo"
 					:showtime="showtime"
 					:gallery="project.images"
+					@imgLoaded="hideLoadingSquare"
 				/>
 			</keep-alive>
+			<div v-if="!loaded && showtime" class="loader">
+				<LoadingSquare />
+			</div>
 			<div class="gradient" :style="gradient"></div>
 			<div class="logo" :style="logo"></div>
 		</div>
@@ -46,6 +50,7 @@ export default {
 	data() {
 		return {
 			neo: false,
+			loaded: false,
 		}
 	},
 	watch: {
@@ -74,6 +79,11 @@ export default {
 			return { backgroundImage: `url(${this.project.logo})` }
 		},
 	},
+	methods: {
+		hideLoadingSquare(value) {
+			this.loaded = value
+		},
+	},
 }
 </script>
 
@@ -82,6 +92,15 @@ export default {
 	color: #00f3ff;
 }
 
+.loader {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #4a12be85;
+	z-index: 1;
+}
 .project {
 	display: inline-block;
 	position: relative;
@@ -171,6 +190,7 @@ export default {
 
 .show {
 	.title {
+		z-index: 10;
 		transform: translateX(100px);
 	}
 	.project {
@@ -202,6 +222,7 @@ export default {
 		}
 	}
 	.logo {
+		z-index: 10;
 		border: 8px solid #0b000f;
 		background-color: #0b000f;
 	}

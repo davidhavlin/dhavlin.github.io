@@ -29,7 +29,7 @@ export default {}
 	}
 	.square2 {
 		position: absolute;
-		background: #9212f8;
+		background: #00fff7;
 		animation-delay: 0.5s;
 	}
 

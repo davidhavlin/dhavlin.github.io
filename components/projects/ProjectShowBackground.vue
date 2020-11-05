@@ -2,7 +2,7 @@
 	<div
 		class="project-showcase-images"
 		:style="{
-			background: `linear-gradient(0deg, var(--navbar-color) 29%, ${project.color.main} 302%)`,
+			background: `linear-gradient(0deg, #0e031b91 29%, ${project.color.main} 302%)`,
 		}"
 	></div>
 </template>
@@ -70,6 +70,7 @@ export default {
 		.project-showcase-images {
 			transform: translateX(0px);
 			top: 0;
+			height: 200vh;
 			margin-top: -128px;
 		}
 	}
