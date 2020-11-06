@@ -1,7 +1,7 @@
 <template>
 	<transition name="solar">
 		<div v-show="nextPage" class="solar-system">
-			<div class="sun">
+			<div class="sun" :class="{ chargedSun: enoughStars }">
 				<div class="icon js" @click="loveJavascript">
 					<img
 						:src="require('@/assets/images/software/js.png')"
@@ -79,6 +79,11 @@ export default {
 			magicStars: false,
 		}
 	},
+	computed: {
+		enoughStars() {
+			return this.$store.state.isEnoughStars
+		},
+	},
 	methods: {
 		loveJavascript(e) {
 			this.magicStars = !this.magicStars
@@ -134,6 +139,49 @@ export default {
 	height: 600px;
 	border-radius: 50%;
 	right: 15%;
+
+	&::after {
+		content: '';
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: var(--main-bg-color-darker);
+		border: 1px solid#140427;
+		animation: pulse 1s infinite ease;
+		z-index: -1;
+	}
+
+	@keyframes pulse {
+		from {
+			transform: scale(4);
+		}
+	}
+}
+.chargedSun {
+	&::after {
+		display: none;
+	}
+	&::before {
+		content: '';
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background: #f7df1e;
+		animation: pulsingSun 1s infinite ease;
+		box-shadow: 0px 0px 23px 12px #f7c01e52;
+		z-index: -1;
+	}
+	@keyframes pulsingSun {
+		0%,
+		100% {
+			transform: scale(1.3);
+		}
+		50% {
+			transform: scale(1);
+		}
+	}
 }
 .icon {
 	position: absolute;
@@ -150,6 +198,9 @@ export default {
 	pointer-events: all;
 	cursor: pointer;
 	transition: transform 0.3s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 	&:hover {
 		transform: scale(1.2);
