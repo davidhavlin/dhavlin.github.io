@@ -186,10 +186,10 @@ $spriteHeight: 140px;
 @keyframes idle {
 	0%,
 	100% {
-		transform: scale(0.7) translateY(-10px);
+		transform: scale(0.5) translateY(-10px);
 	}
 	50% {
-		transform: scale(0.7) translateY(10px);
+		transform: scale(0.5) translateY(10px);
 	}
 	// 100% {
 	// 	transform: translateY(-10px);

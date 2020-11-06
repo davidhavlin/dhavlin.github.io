@@ -8,7 +8,10 @@
 					:infoSign="infoSign"
 					@click.native="handleClickNext"
 				/>
-				<div class="planet" :class="{ planetMove: nextPage }"></div>
+				<div class="fog"></div>
+				<div class="planet" :class="{ planetMove: nextPage }">
+					<AboutPlanetSign />
+				</div>
 				<CharAnimation />
 			</section>
 			<section class="skill-section">
@@ -16,7 +19,10 @@
 					v-show="nextPage"
 					@click.native="handleClickPrev"
 				/>
-				<AboutSolarSystem :nextPage="nextPage" />
+				<AboutSolarSystem
+					:isEnoughStars="isEnoughStars"
+					:nextPage="nextPage"
+				/>
 			</section>
 		</main>
 	</div>
@@ -30,13 +36,28 @@ export default {
 			infoSign: true,
 		}
 	},
+	props: {
+		isEnoughStars: {
+			type: Boolean,
+			default: false,
+		},
+	},
 	mounted() {
 		if (this.$route.params.skillsPage) {
 			this.handleClickNext()
 		}
 	},
+	watch: {
+		isEnoughStars(newValue, oldValue) {
+			console.log(newValue, oldValue)
+		},
+	},
 	methods: {
-		handleClickNext() {
+		handleClickNext(e) {
+			if (e.target.className === 'exit') {
+				this.infoSign = false
+				return
+			}
 			this.$refs.main.style.transform = 'translateX(-100%)'
 			this.nextPage = true
 			this.infoSign = false
@@ -75,12 +96,31 @@ section {
 	height: 100%;
 	z-index: 1;
 }
-
+.fog {
+	position: absolute;
+	width: 2800px;
+	height: 433px;
+	z-index: 1;
+	bottom: 0;
+	pointer-events: none;
+	background: url('~assets/images/fog.webp') no-repeat;
+	background-position: bottom;
+	animation: fog 65s infinite linear;
+}
+@keyframes fog {
+	0%,
+	100% {
+		transform: translateX(0px);
+	}
+	50% {
+		transform: translateX(-700px);
+	}
+}
 .planet {
 	position: absolute;
 	width: 300px;
 	height: 300px;
-	background: url('~assets/images/planet.webp') no-repeat;
+	background: url('~assets/images/planet3.webp') no-repeat;
 	background-size: cover;
 	background-position: bottom;
 	bottom: -75px;

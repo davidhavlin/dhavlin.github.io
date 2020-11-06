@@ -17,6 +17,7 @@
 </template>
 
 <script>
+// import store from 'vuex'
 export default {
 	props: {
 		moveStars: {
@@ -54,7 +55,7 @@ export default {
                 '>','v','>','v','>','v','v','<','v','<','v',
                 '<','v','<','v','<','v','<','^','<','^','<',
                 '^','<','^','<','^','<','^','^','>','^','>',
-			]
+            ]
 		}
 	},
 	watch: {
@@ -122,6 +123,10 @@ export default {
 
 		autoAddingStars() {
 			this.timeout = setTimeout(() => {
+				if (this.stars.length === this.movement.length) {
+					// this.isEnoughStars = true
+					this.$store.commit('enoughStars', true)
+				}
 				if (this.stars.length >= 50) {
 					this.stars.splice(0, 1)
 				}
