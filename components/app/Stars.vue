@@ -122,6 +122,7 @@ export default {
 		},
 
 		autoAddingStars() {
+			// if (!document.hasFocus()) return
 			this.timeout = setTimeout(() => {
 				if (this.stars.length === this.movement.length) {
 					// this.isEnoughStars = true

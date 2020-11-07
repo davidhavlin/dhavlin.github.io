@@ -98,7 +98,7 @@ section {
 }
 .fog {
 	position: absolute;
-	width: 2800px;
+	width: 3679px;
 	height: 433px;
 	z-index: 1;
 	bottom: 0;
