@@ -11,6 +11,7 @@
 				<div class="fog"></div>
 				<div class="planet" :class="{ planetMove: nextPage }">
 					<AboutPlanetSign />
+					<Planet />
 				</div>
 				<CharAnimation />
 			</section>
@@ -29,7 +30,11 @@
 </template>
 
 <script>
+import Planet from '~/assets/images/svg/Planet.svg'
 export default {
+	components: {
+		Planet,
+	},
 	data() {
 		return {
 			nextPage: false,
@@ -118,9 +123,9 @@ section {
 }
 .planet {
 	position: absolute;
-	width: 300px;
-	height: 300px;
-	background: url('~assets/images/planet3.webp') no-repeat;
+	// width: 300px;
+	// height: 300px;
+	// background: url('~assets/images/planet3.webp') no-repeat;
 	background-size: cover;
 	background-position: bottom;
 	bottom: -75px;
