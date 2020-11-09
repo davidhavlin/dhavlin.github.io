@@ -41,10 +41,12 @@
 .link:hover,
 .link:focus {
 	.ContactIcon_svg__icon-stroke,
-	.AboutIcon_svg__icon-stroke,
 	.ProjectsIcon_svg__icon-stroke,
 	.HomeIcon_svg__icon-stroke {
 		stroke: var(--highlight-color);
+	}
+	.AboutIcon_svg__icon-about-stroke {
+		fill: var(--highlight-color);
 	}
 }
 @media (hover: none) {

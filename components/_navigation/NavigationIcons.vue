@@ -79,6 +79,9 @@ export default {
 			height: auto;
 		}
 	}
+	.contact-icon svg {
+		width: 31px;
+	}
 	.link:last-child {
 		margin-bottom: 0;
 	}

@@ -130,26 +130,14 @@ export default {
 		font-family: 'Press Start 2P', cursive;
 		font-size: 0.6em;
 		position: absolute;
-		top: -11px;
-		left: 23px;
-		width: 0.93rem;
-		height: 0.93rem;
+		top: -10px;
+		left: 33px;
 		background: #ff0023;
-		box-shadow: #ff0023 0px 0.1em, #ff0023 0px -0.1em, #ff0023 0.1em 0px,
-			#ff0023 -0.1em 0px;
+		padding: 0.2rem;
+		border-radius: 3px;
 		box-sizing: content-box;
 		z-index: 1;
 		pointer-events: none;
-	}
-	.notification::after {
-		content: ' ';
-		position: absolute;
-		top: 101%;
-		left: 50%;
-		margin-left: -4px;
-		border-width: 4px;
-		border-style: solid;
-		border-color: #ff0023 transparent transparent transparent;
 	}
 
 	.box,
@@ -168,7 +156,7 @@ export default {
 
 	.box-title {
 		font-family: 'Press Start 2P', cursive;
-		font-size: 0.45em;
+		font-size: 0.4em;
 		color: $text-color;
 		text-transform: uppercase;
 		padding: 0.2rem;
@@ -219,18 +207,18 @@ export default {
 	}
 
 	.facebookIn {
-		transform: translate(21px, -143px) scale(1);
+		transform: translate(21px, -137px) scale(1);
 	}
 	.twitterIn {
-		transform: translate(69px, -128px) scale(1);
+		transform: translate(66px, -124px) scale(1);
 		transition-delay: 100ms;
 	}
 	.youtubeIn {
-		transform: translate(106px, -89px) scale(1);
+		transform: translate(102px, -89px) scale(1);
 		transition-delay: 200ms;
 	}
 	.githubIn {
-		transform: translate(120px, -44px) scale(1);
+		transform: translate(115px, -47px) scale(1);
 		transition-delay: 300ms;
 	}
 }
@@ -257,8 +245,8 @@ export default {
 			display: none;
 		}
 		.notification {
-			top: -2px;
-			left: 18px;
+			top: 0px;
+			left: 5px;
 			transform: scaleX(-1);
 		}
 	}

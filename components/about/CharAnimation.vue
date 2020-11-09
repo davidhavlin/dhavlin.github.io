@@ -197,6 +197,7 @@ $spriteHeight: 140px;
 }
 
 .stage {
+	pointer-events: none;
 	position: relative;
 	width: 100%;
 	height: 100%;
