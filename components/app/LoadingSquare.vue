@@ -1,7 +1,9 @@
 <template>
 	<div class="animation-square">
-		<div class="square1"></div>
-		<div class="square2"></div>
+		<div class="square-center">
+			<div class="square1"></div>
+			<div class="square2"></div>
+		</div>
 	</div>
 </template>
 
@@ -20,15 +22,20 @@ export default {}
 	justify-content: center;
 	align-items: center;
 
+	.square-center {
+		width: 20px;
+		height: 20px;
+	}
+
 	.square1,
 	.square2 {
+		position: absolute;
 		width: 10px;
 		height: 10px;
 		background: #34b1f8;
 		animation: squareLoading 1s infinite ease;
 	}
 	.square2 {
-		position: absolute;
 		background: #00fff7;
 		animation-delay: 0.5s;
 	}
