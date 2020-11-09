@@ -73,7 +73,9 @@ export default {
 	 ** Axios module configuration
 	 ** See https://axios.nuxtjs.org/options
 	 */
-	axios: {},
+	axios: {
+		baseURL: '/',
+	},
 	/*
 	 ** Build configuration
 	 ** See https://nuxtjs.org/api/configuration-build/
@@ -81,7 +83,7 @@ export default {
 	build: {},
 
 	// serverMiddleware: ['~/api/contact'],
-	serverMiddleware: [
-		{ path: '/contact', handler: '~/functions/send-email/send-email.js' },
-	],
+	// serverMiddleware: [
+	// 	{ path: '/contact', handler: '~/functions/send-email/send-email.js' },
+	// ],
 }

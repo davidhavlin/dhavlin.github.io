@@ -109,45 +109,50 @@ export default {
 
 			if (!this.formName) this.formName = 'Anonym'
 			if (!this.formSubject) this.formSubject = 'Message'
-			const data = {
-				name: this.formName,
-				email: this.formEmail.toLowerCase(),
-				subject: this.formSubject,
-				text: this.formText,
-			}
+
 			this.loading = true
-			fetch('/contact', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(data),
-			})
-				.then((response) => {
-					this.loading = false
-					if (response.ok) {
-						this.success = true
-						this.$emit('successLis', this.success)
-						this.$refs.title.style.color = '#00ffac'
-						this.writingEffect('Thank you', this.$refs.title)
-					} else {
-						this.$refs.title.style.color = '#fec300'
-						this.writingEffect('Error', this.$refs.title)
-						this.error = true
-						this.$emit('errorLis', this.error)
+			this.postFormToLambdaFunction()
+		},
+
+		async postFormToLambdaFunction() {
+			try {
+				const res = await this.$axios.$post(
+					'/.netlify/functions/mailgun',
+					{
+						name: this.formName,
+						email: this.formEmail.toLowerCase(),
+						subject: this.formSubject,
+						text: this.formText,
 					}
-				})
-				.then(() => {
-					setTimeout(() => {
-						this.$refs.title.style.color = '#00a1ff'
-						this.writingEffect(this.title, this.$refs.title)
-						this.success = false
-						this.error = false
-						this.$emit('successLis', this.success)
-						this.$emit('errorLis', this.error)
-					}, 4000)
-				})
-			this.resetForm()
+				)
+				// this.response = res
+				console.log(res)
+				this.success = true
+				this.$emit('successLis', this.success)
+				this.$refs.title.style.color = '#00ffac'
+				this.writingEffect('Thank you', this.$refs.title)
+				this.resetForm()
+				this.afterSending()
+			} catch (e) {
+				this.$refs.title.style.color = '#fec300'
+				this.writingEffect('Error', this.$refs.title)
+				this.error = true
+				this.$emit('errorLis', this.error)
+				this.afterSending()
+			} finally {
+				this.loading = false
+			}
+		},
+
+		afterSending() {
+			setTimeout(() => {
+				this.$refs.title.style.color = '#00a1ff'
+				this.writingEffect(this.title, this.$refs.title)
+				this.success = false
+				this.error = false
+				this.$emit('successLis', this.success)
+				this.$emit('errorLis', this.error)
+			}, 4000)
 		},
 
 		validateForm() {
