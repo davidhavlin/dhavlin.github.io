@@ -80,5 +80,8 @@ export default {
 	 */
 	build: {},
 
-	serverMiddleware: ['~/api/contact'],
+	// serverMiddleware: ['~/api/contact'],
+	serverMiddleware: [
+		{ path: '/contact', handler: '~/functions/send-email/send-email.js' },
+	],
 }
