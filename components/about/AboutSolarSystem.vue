@@ -74,11 +74,6 @@
 
 <script>
 export default {
-	data() {
-		return {
-			magicStars: false,
-		}
-	},
 	computed: {
 		enoughStars() {
 			return this.$store.state.isEnoughStars
@@ -86,8 +81,22 @@ export default {
 	},
 	methods: {
 		loveJavascript(e) {
-			this.magicStars = !this.magicStars
-			this.$nuxt.$emit('loveJavascript', this.magicStars)
+			const coords = this.offset(e.target)
+			this.$store.commit('getElTop', coords.top)
+			this.$store.commit('getElLeft', coords.left)
+
+			this.$store.commit('runMagicStars')
+		},
+		offset(el) {
+			const rect = el.getBoundingClientRect()
+			const scrollLeft =
+				window.pageXOffset || document.documentElement.scrollLeft
+			const scrollTop =
+				window.pageYOffset || document.documentElement.scrollTop
+			return {
+				top: rect.top + scrollTop,
+				left: rect.left + scrollLeft,
+			}
 		},
 	},
 	props: {
@@ -207,6 +216,7 @@ export default {
 	}
 
 	img {
+		pointer-events: none;
 		animation: rotate 20s infinite linear;
 		width: 35px;
 	}

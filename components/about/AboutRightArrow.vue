@@ -60,4 +60,9 @@ export default {
 		top: 80%;
 	}
 }
+@media (min-width: 1200px) {
+	.right-arrow {
+		right: 10%;
+	}
+}
 </style>

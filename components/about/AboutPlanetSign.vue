@@ -1,42 +1,68 @@
 <template>
-	<div class="planet-sign">
-		<div class="sign">
-			<div class="bar"><div class="exit">x</div></div>
+	<div>
+		<div v-if="!closed" class="sign">
+			<div class="bar">
+				<div class="exit" @click="closed = true">x</div>
+			</div>
 			<div class="heart">
 				<svg
-					width="160"
-					height="131"
-					viewBox="0 0 160 131"
+					width="172"
+					height="143"
+					viewBox="0 0 172 143"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 				>
 					<path
-						fill-rule="evenodd"
-						clip-rule="evenodd"
-						d="M29 0H58V15H72V30H88V15H102V0H131V15H145V30H160V58H145V73H131V87H116V102H101V117H87V131H73V117H58V102H44V87H29V73H14V58H0V30H14V15H29V0ZM139 22H109V37H124V51H139V22Z"
+						ref="heart"
+						d="M35 3H32V6V18H20H17V21V33H6H3V36V64V67H6H17V79V82H20H32V93V96H35H47V108V111H50H61V123V126H64H76V137V140H79H93H96V137V126H107H110V123V111H122H125V108V96H137H140V93V82H151H154V79V67H166H169V64V36V33H166H154V21V18H151H140V6V3H137H108H105V6V18H94H91V21V33H81V21V18H78H67V6V3H64H35ZM130 40H118V31H142V54H133V43V40H130Z"
 						fill="#FF002E"
+						stroke="transparent"
+						stroke-width="6"
 					/>
 				</svg>
 			</div>
-			<p>Show me love</p>
-			<button>ok</button>
+			<p>Give me Like</p>
+			<button @click.prevent="magicStars">ok</button>
 		</div>
 		<div class="stick"></div>
 	</div>
 </template>
 
 <script>
-export default {}
+export default {
+	data() {
+		return {
+			closed: false,
+		}
+	},
+	methods: {
+		magicStars() {
+			const top = Math.floor(
+				Math.random() * Math.floor(window.innerHeight)
+			)
+			const left = Math.floor(
+				Math.random() * Math.floor(window.innerWidth)
+			)
+			this.$store.commit('getElTop', top)
+			this.$store.commit('getElLeft', left)
+
+			this.$store.commit('runMagicStars')
+			this.$refs.heart.style.fill = '#ff0b55'
+			this.$refs.heart.style.stroke = '#0fe0fc'
+			setTimeout(() => {
+				this.$refs.heart.style.fill = '#34b3f6'
+				this.$refs.heart.style.stroke = '#390779'
+			}, 1000)
+		},
+	},
+}
 </script>
 
 <style lang="scss" scoped>
-.planet-sign {
-}
-
 .sign {
 	width: 120px;
-	background: #d2d2d2;
-	color: #000;
+	background: #5903e2;
+	color: #ded2f6;
 	font-family: 'Press Start 2P', cursive;
 	font-style: normal;
 	font-weight: normal;
@@ -50,7 +76,7 @@ export default {}
 	.bar {
 		width: 100%;
 		height: 15px;
-		background: blue;
+		background: #390779;
 		display: flex;
 		justify-content: flex-end;
 		padding: 0.1rem;
@@ -61,9 +87,21 @@ export default {}
 			align-items: center;
 			width: 20px;
 			height: 100%;
-			color: #838383;
-			background: #fff;
+			color: #330a6f;
+			background: #5903e2;
 			cursor: pointer;
+		}
+	}
+	.heart {
+		margin-top: 0.6rem;
+		svg {
+			width: 40px;
+			height: auto;
+			path {
+				transition: all 0.5s ease;
+				fill: #34b3f6;
+				stroke: #390779;
+			}
 		}
 	}
 	p {
@@ -72,11 +110,27 @@ export default {}
 	button {
 		cursor: pointer;
 		margin-bottom: 0.5rem;
-		color: #000;
-		background: #d2d2d2;
+		color: #dbcff6;
+		background: #3f0c8b;
 		padding: 0.1rem 0.7rem;
-		border: 1px solid white;
+		border: 1px solid #15052959;
 		font-size: 1.4em;
+		&:focus {
+			outline: none;
+		}
+		&:hover {
+			border: 1px solid #00ddff;
+		}
 	}
+}
+.stick {
+	display: none;
+	position: absolute;
+	width: 7px;
+	height: 150px;
+	background: #390779;
+	left: 48%;
+	bottom: -100px;
+	z-index: -1;
 }
 </style>

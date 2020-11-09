@@ -55,7 +55,7 @@ $border-color-skill: #7206d5;
 	justify-content: center;
 	align-items: center;
 	margin-top: -10rem;
-	z-index: 1;
+	z-index: 2;
 	pointer-events: none;
 	overflow: hidden;
 }

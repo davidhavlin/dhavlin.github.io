@@ -39,15 +39,12 @@ export default {
 	},
 	mounted() {
 		// this.load = false
-		this.$nuxt.$on('clickedNext', (data) => {
-			this.moveStars = true
-		})
-		this.$nuxt.$on('clickedPrev', (data) => {
-			this.moveStars = false
-		})
-		this.$nuxt.$on('loveJavascript', (data) => {
-			this.doMagic = data
-		})
+		// this.$nuxt.$on('clickedNext', (data) => {
+		// 	this.moveStars = true
+		// })
+		// this.$nuxt.$on('clickedPrev', (data) => {
+		// 	this.moveStars = false
+		// })
 
 		this.$route.name === 'about' || this.$route.name === 'contact'
 			? (this.showStars = true)

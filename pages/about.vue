@@ -10,10 +10,10 @@
 				/>
 				<div class="fog"></div>
 				<div class="planet" :class="{ planetMove: nextPage }">
-					<AboutPlanetSign />
-					<Planet />
+					<AboutPlanetSign class="planet-sign" />
+					<PlanetBig class="planet1" />
+					<Planet class="planet2" />
 				</div>
-				<CharAnimation />
 			</section>
 			<section class="skill-section">
 				<AboutLeftArrow
@@ -31,9 +31,11 @@
 
 <script>
 import Planet from '~/assets/images/svg/Planet.svg'
+import PlanetBig from '~/assets/images/svg/PlanetBig.svg'
 export default {
 	components: {
 		Planet,
+		PlanetBig,
 	},
 	data() {
 		return {
@@ -66,12 +68,12 @@ export default {
 			this.$refs.main.style.transform = 'translateX(-100%)'
 			this.nextPage = true
 			this.infoSign = false
-			this.$nuxt.$emit('clickedNext', this.nextPage)
+			this.$store.commit('movingStars', this.nextPage)
 		},
 		handleClickPrev() {
 			this.$refs.main.style.transform = 'translateX(0)'
 			this.nextPage = false
-			this.$nuxt.$emit('clickedPrev', this.nextPage)
+			this.$store.commit('movingStars', this.nextPage)
 		},
 	},
 }
@@ -123,14 +125,31 @@ section {
 }
 .planet {
 	position: absolute;
-	// width: 300px;
-	// height: 300px;
-	// background: url('~assets/images/planet3.webp') no-repeat;
-	background-size: cover;
-	background-position: bottom;
-	bottom: -75px;
-	right: 30%;
+	width: 100%;
+	height: 100%;
+	z-index: -3;
 	transition: transform 1s ease;
+
+	.planet1 {
+		position: absolute;
+		bottom: -161px;
+		width: 384px;
+		height: auto;
+		right: 30%;
+	}
+	.planet2 {
+		position: absolute;
+		top: 100px;
+		right: 100px;
+		width: 150px;
+		height: auto;
+	}
+	.planet-sign {
+		position: absolute;
+		right: 60%;
+		bottom: 230px;
+		z-index: 1;
+	}
 }
 .planetMove {
 	transform: translateX(340px);

@@ -17,13 +17,8 @@
 </template>
 
 <script>
-// import store from 'vuex'
 export default {
 	props: {
-		moveStars: {
-			type: Boolean,
-			default: false,
-		},
 		loading: {
 			type: Boolean,
 			default: false,
@@ -31,10 +26,6 @@ export default {
 		showStars: {
 			type: Boolean,
 			default: true,
-		},
-		doMagic: {
-			type: Boolean,
-			default: false,
 		},
 	},
 	data() {
@@ -58,8 +49,16 @@ export default {
             ]
 		}
 	},
+	computed: {
+		runMagicStars() {
+			return this.$store.state.magicStars
+		},
+		moveStars() {
+			return this.$store.state.moveStars
+		},
+	},
 	watch: {
-		doMagic(newValue, oldValue) {
+		runMagicStars(newValue, oldValue) {
 			this.magicStars()
 		},
 	},
@@ -114,7 +113,6 @@ export default {
 		starPosition() {
 			const randomWidth = Math.floor(Math.random() * this.wInnerWidth)
 			const randomHeight = Math.floor(Math.random() * this.wInnerHeight)
-			// return `translate(${randomWidth}px, ${randomHeight}px)`
 			return {
 				left: randomWidth + 'px',
 				top: randomHeight + 'px',
@@ -125,7 +123,6 @@ export default {
 			// if (!document.hasFocus()) return
 			this.timeout = setTimeout(() => {
 				if (this.stars.length === this.movement.length) {
-					// this.isEnoughStars = true
 					this.$store.commit('enoughStars', true)
 				}
 				if (this.stars.length >= 50) {
@@ -139,6 +136,8 @@ export default {
 
 		magicStars() {
 			if (this.stars.length < 46) return
+			this.top = this.$store.state.elTop - 40
+			this.left = this.$store.state.elLeft
 
 			const starsCount = []
 			this.movement.map((move, index) => starsCount.push(index + 2))

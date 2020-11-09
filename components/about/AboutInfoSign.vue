@@ -19,8 +19,8 @@ $sign-color: #03e271;
 	top: -79px;
 	left: -72px;
 	width: 120px;
-	background: #d2d2d2;
-	color: #000;
+	background: #34b3f6;
+	color: #390779;
 	font-family: 'Press Start 2P', cursive;
 	font-style: normal;
 	font-weight: normal;
@@ -30,14 +30,15 @@ $sign-color: #03e271;
 	border-radius: 2px;
 	text-align: center;
 	cursor: default;
-	// animation: move 2s infinite ease;
-	// box-shadow: #e20341 0px 0.4em, #e20341 0px -0.4em, #e20341 0.4em 0px,
-	// 	#e20341 -0.4em 0px;
+	opacity: 0;
+	animation: move 0.8s forwards ease;
+	animation-delay: 3s;
+	transform: translateY(-50%);
 
 	.bar {
 		width: 100%;
 		height: 15px;
-		background: blue;
+		background: #5903e2;
 		display: flex;
 		justify-content: flex-end;
 		padding: 0.1rem;
@@ -48,8 +49,8 @@ $sign-color: #03e271;
 			align-items: center;
 			width: 20px;
 			height: 100%;
-			color: #838383;
-			background: #fff;
+			color: #5903e1;
+			background: #34b2f5;
 			cursor: pointer;
 		}
 	}
@@ -59,10 +60,10 @@ $sign-color: #03e271;
 	button {
 		cursor: pointer;
 		margin-bottom: 0.5rem;
-		color: #000;
-		background: #d2d2d2;
+		color: #d8c9f4;
+		background: #5903e1;
 		padding: 0.1rem 0.7rem;
-		border: 1px solid white;
+		border: 1px solid #390779;
 		font-size: 1.4em;
 	}
 }
@@ -74,18 +75,13 @@ $sign-color: #03e271;
 	margin-left: -12px;
 	border-width: 7px;
 	border-style: solid;
-	border-color: #d2d2d2 transparent transparent transparent;
+	border-color: #34b3f6 transparent transparent transparent;
 }
 
 @keyframes move {
-	0% {
-		transform: translateY(-5px);
-	}
-	50% {
-		transform: translateY(0px);
-	}
-	100% {
-		transform: translateY(-5px);
+	to {
+		transform: translateY(0);
+		opacity: 1;
 	}
 }
 </style>
