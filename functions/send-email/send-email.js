@@ -18,7 +18,41 @@
 // module.exports = { handler }
 
 import express from 'express'
-import { sendEmail } from './mail'
+import nodemailer from 'nodemailer'
+import mailGun from 'nodemailer-mailgun-transport'
+
+const {
+	MAILGUN: apiKey,
+	DOMAIN: domain,
+	RECEIVER_MAIL: receiver_mail,
+} = process.env
+
+const auth = {
+	auth: {
+		api_key: apiKey,
+		domain: domain,
+	},
+}
+
+const transporter = nodemailer.createTransport(mailGun(auth))
+
+const sendEmail = (name, email, subject, text, cb) => {
+	const mailOptions = {
+		from: email,
+		to: receiver_mail,
+		subject: name + ': ' + subject,
+		text: text,
+	}
+
+	transporter.sendMail(mailOptions, (err, data) => {
+		if (err) {
+			cb(err, null)
+		} else {
+			cb(null, data)
+		}
+	})
+}
+
 const app = express()
 
 app.use(
@@ -31,7 +65,7 @@ app.use(express.json())
 app.post('/', (req, res) => {
 	console.log('este to funguje')
 	const { name, email, subject, text } = req.body
-	console.log(name, email)
+	console.log(req.body)
 	sendEmail(name, email, subject, text, (err, data) => {
 		if (err) {
 			res.status(500).json({ error: 'Chyba' })
