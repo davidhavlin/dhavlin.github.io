@@ -15,8 +15,8 @@
 			<!-- **************************** -->
 			<div class="projects">
 				<div
-					class="project-boxes"
 					ref="container"
+					class="project-boxes"
 					@click="whichHalf"
 					@transitionend="afterCarouselMove"
 				>
@@ -35,7 +35,7 @@
 		<!-- ------------- BUTTONY ------------- -->
 		<ProjectButtons
 			:class="{ showMeButton: animated }"
-			:showCase="showCase"
+			:show-case="showCase"
 			@clickshow="showProject"
 			@clickclose="closeProject"
 		/>
@@ -46,6 +46,11 @@
 import myProjects from '~/components/projects/Projects'
 
 export default {
+	head() {
+		return {
+			title: 'Projects',
+		}
+	},
 	data() {
 		return {
 			index: 1,

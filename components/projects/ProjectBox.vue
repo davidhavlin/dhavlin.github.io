@@ -53,21 +53,11 @@ export default {
 			loaded: false,
 		}
 	},
-	watch: {
-		selected(newValue, oldValue) {
-			const parent = this.$refs.thisProject.parentElement
-			if (newValue === parent) {
-				this.neo = true // ked je vyvolenyy
-			} else {
-				this.neo = false
-			}
-		},
-	},
 	computed: {
 		bgImage() {
 			return {
 				backgroundColor: this.project.color.main,
-				backgroundImage: `url(${this.project.images[0]})`,
+				backgroundImage: `url(${this.project.bg})`,
 			}
 		},
 		gradient() {
@@ -79,6 +69,17 @@ export default {
 			return { backgroundImage: `url(${this.project.logo})` }
 		},
 	},
+	watch: {
+		selected(newValue, oldValue) {
+			const parent = this.$refs.thisProject.parentElement
+			if (newValue === parent) {
+				this.neo = true // ked je vyvolenyy
+			} else {
+				this.neo = false
+			}
+		},
+	},
+
 	methods: {
 		hideLoadingSquare(value) {
 			this.loaded = value

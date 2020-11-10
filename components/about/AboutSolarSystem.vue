@@ -74,6 +74,12 @@
 
 <script>
 export default {
+	props: {
+		nextPage: {
+			type: Boolean,
+			default: false,
+		},
+	},
 	computed: {
 		enoughStars() {
 			return this.$store.state.isEnoughStars
@@ -97,12 +103,6 @@ export default {
 				top: rect.top + scrollTop,
 				left: rect.left + scrollLeft,
 			}
-		},
-	},
-	props: {
-		nextPage: {
-			type: Boolean,
-			default: false,
 		},
 	},
 }

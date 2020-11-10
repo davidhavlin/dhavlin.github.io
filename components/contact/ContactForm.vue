@@ -125,7 +125,6 @@ export default {
 						text: this.formText,
 					}
 				)
-				// this.response = res
 				console.log(res)
 				this.success = true
 				this.$emit('successLis', this.success)

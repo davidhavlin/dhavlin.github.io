@@ -1,11 +1,11 @@
 <template>
 	<div class="page-about-container">
-		<AboutMe :nextPage="nextPage" />
+		<AboutMe :next-page="nextPage" />
 		<main ref="main">
 			<section class="about-section">
 				<AboutRightArrow
 					v-show="!nextPage"
-					:infoSign="infoSign"
+					:info-sign="infoSign"
 					@click.native="handleClickNext"
 				/>
 				<div class="fog"></div>
@@ -20,10 +20,7 @@
 					v-show="nextPage"
 					@click.native="handleClickPrev"
 				/>
-				<AboutSolarSystem
-					:isEnoughStars="isEnoughStars"
-					:nextPage="nextPage"
-				/>
+				<AboutSolarSystem :next-page="nextPage" />
 			</section>
 		</main>
 	</div>
@@ -33,6 +30,11 @@
 import Planet from '~/assets/images/svg/Planet.svg'
 import PlanetBig from '~/assets/images/svg/PlanetBig.svg'
 export default {
+	head() {
+		return {
+			title: 'About me',
+		}
+	},
 	components: {
 		Planet,
 		PlanetBig,
@@ -43,21 +45,10 @@ export default {
 			infoSign: true,
 		}
 	},
-	props: {
-		isEnoughStars: {
-			type: Boolean,
-			default: false,
-		},
-	},
 	mounted() {
 		if (this.$route.params.skillsPage) {
 			this.handleClickNext()
 		}
-	},
-	watch: {
-		isEnoughStars(newValue, oldValue) {
-			console.log(newValue, oldValue)
-		},
 	},
 	methods: {
 		handleClickNext(e) {
@@ -68,11 +59,13 @@ export default {
 			this.$refs.main.style.transform = 'translateX(-100%)'
 			this.nextPage = true
 			this.infoSign = false
+			document.title = 'Skills'
 			this.$store.commit('movingStars', this.nextPage)
 		},
 		handleClickPrev() {
 			this.$refs.main.style.transform = 'translateX(0)'
 			this.nextPage = false
+			document.title = 'About me'
 			this.$store.commit('movingStars', this.nextPage)
 		},
 	},

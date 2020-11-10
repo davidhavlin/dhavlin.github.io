@@ -7,7 +7,7 @@
 		</section>
 		<section class="right-section">
 			<div ref="hover" class="hover-image"></div>
-			<HomeCodingBackground />
+			<!-- <HomeCodingBackground /> -->
 		</section>
 	</div>
 </template>
@@ -18,6 +18,14 @@ export default {
 	head() {
 		return {
 			title: 'Home',
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Moja osobna portfolio web stranka, David Havlín | My personal portfolio website, David Havlín',
+				},
+			],
 		}
 	},
 	computed: {
@@ -37,8 +45,8 @@ export default {
 			const effect = new hoverEffect({
 				parent: this.$refs.hover,
 				intensity: 0.3,
-				image1: require('@/assets/images/skuska.webp'),
-				image2: require('@/assets/images/me02.webp'),
+				image1: require('@/assets/images/siluet.webp'),
+				image2: require('@/assets/images/me.png'),
 				displacementImage: require('@/assets/images/dist2.jpg'),
 			})
 		},
@@ -66,13 +74,13 @@ export default {
 		z-index: 1;
 	}
 	.right-section {
-		background: var(--main-bg-color);
+		// background: var(--main-bg-color);
 		position: relative;
 		width: 40%;
 		height: 100%;
 		opacity: 0;
 		overflow: hidden;
-		mix-blend-mode: screen;
+		// mix-blend-mode: screen;
 		transition: opacity 2s ease;
 		z-index: 1;
 	}

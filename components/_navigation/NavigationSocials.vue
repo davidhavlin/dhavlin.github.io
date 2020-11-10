@@ -128,10 +128,10 @@ export default {
 		align-items: center;
 		color: #fff;
 		font-family: 'Press Start 2P', cursive;
-		font-size: 0.6em;
+		font-size: 0.5em;
 		position: absolute;
-		top: -10px;
-		left: 33px;
+		top: -7px;
+		left: 30px;
 		background: #ff0023;
 		padding: 0.2rem;
 		border-radius: 3px;
@@ -245,8 +245,8 @@ export default {
 			display: none;
 		}
 		.notification {
-			top: 0px;
-			left: 5px;
+			top: 2px;
+			left: 8px;
 			transform: scaleX(-1);
 		}
 	}

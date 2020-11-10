@@ -105,8 +105,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// $bar-border: #210742;
-$bar-border: #0a000f;
+$bar-border: #0a0213;
 $bar-color: #46009e;
 
 .loading {
