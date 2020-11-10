@@ -7,7 +7,6 @@ exports.handler = function (event, context, callback) {
 		apiKey: MAILGUN,
 		domain: DOMAIN,
 	})
-	console.log(event.httpMethod)
 	if (event.httpMethod != 'POST' || !event.body) {
 		return callback(new Error('An error occurred!'))
 	}
