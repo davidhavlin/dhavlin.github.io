@@ -49,7 +49,7 @@ export default {
 				parent: this.$refs.parent,
 				intensity: 0.3,
 				image1: require('@/assets/images/space.webp'),
-				image2: require('@/assets/images/bg02up.webp'),
+				image2: require('@/assets/images/spacered.webp'),
 				displacementImage: require('@/assets/images/dist2.jpg'),
 				imagesRatio: 640 / 360,
 			})
