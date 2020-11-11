@@ -1,6 +1,5 @@
 <template>
 	<div class="container">
-		<!-- <div v-if="load" class="skuska"></div> -->
 		<TheNavigationBar />
 		<NavigationSocials />
 		<Nuxt />
@@ -12,7 +11,6 @@
 export default {
 	data() {
 		return {
-			load: true,
 			showStars: false,
 			loading: false,
 		}
@@ -31,7 +29,6 @@ export default {
 		},
 	},
 	mounted() {
-		// this.load = false
 		this.$route.name === 'about' || this.$route.name === 'contact'
 			? (this.showStars = true)
 			: (this.showStars = false)
@@ -82,12 +79,6 @@ body {
 
 .container {
 	height: 100%;
-}
-
-.skuska {
-	width: 500px;
-	height: 500px;
-	background: yellow;
 }
 
 .loading-component-enter-active,
