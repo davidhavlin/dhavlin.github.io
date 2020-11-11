@@ -1,12 +1,19 @@
 <template>
 	<nav class="navbar">
 		<!-- <NavigationLogo /> -->
-		<NavigationIcons />
+		<NavigationIcons :loading="loading" />
 	</nav>
 </template>
 
 <script>
-export default {}
+export default {
+	props: {
+		loading: {
+			type: Boolean,
+			default: true,
+		},
+	},
+}
 </script>
 
 <style lang="scss" scoped>
@@ -15,7 +22,7 @@ export default {}
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	z-index: 200;
+	z-index: 1000;
 	pointer-events: none;
 }
 .socials {

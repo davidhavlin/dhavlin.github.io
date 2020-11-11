@@ -1,14 +1,16 @@
 <template>
 	<transition name="loadingComponent">
-		<div v-if="loading" class="loading">
-			<ul ref="terminal" class="terminal"></ul>
-			<div>
-				<h1 class="loading-title">loading</h1>
-				<div class="loading-bar">
-					<div ref="bar" class="bar"></div>
-				</div>
-				<div class="loading-time">
-					Estimated time remaining: {{ estimatedTime() }}
+		<div v-if="loading" class="loading-container">
+			<div class="loading">
+				<ul ref="terminal" class="terminal"></ul>
+				<div>
+					<h1 class="loading-title">loading</h1>
+					<div class="loading-bar">
+						<div ref="bar" class="bar"></div>
+					</div>
+					<div class="loading-time">
+						Estimated time remaining: {{ estimatedTime() }}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -108,19 +110,27 @@ export default {
 $bar-border: #0a0213;
 $bar-color: #46009e;
 
+.loading-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--navbar-color);
+	z-index: 900;
+}
 .loading {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: var(--main-bg-color-darker);
+	background: #10031e;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	z-index: 1000;
-	transform: translateX(0);
+	transform: translateX(0) scale(0.8);
 	overflow: hidden;
 }
 
@@ -197,11 +207,11 @@ $bar-color: #46009e;
 	transition: all 300ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 .loadingComponent-enter {
-	// opacity: 0.5;
-	transform: translateY(-100%);
+	opacity: 0;
+	transform: translateY(-10%);
 }
 .loadingComponent-leave-to {
-	transform: translateY(-100%);
-	// opacity: 0.5;
+	transform: translateY(-10%);
+	opacity: 0;
 }
 </style>
