@@ -73,6 +73,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	pointer-events: initial;
 
 	a {
 		opacity: 0;

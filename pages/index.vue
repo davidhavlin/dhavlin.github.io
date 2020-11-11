@@ -71,16 +71,15 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		pointer-events: none;
 		z-index: 2;
 	}
 	.right-section {
-		// background: var(--main-bg-color);
 		position: relative;
 		width: 40%;
 		height: 100%;
 		opacity: 0;
 		overflow: hidden;
-		// mix-blend-mode: screen;
 		transition: opacity 2s ease;
 		z-index: 1;
 	}

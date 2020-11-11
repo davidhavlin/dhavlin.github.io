@@ -93,6 +93,7 @@ export default {
 	opacity: 1;
 	margin-bottom: 6rem;
 	padding: 1rem;
+	pointer-events: initial;
 
 	.header {
 		position: relative;
