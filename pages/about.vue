@@ -30,11 +30,6 @@
 import Planet from '~/assets/images/svg/Planet.svg'
 import PlanetBig from '~/assets/images/svg/PlanetBig.svg'
 export default {
-	head() {
-		return {
-			title: 'About me',
-		}
-	},
 	components: {
 		Planet,
 		PlanetBig,
@@ -68,6 +63,11 @@ export default {
 			document.title = 'About me'
 			this.$store.commit('movingStars', this.nextPage)
 		},
+	},
+	head() {
+		return {
+			title: 'About me',
+		}
 	},
 }
 </script>

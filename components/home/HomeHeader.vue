@@ -17,13 +17,17 @@ export default {
 		return {
 			text: 'hello friend',
 			dots: '...',
+			timeout: null,
 		}
 	},
 	mounted() {
-		setTimeout(() => {
+		this.timeout = setTimeout(() => {
 			this.helloFriend()
 			this.$refs.subHeader.style.opacity = 1
 		}, 2000)
+	},
+	destroyed() {
+		clearTimeout(this.timeout)
 	},
 	methods: {
 		helloFriend() {

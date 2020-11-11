@@ -39,7 +39,7 @@
 					:src="require('@/assets/images/software/github.png')"
 					alt="github"
 				/>
-				Github page
+				{{ project.github ? 'Github page' : '-' }}
 			</a>
 		</div>
 	</div>

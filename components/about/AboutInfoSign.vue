@@ -7,10 +7,6 @@
 	</div>
 </template>
 
-<script>
-export default {}
-</script>
-
 <style lang="scss" scoped>
 $sign-color: #03e271;
 
@@ -60,7 +56,7 @@ $sign-color: #03e271;
 	button {
 		cursor: pointer;
 		margin-bottom: 0.5rem;
-		color: #d8c9f4;
+		color: #ffffff;
 		background: #5903e1;
 		padding: 0.1rem 0.7rem;
 		border: 1px solid #390779;

@@ -53,10 +53,12 @@
 	.link:hover,
 	.link:focus {
 		.ContactIcon_svg__icon-stroke,
-		.AboutIcon_svg__icon-stroke,
 		.ProjectsIcon_svg__icon-stroke,
 		.HomeIcon_svg__icon-stroke {
 			stroke: var(--navbar-color);
+		}
+		.AboutIcon_svg__icon-about-stroke {
+			fill: var(--navbar-color);
 		}
 	}
 }

@@ -162,6 +162,12 @@ export default {
 	opacity: 0;
 	transition: opacity 0.3s ease;
 }
+.gradient {
+	opacity: 0.9;
+}
+.show .gradient {
+	opacity: 0.6;
+}
 .gallery {
 	display: none;
 }
@@ -173,7 +179,7 @@ export default {
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;
-	background: var(--main-bg-color);
+	background: #0e031b;
 	position: absolute;
 	bottom: 0;
 	left: 50%;
@@ -202,6 +208,9 @@ export default {
 		background-position: -215px;
 		.title {
 			transform: translateX(123px); // toto sposobuje ten text flickering
+		}
+		.gradient {
+			opacity: 1;
 		}
 		.gradient::after {
 			opacity: 1;

@@ -62,7 +62,7 @@ export default {
 .sign {
 	width: 120px;
 	background: #5903e2;
-	color: #ded2f6;
+	color: #57c5ff;
 	font-family: 'Press Start 2P', cursive;
 	font-style: normal;
 	font-weight: normal;

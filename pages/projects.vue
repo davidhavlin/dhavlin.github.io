@@ -46,11 +46,6 @@
 import myProjects from '~/components/projects/Projects'
 
 export default {
-	head() {
-		return {
-			title: 'Projects',
-		}
-	},
 	data() {
 		return {
 			index: 1,
@@ -304,6 +299,19 @@ export default {
 				this.animated = true
 			})
 		},
+	},
+	head() {
+		return {
+			title: 'Projects',
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Moja osobna portfolio web stranka, David Havlín | Projekty vrvideosaratov, davidhavlin',
+				},
+			],
+		}
 	},
 }
 </script>

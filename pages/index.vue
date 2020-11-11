@@ -71,7 +71,7 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		z-index: 1;
+		z-index: 2;
 	}
 	.right-section {
 		// background: var(--main-bg-color);

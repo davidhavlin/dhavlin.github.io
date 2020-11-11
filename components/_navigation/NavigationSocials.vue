@@ -34,17 +34,26 @@
 				class="social-icons"
 			>
 				<div class="icon facebook" :class="{ facebookIn: socials }">
-					<a href="#">
+					<a
+						href="https://www.facebook.com/david.havlin.7"
+						target="_blank"
+					>
 						<Facebook />
 					</a>
 				</div>
 				<div class="icon twitter" :class="{ twitterIn: socials }">
-					<a href="#">
+					<a
+						href="https://twitter.com/davidhavlindev"
+						target="_blank"
+					>
 						<Twitter />
 					</a>
 				</div>
 				<div class="icon youtube" :class="{ youtubeIn: socials }">
-					<a href="#">
+					<a
+						href="https://www.youtube.com/user/davblender/featured"
+						target="_blank"
+					>
 						<Youtube />
 					</a>
 				</div>
@@ -132,7 +141,7 @@ export default {
 		position: absolute;
 		top: -7px;
 		left: 30px;
-		background: #ff0023;
+		background: #d90d3a;
 		padding: 0.2rem;
 		border-radius: 3px;
 		box-sizing: content-box;

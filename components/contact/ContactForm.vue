@@ -96,8 +96,10 @@ export default {
 		this.$refs.textarea.addEventListener(
 			'animationend',
 			() => {
-				this.$refs.sendButton.classList.add('sendButton')
-				this.writingEffect(this.title, this.$refs.title)
+				if (this.$refs.sendButton) {
+					this.$refs.sendButton.classList.add('sendButton')
+					this.writingEffect(this.title, this.$refs.title)
+				}
 			},
 			{ once: true }
 		)

@@ -27,11 +27,7 @@ export default {
 			success: false,
 			alert: false,
 			error: false,
-		}
-	},
-	head() {
-		return {
-			title: 'Contact me',
+			timeout: null,
 		}
 	},
 	methods: {
@@ -57,9 +53,25 @@ export default {
 	},
 	mounted() {
 		this.effectHover()
-		setTimeout(() => {
+		this.timeout = setTimeout(() => {
 			this.$refs.parent.classList.add('animate')
 		}, 2000)
+	},
+	destroyed() {
+		clearTimeout(this.timeout)
+	},
+	head() {
+		return {
+			title: 'Contact me',
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content:
+						'Moja osobna portfolio web stranka, David Havlín | Email me at davidhavlin@gmail.com',
+				},
+			],
+		}
 	},
 }
 </script>
