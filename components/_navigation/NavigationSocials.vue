@@ -113,7 +113,7 @@ export default {
 	width: 100%;
 	height: 100%;
 	left: 0;
-	z-index: 200;
+	z-index: 1000;
 	pointer-events: none;
 	overflow: hidden;
 }

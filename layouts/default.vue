@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<TheNavigationBar />
+		<TheNavigationBar :loading="loading" />
 		<NavigationSocials />
 		<Nuxt />
 		<Stars :show-stars="showStars" :loading="loading" />

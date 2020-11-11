@@ -42,14 +42,18 @@ export default {
 	},
 	mounted() {
 		if (this.$route.params.skillsPage) {
-			this.handleClickNext()
+			setTimeout(() => {
+				this.handleClickNext()
+			}, 1000)
 		}
 	},
 	methods: {
 		handleClickNext(e) {
-			if (e.target.className === 'exit') {
-				this.infoSign = false
-				return
+			if (e) {
+				if (e.target.className === 'exit') {
+					this.infoSign = false
+					return
+				}
 			}
 			this.$refs.main.style.transform = 'translateX(-100%)'
 			this.nextPage = true

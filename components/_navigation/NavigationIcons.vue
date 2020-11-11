@@ -1,7 +1,7 @@
 <template>
 	<div class="navigation-links">
 		<!-- ***********    HOME link  ****************** -->
-		<div class="link home-icon">
+		<div class="link home-icon" :class="{ disabled: loading }">
 			<nuxt-link to="/">
 				<HomeIcon />
 				<div class="link-name">Home</div>
@@ -9,7 +9,7 @@
 		</div>
 
 		<!-- ***********    ABOUT ME link  ****************** -->
-		<div class="link about-icon">
+		<div class="link about-icon" :class="{ disabled: loading }">
 			<nuxt-link to="/about">
 				<AboutIcon />
 				<div class="link-name">About</div>
@@ -17,7 +17,7 @@
 		</div>
 
 		<!-- ***********    PROJECTS link  ****************** -->
-		<div class="link projects-icon">
+		<div class="link projects-icon" :class="{ disabled: loading }">
 			<nuxt-link to="/projects">
 				<ProjectsIcon />
 				<div class="link-name">Projects</div>
@@ -25,7 +25,7 @@
 		</div>
 
 		<!-- ***********    CONTACT link  ****************** -->
-		<div class="link contact-icon">
+		<div class="link contact-icon" :class="{ disabled: loading }">
 			<nuxt-link to="/contact">
 				<ContactIcon />
 				<div class="link-name">Contact</div>
@@ -41,6 +41,12 @@ import ProjectsIcon from '~/assets/images/svg/ProjectsIcon.svg'
 import ContactIcon from '~/assets/images/svg/ContactIcon.svg'
 
 export default {
+	props: {
+		loading: {
+			type: Boolean,
+			default: true,
+		},
+	},
 	components: {
 		HomeIcon,
 		AboutIcon,
@@ -52,7 +58,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '~assets/scss/_colors';
-
+.disabled {
+	pointer-events: none;
+	opacity: 0.7;
+	filter: grayscale(50%);
+}
 .navigation-links {
 	display: flex;
 	flex-direction: column;
