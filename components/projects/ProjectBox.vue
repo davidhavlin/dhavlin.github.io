@@ -166,7 +166,7 @@ export default {
 	opacity: 0.9;
 }
 .show .gradient {
-	opacity: 0.6;
+	opacity: 0.4;
 }
 .gallery {
 	display: none;

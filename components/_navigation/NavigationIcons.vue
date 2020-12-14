@@ -41,17 +41,17 @@ import ProjectsIcon from '~/assets/images/svg/ProjectsIcon.svg'
 import ContactIcon from '~/assets/images/svg/ContactIcon.svg'
 
 export default {
-	props: {
-		loading: {
-			type: Boolean,
-			default: true,
-		},
-	},
 	components: {
 		HomeIcon,
 		AboutIcon,
 		ProjectsIcon,
 		ContactIcon,
+	},
+	props: {
+		loading: {
+			type: Boolean,
+			default: true,
+		},
 	},
 }
 </script>

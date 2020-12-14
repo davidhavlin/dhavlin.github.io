@@ -118,6 +118,7 @@ export default {
 
 		async postFormToLambdaFunction() {
 			try {
+				// eslint-disable-next-line
 				const res = await this.$axios.$post(
 					'/.netlify/functions/mailgun',
 					{
@@ -127,7 +128,6 @@ export default {
 						text: this.formText,
 					}
 				)
-				console.log(res)
 				this.success = true
 				this.$emit('successLis', this.success)
 				this.$refs.title.style.color = '#00ffac'

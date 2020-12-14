@@ -8,7 +8,7 @@
 			<h4 :style="{ color: project.color.titles }">url</h4>
 			<a
 				:href="project.url"
-				:style="{ color: linkColor }"
+				:style="{ color: linkColor, whiteSpace: 'nowrap' }"
 				target="new_blank"
 			>
 				{{ shortUrl(project.url) }}
