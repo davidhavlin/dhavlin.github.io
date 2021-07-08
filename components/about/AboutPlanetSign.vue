@@ -2,7 +2,9 @@
 	<div>
 		<div v-if="!closed" class="sign">
 			<div class="bar">
-				<div class="exit" @click="closed = true">x</div>
+				<div class="exit" @click="closed = true">
+					<span>x</span>
+				</div>
 			</div>
 			<div class="heart">
 				<svg
@@ -60,13 +62,11 @@ export default {
 
 <style lang="scss" scoped>
 .sign {
-	width: 120px;
+	width: 130px;
 	background: #5903e2;
 	color: #57c5ff;
-	font-family: 'Press Start 2P', cursive;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 0.5em;
 	padding: 0.2rem;
 	line-height: 13px;
 	border-radius: 2px;
@@ -82,6 +82,7 @@ export default {
 		padding: 0.1rem;
 
 		.exit {
+			position: relative;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -90,6 +91,13 @@ export default {
 			color: #330a6f;
 			background: #5903e2;
 			cursor: pointer;
+
+			span {
+				display: block;
+				position: absolute;
+				font-weight: 700;
+				height: 18px;
+			}
 		}
 	}
 	.heart {
@@ -106,15 +114,19 @@ export default {
 	}
 	p {
 		margin: 0.6rem 0rem;
+		font-size: 15px;
+		font-weight: 700;
 	}
 	button {
 		cursor: pointer;
 		margin-bottom: 0.5rem;
-		color: #dbcff6;
+		color: #57c5ff;
 		background: #3f0c8b;
 		padding: 0.1rem 0.7rem;
 		border: 1px solid #15052959;
-		font-size: 1.4em;
+		font-size: 12px;
+		font-weight: 600;
+		text-transform: uppercase;
 		&:focus {
 			outline: none;
 		}

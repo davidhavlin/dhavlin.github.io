@@ -70,7 +70,7 @@ export default {
 	},
 	head() {
 		return {
-			title: 'About me',
+			title: 'David Havlin - About me',
 		}
 	},
 }

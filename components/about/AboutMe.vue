@@ -7,13 +7,22 @@
 				<p v-show="!nextPage">
 					Vyučeny grafik, ale vždy ma to viac ťahalo k programovaniu a
 					že som sa v tom našiel. <br />
-					Osoba s citom pre detail, fanúšik prírody, hier, serialov a
+					Osoba s citom pre detail, fanúšik prírody, hier, seriálov a
 					kinematografie.
 				</p>
 				<p v-show="nextPage">
-					Zameriavam sa hlavne na front end development. <br />
-					HTML, CSS/Sass, JavaScript(ES6), Vue.js, Nuxt.js, React,
-					Git(GitHub)
+					Zameriavam sa zatiaľ na
+					<strong>frontend</strong> development: <br />
+					<span>
+						HTML, CSS/Scss, JavaScript(ES6), TypeScript, Vue.js,
+						Nuxt.js, Quasar, React, Git(GitHub), Docker
+					</span>
+					<br />
+					<br />
+					Ale čoraz viac zabŕdam do <strong>backendu</strong>:<br />
+					<span>
+						Node.js, Express.js, Postgresql
+					</span>
 				</p>
 			</div>
 		</div>
@@ -82,6 +91,13 @@ $border-color-skill: #7206d5;
 		opacity: 1;
 		animation: fadeIn;
 		animation-duration: 0.3s;
+
+		strong {
+			color: #fff;
+		}
+		span {
+			color: #fb6488;
+		}
 	}
 }
 

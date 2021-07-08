@@ -23,7 +23,7 @@
 				<div v-show="socials" class="open-empty-box">
 					<OpenBoxEmpty />
 				</div>
-				<div class="box-title">Socials</div>
+				<div class="box-title">socials</div>
 			</section>
 
 			<section
@@ -136,13 +136,16 @@ export default {
 		justify-content: center;
 		align-items: center;
 		color: #fff;
-		font-family: 'Press Start 2P', cursive;
-		font-size: 0.5em;
+		// font-family: 'Press Start 2P', cursive;
+		font-family: 'IBM Plex Mono', monospace;
+		font-weight: 700;
+		// font-family: 'Poppins', sans-serif;
+		font-size: 13px;
 		position: absolute;
 		top: -7px;
-		left: 30px;
+		left: 29px;
 		background: #d90d3a;
-		padding: 0.2rem;
+		padding: 0px 4px;
 		border-radius: 3px;
 		box-sizing: content-box;
 		z-index: 1;
@@ -164,10 +167,11 @@ export default {
 	}
 
 	.box-title {
-		font-family: 'Press Start 2P', cursive;
-		font-size: 0.4em;
+		font-family: 'Rubik', sans-serif;
+		font-size: 12px;
+		font-weight: 500;
 		color: $text-color;
-		text-transform: uppercase;
+		// text-transform: uppercase;
 		padding: 0.2rem;
 		padding-bottom: 0;
 	}

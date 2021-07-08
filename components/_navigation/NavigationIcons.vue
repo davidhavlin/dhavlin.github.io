@@ -20,7 +20,7 @@
 		<div class="link projects-icon" :class="{ disabled: loading }">
 			<nuxt-link to="/projects">
 				<ProjectsIcon />
-				<div class="link-name">Projects</div>
+				<div class="link-name">projects</div>
 			</nuxt-link>
 		</div>
 
@@ -97,8 +97,11 @@ export default {
 	}
 
 	.link-name {
-		font-family: 'Press Start 2P', cursive;
-		font-size: 0.45em;
+		// font-family: 'Press Start 2P', cursive;
+		// font-family: 'IBM Plex Mono', monospace;
+		font-family: 'Rubik', sans-serif;
+		font-weight: 500;
+		font-size: 13px;
 		text-transform: uppercase;
 		color: #fff;
 		padding-top: 0.2rem;
@@ -127,7 +130,7 @@ export default {
 // ------- AKTIV KLASSA
 .nuxt-link-exact-active {
 	.link-name {
-		color: #0af0f0;
+		color: #fff;
 		opacity: 1;
 	}
 }
