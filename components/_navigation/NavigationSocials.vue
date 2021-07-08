@@ -23,7 +23,7 @@
 				<div v-show="socials" class="open-empty-box">
 					<OpenBoxEmpty />
 				</div>
-				<div class="box-title">socials</div>
+				<!-- <div class="box-title">socials</div> -->
 			</section>
 
 			<section
@@ -118,8 +118,8 @@ export default {
 	overflow: hidden;
 }
 .socials {
-	margin-bottom: 1rem;
-	margin-left: 0.4rem;
+	margin-bottom: 15px;
+	margin-left: 10px;
 	position: fixed;
 	bottom: 0;
 	pointer-events: all;
@@ -143,7 +143,7 @@ export default {
 		font-size: 13px;
 		position: absolute;
 		top: -7px;
-		left: 29px;
+		left: 20px;
 		background: #d90d3a;
 		padding: 0px 4px;
 		border-radius: 3px;

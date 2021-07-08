@@ -103,7 +103,7 @@ export default {
 		font-weight: 500;
 		font-size: 13px;
 		text-transform: uppercase;
-		color: #fff;
+		color: #0af0f0;
 		padding-top: 0.2rem;
 		opacity: 0;
 	}
@@ -130,7 +130,7 @@ export default {
 // ------- AKTIV KLASSA
 .nuxt-link-exact-active {
 	.link-name {
-		color: #fff;
+		color: #0af0f0;
 		opacity: 1;
 	}
 }
